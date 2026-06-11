@@ -3,122 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Mente em Foco</title>
+    <title>Clear Minds</title>
 
     <link rel="stylesheet" href="style.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <div class="container">
 
-    <!-- LADO ESQUERDO -->
-
-    <section class="left-side">
+    <section class="left">
 
         <div class="logo">
-            <h2>mente<br>em foco</h2>
+            <h2>Mente em Foco</h2>
         </div>
 
-        <p class="mini-text">
+        <p class="slogan">
             cuidar de você<br>
             também é aprender.
         </p>
 
         <h1>
-            Que bom te ver<br>
-            aqui! ♡
+            Sua saúde mental<br>
+            importa.
         </h1>
 
-        <p class="description">
-            Faça seu login e continue<br>
-            cuidando da sua saúde mental<br>
-            com a gente.
+        <p class="descricao">
+            Acolhimento, informação e apoio para uma jornada estudantil mais leve.
         </p>
 
-        <div class="features">
+        <div class="beneficios">
 
-            <div class="feature">
-                <div class="icon-circle">👤</div>
-                <p>Encontre profissionais<br>psicológicos perto de você</p>
+            <div class="item">
+                <div class="icone">⌕</div>
+                <span>Encontre profissionais psicológicos perto de você</span>
             </div>
 
-            <div class="feature">
-                <div class="icon-circle">💬</div>
-                <p>Acesse ferramentas e<br>conteúdos de apoio</p>
+            <div class="item">
+                <div class="icone">💬</div>
+                <span>Acesse ferramentas e conteúdos de apoio</span>
             </div>
 
-            <div class="feature">
-                <div class="icon-circle">♡</div>
-                <p>Cuide da sua mente,<br>transforme seu futuro</p>
+            <div class="item">
+                <div class="icone">♡</div>
+                <span>Cuide da sua mente, transforme seu futuro</span>
             </div>
 
         </div>
 
     </section>
 
-    <!-- LADO DIREITO -->
+    <section class="right">
 
-    <section class="right-side">
+        <div class="card">
 
-        <div class="login-card">
-
-            <div class="register-link">
-                Não tem uma conta?
-                <a href="#">Cadastre-se</a>
+            <div class="login-link">
+                Já tem uma conta?
+                <a href="login.html">Entrar</a>
             </div>
 
-            <h2>Entrar na sua conta</h2>
+            <h2>Criar sua conta</h2>
 
-            <p class="subtitle">
-                Que bom ter você de volta!<br>
-                Faça login para acessar sua conta.
+            <p class="subtitulo">
+                Preencha seus dados para ter acesso a conteúdos e ferramentas que podem te ajudar.
             </p>
 
             <form>
 
-                <label>E-mail institucional</label>
+                <label>Nome completo</label>
+                <input type="text" placeholder="Digite seu nome completo">
 
-                <div class="input-group">
-                    <input type="email" placeholder="seuemail@universidade.br">
-                </div>
+                <label>E-mail</label>
+                <input type="email" placeholder="seuemail@exemplo.com">
+
+                <small>Use seu e-mail para validar sua conta.</small>
 
                 <label>Senha</label>
 
-                <div class="input-group password-box">
-                    <input type="password" id="senha" placeholder="Digite sua senha">
-
-                    <button type="button" id="mostrarSenha">
-                        👁
-                    </button>
+                <div class="senha-box">
+                    <input type="password" id="senha" placeholder="Crie uma senha">
+                    <button type="button" id="mostrarSenha">👁</button>
                 </div>
 
-                <a href="#" class="forgot">
-                    Esqueceu sua senha?
-                </a>
+                <small>Mínimo de 8 caracteres com letras e números.</small>
 
-                <button class="login-btn">
-                    Entrar
+                <label>Confirme sua senha</label>
+
+                <div class="senha-box">
+                    <input type="password" placeholder="Digite novamente sua senha">
+                    <button type="button">👁</button>
+                </div>
+
+                <label>Curso</label>
+
+                <select>
+                    <option>Selecione seu curso</option>
+                </select>
+
+                <label>Período</label>
+
+                <select>
+                    <option>Selecione o período</option>
+                </select>
+
+                <div class="checkbox">
+                    <input type="checkbox">
+
+                    <span>
+                        Eu li e concordo com os Termos de Uso e a Política de Privacidade.
+                    </span>
+                </div>
+
+                <button type="submit" class="btn-cadastro">
+                    Criar conta
                 </button>
 
             </form>
 
-            <div class="divider">
-                <span>ou entrar com</span>
+            <div class="divisor">
+                ou cadastre-se com
             </div>
 
-            <div class="social-buttons">
+            <div class="social">
 
-                <button class="social">
-                    Google
-                </button>
+                <button>Google</button>
 
-                <button class="social">
-                    Microsoft
-                </button>
+                <button>Microsoft</button>
 
             </div>
 
@@ -131,17 +142,14 @@
 <footer>
 
     <div>
-        Buscar ajuda é um ato de coragem.
-        Estamos aqui por você.
-    </div>
-
-    <div class="footer-heart">
-        ♡
+        Buscar ajuda é um ato de coragem. Estamos aqui por você.
     </div>
 
 </footer>
 
 <script src="script.js"></script>
+<p class="creditos">
+    Desenvolvido por Manuella Bernst e Gabriela Becker <a href="https://github.com/Clear-Minds" target="_blank">Clear Minds</a>
 
 </body>
 </html>

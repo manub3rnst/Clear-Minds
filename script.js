@@ -1,12 +1,11 @@
+const senha = document.getElementById("senha");
 const botao = document.getElementById("mostrarSenha");
 
 botao.addEventListener("click", () => {
 
-    const senha = document.getElementById("senha");
-
-    if(senha.type === "password"){
+    if (senha.type === "password") {
         senha.type = "text";
-    }else{
+    } else {
         senha.type = "password";
     }
 
