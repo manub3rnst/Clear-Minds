@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mente em Foco</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="topo">
+
+    <div class="logo-home">
+        <h2>Mente em Foco</h2>
+    </div>
+
+    <nav>
+
+        <a href="#">Início</a>
+        <a href="#">Ferramentas</a>
+        <a href="#">Profissionais</a>
+        <a href="#">Conteúdos</a>
+        <a href="#">Sobre Nós</a>
+
+    </nav>
+
+    <div class="usuario">
+        Olá, <span id="nomeUsuario"></span>
+    </div>
+
+</header>
+
+<section class="hero">
+
+    <div class="hero-texto">
+
+        <h1>
+            Cuidar da sua mente<br>
+            é investir em você.
+        </h1>
+
+        <p>
+            Apoio, informação e ferramentas para
+            uma vida mais leve.
+        </p>
+
+        <button class="btn-cadastro">
+            Como podemos ajudar?
+        </button>
+
+    </div>
+
+</section>
+
+<section class="cards-home">
+
+    <h2>Ferramentas para seu bem-estar</h2>
+
+    <div class="grid">
+
+        <div class="card-home">
+            🌿
+            <h3>Exercícios de Respiração</h3>
+        </div>
+
+        <div class="card-home">
+            😊
+            <h3>Diário Emocional</h3>
+        </div>
+
+        <div class="card-home">
+            🧘
+            <h3>Meditação Guiada</h3>
+        </div>
+
+        <div class="card-home">
+            📚
+            <h3>Materiais de Apoio</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cards-home">
+
+    <h2>Profissionais Recomendados</h2>
+
+    <div class="grid">
+
+        <div class="card-home">
+            <h3>Dra. Ana Martins</h3>
+            <p>Psicóloga Clínica</p>
+        </div>
+
+        <div class="card-home">
+            <h3>Dr. Rafael Souza</h3>
+            <p>Psicólogo</p>
+        </div>
+
+        <div class="card-home">
+            <h3>Dra. Beatriz Lima</h3>
+            <p>Psicóloga Escolar</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="cards-home">
+
+    <h2>Conteúdos para você</h2>
+
+    <div class="grid">
+
+        <div class="card-home">
+            <h3>Ansiedade nos estudos</h3>
+            <p>5 min de leitura</p>
+        </div>
+
+        <div class="card-home">
+            <h3>Sono e saúde mental</h3>
+            <p>Vídeo</p>
+        </div>
+
+        <div class="card-home">
+            <h3>Autoestima</h3>
+            <p>Guia</p>
+        </div>
+
+        <div class="card-home">
+            <h3>Podcast Bem-estar</h3>
+            <p>Áudio</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer-home">
+
+    <h2>
+        Pequenas escolhas diárias podem
+        transformar sua vida.
+    </h2>
+
+    <button class="btn-cadastro">
+        Você importa 💚
+    </button>
+
+</footer>
+
+<script>
+document.getElementById("nomeUsuario").innerText =
+localStorage.getItem("usuarioLogado") || "Usuário";
+</script>
+
+</body>
+</html>

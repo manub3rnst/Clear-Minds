@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clear Minds</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="style.css">
+<title>Clear Minds</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <div class="container">
@@ -16,7 +18,7 @@
     <section class="left">
 
         <div class="logo">
-            <h2>Mente em Foco</h2>
+            <h2>Mente<br>em Foco</h2>
         </div>
 
         <p class="slogan">
@@ -25,8 +27,7 @@
         </p>
 
         <h1>
-            Sua saúde mental<br>
-            importa.
+            Sua saúde mental importa.
         </h1>
 
         <p class="descricao">
@@ -69,50 +70,76 @@
                 Preencha seus dados para ter acesso a conteúdos e ferramentas que podem te ajudar.
             </p>
 
-            <form>
+            <form id="cadastroForm">
 
                 <label>Nome completo</label>
-                <input type="text" placeholder="Digite seu nome completo">
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome completo"
+                    required
+                >
 
                 <label>E-mail</label>
-                <input type="email" placeholder="seuemail@exemplo.com">
 
-                <small>Use seu e-mail para validar sua conta.</small>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="seuemail@exemplo.com"
+                    required
+                >
+
+                <small>
+                    Use seu e-mail para validar sua conta.
+                </small>
 
                 <label>Senha</label>
 
                 <div class="senha-box">
-                    <input type="password" id="senha" placeholder="Crie uma senha">
-                    <button type="button" id="mostrarSenha">👁</button>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Crie uma senha"
+                        required
+                    >
+
+                    <button type="button" id="mostrarSenha">
+                        👁
+                    </button>
+
                 </div>
 
-                <small>Mínimo de 8 caracteres com letras e números.</small>
+                <small>
+                    Mínimo de 8 caracteres com letras e números.
+                </small>
 
                 <label>Confirme sua senha</label>
 
                 <div class="senha-box">
-                    <input type="password" placeholder="Digite novamente sua senha">
-                    <button type="button">👁</button>
+
+                    <input
+                        type="password"
+                        id="confirmarSenha"
+                        placeholder="Digite novamente sua senha"
+                        required
+                    >
+
                 </div>
 
-                <label>Curso</label>
-
-                <select>
-                    <option>Selecione seu curso</option>
-                </select>
-
-                <label>Período</label>
-
-                <select>
-                    <option>Selecione o período</option>
-                </select>
-
                 <div class="checkbox">
-                    <input type="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="termos"
+                        required
+                    >
 
                     <span>
                         Eu li e concordo com os Termos de Uso e a Política de Privacidade.
                     </span>
+
                 </div>
 
                 <button type="submit" class="btn-cadastro">
@@ -127,9 +154,9 @@
 
             <div class="social">
 
-                <button>Google</button>
+                <button type="button">Google</button>
 
-                <button>Microsoft</button>
+                <button type="button">Microsoft</button>
 
             </div>
 
@@ -147,9 +174,12 @@
 
 </footer>
 
+<!--<p class="creditos">
+    Desenvolvido por Manuella Bernst e Gabriela Becker |
+    Clear Minds
+</p>-->
+
 <script src="script.js"></script>
-<p class="creditos">
-    Desenvolvido por Manuella Bernst e Gabriela Becker <a href="https://github.com/Clear-Minds" target="_blank">Clear Minds</a>
 
 </body>
 </html>

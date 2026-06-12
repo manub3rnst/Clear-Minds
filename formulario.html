@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Formulário - Mente em Foco</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LADO ESQUERDO -->
+
+    <section class="left">
+
+        <div class="logo">
+            <h2>Mente<br>em Foco</h2>
+        </div>
+
+        <h1>
+            Suas informações nos ajudam a te ajudar melhor.
+        </h1>
+
+        <p class="descricao">
+            Quanto mais completo for seu perfil, melhores serão as recomendações de profissionais e conteúdos.
+        </p>
+
+        <div class="aviso-formulario">
+
+            <h3>⚠ Formulário opcional</h3>
+
+            <p>
+                Você pode preencher agora ou depois.
+                Quanto mais informações tivermos,
+                mais personalizado será o suporte.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- LADO DIREITO -->
+
+    <section class="right">
+
+        <div class="card">
+
+            <h2>Informações Pessoais</h2>
+
+            <p class="subtitulo">
+                Estas informações serão utilizadas para melhorar sua experiência.
+            </p>
+
+            <form id="formularioUsuario">
+
+                <label>Nome Completo</label>
+                <input type="text" id="nome" placeholder="Digite seu nome completo">
+
+                <label>Data de Nascimento</label>
+                <input type="date" id="nascimento">
+
+                <label>Gênero</label>
+
+                <select id="genero">
+                    <option>Selecione</option>
+                    <option>Feminino</option>
+                    <option>Masculino</option>
+                    <option>Não-binário</option>
+                    <option>Prefiro não informar</option>
+                </select>
+
+                <label>Telefone</label>
+                <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+
+                <label>Cidade</label>
+                <input type="text" id="cidade" placeholder="Digite sua cidade">
+
+                <label>Estado</label>
+
+                <select id="estado">
+                    <option>Selecione</option>
+                    <option>SC</option>
+                    <option>RS</option>
+                    <option>PR</option>
+                    <option>SP</option>
+                </select>
+
+                <label>Você já faz acompanhamento psicológico?</label>
+
+                <select id="acompanhamento">
+                    <option>Selecione</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+
+                <label>Necessidade principal atualmente</label>
+
+                <select id="necessidade">
+                    <option>Selecione</option>
+                    <option>Ansiedade</option>
+                    <option>Estresse</option>
+                    <option>Burnout</option>
+                    <option>Depressão</option>
+                    <option>Autoestima</option>
+                    <option>Solidão</option>
+                    <option>Outro</option>
+                </select>
+
+                <label>Como você prefere receber ajuda?</label>
+
+                <div class="checkbox-group">
+
+                    <label>
+                        <input type="checkbox">
+                        Psicólogo
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Psiquiatra
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Grupo de apoio
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Conteúdos educativos
+                    </label>
+
+                    <label>
+                        <input type="checkbox">
+                        Comunidade do site
+                    </label>
+
+                </div>
+
+                <label>Conte um pouco sobre você</label>
+
+                <textarea
+                    id="sobre"
+                    rows="5"
+                    placeholder="Interesses, objetivos, dificuldades ou qualquer informação que queira compartilhar."
+                ></textarea>
+
+                <div class="botoes-formulario">
+
+                    <button
+                        type="button"
+                        class="btn-secundario"
+                        onclick="window.location.href='home.html'"
+                    >
+                        Pular
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-cadastro"
+                    >
+                        Continuar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
