@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formulário - Clear Minds</title>
+<title>Formulário - Mente em Foco</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -16,60 +16,98 @@
 
 <div class="container">
 
-    <!-- LADO ESQUERDO -->
+    <!-- ==========================================
+    LADO ESQUERDO
+    ========================================== -->
+<section class="left">
 
-    <section class="left">
+    <h1>
+        Conhecer você é o primeiro passo para oferecer um apoio mais humano.
+    </h1>
 
-        <!--<div class="logo">
-            <h2>Mente<br>em Foco</h2>
-        </div>-->
+    <p class="descricao">
+        Este espaço foi criado para compreender melhor sua realidade,
+        seus desafios e suas necessidades. Quanto mais soubermos sobre você,
+        mais relevantes poderão ser os conteúdos, ferramentas e profissionais
+        recomendados.
+    </p>
 
-        <h1>
-            Suas informações nos ajudam a te ajudar melhor.
-        </h1>
+    <div class="aviso-formulario">
 
-        <p class="descricao">
-            Quanto mais completo for seu perfil, melhores serão as recomendações de profissionais e conteúdos.
+        <h3>🌿 Perfil opcional</h3>
+
+        <p>
+            Você pode preencher estas informações agora ou mais tarde.
+            Nenhum campo é obrigatório, mas compartilhar um pouco sobre sua
+            jornada nos ajuda a construir uma experiência mais acolhedora
+            e personalizada.
         </p>
 
-        <div class="aviso-formulario">
+    </div>
 
-            <h3>⚠ Formulário opcional</h3>
+    <div class="mensagem-acolhimento">
 
-            <p>
-                Você pode preencher agora ou depois.
-                Quanto mais informações tivermos,
-                mais personalizado será o suporte.
-            </p>
+        <h2>Você não precisa passar por tudo sozinho.</h2>
 
-        </div>
+        <p>
+            A vida acadêmica pode trazer ansiedade, pressão, insegurança
+            e momentos difíceis. Buscar apoio é um sinal de cuidado consigo
+            mesmo, e estamos aqui para tornar esse processo mais leve.
+        </p>
 
-    </section>
+        <p>
+            Nossa missão é conectar estudantes a profissionais,
+            conteúdos confiáveis e ferramentas que contribuam para o
+            bem-estar emocional ao longo da sua trajetória.
+        </p>
 
-    <!-- LADO DIREITO -->
+    </div>
+
+    <div class="frase-final">
+
+        <p>
+            💚 Pequenos passos de autocuidado podem transformar grandes jornadas.
+        </p>
+
+    </div>
+
+</section>
+
+    <!-- ==========================================
+    LADO DIREITO
+    ========================================== -->
 
     <section class="right">
 
-        <div class="card">
+        <div class="card formulario-card">
 
             <h2>Informações Pessoais</h2>
 
             <p class="subtitulo">
-                Estas informações serão utilizadas para melhorar sua experiência.
+                Estas informações serão utilizadas para melhorar sua experiência na plataforma.
             </p>
 
             <form id="formularioUsuario">
 
                 <label>Nome Completo</label>
-                <input type="text" id="nome" placeholder="Digite seu nome completo">
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome completo"
+                >
 
                 <label>Data de Nascimento</label>
-                <input type="date" id="nascimento">
+
+                <input
+                    type="date"
+                    id="nascimento"
+                >
 
                 <label>Gênero</label>
 
                 <select id="genero">
-                    <option>Selecione</option>
+                    <option value="">Selecione seu gênero</option>
                     <option>Feminino</option>
                     <option>Masculino</option>
                     <option>Não-binário</option>
@@ -77,25 +115,37 @@
                 </select>
 
                 <label>Telefone</label>
-                <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+
+                <input
+                    type="tel"
+                    id="telefone"
+                    placeholder="(00) 00000-0000"
+                >
 
                 <label>Cidade</label>
-                <input type="text" id="cidade" placeholder="Digite sua cidade">
+
+                <input
+                    type="text"
+                    id="cidade"
+                    placeholder="Digite sua cidade"
+                >
 
                 <label>Estado</label>
 
                 <select id="estado">
-                    <option>Selecione</option>
+                    <option value="">Selecione seu estado</option>
                     <option>SC</option>
                     <option>RS</option>
                     <option>PR</option>
                     <option>SP</option>
+                    <option>RJ</option>
+                    <option>MG</option>
                 </select>
 
                 <label>Você já faz acompanhamento psicológico?</label>
 
                 <select id="acompanhamento">
-                    <option>Selecione</option>
+                    <option value="">Selecione uma opção</option>
                     <option>Sim</option>
                     <option>Não</option>
                 </select>
@@ -103,7 +153,7 @@
                 <label>Necessidade principal atualmente</label>
 
                 <select id="necessidade">
-                    <option>Selecione</option>
+                    <option value="">Selecione uma opção</option>
                     <option>Ansiedade</option>
                     <option>Estresse</option>
                     <option>Burnout</option>
@@ -166,7 +216,7 @@
                         type="submit"
                         class="btn-cadastro"
                     >
-                        Continuar
+                        Salvar Perfil
                     </button>
 
                 </div>
