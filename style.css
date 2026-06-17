@@ -29,26 +29,30 @@ body{
 }
 
 .logo h2{
-    font-size:4.2rem;
+    font-size:3.5rem;
     line-height:.9;
     font-weight:700;
 }
 
 .slogan{
-    margin-top:25px;
+    margin-top:10px;
     font-size:1.2rem;
+    height:75px;
 }
 
 .left h1{
-    margin-top:55px;
-    font-size:3.2rem;
-    line-height:1.2;
+    font-size:3rem;
+    margin-top:20px;
+    line-height:3.0;
 }
 
 .descricao{
-    margin-top:25px;
-    font-size:1.15rem;
+    margin-top:-5px;
+    font-size:1.2rem;
     max-width:500px;
+    line-height:1.8;
+    position:relative;
+    top:-20px;
 }
 
 .beneficios{
@@ -248,6 +252,14 @@ footer{
     text-align:center;
     margin-bottom:20px;
     color:#666;
+}
+
+/*Parte de baixo - créditos*/
+.creditos{
+    text-align:center;
+    margin-bottom:20px;
+    color:#666;
+    font-size:.1.0rem;
 }
 
 /*CSS Login*/
