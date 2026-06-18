@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Entrar - Clear Minds</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+    <title>Entrar - Clear Minds</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <div class="container">
+
+    <!-- ==========================================
+         LADO ESQUERDO
+    ========================================== -->
 
     <section class="left">
 
@@ -31,48 +38,86 @@
         </h1>
 
         <p class="descricao">
-            Faça seu login e continue cuidando da sua saúde mental com a gente.
+            Entre na sua conta e continue sua jornada de cuidado,
+            desenvolvimento pessoal e bem-estar emocional.
         </p>
 
         <div class="beneficios">
 
-            <!--<div class="item">
-                <div class="icone">⌕</div>
-                <span>Encontre profissionais psicológicos perto de você</span>
+            <div class="item">
+
+                <div class="icone">
+                    💚
+                </div>
+
+                <span>
+                    Continue acompanhando sua evolução emocional.
+                </span>
+
             </div>
 
             <div class="item">
-                <div class="icone">💬</div>
-                <span>Acesse ferramentas e conteúdos de apoio</span>
+
+                <div class="icone">
+                    📚
+                </div>
+
+                <span>
+                    Acesse conteúdos personalizados para você.
+                </span>
+
             </div>
 
             <div class="item">
-                <div class="icone">♡</div>
-                <span>Cuide da sua mente, transforme seu futuro</span>
+
+                <div class="icone">
+                    🤝
+                </div>
+
+                <span>
+                    Encontre apoio profissional quando precisar.
+                </span>
+
             </div>
 
-        </div>-->
+        </div>
 
     </section>
+
+    <!-- ==========================================
+         LADO DIREITO
+    ========================================== -->
 
     <section class="right">
 
         <div class="card login-card">
 
             <div class="cadastro-link">
-                Não tem uma conta?
-                <a href="index.html">Cadastre-se</a>
+
+                Não possui uma conta?
+
+                <a href="index.html">
+                    Cadastre-se
+                </a>
+
             </div>
 
-            <h2>Entrar na sua conta</h2>
+            <h2>
+                Entrar na sua conta
+            </h2>
 
             <p class="subtitulo">
-                Que bom ter você de volta! Faça login para acessar sua conta.
+
+                Que bom ter você de volta.
+                Faça login para acessar sua conta e continuar utilizando a plataforma.
+
             </p>
 
             <form id="loginForm">
 
-                <label>E-mail</label>
+                <label for="email">
+                    E-mail
+                </label>
 
                 <input
                     type="email"
@@ -81,7 +126,9 @@
                     required
                 >
 
-                <label>Senha</label>
+                <label for="senha">
+                    Senha
+                </label>
 
                 <div class="senha-box">
 
@@ -96,8 +143,16 @@
                         type="button"
                         id="mostrarSenha"
                     >
-                        👁
+                        👁️
                     </button>
+
+                </div>
+
+                <div class="esqueceu-senha">
+
+                    <a href="#">
+                        Esqueceu sua senha?
+                    </a>
 
                 </div>
 
@@ -133,10 +188,18 @@
 </div>
 
 <footer>
-    Buscar ajuda é um ato de coragem. Estamos aqui por você.
+
+    <div>
+        Buscar ajuda é um ato de coragem. Estamos aqui por você.
+    </div>
+
 </footer>
 
-<script src="login.js"></script>
+<p class="creditos">
+    Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
+</p>
+
+<script src="script.js"></script>
 
 </body>
 </html>

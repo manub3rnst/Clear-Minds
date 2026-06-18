@@ -1,7 +1,15 @@
+/* ==========================================
+   RESET
+========================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
@@ -10,15 +18,21 @@ body{
     color:#143730;
 }
 
+/* ==========================================
+   LAYOUT PADRÃO
+========================================== */
+
 .container{
     display:flex;
-    min-height:90vh;
+    min-height:100vh;
 }
 
-/* ESQUERDA */
+/* ==========================================
+   LADO ESQUERDO
+========================================== */
 
 .left{
-    width:45%;
+    width:50%;
     background:linear-gradient(
         180deg,
         #d7e8e0,
@@ -26,76 +40,85 @@ body{
     );
 
     padding:60px;
+
+    display:flex;
+    flex-direction:column;
 }
 
 .logo h2{
-    font-size:3.5rem;
-    line-height:.9;
+    font-size:3rem;
     font-weight:700;
 }
 
 .slogan{
-    margin-top:10px;
-    font-size:1.2rem;
-    height:75px;
+    margin-top:8px;
+    font-size:1.1rem;
+    color:#36564f;
 }
 
 .left h1{
+    margin-top:40px;
     font-size:3rem;
-    margin-top:20px;
-    line-height:3.0;
+    line-height:1.2;
 }
 
 .descricao{
-    margin-top:-5px;
-    font-size:1.2rem;
-    max-width:500px;
+    margin-top:20px;
+    max-width:550px;
     line-height:1.8;
-    position:relative;
-    top:-20px;
+    color:#35514b;
 }
 
+/* ==========================================
+   BENEFÍCIOS
+========================================== */
+
 .beneficios{
-    margin-top:60px;
+    margin-top:50px;
 }
 
 .item{
     display:flex;
     align-items:center;
     gap:18px;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .icone{
     width:55px;
     height:55px;
     border-radius:50%;
-    background:#9ab7aa;
+    background:#4f927a;
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
     color:white;
     font-size:1.2rem;
 }
 
 .item span{
-    font-size:1rem;
+    max-width:350px;
 }
 
-/* DIREITA */
+/* ==========================================
+   LADO DIREITO
+========================================== */
 
 .right{
-    width:55%;
+    width:50%;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     padding:40px;
 }
 
 .card{
-    width:600px;
+    width:100%;
+    max-width:650px;
 
     background:white;
 
@@ -103,18 +126,29 @@ body{
 
     border-radius:30px;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
 }
 
-.login-link{
+/* ==========================================
+   LINKS LOGIN/CADASTRO
+========================================== */
+
+.login-link,
+.cadastro-link{
     text-align:right;
+    font-size:.95rem;
 }
 
-.login-link a{
+.login-link a,
+.cadastro-link a{
     color:#4f927a;
     text-decoration:none;
     font-weight:600;
 }
+
+/* ==========================================
+   TÍTULOS
+========================================== */
 
 .card h2{
     margin-top:20px;
@@ -124,9 +158,13 @@ body{
 .subtitulo{
     margin-top:10px;
     margin-bottom:25px;
-
     color:#6b7c79;
+    line-height:1.7;
 }
+
+/* ==========================================
+   FORMULÁRIOS
+========================================== */
 
 form{
     display:flex;
@@ -139,20 +177,42 @@ label{
     font-weight:500;
 }
 
-input{
+input,
+select,
+textarea{
+    width:100%;
+
     padding:14px;
 
     border:1px solid #d8dfdd;
-
     border-radius:14px;
 
+    font-family:'Poppins',sans-serif;
     font-size:.95rem;
+
+    transition:.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#4f927a;
+    box-shadow:0 0 0 3px rgba(79,146,122,.15);
+}
+
+textarea{
+    resize:none;
 }
 
 small{
     margin-top:6px;
     color:#7a8784;
 }
+
+/* ==========================================
+   SENHA
+========================================== */
 
 .senha-box{
     display:flex;
@@ -163,7 +223,6 @@ small{
 
 .senha-box input{
     border:none;
-    flex:1;
 }
 
 .senha-box button{
@@ -173,23 +232,42 @@ small{
     cursor:pointer;
 }
 
+/* ==========================================
+   CHECKBOX
+========================================== */
+
 .checkbox{
     margin-top:20px;
 
     display:flex;
     gap:10px;
+    align-items:flex-start;
 }
 
-.checkbox input{
+.checkbox-group{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:10px;
+}
+
+.checkbox-group label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.checkbox-group input{
     width:18px;
     height:18px;
 }
 
-.checkbox span{
-    font-size:.9rem;
-}
+/* ==========================================
+   BOTÕES
+========================================== */
 
-.btn-cadastro{
+.btn-cadastro,
+.btn-login{
     margin-top:25px;
 
     padding:15px;
@@ -198,22 +276,50 @@ small{
     border-radius:14px;
 
     background:#4f927a;
-
     color:white;
 
+    font-weight:600;
     font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.btn-cadastro:hover,
+.btn-login:hover{
+    background:#417963;
+}
+
+.btn-secundario{
+    padding:15px 30px;
+
+    border:2px solid #4f927a;
+
+    background:white;
+    color:#4f927a;
+
+    border-radius:14px;
+
     font-weight:600;
 
     cursor:pointer;
 }
 
-.btn-cadastro:hover{
-    background:#417963;
+.botoes-formulario{
+    display:flex;
+    justify-content:space-between;
+    margin-top:30px;
 }
+
+/* ==========================================
+   SOCIAL
+========================================== */
 
 .divisor{
     text-align:center;
     margin:25px 0;
+    color:#777;
 }
 
 .social{
@@ -234,10 +340,167 @@ small{
     cursor:pointer;
 }
 
-/* FOOTER */
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+.aviso-formulario{
+    margin-top:40px;
+
+    background:rgba(255,255,255,.55);
+
+    padding:25px;
+
+    border-radius:20px;
+}
+
+.mensagem-acolhimento{
+    margin-top:40px;
+}
+
+.mensagem-acolhimento h2{
+    margin-bottom:15px;
+}
+
+.mensagem-acolhimento p{
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.frase-final{
+    margin-top:20px;
+
+    padding:20px;
+
+    background:#dcebe4;
+
+    border-left:5px solid #4f927a;
+
+    border-radius:16px;
+}
+
+/* ==========================================
+   HOME
+========================================== */
+
+.topo{
+    background:white;
+
+    padding:20px 60px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+.logo-home h2{
+    font-size:2rem;
+}
+
+.topo nav{
+    display:flex;
+    gap:35px;
+}
+
+.topo nav a{
+    text-decoration:none;
+    color:#143730;
+    font-weight:500;
+}
+
+.usuario{
+    font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+    padding:90px 80px;
+
+    background:linear-gradient(
+        90deg,
+        #eef5f2,
+        #dce8e2
+    );
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.2;
+}
+
+.hero p{
+    margin-top:20px;
+    color:#5d706b;
+    max-width:600px;
+}
+
+/* CARDS */
+
+.cards-home{
+    padding:60px 80px;
+}
+
+.cards-home h2{
+    margin-bottom:30px;
+}
+
+.grid{
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+}
+
+.card-home{
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+    transition:.3s;
+}
+
+.card-home:hover{
+    transform:translateY(-5px);
+}
+
+.card-home h3{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.card-home p{
+    color:#6b7c79;
+}
+
+/* FOOTER HOME */
+
+.footer-home{
+    margin:40px 80px;
+
+    background:#dce8e2;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    text-align:center;
+}
+
+/* ==========================================
+   RODAPÉ GERAL
+========================================== */
 
 footer{
-    margin:0 30px 20px;
+    margin:20px 30px;
 
     padding:20px;
 
@@ -254,393 +517,11 @@ footer{
     color:#666;
 }
 
-/*Parte de baixo - créditos*/
-.creditos{
-    text-align:center;
-    margin-bottom:20px;
-    color:#666;
-    font-size:.1.0rem;
-}
-
-/*CSS Login*/
-
-/* Link "Cadastre-se" */
-
-.cadastro-link{
-    text-align:right;
-    font-size:.95rem;
-}
-
-.cadastro-link a{
-    color:#4f927a;
-    text-decoration:none;
-    font-weight:600;
-}
-
-.cadastro-link a:hover{
-    text-decoration:underline;
-}
-
-/* Título do login */
-
-.login-card h2{
-    margin-top:20px;
-    font-size:2.8rem;
-    color:#113530;
-}
-
-/* Subtítulo */
-
-.login-card .subtitulo{
-    margin-top:10px;
-    margin-bottom:25px;
-
-    color:#6b7c79;
-    line-height:1.6;
-}
-
-/* Botão Entrar */
-
-.btn-login{
-    margin-top:25px;
-
-    padding:15px;
-
-    border:none;
-    border-radius:14px;
-
-    background:#4f927a;
-
-    color:white;
-
-    font-size:1rem;
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.btn-login:hover{
-    background:#417963;
-}
-
-/* Link Esqueci minha senha */
-
-.esqueceu-senha{
-    text-align:right;
-    margin-top:10px;
-}
-
-.esqueceu-senha a{
-    color:#4f927a;
-    text-decoration:none;
-    font-size:.9rem;
-}
-
-.esqueceu-senha a:hover{
-    text-decoration:underline;
-}
-
-/* Divisor */
-
-.login-card .divisor{
-    text-align:center;
-    margin:25px 0;
-    color:#777;
-}
-
-/* Botões Google e Microsoft */
-
-.login-card .social{
-    display:flex;
-    gap:15px;
-}
-
-.login-card .social button{
-    flex:1;
-
-    padding:14px;
-
-    border:1px solid #d8dfdd;
-    border-radius:14px;
-
-    background:white;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.login-card .social button:hover{
-    background:#f6f8f7;
-}
-
-/*Formulário*/
-
-/* Layout 50% / 50% */
-
-.left{
-    width:50%;
-    background:linear-gradient(
-        180deg,
-        #d7e8e0,
-        #d0e3da
-    );
-
-    padding:60px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-}
-
-.right{
-    width:50%;
-
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-
-    padding:40px;
-}
-
-/* Card do formulário */
-
-.formulario-card{
-    width:100%;
-    max-width:750px;
-
-    background:white;
-
-    padding:40px;
-
-    border-radius:30px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.05);
-}
-
-/* Textos da esquerda */
-
-.left h1{
-    margin-top:0;
-
-    font-size:3rem;
-    line-height:1.15;
-
-    max-width:600px;
-
-    color:#123a32;
-}
-
-.left .descricao{
-    margin-top:25px;
-
-    max-width:600px;
-
-    font-size:1.1rem;
-    line-height:1.8;
-
-    color:#23443d;
-}
-
-/* Aviso */
-
-.aviso-formulario{
-    margin-top:40px;
-
-    background:rgba(255,255,255,.55);
-
-    padding:25px;
-
-    border-radius:24px;
-}
-
-.aviso-formulario h3{
-    margin-bottom:12px;
-    color:#123a32;
-}
-
-.aviso-formulario p{
-    line-height:1.8;
-}
-
-/* Bloco de acolhimento */
-
-.mensagem-acolhimento{
-    margin-top:45px;
-    max-width:600px;
-}
-
-.mensagem-acolhimento h2{
-    font-size:1.7rem;
-    margin-bottom:18px;
-    color:#123a32;
-}
-
-.mensagem-acolhimento p{
-    line-height:1.9;
-    margin-bottom:18px;
-    color:#23443d;
-}
-
-/* Frase final */
-
-.frase-final{
-    margin-top:20px;
-
-    padding:20px 25px;
-
-    background:#d9ebe3;
-
-    border-left:5px solid #4f927a;
-
-    border-radius:18px;
-}
-
-.frase-final p{
-    font-weight:600;
-    color:#123a32;
-}
-
-/* Campos */
-
-.formulario-card label{
-    margin-top:14px;
-    margin-bottom:8px;
-    font-weight:500;
-}
-
-.formulario-card input,
-.formulario-card select,
-.formulario-card textarea{
-    width:100%;
-
-    padding:14px 18px;
-
-    border:1px solid #d8dfdd;
-    border-radius:14px;
-
-    font-size:.95rem;
-
-    font-family:'Poppins',sans-serif;
-
-    background:white;
-
-    transition:.3s;
-}
-
-.formulario-card input:focus,
-.formulario-card select:focus,
-.formulario-card textarea:focus{
-    outline:none;
-
-    border-color:#4f927a;
-
-    box-shadow:0 0 0 3px rgba(79,146,122,.15);
-}
-
-/* Select bonito */
-
-.formulario-card select{
-    appearance:none;
-
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%234f927a' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 5.646a.5.5 0 0 1 .708 0L8 11.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-
-    background-repeat:no-repeat;
-    background-position:right 15px center;
-
-    cursor:pointer;
-}
-
-/* Textarea */
-
-textarea{
-    min-height:130px;
-    resize:none;
-}
-
-/* Checkboxes */
-
-.checkbox-group{
-    display:flex;
-    flex-direction:column;
-
-    gap:12px;
-
-    margin-top:10px;
-}
-
-.checkbox-group label{
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    margin:0;
-}
-
-.checkbox-group input{
-    width:18px;
-    height:18px;
-}
-
-/* Botões */
-
-.botoes-formulario{
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:30px;
-}
-
-.btn-secundario{
-    padding:15px 30px;
-
-    border:2px solid #4f927a;
-
-    background:white;
-
-    color:#4f927a;
-
-    border-radius:14px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.btn-secundario:hover{
-    background:#f4faf7;
-}
-
-.btn-cadastro{
-    padding:15px 35px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#4f927a;
-
-    color:white;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.btn-cadastro:hover{
-    background:#417963;
-}
-
-/* Responsivo */
-
-@media(max-width:1100px){
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media(max-width:1000px){
 
     .container{
         flex-direction:column;
@@ -655,191 +536,9 @@ textarea{
         padding:40px;
     }
 
-    .formulario-card{
-        max-width:100%;
-    }
-
-}
-
-/* ==========================================
-   HOME
-========================================== */
-
-.topo{
-    background:white;
-    padding:20px 60px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    box-shadow:0 2px 10px rgba(0,0,0,.04);
-
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo-home h2{
-    font-size:2rem;
-    color:#143730;
-}
-
-.topo nav{
-    display:flex;
-    gap:35px;
-}
-
-.topo nav a{
-    text-decoration:none;
-    color:#143730;
-    font-weight:500;
-    transition:.3s;
-}
-
-.topo nav a:hover{
-    color:#4f927a;
-}
-
-.usuario{
-    font-weight:600;
-    color:#143730;
-}
-
-/* HERO */
-
-.hero{
-    padding:80px 80px;
-
-    background:linear-gradient(
-        90deg,
-        #eef5f2,
-        #dce8e2
-    );
-
-    border-radius:0 0 40px 40px;
-}
-
-.hero-texto{
-    max-width:700px;
-}
-
-.hero h1{
-    font-size:4rem;
-    line-height:1.2;
-    color:#143730;
-}
-
-.hero p{
-    margin-top:25px;
-
-    font-size:1.2rem;
-    line-height:1.8;
-
-    color:#5d706b;
-}
-
-.hero .btn-cadastro{
-    margin-top:35px;
-    width:250px;
-}
-
-/* SEÇÕES */
-
-.cards-home{
-    padding:60px 80px;
-}
-
-.cards-home h2{
-    margin-bottom:30px;
-    font-size:2rem;
-    color:#143730;
-}
-
-.grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-
-    gap:25px;
-}
-
-/* CARDS */
-
-.card-home{
-    background:white;
-
-    padding:25px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
-
-    transition:.3s;
-
-    cursor:pointer;
-}
-
-.card-home:hover{
-    transform:translateY(-5px);
-
-    box-shadow:0 12px 25px rgba(0,0,0,.08);
-}
-
-.card-home h3{
-    margin-top:15px;
-    margin-bottom:10px;
-
-    color:#143730;
-}
-
-.card-home p{
-    color:#6b7c79;
-    line-height:1.6;
-}
-
-/* PROFISSIONAIS */
-
-.card-home h3 + p{
-    margin-top:5px;
-}
-
-/* FOOTER HOME */
-
-.footer-home{
-    margin:40px 80px;
-
-    background:#dce8e2;
-
-    padding:40px;
-
-    border-radius:25px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.footer-home h2{
-    max-width:700px;
-
-    color:#143730;
-
-    font-size:2rem;
-
-    line-height:1.4;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:1000px){
-
     .topo{
         flex-direction:column;
         gap:20px;
-        text-align:center;
     }
 
     .topo nav{
@@ -852,7 +551,7 @@ textarea{
     }
 
     .hero h1{
-        font-size:2.8rem;
+        font-size:2.5rem;
     }
 
     .cards-home{
@@ -861,9 +560,5 @@ textarea{
 
     .footer-home{
         margin:30px;
-
-        flex-direction:column;
-
-        text-align:center;
     }
 }

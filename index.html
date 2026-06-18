@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clear Minds</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+    <title>Clear Minds</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
 <div class="container">
+
+    <!-- ==========================================
+         LADO ESQUERDO
+    ========================================== -->
 
     <section class="left">
 
@@ -23,7 +30,7 @@
 
         <p class="slogan">
             cuidar de você<br>
-            é essêncial.
+            é essencial.
         </p>
 
         <h1>
@@ -31,48 +38,86 @@
         </h1>
 
         <p class="descricao">
-            Acolhimento, informação e apoio para uma jornada mais leve.
+            Acolhimento, informação e apoio para uma jornada mais leve,
+            saudável e equilibrada.
         </p>
 
         <div class="beneficios">
 
             <div class="item">
-                <div class="icone">⌕</div>
-                <span>Encontre profissionais psicológicos perto de você</span>
+
+                <div class="icone">
+                    🔍
+                </div>
+
+                <span>
+                    Encontre profissionais psicológicos perto de você.
+                </span>
+
             </div>
 
             <div class="item">
-                <div class="icone">💬</div>
-                <span>Acesse ferramentas e conteúdos de apoio</span>
+
+                <div class="icone">
+                    💬
+                </div>
+
+                <span>
+                    Acesse conteúdos, ferramentas e materiais de apoio.
+                </span>
+
             </div>
 
             <div class="item">
-                <div class="icone">♡</div>
-                <span>Cuide da sua mente, transforme seu futuro</span>
+
+                <div class="icone">
+                    💚
+                </div>
+
+                <span>
+                    Cuide da sua mente e fortaleça seu bem-estar emocional.
+                </span>
+
             </div>
 
         </div>
 
     </section>
 
+    <!-- ==========================================
+         LADO DIREITO
+    ========================================== -->
+
     <section class="right">
 
         <div class="card">
 
             <div class="login-link">
-                Já tem uma conta?
-                <a href="login.html">Entrar</a>
+
+                Já possui uma conta?
+
+                <a href="login.html">
+                    Entrar
+                </a>
+
             </div>
 
-            <h2>Criar sua conta</h2>
+            <h2>
+                Criar sua conta
+            </h2>
 
             <p class="subtitulo">
-                Preencha seus dados para ter acesso a conteúdos e ferramentas que podem te ajudar.
+
+                Preencha seus dados para acessar conteúdos,
+                ferramentas e recomendações personalizadas.
+
             </p>
 
             <form id="cadastroForm">
 
-                <label>Nome completo</label>
+                <label for="nome">
+                    Nome completo
+                </label>
 
                 <input
                     type="text"
@@ -81,7 +126,9 @@
                     required
                 >
 
-                <label>E-mail</label>
+                <label for="email">
+                    E-mail
+                </label>
 
                 <input
                     type="email"
@@ -91,10 +138,12 @@
                 >
 
                 <small>
-                    Use seu e-mail para validar sua conta.
+                    Utilize um e-mail válido para acessar sua conta.
                 </small>
 
-                <label>Senha</label>
+                <label for="senha">
+                    Senha
+                </label>
 
                 <div class="senha-box">
 
@@ -105,17 +154,22 @@
                         required
                     >
 
-                    <button type="button" id="mostrarSenha">
-                        👁
+                    <button
+                        type="button"
+                        id="mostrarSenha"
+                    >
+                        👁️
                     </button>
 
                 </div>
 
                 <small>
-                    Mínimo de 8 caracteres com letras e números.
+                    A senha deve possuir pelo menos 8 caracteres e um número.
                 </small>
 
-                <label>Confirme sua senha</label>
+                <label for="confirmarSenha">
+                    Confirmar senha
+                </label>
 
                 <div class="senha-box">
 
@@ -142,7 +196,10 @@
 
                 </div>
 
-                <button type="submit" class="btn-cadastro">
+                <button
+                    type="submit"
+                    class="btn-cadastro"
+                >
                     Criar conta
                 </button>
 
@@ -154,9 +211,13 @@
 
             <div class="social">
 
-                <button type="button">Google</button>
+                <button type="button">
+                    Google
+                </button>
 
-                <button type="button">Microsoft</button>
+                <button type="button">
+                    Microsoft
+                </button>
 
             </div>
 
@@ -175,8 +236,7 @@
 </footer>
 
 <p class="creditos">
-    Desenvolvido por Manuella Bernst e Gabriela Becker |
-    Clear Minds
+    Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
 </p>
 
 <script src="script.js"></script>

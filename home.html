@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Clear Minds</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+
+<!-- ==========================================
+TOPO
+========================================== -->
 
 <header class="topo">
 
@@ -30,135 +35,380 @@
     </nav>
 
     <div class="usuario">
-        Olá, <span id="nomeUsuario"></span>
+
+        Olá,
+        <span id="nomeUsuario">Usuário</span>
+
+        <button id="btnSair">
+            Sair
+        </button>
+
     </div>
 
 </header>
+
+<!-- ==========================================
+BANNER PRINCIPAL
+========================================== -->
 
 <section class="hero">
 
     <div class="hero-texto">
 
+        <span class="tag">
+            🌿 Bem-vindo ao Clear Minds
+        </span>
+
         <h1>
-            Cuidar da sua mente<br>
-            é investir em você.
+            Sua saúde mental<br>
+            merece atenção todos os dias.
         </h1>
 
         <p>
-            Apoio, informação e ferramentas para
-            uma vida mais leve.
+            Um espaço criado para conectar estudantes a conteúdos,
+            profissionais e ferramentas que promovem bem-estar emocional.
         </p>
 
-        <button class="btn-cadastro">
-            Como podemos ajudar?
+        <button class="btn-principal">
+            Explorar Recursos
         </button>
 
     </div>
 
 </section>
 
-<section class="cards-home">
+<!-- ==========================================
+BOAS-VINDAS PERSONALIZADAS
+========================================== -->
 
-    <h2>Ferramentas para seu bem-estar</h2>
+<section class="boas-vindas">
+
+    <div class="card-boas-vindas">
+
+        <h2 id="saudacao">
+            Olá!
+        </h2>
+
+        <p id="mensagemPersonalizada">
+            Estamos felizes em ter você aqui.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+PERFIL
+========================================== -->
+
+<section class="secao">
+
+    <h2>Seu Perfil</h2>
+
+    <div class="perfil-usuario">
+
+        <div class="info">
+
+            <strong>Nome</strong>
+
+            <span id="perfilNome">
+                Não informado
+            </span>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Cidade</strong>
+
+            <span id="perfilCidade">
+                Não informado
+            </span>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Necessidade Principal</strong>
+
+            <span id="perfilNecessidade">
+                Não informado
+            </span>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Acompanhamento Psicológico</strong>
+
+            <span id="perfilAcompanhamento">
+                Não informado
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+PROGRESSO DO PERFIL
+========================================== -->
+
+<section class="secao">
+
+    <h2>Perfil Completo</h2>
+
+    <div class="progresso-perfil">
+
+        <p>
+            Quanto mais completo seu perfil estiver,
+            melhores serão as recomendações oferecidas.
+        </p>
+
+        <div class="barra">
+
+            <div
+                class="barra-preenchida"
+                id="barraPerfil"
+            ></div>
+
+        </div>
+
+        <p id="textoProgresso">
+            0% preenchido
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+RECOMENDAÇÕES
+========================================== -->
+
+<section class="secao">
+
+    <h2>Recomendado para Você</h2>
+
+    <div
+        class="card-home"
+        id="recomendacaoUsuario"
+    >
+
+        Complete seu perfil para receber
+        recomendações personalizadas.
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+FERRAMENTAS
+========================================== -->
+
+<section class="secao">
+
+    <h2>Ferramentas de Apoio</h2>
 
     <div class="grid">
 
         <div class="card-home">
-            🌿
-            <h3>Exercícios de Respiração</h3>
+
+            <div class="icone-card">
+                🌬️
+            </div>
+
+            <h3>Respiração Guiada</h3>
+
+            <p>
+                Exercícios para reduzir ansiedade
+                e recuperar o foco.
+            </p>
+
         </div>
 
         <div class="card-home">
-            😊
+
+            <div class="icone-card">
+                😊
+            </div>
+
             <h3>Diário Emocional</h3>
+
+            <p>
+                Registre sentimentos e acompanhe
+                sua evolução emocional.
+            </p>
+
         </div>
 
         <div class="card-home">
-            🧘
-            <h3>Meditação Guiada</h3>
+
+            <div class="icone-card">
+                🧘
+            </div>
+
+            <h3>Meditação</h3>
+
+            <p>
+                Práticas rápidas para relaxar
+                corpo e mente.
+            </p>
+
         </div>
 
         <div class="card-home">
-            📚
-            <h3>Materiais de Apoio</h3>
+
+            <div class="icone-card">
+                📚
+            </div>
+
+            <h3>Materiais Educativos</h3>
+
+            <p>
+                Conteúdos sobre saúde mental,
+                autocuidado e bem-estar.
+            </p>
+
         </div>
 
     </div>
 
 </section>
 
-<section class="cards-home">
+<!-- ==========================================
+PROFISSIONAIS
+========================================== -->
 
-    <h2>Profissionais Recomendados</h2>
+<section class="secao">
+
+    <h2>Profissionais em Destaque</h2>
 
     <div class="grid">
 
         <div class="card-home">
-            <h3>Dra. Ana Martins</h3>
-            <p>Psicóloga Clínica</p>
+
+            <h3>👩‍⚕️ Psicóloga Clínica</h3>
+
+            <p>
+                Especialista em ansiedade,
+                autoestima e autoconhecimento.
+            </p>
+
         </div>
 
         <div class="card-home">
-            <h3>Dr. Rafael Souza</h3>
-            <p>Psicólogo</p>
+
+            <h3>👨‍⚕️ Psicólogo Escolar</h3>
+
+            <p>
+                Acompanhamento voltado para
+                estudantes.
+            </p>
+
         </div>
 
         <div class="card-home">
-            <h3>Dra. Beatriz Lima</h3>
-            <p>Psicóloga Escolar</p>
+
+            <h3>🩺 Psiquiatra</h3>
+
+            <p>
+                Avaliação e suporte
+                especializado.
+            </p>
+
         </div>
 
     </div>
 
 </section>
 
-<section class="cards-home">
+<!-- ==========================================
+CONTEÚDOS
+========================================== -->
 
-    <h2>Conteúdos para você</h2>
+<section class="secao">
+
+    <h2>Conteúdos para Você</h2>
 
     <div class="grid">
 
         <div class="card-home">
-            <h3>Ansiedade nos estudos</h3>
-            <p>5 min de leitura</p>
+
+            <h3>Ansiedade nos Estudos</h3>
+
+            <p>
+                Leitura rápida.
+            </p>
+
         </div>
 
         <div class="card-home">
-            <h3>Sono e saúde mental</h3>
-            <p>Vídeo</p>
+
+            <h3>Sono e Saúde Mental</h3>
+
+            <p>
+                Vídeo educativo.
+            </p>
+
         </div>
 
         <div class="card-home">
+
             <h3>Autoestima</h3>
-            <p>Guia</p>
+
+            <p>
+                Guia prático.
+            </p>
+
         </div>
 
         <div class="card-home">
+
             <h3>Podcast Bem-estar</h3>
-            <p>Áudio</p>
+
+            <p>
+                Conteúdo em áudio.
+            </p>
+
         </div>
 
     </div>
 
 </section>
+
+<!-- ==========================================
+FRASE FINAL
+========================================== -->
+
+<section class="frase-final-home">
+
+    <h2>
+        Você não precisa enfrentar tudo sozinho.
+    </h2>
+
+    <p>
+        Buscar apoio é um ato de coragem
+        e autocuidado.
+    </p>
+
+</section>
+
+<!-- ==========================================
+RODAPÉ
+========================================== -->
 
 <footer class="footer-home">
 
-    <h2>
-        Pequenas escolhas diárias podem
-        transformar sua vida.
-    </h2>
-
-    <button class="btn-cadastro">
-        Você importa 💚
-    </button>
+    <p>
+        Desenvolvido por Manuella Bernst e Gabriela Becker • Clear Minds
+    </p>
 
 </footer>
 
-<script>
-document.getElementById("nomeUsuario").innerText =
-localStorage.getItem("usuarioLogado") || "Usuário";
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
