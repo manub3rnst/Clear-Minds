@@ -329,6 +329,14 @@ small{
     cursor:pointer;
 }
 
+.creditos{
+    text-align:center;
+    width:100%;
+    display:block;
+    margin:20px 0;
+    color:#666;
+}
+
 /* ==========================================
    FORMULÁRIO
 ========================================== */
