@@ -2,18 +2,20 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro | MenteBem</title>
+    <title>Clear Minds | Cadastro</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -21,155 +23,421 @@
 
 <body>
 
-<div class="container">
+<main class="container">
 
-    <div class="left">
+    <!-- ==========================
+            LADO ESQUERDO
+    =========================== -->
 
-        <h1>MenteBem</h1>
+    <section class="left">
 
-        <h2>Crie sua conta</h2>
+        <div class="logo">
 
-        <p id="descricao">
+            <img src="imagem/logo.jpg" alt="Logo">
 
-            Escolha seu perfil e preencha os dados para começar.
+            <div>
 
-        </p>
-
-    </div>
-
-    <div class="right">
-
-        <h2>Cadastro</h2>
-
-        <!-- PERFIL -->
-
-        <div class="perfil">
-
-            <div class="card ativo" id="btnPaciente">
-
-                <i class="fa-solid fa-user-graduate"></i>
-
-                <h3>Paciente</h3>
-
-                <p>Acompanhe sua saúde mental.</p>
-
-            </div>
-
-            <div class="card" id="btnPsicologo">
-
-                <i class="fa-solid fa-brain"></i>
-
-                <h3>Psicólogo</h3>
-
-                <p>Acesse seu painel profissional.</p>
+                <h2>Mente</h2>
+                <h2>em Foco</h2>
 
             </div>
 
         </div>
 
-        <form>
+        <div class="hero">
 
-            <div class="campo">
+            <h1>
 
-                <label>Nome completo</label>
+                Sua saúde mental
+                começa <span>com você.</span>
 
-                <input type="text" required>
+                <i class="fa-regular fa-heart"></i>
+
+            </h1>
+
+            <p>
+
+                Faça parte da plataforma e tenha acesso
+                a ferramentas desenvolvidas para promover
+                bem-estar, organização emocional e apoio
+                durante sua vida acadêmica.
+
+            </p>
+
+        </div>
+
+        <div class="resources">
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Conteúdo exclusivo</h3>
+
+                    <p>
+
+                        Artigos, vídeos e materiais
+                        preparados para estudantes.
+
+                    </p>
+
+                </div>
 
             </div>
 
-            <div id="pacienteCampos">
+            <div class="resource">
 
-                <div class="campo">
+                <div class="icon">
 
-                    <label>Data de nascimento</label>
-
-                    <input type="date">
+                    <i class="fa-solid fa-brain"></i>
 
                 </div>
 
-                <div class="campo">
+                <div>
 
-                    <label>Instituição</label>
+                    <h3>Exercícios de autocuidado</h3>
 
-                    <input type="text">
+                    <p>
+
+                        Técnicas simples para aliviar
+                        ansiedade e estresse.
+
+                    </p>
 
                 </div>
 
-                <div class="campo">
+            </div>
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Organize sua rotina</h3>
+
+                    <p>
+
+                        Ferramentas que ajudam no equilíbrio
+                        entre estudos e descanso.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Ambiente seguro</h3>
+
+                    <p>
+
+                        Seus dados permanecem protegidos
+                        durante toda a utilização.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="quote">
+
+            <i class="fa-solid fa-seedling"></i>
+
+            <p>
+
+                Criar uma conta é o primeiro passo
+                para cuidar da sua saúde mental
+                com mais informação e acolhimento.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+            LADO DIREITO
+    =========================== -->
+
+    <section class="right">
+
+        <div class="login-card">
+
+            <div class="top-link">
+
+                <span>Já possui uma conta?</span>
+
+                <a href="login.html">Entrar</a>
+
+            </div>
+
+            <div class="title">
+
+                <h1>Criar sua conta</h1>
+
+                <p>
+
+                    Vamos começar!
+                    Preencha seus dados para acessar
+                    todos os recursos da plataforma.
+
+                </p>
+
+            </div>
+
+            <form id="registerForm">
+
+                <!-- Nome -->
+
+                <div class="input-group">
+
+                    <label>Nome completo</label>
+
+                    <div class="input">
+
+                        <i class="fa-regular fa-user"></i>
+
+                        <input
+                            type="text"
+                            placeholder="Digite seu nome completo"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <!-- Email -->
+
+                <div class="input-group">
+
+                    <label>E-mail</label>
+
+                    <div class="input">
+
+                        <i class="fa-regular fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            placeholder="seuemail@instituicao.br"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <!-- Senha -->
+
+                <div class="input-group">
+
+                    <label>Senha</label>
+
+                    <div class="input">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Crie uma senha"
+                            required>
+
+                        <button
+                            type="button"
+                            id="togglePassword">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Confirmar -->
+
+                <div class="input-group">
+
+                    <label>Confirmar senha</label>
+
+                    <div class="input">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Digite novamente sua senha"
+                            required>
+
+                        <button
+                            type="button"
+                            id="toggleConfirmPassword">
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Curso -->
+
+                <div class="input-group">
 
                     <label>Curso</label>
 
-                    <input type="text">
+                    <div class="input">
+
+                        <i class="fa-solid fa-graduation-cap"></i>
+
+                        <select required>
+
+                            <option value="">Selecione seu curso</option>
+
+                            <option>Informática</option>
+                            <option>Administração</option>
+                            <option>Agropecuária</option>
+                            <option>Outro</option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- Período -->
 
-            <div id="psicologoCampos" style="display:none;">
+                <div class="input-group">
 
-                <div class="campo">
+                    <label>Período</label>
 
-                    <label>CRP</label>
+                    <div class="input">
 
-                    <input type="text">
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <select required>
+
+                            <option value="">Selecione o período</option>
+
+                            <option>1º período</option>
+                            <option>2º período</option>
+                            <option>3º período</option>
+
+                        </select>
+
+                    </div>
 
                 </div>
 
+                <!-- Termos -->
+
+                <label class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        required>
+
+                    <span>
+
+                        Li e concordo com os
+                        <a href="#">Termos de Uso</a>
+                        e a
+                        <a href="#">Política de Privacidade</a>.
+
+                    </span>
+
+                </label>
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    Criar conta
+
+                </button>
+
+            </form>
+
+            <div class="divider">
+
+                <span>ou cadastre-se com</span>
+
             </div>
 
-            <div class="campo">
+            <div class="social-login">
 
-                <label>E-mail</label>
+                <button type="button">
 
-                <input type="email" required>
+                    <img src="imagem/google.jpg" alt="Google">
 
-            </div>
+                    Google
 
-            <div class="campo">
+                </button>
 
-                <label>Senha</label>
+                <button type="button">
 
-                <input type="password" required>
+                    <img src="imagem/microsoft.jpg" alt="Microsoft">
 
-            </div>
+                    Microsoft
 
-            <div class="campo">
-
-                <label>Confirmar senha</label>
-
-                <input type="password" required>
+                </button>
 
             </div>
 
-            <div class="checkbox">
+        </div>
 
-                <input type="checkbox" required>
+    </section>
 
-                <span>Aceito os Termos de Uso</span>
+</main>
 
-            </div>
+<footer>
 
-            <button type="submit">
+    <div class="footer-card">
 
-                Criar conta
+        <div class="footer-left">
 
-            </button>
+            <i class="fa-regular fa-heart"></i>
 
-        </form>
+            <p>
 
-        <p class="login">
+                Cada pequena atitude em direção ao
+                autocuidado faz diferença.
 
-            Já possui uma conta?
+            </p>
 
-            <a href="index.html">Entrar</a>
+        </div>
 
-        </p>
+        <i class="fa-solid fa-hand-holding-heart footer-icon"></i>
 
     </div>
 
-</div>
+</footer>
 
-<script src="js/cadastro.js"></script>
+<script src="js/script.js"></script>
 
 </body>
 

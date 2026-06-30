@@ -1068,3 +1068,366 @@ html{
     scroll-behavior:smooth;
 
 }
+
+/*CADASTRO*/
+/* ==========================================
+   LADO ESQUERDO
+========================================== */
+
+.hero h1{
+
+    max-width:550px;
+
+}
+
+.hero h1 span{
+
+    color:var(--primary);
+
+}
+
+.hero p{
+
+    max-width:500px;
+
+    margin-bottom:45px;
+
+}
+
+.resources{
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.resource{
+
+    gap:18px;
+
+    align-items:flex-start;
+
+}
+
+.icon{
+
+    min-width:60px;
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:rgba(93,156,236,.12);
+
+}
+
+.icon i{
+
+    font-size:24px;
+
+}
+
+.resource h3{
+
+    font-size:1.08rem;
+
+    margin-bottom:4px;
+
+}
+
+.resource p{
+
+    font-size:.95rem;
+
+    line-height:1.65;
+
+}
+
+.quote{
+
+    margin-top:20px;
+
+    padding:24px;
+
+}
+
+.quote i{
+
+    font-size:24px;
+
+}
+
+.quote p{
+
+    font-size:.95rem;
+
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero{
+
+    animation:fadeLeft .8s ease;
+
+}
+
+.resource{
+
+    transition:.3s;
+
+}
+
+.resource:hover{
+
+    transform:translateX(5px);
+
+}
+
+.resource:hover .icon{
+
+    background:rgba(93,156,236,.18);
+
+}
+
+/* ==========================================
+   EFEITO DECORATIVO
+========================================== */
+
+.left::before{
+
+    width:420px;
+    height:420px;
+
+    right:-180px;
+    bottom:120px;
+
+    opacity:.8;
+
+}
+
+.left::after{
+
+    width:180px;
+    height:180px;
+
+    top:140px;
+    left:-60px;
+
+    opacity:.5;
+
+}
+
+/* ==========================================
+   CADASTRO
+   FORMULÁRIO
+========================================== */
+
+#registerForm{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+#registerForm .input{
+
+    height:60px;
+
+}
+
+/* ==========================================
+   SELECT
+========================================== */
+
+#registerForm select{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:1rem;
+
+    color:var(--title);
+
+    cursor:pointer;
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    padding-right:18px;
+
+}
+
+#registerForm select:invalid{
+
+    color:#9BAABD;
+
+}
+
+#registerForm .input{
+
+    position:relative;
+
+}
+
+#registerForm .input::after{
+
+    content:"\f107";
+
+    font-family:"Font Awesome 6 Free";
+
+    font-weight:900;
+
+    position:absolute;
+
+    right:20px;
+
+    color:#8FA4B8;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+.checkbox{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    margin-top:-5px;
+
+    user-select:none;
+
+}
+
+.checkbox input{
+
+    width:18px;
+    height:18px;
+
+    accent-color:var(--primary);
+
+    margin-top:2px;
+
+    cursor:pointer;
+
+}
+
+.checkbox span{
+
+    font-size:.92rem;
+
+    color:var(--text);
+
+    line-height:1.6;
+
+}
+
+.checkbox a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:500;
+
+}
+
+.checkbox a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================================
+   BOTÃO
+========================================== */
+
+#registerForm .login-button{
+
+    margin-top:8px;
+
+}
+
+/* ==========================================
+   LOGIN SOCIAL
+========================================== */
+
+.social-login{
+
+    margin-top:10px;
+
+}
+
+.social-login button{
+
+    transition:.3s;
+
+}
+
+.social-login button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   INPUT FOCUS
+========================================== */
+
+#registerForm .input:focus-within{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(93,156,236,.10);
+
+}
+
+/* ==========================================
+   PLACEHOLDER
+========================================== */
+
+#registerForm input::placeholder{
+
+    color:#9BAABD;
+
+}
+
+/* ==========================================
+   ESPAÇAMENTO
+========================================== */
+
+#registerForm .input-group{
+
+    gap:8px;
+
+}
+
+#registerForm label{
+
+    font-weight:500;
+
+}
+
