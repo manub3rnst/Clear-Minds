@@ -1,385 +1,4 @@
-/*Cadastro*/
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Poppins',sans-serif;
-    background:#e3ece8;
-    color:#143730;
-}
-
-/* ==========================================
-   LAYOUT PADRÃO
-========================================== */
-
-.container{
-    display:flex;
-    min-height:100vh;
-}
-
-/* ==========================================
-   LADO ESQUERDO
-========================================== */
-
-.left{
-    width:50%;
-    background:linear-gradient(
-        180deg,
-        #d7e8e0,
-        #d0e3da
-    );
-
-    padding:60px;
-
-    display:flex;
-    flex-direction:column;
-}
-
-.logo h2{
-    font-size:3rem;
-    font-weight:700;
-}
-
-.slogan{
-    margin-top:8px;
-    font-size:1.1rem;
-    color:#36564f;
-}
-
-.left h1{
-    margin-top:40px;
-    font-size:3rem;
-    line-height:1.2;
-}
-
-.descricao{
-    margin-top:20px;
-    max-width:550px;
-    line-height:1.8;
-    color:#35514b;
-}
-
-/* ==========================================
-   BENEFÍCIOS
-========================================== */
-
-.beneficios{
-    margin-top:50px;
-}
-
-.item{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    margin-bottom:25px;
-}
-
-.icone{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#4f927a;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:white;
-    font-size:1.2rem;
-}
-
-.item span{
-    max-width:350px;
-}
-
-/* ==========================================
-   LADO DIREITO
-========================================== */
-
-.right{
-    width:50%;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:40px;
-}
-
-.card{
-    width:100%;
-    max-width:650px;
-
-    background:white;
-
-    padding:40px;
-
-    border-radius:30px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.06);
-}
-
-/* ==========================================
-   LINKS LOGIN/CADASTRO
-========================================== */
-
-.login-link,
-.cadastro-link{
-    text-align:right;
-    font-size:.95rem;
-}
-
-.login-link a,
-.cadastro-link a{
-    color:#4f927a;
-    text-decoration:none;
-    font-weight:600;
-}
-
-/* ==========================================
-   TÍTULOS
-========================================== */
-
-.card h2{
-    margin-top:20px;
-    font-size:2.5rem;
-}
-
-.subtitulo{
-    margin-top:10px;
-    margin-bottom:25px;
-    color:#6b7c79;
-    line-height:1.7;
-}
-
-/* ==========================================
-   FORMULÁRIOS
-========================================== */
-
-form{
-    display:flex;
-    flex-direction:column;
-}
-
-label{
-    margin-top:15px;
-    margin-bottom:8px;
-    font-weight:500;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-
-    padding:14px;
-
-    border:1px solid #d8dfdd;
-    border-radius:14px;
-
-    font-family:'Poppins',sans-serif;
-    font-size:.95rem;
-
-    transition:.3s;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    outline:none;
-    border-color:#4f927a;
-    box-shadow:0 0 0 3px rgba(79,146,122,.15);
-}
-
-textarea{
-    resize:none;
-}
-
-small{
-    margin-top:6px;
-    color:#7a8784;
-}
-
-/* ==========================================
-   SENHA
-========================================== */
-
-.senha-box{
-    display:flex;
-    border:1px solid #d8dfdd;
-    border-radius:14px;
-    overflow:hidden;
-}
-
-.senha-box input{
-    border:none;
-}
-
-.senha-box button{
-    width:60px;
-    border:none;
-    background:white;
-    cursor:pointer;
-}
-
-/* ==========================================
-   CHECKBOX
-========================================== */
-
-.checkbox{
-    margin-top:20px;
-
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.checkbox input{
-    width:18px;
-    height:18px;
-    flex-shrink:0;
-}
-
-.checkbox span{
-    font-size:.9rem;
-    line-height:1.4;
-}
-/* ==========================================
-   BOTÕES
-========================================== */
-
-.btn-cadastro,
-.btn-login{
-    margin-top:25px;
-
-    padding:15px;
-
-    border:none;
-    border-radius:14px;
-
-    background:#4f927a;
-    color:white;
-
-    font-weight:600;
-    font-size:1rem;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-.btn-cadastro:hover,
-.btn-login:hover{
-    background:#417963;
-}
-
-.btn-secundario{
-    padding:15px 30px;
-
-    border:2px solid #4f927a;
-
-    background:white;
-    color:#4f927a;
-
-    border-radius:14px;
-
-    font-weight:600;
-
-    cursor:pointer;
-}
-
-.botoes-formulario{
-    display:flex;
-    justify-content:space-between;
-    margin-top:30px;
-}
-
-/* ==========================================
-   SOCIAL
-========================================== */
-
-.divisor{
-    text-align:center;
-    margin:25px 0;
-    color:#777;
-}
-
-.social{
-    display:flex;
-    gap:15px;
-}
-
-.social button{
-    flex:1;
-
-    padding:14px;
-
-    border:1px solid #d8dfdd;
-    border-radius:14px;
-
-    background:white;
-
-    cursor:pointer;
-}
-
-.creditos{
-    text-align:center;
-    width:100%;
-    display:block;
-    margin:20px 0;
-    color:#666;
-}
-
-/* ==========================================
-   FORMULÁRIO
-========================================== */
-
-.aviso-formulario{
-    margin-top:40px;
-
-    background:rgba(255,255,255,.55);
-
-    padding:25px;
-
-    border-radius:20px;
-}
-
-.mensagem-acolhimento{
-    margin-top:40px;
-}
-
-.mensagem-acolhimento h2{
-    margin-bottom:15px;
-}
-
-.mensagem-acolhimento p{
-    line-height:1.8;
-    margin-bottom:15px;
-}
-
-.frase-final{
-    margin-top:20px;
-
-    padding:20px;
-
-    background:#dcebe4;
-
-    border-left:5px solid #4f927a;
-
-    border-radius:16px;
-}
-
-/* ==========================================
-   HOME
-========================================== */
-
+/*LOGIN*/
 /* ==========================================
    RESET
 ========================================== */
@@ -390,82 +9,102 @@ small{
     box-sizing:border-box;
 }
 
+:root{
+
+    --primary:#5D9CEC;
+    --primary-dark:#3F7EDB;
+    --secondary:#EAF4FF;
+
+    --title:#0F2D40;
+    --text:#5E6C84;
+
+    --white:#FFFFFF;
+    --border:#DDE7F2;
+
+    --shadow:0 15px 35px rgba(22,42,70,.08);
+
+}
+
 body{
-    font-family:'Poppins',sans-serif;
-    background:#eef4f1;
-    color:#143730;
+
+    font-family:"Poppins",sans-serif;
+
+    background:
+        radial-gradient(circle at top left,#F4FAFF,#EAF4FF 45%,#F8FCFF);
+
+    min-height:100vh;
+
+    color:var(--title);
+
+    overflow-x:hidden;
+
 }
 
 /* ==========================================
-   TOPO
+   CONTAINER
 ========================================== */
 
-.topo{
-    background:white;
+.container{
 
-    padding:20px 60px;
+    width:100%;
+    max-width:1500px;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    margin:auto;
 
-    box-shadow:0 2px 10px rgba(0,0,0,.04);
+    padding:45px;
 
-    position:sticky;
-    top:0;
-    z-index:100;
+    display:grid;
+    grid-template-columns:45% 55%;
+
+    gap:40px;
+
+    min-height:100vh;
+
 }
 
-.logo-home h2{
+/* ==========================================
+   LADO ESQUERDO
+========================================== */
+
+.left{
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    position:relative;
+
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:45px;
+}
+
+.logo img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:40px;
+}
+
+.logo h2{
+
     font-size:2rem;
-    color:#143730;
-}
 
-.topo nav{
-    display:flex;
-    gap:35px;
-}
+    line-height:1.05;
 
-.topo nav a{
-    text-decoration:none;
-    color:#143730;
-    font-weight:500;
-    transition:.3s;
-}
+    font-weight:700;
 
-.topo nav a:hover{
-    color:#4f927a;
-}
+    color:var(--title);
 
-.usuario{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-weight:600;
-}
-
-/* ==========================================
-   BOTÃO SAIR
-========================================== */
-
-#btnSair{
-    border:none;
-
-    background:#4f927a;
-
-    color:white;
-
-    padding:8px 16px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    transition:.3s;
-}
-
-#btnSair:hover{
-    background:#417963;
 }
 
 /* ==========================================
@@ -473,355 +112,959 @@ body{
 ========================================== */
 
 .hero{
-    padding:90px 80px;
 
-    background:linear-gradient(
-        90deg,
-        #eef5f2,
-        #dce8e2
-    );
-}
-
-.hero-texto{
-    max-width:700px;
-}
-
-.tag{
-    display:inline-block;
-
-    background:#cfe3d9;
-
-    color:#143730;
-
-    padding:10px 18px;
-
-    border-radius:30px;
-
-    font-size:.9rem;
-    font-weight:600;
-
-    margin-bottom:20px;
+    max-width:520px;
+    margin-top:-10px;
 }
 
 .hero h1{
-    font-size:4rem;
-    line-height:1.2;
 
-    color:#143730;
+    font-size:4rem;
+
+    line-height:1.15;
+
+    font-weight:700;
+
+    margin-bottom:30px;
+
+}
+
+.hero span{
+
+    color:var(--primary);
+
+}
+
+.hero i{
+
+    color:var(--primary);
+
+    margin-left:8px;
+
 }
 
 .hero p{
-    margin-top:20px;
+    font-size:1.35rem;
+    color:var(--text);
+    line-height:1.8;
+    margin-bottom:35px;
+}
 
-    color:#5d706b;
+/* ==========================================
+   RECURSOS
+========================================== */
 
-    max-width:600px;
+.resources{
+
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    margin-bottom:35px;
+}
+
+.resource{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.icon{
+
+    min-width:58px;
+    height:58px;
+
+    border-radius:50%;
+
+    background:rgba(93,156,236,.12);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.icon i{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+}
+
+.resource h3{
+
+    font-size:.95rem;
+
+    margin-bottom:6px;
+
+}
+
+.resource p{
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    font-size:1rem;
+
+}
+
+/* ==========================================
+   CITAÇÃO
+========================================== */
+
+.quote{
+    margin-top:25;
+    background:rgba(93,156,236,.10);
+    border-radius:22px;
+    padding:28px;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    backdrop-filter:blur(10px);
+}
+
+.quote i{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+    margin-top:2px;
+
+}
+
+.quote p{
+
+    color:#49627B;
 
     line-height:1.8;
 
-    font-size:1.1rem;
+    font-size:1rem;
+
 }
 
-.btn-principal{
-    margin-top:30px;
+/* ==========================================
+   DECORAÇÃO DO LADO ESQUERDO
+========================================== */
 
-    padding:15px 30px;
+.left::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:rgba(93,156,236,.06);
+
+    right:-220px;
+    bottom:120px;
+
+    filter:blur(5px);
+
+    z-index:-1;
+
+}
+
+.left::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+    height:220px;
+
+    background:rgba(93,156,236,.08);
+
+    border-radius:50%;
+
+    top:180px;
+    left:-80px;
+
+    filter:blur(25px);
+
+    z-index:-1;
+
+}
+
+/* ==========================================
+   LADO DIREITO
+========================================== */
+
+.right{
+
+     display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:45px;
+}
+
+.login-card{
+
+    width:100%;
+    max-width:620px;
+
+    background:var(--white);
+
+    border-radius:30px;
+
+    padding:55px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+   LINK SUPERIOR
+========================================== */
+
+.top-link{
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:45px;
+
+    font-size:.95rem;
+
+}
+
+.top-link span{
+
+    color:var(--text);
+
+}
+
+.top-link a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.top-link a:hover{
+
+    color:var(--primary-dark);
+
+}
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+.title{
+
+    margin-bottom:40px;
+
+}
+
+.title h1{
+
+    font-size:2.4rem;
+
+    margin-bottom:12px;
+
+    color:var(--title);
+
+}
+
+.title p{
+
+    color:var(--text);
+
+    line-height:1.8;
+
+}
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+form{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.input-group{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.input-group label{
+
+    font-size:.95rem;
+
+    font-weight:500;
+
+    color:var(--title);
+
+}
+
+.input{
+
+    display:flex;
+    align-items:center;
+
+    height:60px;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    background:#FAFCFF;
+
+    transition:.3s;
+
+}
+
+.input:focus-within{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(93,156,236,.12);
+
+}
+
+.input i:first-child{
+
+    width:60px;
+
+    text-align:center;
+
+    color:#8FA4B8;
+
+    font-size:18px;
+
+}
+
+.input input{
+
+    flex:1;
 
     border:none;
 
-    border-radius:14px;
+    outline:none;
 
-    background:#4f927a;
-
-    color:white;
+    background:transparent;
 
     font-size:1rem;
+
+    color:var(--title);
+
+    padding-right:15px;
+
+}
+
+.input input::placeholder{
+
+    color:#9BAABD;
+
+}
+
+/* ==========================================
+   MOSTRAR SENHA
+========================================== */
+
+#togglePassword{
+
+    width:60px;
+    height:100%;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    color:#8FA4B8;
+
+    transition:.3s;
+
+}
+
+#togglePassword:hover{
+
+    color:var(--primary);
+
+}
+
+/* ==========================================
+   ESQUECI A SENHA
+========================================== */
+
+.forgot{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:-8px;
+
+}
+
+.forgot a{
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-size:.92rem;
+
+    transition:.3s;
+
+}
+
+.forgot a:hover{
+
+    color:var(--primary-dark);
+
+}
+
+/* ==========================================
+   BOTÃO LOGIN
+========================================== */
+
+.login-button{
+
+    margin-top:10px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:var(--primary);
+
+    color:var(--white);
+
+    font-size:1rem;
+
     font-weight:600;
 
     cursor:pointer;
 
     transition:.3s;
+
 }
 
-.btn-principal:hover{
-    background:#417963;
-}
+.login-button:hover{
 
-/* ==========================================
-   BOAS-VINDAS
-========================================== */
+    background:var(--primary-dark);
 
-.boas-vindas{
-    padding:50px 80px 0;
-}
+    transform:translateY(-2px);
 
-.card-boas-vindas{
-    background:white;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-.card-boas-vindas h2{
-    margin-bottom:10px;
-}
-
-.card-boas-vindas p{
-    color:#6b7c79;
 }
 
 /* ==========================================
-   SEÇÕES
+   DIVISOR
 ========================================== */
 
-.secao{
-    padding:40px 80px;
-}
-
-.secao h2{
-    margin-bottom:25px;
-}
-
-/* ==========================================
-   PERFIL
-========================================== */
-
-.perfil-usuario{
-    display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-
-    gap:20px;
-}
-
-.info{
-    background:white;
-
-    padding:20px;
-
-    border-radius:18px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
+.divider{
 
     display:flex;
-    flex-direction:column;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:40px 0;
+
 }
 
-.info strong{
-    margin-bottom:10px;
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#E3EBF4;
+
 }
 
-.info span{
-    color:#6b7c79;
-}
+.divider span{
 
-/* ==========================================
-   PROGRESSO
-========================================== */
+    color:#8FA4B8;
 
-.progresso-perfil{
-    background:white;
+    font-size:.9rem;
 
-    padding:25px;
-
-    border-radius:20px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-.progresso-perfil p{
-    color:#6b7c79;
-}
-
-.barra{
-    width:100%;
-
-    height:18px;
-
-    background:#dce8e2;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin:20px 0;
-}
-
-.barra-preenchida{
-    width:0%;
-
-    height:100%;
-
-    background:#4f927a;
-
-    transition:.5s;
 }
 
 /* ==========================================
-   GRID
+   LOGIN SOCIAL
 ========================================== */
 
-.grid{
+.social-login{
+
     display:grid;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:1fr 1fr;
 
-    gap:25px;
+    gap:18px;
+
 }
 
-/* ==========================================
-   CARDS
-========================================== */
+.social-login button{
 
-.card-home{
-    background:white;
+    height:58px;
 
-    padding:25px;
+    border:1px solid var(--border);
 
-    border-radius:20px;
+    border-radius:15px;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.05);
+    background:var(--white);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+    font-size:.95rem;
+
+    font-weight:500;
+
+    color:var(--title);
+
+    cursor:pointer;
 
     transition:.3s;
 
-    cursor:pointer;
 }
 
-.card-home:hover{
-    transform:translateY(-5px);
+.social-login button:hover{
 
-    box-shadow:0 12px 25px rgba(0,0,0,.08);
+    border-color:var(--primary);
+
+    background:#F7FBFF;
+
 }
 
-.icone-card{
-    font-size:2.5rem;
+.social-login img{
 
-    margin-bottom:10px;
-}
+    width:22px;
+    height:22px;
 
-.card-home h3{
-    margin-bottom:10px;
+    object-fit:contain;
 
-    color:#143730;
-}
-
-.card-home p{
-    color:#6b7c79;
-
-    line-height:1.6;
-}
-
-/* ==========================================
-   RECOMENDAÇÕES
-========================================== */
-
-#recomendacaoUsuario{
-    font-size:1rem;
-    line-height:1.8;
-}
-
-/* ==========================================
-   FRASE FINAL
-========================================== */
-
-.frase-final-home{
-    margin:50px 80px;
-
-    background:linear-gradient(
-        135deg,
-        #4f927a,
-        #6aa890
-    );
-
-    padding:60px;
-
-    border-radius:30px;
-
-    text-align:center;
-
-    color:white;
-}
-
-.frase-final-home h2{
-    font-size:2rem;
-
-    margin-bottom:15px;
-}
-
-.frase-final-home p{
-    font-size:1.1rem;
 }
 
 /* ==========================================
    RODAPÉ
 ========================================== */
 
-.footer-home{
-    background:#dce8e2;
+footer{
 
-    padding:25px;
+    width:100%;
 
-    text-align:center;
+    padding:0 45px 45px;
 
-    color:#4c605a;
+}
+
+.footer-card{
+
+    max-width:1500px;
+
+    margin:auto;
+
+    background:var(--white);
+
+    border-radius:22px;
+
+    padding:22px 35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+}
+
+.footer-left{
+
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.footer-left i{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    background:rgba(93,156,236,.12);
+
+    color:var(--primary);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+.footer-left p{
+
+    color:var(--text);
+
+    line-height:1.7;
+
+    max-width:550px;
+
+}
+
+.footer-icon{
+
+    font-size:38px;
+
+    color:var(--primary);
+
+    opacity:.9;
+
 }
 
 /* ==========================================
-   RESPONSIVO
+   ANIMAÇÕES
 ========================================== */
 
-@media(max-width:1000px){
+.login-card{
 
-    .topo{
-        flex-direction:column;
-        gap:20px;
+    animation:fadeUp .8s ease;
+
+}
+
+.hero{
+
+    animation:fadeLeft .8s ease;
+
+}
+
+.resource{
+
+    transition:.3s;
+
+}
+
+.resource:hover{
+
+    transform:translateX(6px);
+
+}
+
+.resource:hover .icon{
+
+    background:rgba(93,156,236,.18);
+
+}
+
+.logo img{
+
+    transition:.35s;
+
+}
+
+.logo img:hover{
+
+    transform:rotate(-8deg) scale(1.05);
+
+}
+
+.login-button:active{
+
+    transform:scale(.98);
+
+}
+
+.social-login button:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================
+   KEYFRAMES
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+        transform:translateY(35px);
+
     }
 
-    .topo nav{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
+    to{
 
-    .hero{
-        padding:50px 30px;
-    }
+        opacity:1;
+        transform:translateY(0);
 
-    .hero h1{
-        font-size:2.6rem;
-    }
-
-    .boas-vindas{
-        padding:40px 30px 0;
-    }
-
-    .secao{
-        padding:40px 30px;
-    }
-
-    .frase-final-home{
-        margin:30px;
-        padding:40px 25px;
     }
 
 }
 
-@media(max-width:600px){
+@keyframes fadeLeft{
+
+    from{
+
+        opacity:0;
+        transform:translateX(-35px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#BFD7F5;
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#F4F8FD;
+
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media(max-width:1200px){
+
+    .container{
+
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+    }
+
+    .left{
+
+        max-width:800px;
+
+        margin:auto;
+
+    }
+
+    .right{
+
+        width:100%;
+
+    }
+
+    .login-card{
+
+        max-width:700px;
+
+    }
 
     .hero h1{
-        font-size:2rem;
+
+        font-size:3.2rem;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+
+        padding:25px;
+
+    }
+
+    .login-card{
+
+        padding:35px;
+
+        border-radius:22px;
+
+    }
+
+    .hero h1{
+
+        font-size:2.5rem;
+
     }
 
     .hero p{
-        font-size:1rem;
+
+        font-size:1.1rem;
+
     }
 
-    .usuario{
-        flex-direction:column;
+    .slogan{
+
+        font-size:1rem;
+
+        margin-bottom:45px;
+
     }
+
+    .logo h2{
+
+        font-size:1.6rem;
+
+    }
+
+    .social-login{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .footer-card{
+
+        flex-direction:column;
+
+        gap:25px;
+
+        text-align:center;
+
+    }
+
+    .footer-left{
+
+        flex-direction:column;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .container{
+
+        padding:18px;
+
+    }
+
+    .hero h1{
+
+        font-size:2rem;
+
+    }
+
+    .title h1{
+
+        font-size:1.8rem;
+
+    }
+
+    .login-card{
+
+        padding:28px;
+
+    }
+
+    .input{
+
+        height:54px;
+
+    }
+
+    .login-button{
+
+        height:54px;
+
+    }
+
+    footer{
+
+        padding:20px;
+
+    }
+
+}
+
+/* ==========================================
+   AJUSTES FINAIS
+========================================== */
+
+a{
+
+    transition:.3s;
+
+}
+
+button{
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+input{
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
 
 }

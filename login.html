@@ -2,204 +2,312 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Entrar - Clear Minds</title>
+    <title>Clear Minds | Login</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
 
-<div class="container">
+    <main class="container">
 
-    <!-- ==========================================
-         LADO ESQUERDO
-    ========================================== -->
+        <!-- =========================
+             LADO ESQUERDO
+        ========================== -->
 
-    <section class="left">
+        <section class="left">
 
-        <div class="logo">
-            <h2>Mente em Foco</h2>
-        </div>
+            <div class="logo">
 
-        <p class="slogan">
-            cuidar de você<br>
-            é importante.
-        </p>
+                <img src="imagem/logo.jpg" alt="Logo">
 
-        <h1>
-            Que bom te ver aqui!
-        </h1>
+                <div>
 
-        <p class="descricao">
-            Entre na sua conta e continue sua jornada de cuidado,
-            desenvolvimento pessoal e bem-estar emocional.
-        </p>
+                    <h2>Mente</h2>
+                    <h2>em Foco</h2>
 
-        <div class="beneficios">
-
-            <div class="item">
-
-                <div class="icone">
-                    💚
                 </div>
 
-                <span>
-                    Continue acompanhando sua evolução emocional.
-                </span>
+            </div>
+
+            <div class="hero">
+
+                <h1>
+                    Bem-estar começa
+                    com <span>pequenas escolhas</span>
+                    diárias.
+                    <i class="fa-regular fa-heart"></i>
+                </h1>
+
+                <p>
+
+                    Aqui você encontra apoio,
+                    informação e ferramentas para
+                    cuidar da sua saúde mental
+                    de forma leve e segura.
+
+                </p>
 
             </div>
 
-            <div class="item">
+            <div class="resources">
 
-                <div class="icone">
-                    📚
+                <div class="resource">
+
+                    <div class="icon">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Conteúdo de qualidade</h3>
+
+                        <p>
+                            Artigos e materiais confiáveis
+                            sobre saúde mental.
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <span>
-                    Acesse conteúdos personalizados para você.
-                </span>
+                <div class="resource">
 
-            </div>
+                    <div class="icon">
+                        <i class="fa-regular fa-comments"></i>
+                    </div>
 
-            <div class="item">
+                    <div>
 
-                <div class="icone">
-                    🤝
+                        <h3>Apoio quando precisar</h3>
+
+                        <p>
+                            Saiba onde buscar ajuda
+                            e conversar com profissionais.
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <span>
-                    Encontre apoio profissional quando precisar.
-                </span>
+                <div class="resource">
+
+                    <div class="icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Ferramentas para você</h3>
+
+                        <p>
+                            Exercícios e práticas para
+                            o autocuidado diário.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="resource">
+
+                    <div class="icon">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Privacidade e segurança</h3>
+
+                        <p>
+                            Seus dados são protegidos
+                            com responsabilidade.
+                        </p>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
+            <div class="quote">
 
-    </section>
+                <i class="fa-solid fa-quote-left"></i>
 
-    <!-- ==========================================
-         LADO DIREITO
-    ========================================== -->
+                <p>
 
-    <section class="right">
+                    Você não precisa passar por tudo sozinho.
+                    Estamos aqui para caminhar com você.
 
-        <div class="card login-card">
-
-            <div class="cadastro-link">
-
-                Não possui uma conta?
-
-                <a href="index.html">
-                    Cadastre-se
-                </a>
+                </p>
 
             </div>
 
-            <h2>
-                Entrar na sua conta
-            </h2>
+        </section>
 
-            <p class="subtitulo">
+        <!-- =========================
+             LADO DIREITO
+        ========================== -->
 
-                Que bom ter você de volta.
-                Faça login para acessar sua conta e continuar utilizando a plataforma.
+        <section class="right">
 
-            </p>
+            <div class="login-card">
 
-            <form id="loginForm">
+                <div class="top-link">
 
-                <label for="email">
-                    E-mail
-                </label>
+                    <span>Não tem uma conta?</span>
 
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Digite seu e-mail"
-                    required
-                >
+                    <a href="cadastro.html">Cadastre-se</a>
 
-                <label for="senha">
-                    Senha
-                </label>
+                </div>
 
-                <div class="senha-box">
+                <div class="title">
 
-                    <input
-                        type="password"
-                        id="senha"
-                        placeholder="Digite sua senha"
-                        required
-                    >
+                    <h1>Entrar na sua conta</h1>
+
+                    <p>
+                        Que bom ter você de volta!<br>
+                        Faça login para acessar sua conta.
+                    </p>
+
+                </div>
+
+                <form>
+
+                    <div class="input-group">
+
+                        <label>E-mail institucional</label>
+
+                        <div class="input">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            <input
+                                type="email"
+                                placeholder="seuemail@instituicao.br"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Senha</label>
+
+                        <div class="input">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Digite sua senha"
+                                required>
+
+                            <button
+                                type="button"
+                                id="togglePassword">
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="forgot">
+
+                        <a href="#">Esqueceu sua senha?</a>
+
+                    </div>
 
                     <button
-                        type="button"
-                        id="mostrarSenha"
-                    >
-                        👁️
+                        type="submit"
+                        class="login-button">
+
+                        Entrar
+
+                    </button>
+
+                </form>
+
+                <div class="divider">
+
+                    <span>ou entrar com</span>
+
+                </div>
+
+                <div class="social-login">
+
+                    <button type="button">
+
+                        <img src="imagem/google.jpg" alt="Google">
+
+                        Google
+
+                    </button>
+
+                    <button type="button">
+
+                        <img src="imagem/microsoft.jpg" alt="Microsoft">
+
+                        Microsoft
+
                     </button>
 
                 </div>
 
-                <div class="esqueceu-senha">
-
-                    <a href="#">
-                        Esqueceu sua senha?
-                    </a>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="btn-login"
-                >
-                    Entrar
-                </button>
-
-            </form>
-
-            <div class="divisor">
-                ou entrar com
             </div>
 
-            <div class="social">
+        </section>
 
-                <button type="button">
-                    Google
-                </button>
+    </main>
 
-                <button type="button">
-                    Microsoft
-                </button>
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-card">
+
+            <div class="footer-left">
+
+                <i class="fa-regular fa-heart"></i>
+
+                <p>
+
+                    Buscar ajuda é um ato de coragem.
+                    Estamos aqui por você.
+
+                </p>
 
             </div>
+
+            <i class="fa-solid fa-hand-holding-heart footer-icon"></i>
 
         </div>
 
-    </section>
+    </footer>
 
-</div>
-
-<footer>
-
-    <div>
-        Buscar ajuda é um ato de coragem. Estamos aqui por você.
-    </div>
-
-</footer>
-
-<p class="creditos">
-    Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
-</p>
-
-<script src="script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>

@@ -6,11 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clear Minds</title>
+    <title>Cadastro | MenteBem</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -18,224 +23,154 @@
 
 <div class="container">
 
-    <!-- ==========================================
-         LADO ESQUERDO
-    ========================================== -->
+    <div class="left">
 
-    <section class="left">
+        <h1>MenteBem</h1>
 
-        <div class="logo">
-            <h2>Mente em Foco</h2>
-        </div>
+        <h2>Crie sua conta</h2>
 
-        <p class="slogan">
-            cuidar de você<br>
-            é essencial.
+        <p id="descricao">
+
+            Escolha seu perfil e preencha os dados para começar.
+
         </p>
 
-        <h1>
-            Sua saúde mental importa.
-        </h1>
+    </div>
 
-        <p class="descricao">
-            Acolhimento, informação e apoio para uma jornada mais leve,
-            saudável e equilibrada.
+    <div class="right">
+
+        <h2>Cadastro</h2>
+
+        <!-- PERFIL -->
+
+        <div class="perfil">
+
+            <div class="card ativo" id="btnPaciente">
+
+                <i class="fa-solid fa-user-graduate"></i>
+
+                <h3>Paciente</h3>
+
+                <p>Acompanhe sua saúde mental.</p>
+
+            </div>
+
+            <div class="card" id="btnPsicologo">
+
+                <i class="fa-solid fa-brain"></i>
+
+                <h3>Psicólogo</h3>
+
+                <p>Acesse seu painel profissional.</p>
+
+            </div>
+
+        </div>
+
+        <form>
+
+            <div class="campo">
+
+                <label>Nome completo</label>
+
+                <input type="text" required>
+
+            </div>
+
+            <div id="pacienteCampos">
+
+                <div class="campo">
+
+                    <label>Data de nascimento</label>
+
+                    <input type="date">
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Instituição</label>
+
+                    <input type="text">
+
+                </div>
+
+                <div class="campo">
+
+                    <label>Curso</label>
+
+                    <input type="text">
+
+                </div>
+
+            </div>
+
+            <div id="psicologoCampos" style="display:none;">
+
+                <div class="campo">
+
+                    <label>CRP</label>
+
+                    <input type="text">
+
+                </div>
+
+            </div>
+
+            <div class="campo">
+
+                <label>E-mail</label>
+
+                <input type="email" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Senha</label>
+
+                <input type="password" required>
+
+            </div>
+
+            <div class="campo">
+
+                <label>Confirmar senha</label>
+
+                <input type="password" required>
+
+            </div>
+
+            <div class="checkbox">
+
+                <input type="checkbox" required>
+
+                <span>Aceito os Termos de Uso</span>
+
+            </div>
+
+            <button type="submit">
+
+                Criar conta
+
+            </button>
+
+        </form>
+
+        <p class="login">
+
+            Já possui uma conta?
+
+            <a href="index.html">Entrar</a>
+
         </p>
 
-        <div class="beneficios">
-
-            <div class="item">
-
-                <div class="icone">
-                    🔍
-                </div>
-
-                <span>
-                    Encontre profissionais psicológicos perto de você.
-                </span>
-
-            </div>
-
-            <div class="item">
-
-                <div class="icone">
-                    💬
-                </div>
-
-                <span>
-                    Acesse conteúdos, ferramentas e materiais de apoio.
-                </span>
-
-            </div>
-
-            <div class="item">
-
-                <div class="icone">
-                    💚
-                </div>
-
-                <span>
-                    Cuide da sua mente e fortaleça seu bem-estar emocional.
-                </span>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ==========================================
-         LADO DIREITO
-    ========================================== -->
-
-    <section class="right">
-
-        <div class="card">
-
-            <div class="login-link">
-
-                Já possui uma conta?
-
-                <a href="login.html">
-                    Entrar
-                </a>
-
-            </div>
-
-            <h2>
-                Criar sua conta
-            </h2>
-
-            <p class="subtitulo">
-
-                Preencha seus dados para acessar conteúdos,
-                ferramentas e recomendações personalizadas.
-
-            </p>
-
-            <form id="cadastroForm">
-
-                <label for="nome">
-                    Nome completo
-                </label>
-
-                <input
-                    type="text"
-                    id="nome"
-                    placeholder="Digite seu nome completo"
-                    required
-                >
-
-                <label for="email">
-                    E-mail
-                </label>
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="seuemail@exemplo.com"
-                    required
-                >
-
-                <small>
-                    Utilize um e-mail válido para acessar sua conta.
-                </small>
-
-                <label for="senha">
-                    Senha
-                </label>
-
-                <div class="senha-box">
-
-                    <input
-                        type="password"
-                        id="senha"
-                        placeholder="Crie uma senha"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        id="mostrarSenha"
-                    >
-                        👁️
-                    </button>
-
-                </div>
-
-                <small>
-                    A senha deve possuir pelo menos 8 caracteres e um número.
-                </small>
-
-                <label for="confirmarSenha">
-                    Confirmar senha
-                </label>
-
-                <div class="senha-box">
-
-                    <input
-                        type="password"
-                        id="confirmarSenha"
-                        placeholder="Digite novamente sua senha"
-                        required
-                    >
-
-                </div>
-
-                <div class="checkbox">
-
-                    <input
-                        type="checkbox"
-                        id="termos"
-                        required
-                    >
-
-                    <span>
-                        Eu li e concordo com os Termos de Uso e a Política de Privacidade.
-                    </span>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="btn-cadastro"
-                >
-                    Criar conta
-                </button>
-
-            </form>
-
-            <div class="divisor">
-                ou cadastre-se com
-            </div>
-
-            <div class="social">
-
-                <button type="button">
-                    Google
-                </button>
-
-                <button type="button">
-                    Microsoft
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+    </div>
 
 </div>
 
-<footer>
-    Buscar ajuda é um ato de coragem. Estamos aqui por você.
-</footer>
-
-<p class="creditos">
-    Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
-</p>
-
-<script src="script.js"></script>
+<script src="js/cadastro.js"></script>
 
 </body>
+
 </html>
