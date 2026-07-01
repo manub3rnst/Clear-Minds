@@ -2,263 +2,386 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Completar Perfil - Clear Minds</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="style.css">
+    <title>Mente em Foco | Informações Pessoais</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
 
-<div class="container">
+<main class="container">
 
-    <!-- LADO ESQUERDO -->
+<!-- ==========================
+        LADO ESQUERDO
+========================== -->
 
-    <section class="left">
+<section class="left">
 
-        <div class="logo">
-            <h2>Mente em Foco</h2>
-        </div>
+<div class="logo">
 
-        <h1>
-            Conhecer você é o primeiro passo para oferecer um apoio mais humano.
-        </h1>
+<img src="imagem/logo.jpg" alt="Logo">
 
-        <p class="descricao">
-            Este espaço foi criado para compreender melhor sua realidade,
-            seus desafios e suas necessidades.
-        </p>
+<div>
 
-        <div class="aviso-formulario">
-
-            <h3>🌿 Perfil opcional</h3>
-
-            <p>
-                Você pode preencher estas informações agora ou depois.
-                Nenhum campo é obrigatório, mas compartilhar um pouco sobre sua
-                jornada nos ajuda a construir uma experiência mais acolhedora
-                e personalizada.
-            </p>
-
-        </div>
-
-        <div class="mensagem-acolhimento">
-
-            <h2>Você não precisa passar por tudo sozinho.</h2>
-
-            <p>
-                A vida acadêmica pode trazer ansiedade, pressão,
-                insegurança e momentos difíceis.
-            </p>
-
-            <p>
-                Nossa missão é conectar estudantes a profissionais,
-                conteúdos confiáveis e ferramentas que contribuam para o
-                bem-estar emocional.
-            </p>
-
-        </div>
-
-        <div class="frase-final">
-
-            <p>
-                💚 Pequenos passos de autocuidado podem transformar grandes jornadas.
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- LADO DIREITO -->
-
-    <section class="right">
-
-        <div class="card formulario-card">
-
-            <h2>Informações Pessoais</h2>
-
-            <p class="subtitulo">
-                Quanto mais informações você compartilhar,
-                melhor poderemos personalizar sua experiência.
-            </p>
-
-            <form id="formularioUsuario">
-
-                <label>Nome Completo</label>
-
-                <input
-                    type="text"
-                    id="nome"
-                    placeholder="Seu nome"
-                >
-
-                <label>Data de Nascimento</label>
-
-                <input
-                    type="date"
-                    id="nascimento"
-                >
-
-                <label>Gênero</label>
-
-                <select id="genero">
-                    <option value="">Selecione seu gênero</option>
-                    <option>Feminino</option>
-                    <option>Masculino</option>
-                    <option>Não-binário</option>
-                    <option>Prefiro não informar</option>
-                </select>
-
-                <label>Telefone</label>
-
-                <input
-                    type="tel"
-                    id="telefone"
-                    placeholder="(00) 00000-0000"
-                >
-
-                <label>Cidade</label>
-
-                <input
-                    type="text"
-                    id="cidade"
-                    placeholder="Digite sua cidade"
-                >
-
-                <label>Estado</label>
-
-                <select id="estado">
-
-                    <option value="">Selecione seu estado</option>
-
-                    <option>AC</option>
-                    <option>AL</option>
-                    <option>AP</option>
-                    <option>AM</option>
-                    <option>BA</option>
-                    <option>CE</option>
-                    <option>DF</option>
-                    <option>ES</option>
-                    <option>GO</option>
-                    <option>MA</option>
-                    <option>MT</option>
-                    <option>MS</option>
-                    <option>MG</option>
-                    <option>PA</option>
-                    <option>PB</option>
-                    <option>PR</option>
-                    <option>PE</option>
-                    <option>PI</option>
-                    <option>RJ</option>
-                    <option>RN</option>
-                    <option>RS</option>
-                    <option>RO</option>
-                    <option>RR</option>
-                    <option>SC</option>
-                    <option>SP</option>
-                    <option>SE</option>
-                    <option>TO</option>
-
-                </select>
-
-                <label>Você já faz acompanhamento psicológico?</label>
-
-                <select id="acompanhamento">
-
-                    <option value="">Selecione uma opção</option>
-
-                    <option>Sim</option>
-                    <option>Não</option>
-
-                </select>
-
-                <label>Necessidade principal atualmente</label>
-
-                <select id="necessidade">
-
-                    <option value="">Selecione uma opção</option>
-
-                    <option>Ansiedade</option>
-                    <option>Estresse</option>
-                    <option>Burnout</option>
-                    <option>Depressão</option>
-                    <option>Autoestima</option>
-                    <option>Solidão</option>
-                    <option>Outro</option>
-
-                </select>
-
-                <label>Como você prefere receber ajuda?</label>
-
-                <div class="checkbox-group">
-
-                    <label>
-                        <input type="checkbox">
-                        Psicólogo
-                    </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Psiquiatra
-                    </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Grupo de apoio
-                    </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Conteúdos educativos
-                    </label>
-
-                    <label>
-                        <input type="checkbox">
-                        Comunidade do site
-                    </label>
-
-                </div>
-
-                <label>Conte um pouco sobre você</label>
-
-                <textarea
-                    id="sobre"
-                    rows="5"
-                    placeholder="Fale sobre seus interesses, objetivos, desafios ou qualquer informação que considere importante."
-                ></textarea>
-
-                <div class="botoes-formulario">
-
-                    <button
-                        type="button"
-                        class="btn-secundario"
-                        onclick="window.location.href='home.html'"
-                    >
-                        Pular por agora
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="btn-cadastro"
-                    >
-                        Salvar Perfil
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </section>
+<h2>Mente</h2>
+<h2>em Foco</h2>
 
 </div>
+
+</div>
+
+<div class="hero">
+
+<h1>
+
+Conhecer você nos ajuda
+a cuidar <span>melhor.</span>
+
+<i class="fa-regular fa-heart"></i>
+
+</h1>
+
+<p>
+
+Essas informações permitem
+personalizar sua experiência
+e oferecer conteúdos mais
+adequados para você.
+
+</p>
+
+</div>
+
+<div class="resources">
+
+<div class="resource">
+
+<div class="icon">
+
+<i class="fa-solid fa-shield-heart"></i>
+
+</div>
+
+<div>
+
+<h3>Privacidade garantida</h3>
+
+<p>
+
+Todas as informações são
+tratadas com confidencialidade.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="resource">
+
+<div class="icon">
+
+<i class="fa-solid fa-lightbulb"></i>
+
+</div>
+
+<div>
+
+<h3>Você sabia?</h3>
+
+<p>
+
+Buscar apoio nos primeiros
+sinais de estresse pode facilitar
+o cuidado com a saúde mental.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="resource">
+
+<div class="icon">
+
+<i class="fa-solid fa-seedling"></i>
+
+</div>
+
+<div>
+
+<h3>Pequenos hábitos</h3>
+
+<p>
+
+Rotinas saudáveis ajudam
+a reduzir ansiedade e
+melhorar a qualidade de vida.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="quote">
+
+<i class="fa-solid fa-circle-info"></i>
+
+<p>
+
+Esses dados serão utilizados
+apenas para personalizar
+sua experiência na plataforma.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ==========================
+        LADO DIREITO
+========================== -->
+
+<section class="right">
+
+<div class="login-card">
+
+<div class="progress">
+
+<span>Etapa 1 de 3</span>
+
+</div>
+
+<div class="title">
+
+<h1>Informações pessoais</h1>
+
+<p>
+
+Preencha os campos abaixo
+para iniciarmos seu cadastro.
+
+</p>
+
+</div>
+
+<form id="personalForm">
+
+<!-- Nome -->
+
+<div class="input-group">
+
+<label>Nome completo</label>
+
+<div class="input">
+
+<i class="fa-regular fa-user"></i>
+
+<input
+type="text"
+placeholder="Digite seu nome completo"
+required>
+
+</div>
+
+</div>
+
+<!-- Nascimento -->
+
+<div class="input-group">
+
+<label>Data de nascimento</label>
+
+<div class="input">
+
+<i class="fa-regular fa-calendar"></i>
+
+<input
+type="date"
+required>
+
+</div>
+
+</div>
+
+<!-- Gênero -->
+
+<div class="input-group">
+
+<label>Gênero</label>
+
+<div class="input">
+
+<i class="fa-solid fa-venus-mars"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>Feminino</option>
+
+<option>Masculino</option>
+
+<option>Prefiro não informar</option>
+
+<option>Outro</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Telefone -->
+
+<div class="input-group">
+
+<label>Telefone</label>
+
+<div class="input">
+
+<i class="fa-solid fa-phone"></i>
+
+<input
+type="tel"
+placeholder="(00) 00000-0000">
+
+</div>
+
+</div>
+
+<!-- Cidade -->
+
+<div class="input-group">
+
+<label>Cidade</label>
+
+<div class="input">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<input
+type="text"
+placeholder="Digite sua cidade"
+required>
+
+</div>
+
+</div>
+
+<!-- Estado -->
+
+<div class="input-group">
+
+<label>Estado</label>
+
+<div class="input">
+
+<i class="fa-solid fa-map"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>SC</option>
+<option>PR</option>
+<option>RS</option>
+<option>SP</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Sobre -->
+
+<div class="input-group">
+
+<label>Fale um pouco sobre você</label>
+
+<textarea
+rows="5"
+maxlength="300"
+placeholder="Conte um pouco sobre seus interesses, objetivos ou como espera utilizar a plataforma."></textarea>
+
+</div>
+
+<div class="form-buttons">
+
+<a href="index.html" class="back-button">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Voltar
+
+</a>
+
+<button
+type="submit"
+class="login-button">
+
+Continuar
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="footer-card">
+
+<div class="footer-left">
+
+<i class="fa-solid fa-lock"></i>
+
+<p>
+
+Suas informações são protegidas
+e utilizadas apenas para melhorar
+sua experiência.
+
+</p>
+
+</div>
+
+<i class="fa-solid fa-hand-holding-heart footer-icon"></i>
+
+</div>
+
+</footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>

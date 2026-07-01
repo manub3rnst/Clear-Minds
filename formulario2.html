@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mente em Foco | Bem-estar Emocional</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<main class="container">
+
+<!-- ==========================
+        LADO ESQUERDO
+========================== -->
+
+<section class="left">
+
+    <div class="logo">
+
+        <img src="imagem/logo.jpg" alt="Logo">
+
+        <div>
+
+            <h2>Mente</h2>
+            <h2>em Foco</h2>
+
+        </div>
+
+    </div>
+
+    <div class="hero">
+
+        <h1>
+
+            Sua saúde emocional
+            merece <span>atenção.</span>
+
+            <i class="fa-regular fa-heart"></i>
+
+        </h1>
+
+        <p>
+
+            Não existem respostas certas ou erradas.
+            Queremos entender como você está para
+            oferecer uma experiência mais personalizada.
+
+        </p>
+
+    </div>
+
+    <div class="resources">
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-bed"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Sono saudável</h3>
+
+                <p>
+
+                    Dormir bem melhora a memória,
+                    concentração e equilíbrio emocional.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-brain"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Reconheça seus sentimentos</h3>
+
+                <p>
+
+                    Identificar emoções é um passo
+                    importante para cuidar da saúde mental.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-person-running"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Movimente-se</h3>
+
+                <p>
+
+                    A prática de atividades físicas
+                    auxilia na redução do estresse.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="quote">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <p>
+
+            Essas respostas ajudam a personalizar
+            conteúdos e recursos da plataforma.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        LADO DIREITO
+========================== -->
+
+<section class="right">
+
+<div class="login-card">
+
+<div class="progress">
+
+<span>Etapa 2 de 3</span>
+
+</div>
+
+<div class="title">
+
+<h1>Bem-estar emocional</h1>
+
+<p>
+
+Conte-nos um pouco sobre
+como está sua rotina atualmente.
+
+</p>
+
+</div>
+
+<form id="wellBeingForm">
+
+<!-- Humor -->
+
+<div class="input-group">
+
+<label>Como você avalia seu humor atualmente?</label>
+
+<div class="input">
+
+<i class="fa-regular fa-face-smile"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>Excelente</option>
+
+<option>Bom</option>
+
+<option>Regular</option>
+
+<option>Ruim</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Sono -->
+
+<div class="input-group">
+
+<label>Como está seu sono?</label>
+
+<div class="input">
+
+<i class="fa-solid fa-bed"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>Muito bom</option>
+
+<option>Bom</option>
+
+<option>Regular</option>
+
+<option>Ruim</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Ansiedade -->
+
+<div class="input-group">
+
+<label>Com que frequência você sente ansiedade?</label>
+
+<div class="input">
+
+<i class="fa-solid fa-brain"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>Nunca</option>
+
+<option>Raramente</option>
+
+<option>Às vezes</option>
+
+<option>Frequentemente</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Atividade física -->
+
+<div class="input-group">
+
+<label>Você pratica atividade física?</label>
+
+<div class="input">
+
+<i class="fa-solid fa-person-running"></i>
+
+<select required>
+
+<option value="">Selecione</option>
+
+<option>Sim</option>
+
+<option>Às vezes</option>
+
+<option>Não</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- Estresse -->
+
+<div class="input-group">
+
+<label>Nível de estresse (0 a 10)</label>
+
+<input
+type="range"
+min="0"
+max="10"
+value="5">
+
+</div>
+
+<!-- Comentário -->
+
+<div class="input-group">
+
+<label>Gostaria de compartilhar algo?</label>
+
+<textarea
+rows="5"
+maxlength="300"
+placeholder="Este campo é opcional."></textarea>
+
+</div>
+
+<div class="form-buttons">
+
+<a href="formulario.html" class="back-button">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Voltar
+
+</a>
+
+<button
+type="submit"
+class="login-button">
+
+Continuar
+
+<i class="fa-solid fa-arrow-right"></i>
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="footer-card">
+
+<div class="footer-left">
+
+<i class="fa-solid fa-heart"></i>
+
+<p>
+
+Conhecer suas emoções ajuda
+a construir uma experiência
+mais acolhedora.
+
+</p>
+
+</div>
+
+<i class="fa-solid fa-hand-holding-heart footer-icon"></i>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
