@@ -113,3 +113,135 @@ confirmPassword.addEventListener("input", () => {
     confirmPassword.parentElement.style.borderColor = "";
 
 });
+
+/*SUCESSO CRIAÇÃO DE CONTA*/
+const form = document.getElementById("preferencesForm");
+const success = document.getElementById("successMessage");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    form.style.display = "none";
+
+    success.style.display = "block";
+
+});
+
+// ==========================================
+// FORMULÁRIO 1
+// ==========================================
+
+const personalForm = document.getElementById("personalForm");
+
+if (personalForm) {
+
+    personalForm.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const campos = personalForm.querySelectorAll("input, select, textarea");
+
+        let valido = true;
+
+        campos.forEach(campo => {
+
+            if(campo.hasAttribute("required") && campo.value.trim() === ""){
+
+                valido = false;
+
+                campo.focus();
+
+            }
+
+        });
+
+        if(!valido){
+
+            alert("Preencha todos os campos obrigatórios.");
+
+            return;
+
+        }
+
+        window.location.href = "formulario2.html";
+
+    });
+
+}
+
+// ==========================================
+// FORMULÁRIO 2
+// ==========================================
+
+const wellBeingForm = document.getElementById("wellBeingForm");
+
+if (wellBeingForm) {
+
+    wellBeingForm.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        const campos = wellBeingForm.querySelectorAll("input, select, textarea");
+
+        let valido = true;
+
+        for (const campo of campos) {
+
+            if (campo.hasAttribute("required") && campo.value.trim() === "") {
+
+                valido = false;
+
+                campo.focus();
+
+                break;
+
+            }
+
+        }
+
+        if (!valido) {
+
+            alert("Preencha todos os campos obrigatórios.");
+
+            return;
+
+        }
+
+        window.location.href = "formulario3.html";
+
+    });
+
+}
+
+// ==========================================
+// FORMULÁRIO 3
+// ==========================================
+
+const preferencesForm = document.getElementById("preferencesForm");
+const successMessage = document.getElementById("successMessage");
+const accessButton = document.getElementById("accessButton");
+
+if (preferencesForm && successMessage) {
+
+    preferencesForm.addEventListener("submit", function(e){
+
+        e.preventDefault();
+
+        // Esconde o formulário
+        preferencesForm.style.display = "none";
+
+        // Mostra a tela de sucesso
+        successMessage.style.display = "block";
+
+        // Faz a página subir suavemente até o topo
+        window.scrollTo({
+
+            top: 0,
+            behavior: "smooth"
+
+        });
+
+    });
+
+}

@@ -2733,3 +2733,762 @@ select:hover{
     letter-spacing:.3px;
 
 }
+
+/* ==========================================
+   SUCESSO DO CADASTRO
+========================================== */
+
+.success-message{
+
+    display:none;
+
+    text-align:center;
+
+    animation:fadeUp .8s ease;
+
+}
+
+.success-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(93,156,236,.12);
+
+}
+
+.success-icon i{
+
+    font-size:42px;
+
+    color:var(--primary);
+
+}
+
+.success-message h2{
+
+    margin-bottom:15px;
+
+}
+
+.success-message p{
+
+    line-height:1.8;
+
+    color:var(--text);
+
+    margin-bottom:30px;
+
+}
+
+.success-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-bottom:35px;
+
+}
+
+.success-items div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    justify-content:center;
+
+}
+
+.success-items i{
+
+    color:var(--primary);
+
+}
+
+#accessButton{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.6s;
+
+}
+
+#accessButton.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/* ==========================================
+   FORMULÁRIO 3
+========================================== */
+
+/* Barra de progresso */
+
+.progress{
+
+    display:flex;
+    justify-content:flex-end;
+
+    margin-bottom:25px;
+
+}
+
+.progress span{
+
+    background:#E9F7F2;
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+}
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+#preferencesForm{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+#preferencesForm .input-group{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+#preferencesForm label{
+
+    font-size:.96rem;
+
+    font-weight:500;
+
+    color:var(--title);
+
+}
+
+/* ==========================================
+   CHECKBOXES
+========================================== */
+
+.checkbox-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.checkbox{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.checkbox input{
+
+    width:18px;
+    height:18px;
+
+    margin-top:2px;
+
+    accent-color:var(--primary);
+
+    cursor:pointer;
+
+}
+
+.checkbox span{
+
+    line-height:1.6;
+
+    color:var(--text);
+
+}
+
+/* ==========================================
+   TEXTAREA
+========================================== */
+
+#preferencesForm textarea{
+
+    width:100%;
+
+    min-height:130px;
+
+    padding:18px 20px;
+
+    border:1px solid #DCE6F2;
+
+    border-radius:18px;
+
+    outline:none;
+
+    resize:vertical;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:.95rem;
+
+    color:var(--title);
+
+    transition:.3s;
+
+}
+
+#preferencesForm textarea::placeholder{
+
+    color:#9BAABD;
+
+}
+
+#preferencesForm textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(93,156,236,.10);
+
+}
+
+/* ==========================================
+   FORMULÁRIO 3
+   BOTÕES
+========================================== */
+
+.form-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:15px;
+
+}
+
+.back-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    width:170px;
+
+    height:56px;
+
+    border:2px solid var(--primary);
+
+    border-radius:14px;
+
+    color:var(--primary);
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.back-button:hover{
+
+    background:rgba(93,156,236,.08);
+
+    transform:translateY(-2px);
+
+}
+
+.login-button{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+#preferencesForm textarea:hover{
+
+    border-color:#C8D8EC;
+
+}
+
+/* ==========================================
+   TELA DE SUCESSO
+========================================== */
+
+.success-message{
+
+    display:none;
+
+    text-align:center;
+
+    animation:fadeUp .8s ease;
+
+}
+
+.success-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 25px;
+
+    border-radius:50%;
+
+    background:rgba(93,156,236,.12);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.success-icon i{
+
+    font-size:42px;
+
+    color:var(--primary);
+
+}
+
+.success-message h2{
+
+    font-size:2rem;
+
+    color:var(--title);
+
+    margin-bottom:15px;
+
+}
+
+.success-message p{
+
+    color:var(--text);
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.success-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.success-items div{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    background:#F8FBFF;
+
+}
+
+.success-items i{
+
+    color:var(--primary);
+
+    font-size:18px;
+
+}
+
+/* ==========================================
+   ANIMAÇÕES
+========================================== */
+
+.success-message{
+
+    animation:fadeUp .8s ease;
+
+}
+
+.back-button i,
+.login-button i{
+
+    transition:.3s;
+
+}
+
+.back-button:hover i{
+
+    transform:translateX(-3px);
+
+}
+
+.login-button:hover i{
+
+    transform:translateX(3px);
+
+}
+
+/* ==========================================
+   FORMULÁRIO 3
+   AJUSTES FINAIS
+========================================== */
+
+/* Barra de progresso */
+
+.progress span{
+
+    letter-spacing:.4px;
+
+}
+
+/* Hero */
+
+.hero{
+
+    animation:fadeLeft .8s ease;
+
+}
+
+/* Card */
+
+.login-card{
+
+    animation:fadeUp .7s ease;
+
+}
+
+/* Recursos */
+
+.resource{
+
+    transition:.3s;
+
+}
+
+.resource:hover{
+
+    transform:translateX(5px);
+
+}
+
+.resource:hover .icon{
+
+    background:rgba(93,156,236,.18);
+
+}
+
+/* Quote */
+
+.quote{
+
+    transition:.3s;
+
+}
+
+.quote:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* Checkboxes */
+
+.checkbox{
+
+    transition:.3s;
+
+}
+
+.checkbox:hover{
+
+    transform:translateX(4px);
+
+}
+
+.checkbox input{
+
+    transition:.2s;
+
+}
+
+.checkbox input:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* Textarea */
+
+#preferencesForm textarea:hover{
+
+    border-color:#C8D8EC;
+
+}
+
+/* Botões */
+
+.back-button{
+
+    user-select:none;
+
+}
+
+.login-button{
+
+    letter-spacing:.3px;
+
+}
+
+.back-button i,
+.login-button i{
+
+    transition:.3s;
+
+}
+
+.back-button:hover i{
+
+    transform:translateX(-3px);
+
+}
+
+.login-button:hover i{
+
+    transform:translateX(3px);
+
+}
+
+/* Card de sucesso */
+
+.success-items div{
+
+    transition:.3s;
+
+}
+
+.success-items div:hover{
+
+    transform:translateY(-2px);
+
+    background:#EEF6FF;
+
+}
+
+.success-icon{
+
+    animation:pop .6s ease;
+
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media(max-width:1200px){
+
+    .login-card{
+
+        max-width:720px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .progress{
+
+        justify-content:center;
+
+    }
+
+    .form-buttons{
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+    .back-button,
+    .login-button{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .success-message h2{
+
+        font-size:1.8rem;
+
+    }
+
+}
+
+@media(max-width:500px){
+
+    .title h1{
+
+        font-size:1.8rem;
+
+    }
+
+    #preferencesForm{
+
+        gap:18px;
+
+    }
+
+    #preferencesForm textarea{
+
+        min-height:100px;
+
+        padding:15px;
+
+    }
+
+    .progress span{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .success-items div{
+
+        justify-content:flex-start;
+
+        padding:12px;
+
+    }
+
+    .success-message h2{
+
+        font-size:1.6rem;
+
+    }
+
+}
+
+/* ==========================================
+   FONTES
+========================================== */
+
+#preferencesForm input,
+#preferencesForm textarea,
+#preferencesForm button{
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+#preferencesForm label{
+
+    user-select:none;
+
+}
+
+/* ==========================================
+   ANIMAÇÃO DE ENTRADA
+========================================== */
+
+@keyframes pop{
+
+    0%{
+
+        transform:scale(.5);
+
+        opacity:0;
+
+    }
+
+    70%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}

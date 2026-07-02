@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clear Minds | Preferências</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<main class="container">
+
+<!-- ==========================
+        LADO ESQUERDO
+========================== -->
+
+<section class="left">
+
+    <div class="logo">
+
+        <img src="imagem/logo.jpg" alt="Logo">
+
+        <div>
+
+            <h2>Mente</h2>
+            <h2>em Foco</h2>
+
+        </div>
+
+    </div>
+
+    <div class="hero">
+
+        <h1>
+
+            Agora vamos
+            <span>personalizar</span>
+            sua experiência.
+
+            <i class="fa-regular fa-heart"></i>
+
+        </h1>
+
+        <p>
+
+            Escolha os recursos que deseja utilizar.
+            Você poderá alterar essas preferências
+            quando quiser dentro da plataforma.
+
+        </p>
+
+    </div>
+
+    <div class="resources">
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-book-open"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Conteúdos personalizados</h3>
+
+                <p>
+                    Receba artigos e materiais
+                    relacionados aos seus interesses.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-bell"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Lembretes inteligentes</h3>
+
+                <p>
+                    Receba lembretes para manter
+                    sua rotina de autocuidado.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="resource">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-heart-circle-check"></i>
+
+            </div>
+
+            <div>
+
+                <h3>Experiência personalizada</h3>
+
+                <p>
+                    Os conteúdos serão adaptados
+                    conforme suas escolhas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="quote">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <p>
+
+            Você poderá alterar todas essas
+            preferências a qualquer momento.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+        LADO DIREITO
+========================== -->
+
+<section class="right">
+
+<div class="login-card">
+
+    <div class="progress">
+
+        <span>Etapa 3 de 3</span>
+
+    </div>
+
+    <div class="title">
+
+        <h1>Suas preferências</h1>
+
+        <p>
+
+            Estamos quase terminando.
+            Escolha os recursos que deseja utilizar.
+
+        </p>
+
+    </div>
+
+    <form id="preferencesForm">
+
+        <div class="checkbox-group">
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="artigos">
+
+                <span>Receber artigos sobre saúde mental.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="respiracao">
+
+                <span>Receber exercícios de respiração e relaxamento.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="autocuidado">
+
+                <span>Receber lembretes de autocuidado.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="diario">
+
+                <span>Utilizar diário emocional.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="organizacao">
+
+                <span>Receber dicas de organização dos estudos.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="habitos">
+
+                <span>Receber sugestões de hábitos saudáveis.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="profissionais">
+
+                <span>Encontrar profissionais próximos quando necessário.</span>
+
+            </label>
+
+            <label class="checkbox">
+
+                <input type="checkbox" name="novidades">
+
+                <span>Receber novidades da plataforma.</span>
+
+            </label>
+
+        </div>
+
+                <div class="input-group">
+
+            <label for="objetivo">
+
+                Qual é seu principal objetivo ao utilizar a plataforma?
+
+            </label>
+
+            <textarea
+                id="objetivo"
+                name="objetivo"
+                rows="5"
+                maxlength="350"
+                placeholder="Conte-nos o que você espera encontrar na plataforma."></textarea>
+
+        </div>
+
+        <div class="form-buttons">
+
+            <a href="formulario2.html" class="back-button">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Voltar
+
+            </a>
+
+            <button
+                type="submit"
+                class="login-button">
+
+                Finalizar cadastro
+
+                <i class="fa-solid fa-check"></i>
+
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- ==========================
+            TELA DE SUCESSO
+    =========================== -->
+
+    <div id="successMessage" class="success-message">
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <h2>Cadastro concluído!</h2>
+
+        <p>
+
+            Sua conta foi criada com sucesso.
+
+            <br><br>
+
+            Agora você já pode acessar todos os
+            recursos da plataforma.
+
+        </p>
+
+        <div class="success-items">
+
+            <div>
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <span>Perfil criado</span>
+
+            </div>
+
+            <div>
+
+                <i class="fa-solid fa-shield-heart"></i>
+
+                <span>Dados protegidos</span>
+
+            </div>
+
+            <div>
+
+                <i class="fa-solid fa-brain"></i>
+
+                <span>Experiência personalizada</span>
+
+            </div>
+
+        </div>
+
+        <a
+            href="home.html"
+            class="login-button"
+            id="accessButton">
+
+            Acessar plataforma
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+    <div class="footer-card">
+
+        <div class="footer-left">
+
+            <i class="fa-solid fa-heart"></i>
+
+            <p>
+
+                Cada escolha ajuda a tornar sua experiência
+                mais acolhedora e personalizada.
+
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-hand-holding-heart footer-icon"></i>
+
+    </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
