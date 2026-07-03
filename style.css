@@ -214,7 +214,7 @@ body{
 ========================================== */
 
 .quote{
-    margin-top:25;
+    margin-top:25px;
     background:rgba(93,156,236,.10);
     border-radius:22px;
     padding:28px;
