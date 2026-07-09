@@ -177,7 +177,7 @@
 
                 <div class="title">
 
-                    <h1>Entrar na sua conta</h1>
+                    <h2>Entrar na sua conta</h2>
 
                     <p>
                         Que bom ter você de volta!<br>
@@ -189,46 +189,22 @@
                 <form>
 
                     <div class="input-group">
-
-                        <label>E-mail institucional</label>
-
+                        <label for="email">E-mail institucional</label>
                         <div class="input">
-
-                            <i class="fa-regular fa-envelope"></i>
-
-                            <input
-                                type="email"
-                                placeholder="seuemail@instituicao.br"
-                                required>
-
+                            <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                            <input type="email" id="email" placeholder="seuemail@instituicao.br" autocomplete="email" required>
                         </div>
-
                     </div>
 
                     <div class="input-group">
-
-                        <label>Senha</label>
-
+                        <label for="password">Senha</label>
                         <div class="input">
-
-                            <i class="fa-solid fa-lock"></i>
-
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Digite sua senha"
-                                required>
-
-                            <button
-                                type="button"
-                                id="togglePassword">
-
-                                <i class="fa-regular fa-eye"></i>
-
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="password" placeholder="Digite sua senha" autocomplete="current-password" required>
+                            <button type="button" id="togglePassword" aria-label="Mostrar senha">
+                                <i class="fa-regular fa-eye" aria-hidden="true"></i>
                             </button>
-
                         </div>
-
                     </div>
 
                     <div class="forgot">

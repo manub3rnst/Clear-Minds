@@ -1,116 +1,98 @@
-/*Cadastro*/
-// ================================
-// CAMPOS
-// ================================
+/* Cadastro */
+const MODO_TESTE = true; // trocar para false quando o back-end estiver pronto
 
 const form = document.getElementById("registerForm");
-
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
-
 const togglePassword = document.getElementById("togglePassword");
 const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
 
 // ================================
-// MOSTRAR / OCULTAR SENHA
+// MOSTRAR / OCULTAR SENHA (função reaproveitável)
 // ================================
+function configurarToggle(botao, campo){
+    botao.addEventListener("click", () => {
+        const icon = botao.querySelector("i");
+        const isPassword = campo.type === "password";
 
-togglePassword.addEventListener("click", () => {
+        campo.type = isPassword ? "text" : "password";
+        icon.classList.replace(
+            isPassword ? "fa-eye" : "fa-eye-slash",
+            isPassword ? "fa-eye-slash" : "fa-eye"
+        );
+        botao.setAttribute("aria-label", isPassword ? "Ocultar senha" : "Mostrar senha");
+    });
+}
 
-    const icon = togglePassword.querySelector("i");
-
-    if(password.type === "password"){
-
-        password.type = "text";
-
-        icon.classList.replace("fa-eye","fa-eye-slash");
-
-    }else{
-
-        password.type = "password";
-
-        icon.classList.replace("fa-eye-slash","fa-eye");
-
-    }
-
-});
+configurarToggle(togglePassword, password);
+configurarToggle(toggleConfirmPassword, confirmPassword);
 
 // ================================
-// MOSTRAR / OCULTAR CONFIRMAÇÃO
+// REMOVE BORDA VERMELHA AO DIGITAR
 // ================================
-
-toggleConfirmPassword.addEventListener("click", () => {
-
-    const icon = toggleConfirmPassword.querySelector("i");
-
-    if(confirmPassword.type === "password"){
-
-        confirmPassword.type = "text";
-
-        icon.classList.replace("fa-eye","fa-eye-slash");
-
-    }else{
-
-        confirmPassword.type = "password";
-
-        icon.classList.replace("fa-eye-slash","fa-eye");
-
-    }
-
-});
-
-// ================================
-// VALIDAÇÃO DAS SENHAS
-// ================================
-
-form.addEventListener("submit", function(e){
-
-    if(password.value !== confirmPassword.value){
-
-        e.preventDefault();
-
-        alert("As senhas não coincidem.");
-
-        confirmPassword.focus();
-
-        confirmPassword.parentElement.style.borderColor = "#dc3545";
-
-        return;
-
-    }
-
-});
-
-// ================================
-// REMOVE BORDA VERMELHA
-// ================================
-
 confirmPassword.addEventListener("input", () => {
-
     confirmPassword.parentElement.style.borderColor = "";
-
 });
 
-/*SUCESSO CRIAÇÃO DE CONTA*/
-const form = document.getElementById("preferencesForm");
-const success = document.getElementById("successMessage");
-
-form.addEventListener("submit", function(e){
-
+// ================================
+// ENVIO DO FORMULÁRIO
+// ================================
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    form.style.display = "none";
+    // Validação: senhas coincidem
+    if (password.value !== confirmPassword.value){
+        alert("As senhas não coincidem.");
+        confirmPassword.focus();
+        confirmPassword.parentElement.style.borderColor = "#dc3545";
+        return;
+    }
 
-    success.style.display = "block";
+    const tipoConta = form.querySelector('input[name="tipoConta"]:checked').value;
 
+    const dados = {
+        nome: form.querySelector('input[type="text"]').value,
+        email: form.querySelector('input[type="email"]').value,
+        senha: password.value,
+        tipo: tipoConta
+    };
+
+    if (MODO_TESTE){
+        finalizarCadastro(dados);
+        return;
+    }
+
+    // Código real, para quando o back-end (PHP/Node) estiver pronto
+    try {
+        const response = await fetch("api/cadastro.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        });
+
+        const resultado = await response.json();
+
+        if (!response.ok){
+            alert(resultado.mensagem || "Erro ao criar conta.");
+            return;
+        }
+
+        finalizarCadastro(dados);
+
+    } catch (erro){
+        console.error("Erro ao conectar com o servidor:", erro);
+        alert("Não foi possível conectar. Tente novamente.");
+    }
 });
 
-const form = document.getElementById("registerForm");
-
-form.addEventListener("submit", function (e) {
-
-    e.preventDefault();
-
-    window.location.href = "formulario1.html";
-
-});
+// ================================
+// REDIRECIONAMENTO PÓS-CADASTRO
+// ================================
+function finalizarCadastro(dados){
+    // Cliente preenche o formulário extra; psicólogo vai direto pra área dele
+    if (dados.tipo === "psicologo"){
+        window.location.href = "home-psicologo.html";
+    } else {
+        window.location.href = "formulario1.html";
+    }
+}

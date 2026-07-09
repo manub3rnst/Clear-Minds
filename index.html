@@ -184,233 +184,241 @@
 
     <section class="right">
 
-        <div class="login-card">
+    <div class="login-card">
 
-            <div class="top-link">
+        <div class="top-link">
 
-                <span>Já possui uma conta?</span>
+            <span>Já possui uma conta?</span>
 
-                <a href="login.html">Entrar</a>
-
-            </div>
-
-            <div class="title">
-
-                <h1>Criar sua conta</h1>
-
-                <p>
-
-                    Vamos começar!
-                    Preencha seus dados para acessar
-                    todos os recursos da plataforma.
-
-                </p>
-
-            </div>
-
-            <form id="registerForm">
-
-                <!-- Nome -->
-
-                <div class="input-group">
-
-                    <label>Nome completo</label>
-
-                    <div class="input">
-
-                        <i class="fa-regular fa-user"></i>
-
-                        <input
-                            type="text"
-                            placeholder="Digite seu nome completo"
-                            required>
-
-                    </div>
-
-                </div>
-
-                <!-- Email -->
-
-                <div class="input-group">
-
-                    <label>E-mail institucional</label>
-
-                    <div class="input">
-
-                        <i class="fa-regular fa-envelope"></i>
-
-                        <input
-                            type="email"
-                            placeholder="seuemail@instituicao.br"
-                            required>
-
-                    </div>
-
-                </div>
-
-                <!-- Senha -->
-
-                <div class="input-group">
-
-                    <label>Senha</label>
-
-                    <div class="input">
-
-                        <i class="fa-solid fa-lock"></i>
-
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Crie uma senha"
-                            required>
-
-                        <button
-                            type="button"
-                            id="togglePassword">
-
-                            <i class="fa-regular fa-eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- Confirmar -->
-
-                <div class="input-group">
-
-                    <label>Confirmar senha</label>
-
-                    <div class="input">
-
-                        <i class="fa-solid fa-lock"></i>
-
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            placeholder="Digite novamente sua senha"
-                            required>
-
-                        <button
-                            type="button"
-                            id="toggleConfirmPassword">
-
-                            <i class="fa-regular fa-eye"></i>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-                <!-- Curso -->
-
-                <div class="input-group">
-
-                    <label>Curso</label>
-
-                    <div class="input">
-
-                        <i class="fa-solid fa-graduation-cap"></i>
-
-                        <select required>
-
-                            <option value="">Selecione seu curso</option>
-
-                            <option>Informática</option>
-                            <option>Administração</option>
-                            <option>Agropecuária</option>
-                            <option>Outro</option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <!-- Período -->
-
-                <div class="input-group">
-
-                    <label>Período</label>
-
-                    <div class="input">
-
-                        <i class="fa-regular fa-calendar"></i>
-
-                        <select required>
-
-                            <option value="">Selecione o período</option>
-
-                            <option>1º período</option>
-                            <option>2º período</option>
-                            <option>3º período</option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <!-- Termos -->
-
-                <label class="checkbox">
-
-                    <input
-                        type="checkbox"
-                        required>
-
-                    <span>
-
-                        Li e concordo com os
-                        <a href="#">Termos de Uso</a>
-                        e a
-                        <a href="#">Política de Privacidade</a>.
-
-                    </span>
-
-                </label>
-
-                <button
-                    type="submit"
-                    class="login-button">
-
-                    Criar conta
-
-                </button>
-
-            </form>
-
-            <div class="divider">
-
-                <span>ou cadastre-se com</span>
-
-            </div>
-
-            <div class="social-login">
-
-                <button type="button">
-
-                    <img src="imagem/google.jpg" alt="Google">
-
-                    Google
-
-                </button>
-
-                <button type="button">
-
-                    <img src="imagem/microsoft.jpg" alt="Microsoft">
-
-                    Microsoft
-
-                </button>
-
-            </div>
+            <a href="login.html">Entrar</a>
 
         </div>
 
-    </section>
+        <div class="title">
+
+            <h2>Criar sua conta</h2>
+
+            <p>
+
+                Vamos começar!
+                Preencha seus dados para acessar
+                todos os recursos da plataforma.
+
+            </p>
+
+        </div>
+
+        <form id="registerForm">
+
+            <!-- Nome -->
+
+            <div class="input-group">
+
+                <label for="nome">Nome completo</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome completo"
+                        autocomplete="name"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- Email -->
+
+            <div class="input-group">
+
+                <label for="email">E-mail institucional</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@instituicao.br"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- Senha -->
+
+            <div class="input-group">
+
+                <label for="password">Senha</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Crie uma senha"
+                        autocomplete="new-password"
+                        required>
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        aria-label="Mostrar senha">
+
+                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Confirmar -->
+
+            <div class="input-group">
+
+                <label for="confirmPassword">Confirmar senha</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Digite novamente sua senha"
+                        autocomplete="new-password"
+                        required>
+
+                    <button
+                        type="button"
+                        id="toggleConfirmPassword"
+                        aria-label="Mostrar senha">
+
+                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Curso -->
+
+            <div class="input-group">
+
+                <label for="curso">Curso</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+
+                    <select id="curso" required>
+
+                        <option value="">Selecione seu curso</option>
+
+                        <option>Informática</option>
+                        <option>Administração</option>
+                        <option>Agropecuária</option>
+                        <option>Outro</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Período -->
+
+            <div class="input-group">
+
+                <label for="periodo">Período</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+
+                    <select id="periodo" required>
+
+                        <option value="">Selecione o período</option>
+
+                        <option>1º período</option>
+                        <option>2º período</option>
+                        <option>3º período</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <!-- Termos -->
+
+            <label class="checkbox">
+
+                <input
+                    type="checkbox"
+                    required>
+
+                <span>
+
+                    Li e concordo com os
+                    <a href="#">Termos de Uso</a>
+                    e a
+                    <a href="#">Política de Privacidade</a>.
+
+                </span>
+
+            </label>
+
+            <button
+                type="submit"
+                class="login-button">
+
+                Criar conta
+
+            </button>
+
+        </form>
+
+        <div class="divider">
+
+            <span>ou cadastre-se com</span>
+
+        </div>
+
+        <div class="social-login">
+
+            <button type="button">
+
+                <img src="imagem/google.jpg" alt="Google">
+
+                Google
+
+            </button>
+
+            <button type="button">
+
+                <img src="imagem/microsoft.jpg" alt="Microsoft">
+
+                Microsoft
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
