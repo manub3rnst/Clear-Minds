@@ -198,6 +198,7 @@ para iniciarmos seu cadastro.
 
 <input
 type="text"
+id="nome"
 placeholder="Digite seu nome completo"
 required>
 
@@ -217,6 +218,7 @@ required>
 
 <input
 type="date"
+id="nascimento"
 required>
 
 </div>
@@ -233,7 +235,7 @@ required>
 
 <i class="fa-solid fa-venus-mars"></i>
 
-<select required>
+<select id="genero" required>
 
 <option value="">Selecione</option>
 
@@ -263,6 +265,7 @@ required>
 
 <input
 type="tel"
+id="telefone"
 placeholder="(00) 00000-0000">
 
 </div>
@@ -281,6 +284,7 @@ placeholder="(00) 00000-0000">
 
 <input
 type="text"
+id="cidade"
 placeholder="Digite sua cidade"
 required>
 
@@ -298,7 +302,7 @@ required>
 
 <i class="fa-solid fa-map"></i>
 
-<select required>
+<select id="estado" required>
 
 <option value="">Selecione</option>
 
@@ -320,9 +324,36 @@ required>
 <label>Fale um pouco sobre você</label>
 
 <textarea
+id="sobre"
 rows="5"
 maxlength="300"
 placeholder="Conte um pouco sobre seus interesses, objetivos ou como espera utilizar a plataforma."></textarea>
+
+</div>
+
+<!-- Acompanhamento psicológico -->
+
+<div class="input-group">
+
+<label>Você já realiza acompanhamento psicológico?</label>
+
+<div class="input">
+
+<i class="fa-solid fa-user-doctor"></i>
+
+<select id="acompanhamento" required>
+
+<option value="">Selecione</option>
+
+<option>Sim</option>
+
+<option>Não</option>
+
+<option>Não, mas tenho interesse</option>
+
+</select>
+
+</div>
 
 </div>
 
@@ -341,8 +372,6 @@ type="submit"
 class="login-button">
 
 Continuar
-
-<a href="formulario2.html" class="back-button"></a>
 
 <i class="fa-solid fa-arrow-right"></i>
 

@@ -1,4 +1,6 @@
-/* Cadastro */
+/* ========================================== 
+   CADASTRO (index.html)
+   ========================================== */
 const MODO_TESTE = true; // trocar para false quando o back-end estiver pronto
 
 const form = document.getElementById("registerForm");
@@ -8,9 +10,9 @@ const togglePassword = document.getElementById("togglePassword");
 const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
 
 // ================================
-// MOSTRAR / OCULTAR SENHA (função reaproveitável)
+// MOSTRAR / OCULTAR SENHA
 // ================================
-function configurarToggle(botao, campo){
+function configurarToggle(botao, campo) {
     botao.addEventListener("click", () => {
         const icon = botao.querySelector("i");
         const isPassword = campo.type === "password";
@@ -41,23 +43,21 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     // Validação: senhas coincidem
-    if (password.value !== confirmPassword.value){
+    if (password.value !== confirmPassword.value) {
         alert("As senhas não coincidem.");
         confirmPassword.focus();
         confirmPassword.parentElement.style.borderColor = "#dc3545";
         return;
     }
 
-    const tipoConta = form.querySelector('input[name="tipoConta"]:checked').value;
-
     const dados = {
-        nome: form.querySelector('input[type="text"]').value,
-        email: form.querySelector('input[type="email"]').value,
-        senha: password.value,
-        tipo: tipoConta
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        curso: document.getElementById("curso").value,
+        periodo: document.getElementById("periodo").value
     };
 
-    if (MODO_TESTE){
+    if (MODO_TESTE) {
         finalizarCadastro(dados);
         return;
     }
@@ -67,19 +67,19 @@ form.addEventListener("submit", async (e) => {
         const response = await fetch("api/cadastro.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dados)
+            body: JSON.stringify({ ...dados, senha: password.value })
         });
 
         const resultado = await response.json();
 
-        if (!response.ok){
+        if (!response.ok) {
             alert(resultado.mensagem || "Erro ao criar conta.");
             return;
         }
 
         finalizarCadastro(dados);
 
-    } catch (erro){
+    } catch (erro) {
         console.error("Erro ao conectar com o servidor:", erro);
         alert("Não foi possível conectar. Tente novamente.");
     }
@@ -87,12 +87,15 @@ form.addEventListener("submit", async (e) => {
 
 // ================================
 // REDIRECIONAMENTO PÓS-CADASTRO
+// Cadastro concluído -> segue para o formulário (Etapa 1 de 3)
 // ================================
-function finalizarCadastro(dados){
-    // Cliente preenche o formulário extra; psicólogo vai direto pra área dele
-    if (dados.tipo === "psicologo"){
-        window.location.href = "home-psicologo.html";
-    } else {
-        window.location.href = "formulario1.html";
-    }
+function finalizarCadastro(dados) {
+    const perfil = JSON.parse(localStorage.getItem("cm_profile")) || {};
+
+    Object.assign(perfil, dados);
+
+    localStorage.setItem("cm_profile", JSON.stringify(perfil));
+    localStorage.setItem("cm_session", dados.email);
+
+    window.location.href = "formulario.html";
 }

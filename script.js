@@ -1,10 +1,13 @@
-/* Login */
+/* ==========================================
+   LOGIN (login.html)
+   ========================================== */
 const MODO_TESTE = true; // troque para false quando o back-end estiver pronto
 
 const senha = document.getElementById("password");
 const toggle = document.getElementById("togglePassword");
 const icon = toggle.querySelector("i");
 const form = document.querySelector("form");
+const emailInput = document.getElementById("email");
 
 toggle.addEventListener("click", () => {
     const isPassword = senha.type === "password";
@@ -19,13 +22,12 @@ toggle.addEventListener("click", () => {
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = form.querySelector('input[type="email"]').value;
+    const email = emailInput.value;
     const senhaDigitada = senha.value;
 
     if (MODO_TESTE) {
-        // Simula um psicólogo se o e-mail contiver "psi", só para testar as duas rotas
-        const tipoSimulado = email.includes("psi") ? "psicologo" : "cliente";
-        redirecionar(tipoSimulado);
+        // Sem back-end: qualquer login válido leva direto para a home
+        entrar(email);
         return;
     }
 
@@ -44,7 +46,7 @@ form.addEventListener("submit", async (e) => {
             return;
         }
 
-        redirecionar(data.tipo);
+        entrar(email);
 
     } catch (erro) {
         console.error("Erro ao conectar com o servidor:", erro);
@@ -52,8 +54,10 @@ form.addEventListener("submit", async (e) => {
     }
 });
 
-function redirecionar(tipo) {
-    window.location.href = tipo === "psicologo"
-        ? "home-psicologo.html"
-        : "home-cliente.html";
+// ================================
+// REDIRECIONAMENTO PÓS-LOGIN -> home
+// ================================
+function entrar(email) {
+    localStorage.setItem("cm_session", email);
+    window.location.href = "home.html";
 }
