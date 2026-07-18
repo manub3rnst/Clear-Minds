@@ -4,6 +4,7 @@
 
 const preferencesForm = document.getElementById("preferencesForm");
 const successMessage = document.getElementById("successMessage");
+const accessButton = document.getElementById("accessButton");
 
 if (preferencesForm && successMessage) {
 
@@ -29,7 +30,6 @@ if (preferencesForm && successMessage) {
         preferencesForm.style.display = "none";
 
         // Mostra a tela de sucesso
-        // (o botão "Acessar plataforma" já leva para home.html via href)
         successMessage.style.display = "block";
 
         // Faz a página subir suavemente até o topo
@@ -37,6 +37,14 @@ if (preferencesForm && successMessage) {
             top: 0,
             behavior: "smooth"
         });
+
+        // Revela o botão "Acessar plataforma" (que leva para home.html via href).
+        // O CSS deixa #accessButton escondido (opacity:0) até receber a classe "show".
+        if (accessButton) {
+            setTimeout(() => {
+                accessButton.classList.add("show");
+            }, 300);
+        }
 
     });
 
