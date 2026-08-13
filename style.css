@@ -3942,6 +3942,8 @@ select:hover{
     align-items:flex-start;
     gap:10px;
 
+    margin-top:5px;
+
     padding:14px 16px;
 
     background:var(--secondary);
@@ -3957,6 +3959,19 @@ select:hover{
 
     color:var(--primary);
     margin-top:2px;
+
+}
+
+/* Blocos condicionais de campos (Estudante / Profissional)
+   dentro do form: precisam do mesmo espaçamento vertical
+   usado entre os demais .input-group do formulário. */
+
+[data-tipo-conta]{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:25px;
 
 }
 
