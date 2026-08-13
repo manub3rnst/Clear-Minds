@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clear Minds | Painel do Profissional</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ==========================================
+TOPO
+========================================== -->
+
+<header class="topo">
+
+    <div class="logo-home">
+        <h2>Clear Minds</h2>
+    </div>
+
+    <nav>
+
+        <a href="#">Início</a>
+        <a href="#">Solicitações</a>
+        <a href="#">Meus Pacientes</a>
+        <a href="#">Agenda</a>
+        <a href="#">Conteúdos</a>
+
+    </nav>
+
+    <div class="usuario">
+
+        Olá,
+        <span id="nomeUsuario">Profissional</span>
+
+        <button id="btnSair">
+            Sair
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ==========================================
+HERO
+========================================== -->
+
+<section class="home-hero">
+
+    <div class="hero-texto">
+
+        <span class="tag badge-profissional">
+            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+            Painel do Profissional
+        </span>
+
+        <h1>
+            Ajude estudantes a cuidar da saúde mental.
+        </h1>
+
+        <p>
+            Acompanhe solicitações de atendimento, gerencie
+            seus pacientes e mantenha seu perfil profissional atualizado.
+        </p>
+
+        <button class="btn-principal">
+            Ver Solicitações
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+BOAS VINDAS
+========================================== -->
+
+<section class="boas-vindas">
+
+    <div class="card-boas-vindas">
+
+        <h2 id="saudacao">
+            Olá!
+        </h2>
+
+        <p id="mensagemPersonalizada">
+            Estamos felizes em ter você na plataforma.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+PERFIL PROFISSIONAL
+========================================== -->
+
+<section class="secao">
+
+    <h2>Seu Perfil Profissional</h2>
+
+    <div class="perfil-usuario">
+
+        <div class="info">
+            <strong>Nome</strong>
+            <span id="perfilNome">Não informado</span>
+        </div>
+
+        <div class="info">
+            <strong>Área de atuação</strong>
+            <span id="perfilArea">Não informado</span>
+        </div>
+
+        <div class="info">
+            <strong>Registro profissional</strong>
+            <span id="perfilRegistro">Não informado</span>
+        </div>
+
+        <div class="info">
+            <strong>Telefone</strong>
+            <span id="perfilTelefone">Não informado</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+STATUS DE VERIFICAÇÃO
+========================================== -->
+
+<section class="secao">
+
+    <h2>Status da Conta</h2>
+
+    <div class="card-home">
+
+        <i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
+
+        <p>
+            Seu cadastro está em análise. Assim que o registro
+            profissional (CRP/CRM) for verificado, seu perfil
+            passará a aparecer na busca de estudantes.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+SOLICITAÇÕES
+========================================== -->
+
+<section class="secao">
+
+    <h2>Solicitações Recentes</h2>
+
+    <div
+        class="card-home"
+        id="listaSolicitacoes"
+    >
+        Nenhuma solicitação de atendimento no momento.
+    </div>
+
+</section>
+
+<!-- ==========================================
+FERRAMENTAS DO PROFISSIONAL
+========================================== -->
+
+<section class="secao">
+
+    <h2>Ferramentas</h2>
+
+    <div class="grid">
+
+        <div class="card-home">
+
+            <div class="icone-card">📅</div>
+
+            <h3>Agenda de Atendimentos</h3>
+
+            <p>
+                Organize seus horários disponíveis
+                e confirme sessões com estudantes.
+            </p>
+
+        </div>
+
+        <div class="card-home">
+
+            <div class="icone-card">📋</div>
+
+            <h3>Prontuário Simplificado</h3>
+
+            <p>
+                Registre anotações de acompanhamento
+                de forma segura.
+            </p>
+
+        </div>
+
+        <div class="card-home">
+
+            <div class="icone-card">📚</div>
+
+            <h3>Publicar Conteúdo</h3>
+
+            <p>
+                Compartilhe artigos e materiais
+                com os estudantes da plataforma.
+            </p>
+
+        </div>
+
+        <div class="card-home">
+
+            <div class="icone-card">⭐</div>
+
+            <h3>Avaliações</h3>
+
+            <p>
+                Acompanhe o feedback recebido
+                dos estudantes atendidos.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+FRASE FINAL
+========================================== -->
+
+<section class="frase-final-home">
+
+    <h2>
+        Cada atendimento é um passo a mais no cuidado.
+    </h2>
+
+    <p>
+        Obrigado por fazer parte da rede de apoio Clear Minds.
+    </p>
+
+</section>
+
+<!-- ==========================================
+RODAPÉ
+========================================== -->
+
+<footer class="footer-home">
+
+    <p>
+        Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
+    </p>
+
+</footer>
+
+<script src="home-profissional.js"></script>
+
+</body>
+</html>

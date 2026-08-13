@@ -186,10 +186,42 @@
 
                 </div>
 
+                <!-- Seletor: Estudante ou Profissional -->
+
+                <div class="account-type-switch" role="tablist" aria-label="Tipo de conta">
+
+                    <button
+                        type="button"
+                        class="account-type-btn active"
+                        data-tipo="usuario"
+                        role="tab"
+                        aria-selected="true">
+
+                        <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+                        Sou Estudante
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="account-type-btn"
+                        data-tipo="profissional"
+                        role="tab"
+                        aria-selected="false">
+
+                        <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                        Sou Profissional
+
+                    </button>
+
+                </div>
+
                 <form>
 
+                    <input type="hidden" id="tipoConta" value="usuario">
+
                     <div class="input-group">
-                        <label for="email">E-mail institucional</label>
+                        <label for="email">E-mail<span id="emailLabelTipo"> institucional</span></label>
                         <div class="input">
                             <i class="fa-regular fa-envelope" aria-hidden="true"></i>
                             <input type="email" id="email" placeholder="seuemail@instituicao.br" autocomplete="email" required>
@@ -282,6 +314,7 @@
 
     </footer>
 
+    <script src="utils.js"></script>
     <script src="script.js"></script>
 
 </body>

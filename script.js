@@ -5,29 +5,41 @@ const MODO_TESTE = true; // troque para false quando o back-end estiver pronto
 
 const senha = document.getElementById("password");
 const toggle = document.getElementById("togglePassword");
-const icon = toggle.querySelector("i");
 const form = document.querySelector("form");
 const emailInput = document.getElementById("email");
+const emailLabelTipo = document.getElementById("emailLabelTipo");
+const tipoContaInput = document.getElementById("tipoConta");
 
-toggle.addEventListener("click", () => {
-    const isPassword = senha.type === "password";
-    senha.type = isPassword ? "text" : "password";
-    icon.classList.replace(
-        isPassword ? "fa-eye" : "fa-eye-slash",
-        isPassword ? "fa-eye-slash" : "fa-eye"
-    );
-    toggle.setAttribute("aria-label", isPassword ? "Ocultar senha" : "Mostrar senha");
+configurarTogglePassword(toggle, senha);
+
+// ================================
+// SELETOR DE TIPO DE CONTA (Estudante / Profissional)
+// ================================
+configurarSeletorTipoConta({
+    onChange(tipo) {
+        if (emailLabelTipo) {
+            emailLabelTipo.textContent = tipo === "profissional" ? " profissional" : " institucional";
+        }
+    }
 });
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = emailInput.value;
+    limparErroFormulario(form);
+
+    const email = emailInput.value.trim();
     const senhaDigitada = senha.value;
+    const tipo = tipoContaInput ? tipoContaInput.value : "usuario";
+
+    if (!email || !senhaDigitada) {
+        mostrarErroFormulario(form, "Preencha e-mail e senha.");
+        return;
+    }
 
     if (MODO_TESTE) {
         // Sem back-end: qualquer login válido leva direto para a home
-        entrar(email);
+        entrar(email, tipo);
         return;
     }
 
@@ -36,28 +48,30 @@ form.addEventListener("submit", async (e) => {
         const response = await fetch("api/login.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, senha: senhaDigitada })
+            body: JSON.stringify({ email, senha: senhaDigitada, tipo })
         });
 
         const data = await response.json();
 
         if (!response.ok) {
-            alert(data.mensagem || "E-mail ou senha inválidos.");
+            mostrarErroFormulario(form, data.mensagem || "E-mail ou senha inválidos.");
             return;
         }
 
-        entrar(email);
+        entrar(email, tipo);
 
     } catch (erro) {
         console.error("Erro ao conectar com o servidor:", erro);
-        alert("Não foi possível conectar. Tente novamente.");
+        mostrarErroFormulario(form, "Não foi possível conectar. Tente novamente.");
     }
 });
 
 // ================================
-// REDIRECIONAMENTO PÓS-LOGIN -> home
+// REDIRECIONAMENTO PÓS-LOGIN
+// Estudante -> home.html | Profissional -> home-profissional.html
 // ================================
-function entrar(email) {
+function entrar(email, tipo) {
     localStorage.setItem("cm_session", email);
-    window.location.href = "home.html";
+    localStorage.setItem("cm_tipo", tipo);
+    window.location.href = tipo === "profissional" ? "home-profissional.html" : "home.html";
 }

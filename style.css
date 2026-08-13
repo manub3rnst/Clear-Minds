@@ -3858,3 +3858,151 @@ select:hover{
     }
 
 }
+
+/* ==========================================
+   SELETOR DE TIPO DE CONTA
+   (Sou Estudante / Sou Profissional)
+   Usado em index.html (cadastro) e login.html
+========================================== */
+
+.account-type-switch{
+
+    display:flex;
+
+    gap:8px;
+
+    padding:6px;
+
+    background:var(--secondary);
+
+    border-radius:16px;
+
+    margin-bottom:35px;
+
+}
+
+.account-type-btn{
+
+    flex:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    height:48px;
+
+    border:none;
+    border-radius:12px;
+
+    background:transparent;
+    color:var(--text);
+
+    font-family:inherit;
+    font-size:.92rem;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.account-type-btn i{
+
+    font-size:15px;
+
+}
+
+.account-type-btn:hover{
+
+    color:var(--primary-dark);
+
+}
+
+.account-type-btn.active{
+
+    background:var(--white);
+    color:var(--primary-dark);
+
+    box-shadow:var(--shadow);
+
+}
+
+.account-type-btn:focus-visible{
+
+    outline:3px solid var(--primary);
+    outline-offset:2px;
+
+}
+
+.account-type-note{
+
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+
+    padding:14px 16px;
+
+    background:var(--secondary);
+    border-radius:12px;
+
+    color:var(--text);
+    font-size:.85rem;
+    line-height:1.6;
+
+}
+
+.account-type-note i{
+
+    color:var(--primary);
+    margin-top:2px;
+
+}
+
+/* ==========================================
+   MENSAGEM DE ERRO DE FORMULÁRIO
+   (substitui o uso de alert())
+========================================== */
+
+.form-erro{
+
+    min-height:1.2em;
+
+    color:#dc3545;
+
+    font-size:.88rem;
+    font-weight:500;
+
+    text-align:center;
+
+}
+
+.form-erro:empty{
+
+    display:none;
+
+}
+
+/* ==========================================
+   BADGE "PROFISSIONAL"
+   Usado em home-profissional.html
+========================================== */
+
+.badge-profissional{
+
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    padding:6px 14px;
+
+    background:var(--secondary);
+    color:var(--primary-dark);
+
+    border-radius:999px;
+
+    font-size:.8rem;
+    font-weight:600;
+
+}

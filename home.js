@@ -4,6 +4,12 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    // Se quem está logado é um profissional, leva para o painel correto
+    if (localStorage.getItem("cm_tipo") === "profissional") {
+        window.location.href = "home-profissional.html";
+        return;
+    }
+
     const perfil = JSON.parse(localStorage.getItem("cm_profile")) || {};
     const sessao = localStorage.getItem("cm_session");
 
