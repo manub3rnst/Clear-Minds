@@ -5,361 +5,452 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Clear Minds</title>
+<title>Mente em Foco | Início</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-<body>
+<body class="pro-body">
 
-<!-- ==========================================
-TOPO
-========================================== -->
+<div class="pro-shell">
 
-<header class="topo">
+    <!-- ==========================================
+    TOPO
+    ========================================== -->
 
-    <div class="logo-home">
-        <h2>Clear Minds</h2>
+    <header class="pro-topbar">
+
+        <div class="pro-logo">
+
+            <img src="imagem/logo.jpg" alt="Mente em Foco">
+
+            <div>
+                <h2>Mente em Foco</h2>
+                <span>Cuidar da mente é focar no que importa.</span>
+            </div>
+
+        </div>
+
+        <nav class="pro-topnav" aria-label="Navegação principal">
+
+            <a href="#inicio" class="active">
+                <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+            </a>
+
+            <a href="#diario">
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i> Diário
+            </a>
+
+            <a href="#comunidade">
+                <i class="fa-solid fa-user-group" aria-hidden="true"></i> Comunidade
+            </a>
+
+            <a href="#conteudos">
+                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos
+            </a>
+
+            <a href="#ferramentas">
+                <i class="fa-solid fa-spa" aria-hidden="true"></i> Ferramentas
+            </a>
+
+        </nav>
+
+        <div class="pro-topbar-right">
+
+            <button class="pro-icon-btn" type="button" aria-label="Ver notificações">
+                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                <span class="pro-badge" id="badgeNotificacoes">3</span>
+            </button>
+
+            <button class="pro-user-menu" type="button" aria-haspopup="true">
+
+                <span class="pro-avatar" id="avatarIniciais">E</span>
+
+                <span class="pro-user-info">
+                    <strong id="topoNomeUsuario">Olá, Visitante</strong>
+                    <small>Estudante</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <div class="pro-layout">
+
+        <!-- ==========================================
+        MENU LATERAL
+        ========================================== -->
+
+        <aside class="pro-sidebar" aria-label="Menu do estudante">
+
+            <nav>
+
+                <a href="#inicio" class="pro-side-link active">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                </a>
+
+                <a href="#diario" class="pro-side-link">
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i> Meu diário
+                </a>
+
+                <a href="#comunidade" class="pro-side-link">
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i> Comunidade
+                </a>
+
+                <a href="#conteudos" class="pro-side-link">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Conteúdos
+                </a>
+
+                <a href="#ferramentas" class="pro-side-link">
+                    <i class="fa-solid fa-spa" aria-hidden="true"></i> Ferramentas
+                </a>
+
+                <a href="#acompanhamento" class="pro-side-link">
+                    <i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Profissionais
+                </a>
+
+                <a href="#" class="pro-side-link">
+                    <i class="fa-regular fa-id-badge" aria-hidden="true"></i> Meu perfil
+                </a>
+
+                <a href="#" class="pro-side-link">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i> Configurações
+                </a>
+
+            </nav>
+
+            <div class="stu-side-note">
+
+                <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+
+                <div>
+                    <strong>Comunidade segura</strong>
+                    <p>
+                        Este é um espaço acolhedor e respeitoso.
+                        Cuide das palavras e das pessoas.
+                    </p>
+                    <a href="#comunidade">Saiba mais <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+
+            </div>
+
+            <button class="pro-side-link pro-side-sair" id="btnSair" type="button">
+                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Sair
+            </button>
+
+        </aside>
+
+        <!-- ==========================================
+        CONTEÚDO PRINCIPAL
+        ========================================== -->
+
+        <main class="pro-main" id="inicio">
+
+            <div class="pro-heading">
+                <h1 id="saudacao">Olá!</h1>
+                <p>Como você está se sentindo hoje?</p>
+            </div>
+
+            <!-- Seletor de humor + lembrete -->
+
+            <div class="stu-top-row">
+
+                <section class="pro-card stu-mood-card">
+
+                    <div class="stu-mood-options" role="group" aria-label="Como você está se sentindo hoje">
+
+                        <button type="button" class="stu-mood-btn" data-humor="Muito bem">
+                            <i class="fa-regular fa-face-laugh-beam" aria-hidden="true"></i>
+                            Muito bem
+                        </button>
+
+                        <button type="button" class="stu-mood-btn" data-humor="Bem">
+                            <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
+                            Bem
+                        </button>
+
+                        <button type="button" class="stu-mood-btn" data-humor="Neutro">
+                            <i class="fa-regular fa-face-meh" aria-hidden="true"></i>
+                            Neutro
+                        </button>
+
+                        <button type="button" class="stu-mood-btn" data-humor="Não muito bem">
+                            <i class="fa-regular fa-face-frown" aria-hidden="true"></i>
+                            Não muito bem
+                        </button>
+
+                        <button type="button" class="stu-mood-btn" data-humor="Mal">
+                            <i class="fa-regular fa-face-sad-tear" aria-hidden="true"></i>
+                            Mal
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <section class="pro-card stu-reminder-card">
+
+                    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+
+                    <h3>Lembrete de autocuidado</h3>
+
+                    <p>Pequenas pausas podem transformar o seu dia.</p>
+
+                    <a href="#ferramentas" class="stu-btn-solid">Fazer uma pausa</a>
+
+                </section>
+
+            </div>
+
+            <!-- Diário + Próximo atendimento + Comunidade -->
+
+            <div class="stu-grid-3">
+
+                <section class="pro-card" id="diario">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Meu diário</h2>
+                        <span class="pro-tag pro-tag-solid"><i class="fa-solid fa-lock" aria-hidden="true"></i> Privado</span>
+                    </div>
+
+                    <div class="stu-diary-entry">
+
+                        <p class="stu-diary-label">Última entrada</p>
+                        <p class="stu-diary-date">12/08/2026</p>
+                        <p class="stu-diary-mood">Humor registrado: <strong id="humorRegistrado">Bem</strong></p>
+
+                    </div>
+
+                    <button class="stu-btn-solid stu-btn-block" type="button">
+                        Continuar escrevendo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+
+                    <p class="stu-privacy-note">
+                        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                        Seu diário é privado. Você decide quem pode acessá-lo.
+                        <a href="#">Gerenciar acessos</a>
+                    </p>
+
+                </section>
+
+                <section class="pro-card" id="acompanhamento">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Próximo atendimento</h2>
+                    </div>
+
+                    <div class="stu-appointment-box">
+
+                        <div class="stu-appointment-date">
+                            <i class="fa-solid fa-calendar-day" aria-hidden="true"></i>
+                            18/08 • 14:00
+                        </div>
+
+                        <strong>Dra. Camila Rocha</strong>
+                        <small>Psicóloga • Online</small>
+
+                        <span class="pro-tag pro-tag-solid">Confirmado</span>
+
+                    </div>
+
+                    <a href="#" class="stu-btn-outline-block">Ver detalhes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </section>
+
+                <section class="pro-card" id="comunidade">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-user-group" aria-hidden="true"></i> Comunidade</h2>
+                        <button class="stu-btn-solid stu-btn-sm" type="button">+ Nova publicação</button>
+                    </div>
+
+                    <div class="stu-post-composer">
+                        <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
+                        Como foi o seu dia?
+                    </div>
+
+                    <div class="stu-tag-row">
+                        <span class="stu-chip">🙂 Humor</span>
+                        <span class="stu-chip">💭 Reflexão</span>
+                        <span class="stu-chip">🎓 Estudos</span>
+                        <span class="stu-chip">🌱 Conquista</span>
+                        <span class="stu-chip">💙 Apoio</span>
+                    </div>
+
+                    <ul class="stu-feed">
+
+                        <li>
+                            <span class="pro-avatar-sm">MA</span>
+                            <div class="pro-feed-info">
+                                <p><strong>Marina</strong> · <small>Hoje, 08:32</small></p>
+                                <p>Hoje consegui terminar uma tarefa que estava me deixando muito ansiosa.</p>
+                                <div class="stu-feed-actions">
+                                    <span><i class="fa-regular fa-heart" aria-hidden="true"></i> 18</span>
+                                    <span><i class="fa-regular fa-comment" aria-hidden="true"></i> 5</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="pro-avatar-sm">JO</span>
+                            <div class="pro-feed-info">
+                                <p><strong>João</strong> · <small>Hoje, 07:45</small></p>
+                                <p>Consegui estudar por 30 minutos sem me cobrar tanto. Já considero uma vitória.</p>
+                                <div class="stu-feed-actions">
+                                    <span><i class="fa-regular fa-heart" aria-hidden="true"></i> 24</span>
+                                    <span><i class="fa-regular fa-comment" aria-hidden="true"></i> 7</span>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <a href="#comunidade" class="pro-see-more">Ver mais publicações <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </section>
+
+            </div>
+
+            <!-- Ferramentas + Conteúdos -->
+
+            <div class="pro-grid-2">
+
+                <section class="pro-card" id="ferramentas">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-spa" aria-hidden="true"></i> Ferramentas para você</h2>
+                    </div>
+
+                    <div class="stu-tools-grid">
+
+                        <a href="#" class="stu-tool-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-wind" aria-hidden="true"></i></span>
+                            Respiração guiada
+                        </a>
+
+                        <a href="#" class="stu-tool-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
+                            Exercício de concentração
+                        </a>
+
+                        <a href="#" class="stu-tool-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span>
+                            Pausa de 5 minutos
+                        </a>
+
+                        <a href="#" class="stu-tool-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-list-check" aria-hidden="true"></i></span>
+                            Organizador de estudos
+                        </a>
+
+                    </div>
+
+                    <a href="#ferramentas" class="pro-see-more">Ver todas as ferramentas <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </section>
+
+                <section class="pro-card" id="conteudos">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos para você</h2>
+                    </div>
+
+                    <ul class="stu-content-list">
+
+                        <li>
+                            <span class="pro-quick-icon"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i></span>
+                            <div class="pro-feed-info">
+                                <strong>Ansiedade nos estudos</strong>
+                                <small>5 min de leitura</small>
+                                <div class="stu-progress"><span style="width:70%"></span></div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="pro-quick-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></span>
+                            <div class="pro-feed-info">
+                                <strong>Como lidar com a pressão escolar</strong>
+                                <small>7 min de leitura</small>
+                                <div class="stu-progress"><span style="width:35%"></span></div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <span class="pro-quick-icon"><i class="fa-solid fa-leaf" aria-hidden="true"></i></span>
+                            <div class="pro-feed-info">
+                                <strong>Pequenas pausas durante os estudos</strong>
+                                <small>4 min de leitura</small>
+                                <div class="stu-progress"><span style="width:0%"></span></div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <a href="#conteudos" class="pro-see-more">Ver todos os conteúdos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </section>
+
+            </div>
+
+            <!-- Meu acompanhamento -->
+
+            <section class="pro-card stu-tracking-card">
+
+                <div class="pro-card-head">
+                    <h2><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Meu acompanhamento</h2>
+                </div>
+
+                <div class="stu-tracking-body">
+
+                    <span class="pro-avatar">CR</span>
+
+                    <div class="pro-feed-info">
+                        <strong>Dra. Camila Rocha</strong>
+                        <small>Psicóloga Clínica</small>
+                        <span class="pro-tag pro-tag-solid"><span class="pro-dot-sm" aria-hidden="true"></span> Acompanhamento ativo</span>
+                    </div>
+
+                    <div class="stu-tracking-next">
+                        <small>Próximo atendimento</small>
+                        <strong><i class="fa-solid fa-calendar-day" aria-hidden="true"></i> 18/08 • 14:00</strong>
+                        <span>Online</span>
+                    </div>
+
+                    <a href="#acompanhamento" class="pro-btn-outline">Ver profissional <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </div>
+
+            </section>
+
+            <!-- Dica do dia -->
+
+            <section class="stu-tip-banner">
+
+                <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
+
+                <p>
+                    <strong>Dica de hoje:</strong>
+                    Respire fundo, vá com calma e celebre cada pequena conquista. Você está indo muito bem! ✨
+                </p>
+
+            </section>
+
+        </main>
+
     </div>
 
-    <nav>
-
-        <a href="#">Início</a>
-        <a href="#">Ferramentas</a>
-        <a href="#">Profissionais</a>
-        <a href="#">Conteúdos</a>
-        <a href="#">Sobre Nós</a>
-
-    </nav>
-
-    <div class="usuario">
-
-        Olá,
-        <span id="nomeUsuario">Usuário</span>
-
-        <button id="btnSair">
-            Sair
-        </button>
-
-    </div>
-
-</header>
-
-<!-- ==========================================
-HERO
-========================================== -->
-
-<section class="home-hero">
-
-    <div class="hero-texto">
-
-        <span class="tag">
-            🌿 Bem-vindo ao Clear Minds
-        </span>
-
-        <h1>
-            Sua saúde mental merece atenção todos os dias.
-        </h1>
-
-        <p>
-            Um espaço criado para conectar estudantes a conteúdos,
-            profissionais e ferramentas que promovem bem-estar emocional.
-        </p>
-
-        <button class="btn-principal">
-            Explorar Recursos
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-BOAS VINDAS
-========================================== -->
-
-<section class="boas-vindas">
-
-    <div class="card-boas-vindas">
-
-        <h2 id="saudacao">
-            Olá!
-        </h2>
-
-        <p id="mensagemPersonalizada">
-            Estamos felizes em ter você aqui.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-PERFIL
-========================================== -->
-
-<section class="secao">
-
-    <h2>Seu Perfil</h2>
-
-    <div class="perfil-usuario">
-
-        <div class="info">
-            <strong>Nome</strong>
-            <span id="perfilNome">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Cidade</strong>
-            <span id="perfilCidade">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Necessidade Principal</strong>
-            <span id="perfilNecessidade">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Acompanhamento Psicológico</strong>
-            <span id="perfilAcompanhamento">Não informado</span>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-PROGRESSO
-========================================== -->
-
-<section class="secao">
-
-    <h2>Perfil Completo</h2>
-
-    <div class="progresso-perfil">
-
-        <p>
-            Quanto mais completo seu perfil estiver,
-            melhores serão as recomendações oferecidas.
-        </p>
-
-        <div class="barra">
-
-            <div
-                class="barra-preenchida"
-                id="barraPerfil"
-            ></div>
-
-        </div>
-
-        <p id="textoProgresso">
-            0% preenchido
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-RECOMENDAÇÕES
-========================================== -->
-
-<section class="secao">
-
-    <h2>Recomendado para Você</h2>
-
-    <div
-        class="card-home"
-        id="recomendacaoUsuario"
-    >
-        Complete seu perfil para receber recomendações personalizadas.
-    </div>
-
-</section>
-
-<!-- ==========================================
-FERRAMENTAS
-========================================== -->
-
-<section class="secao">
-
-    <h2>Ferramentas de Apoio</h2>
-
-    <div class="grid">
-
-        <div class="card-home">
-
-            <div class="icone-card">🌬️</div>
-
-            <h3>Respiração Guiada</h3>
-
-            <p>
-                Exercícios para reduzir ansiedade,
-                controlar emoções e recuperar o foco.
-            </p>
-
-        </div>
-
-        <div class="card-home">
-
-            <div class="icone-card">😊</div>
-
-            <h3>Diário Emocional</h3>
-
-            <p>
-                Registre sentimentos e acompanhe sua evolução emocional.
-            </p>
-
-        </div>
-
-        <div class="card-home">
-
-            <div class="icone-card">🧘</div>
-
-            <h3>Meditação Guiada</h3>
-
-            <p>
-                Técnicas simples para relaxar e reduzir o estresse.
-            </p>
-
-        </div>
-
-        <div class="card-home">
-
-            <div class="icone-card">📚</div>
-
-            <h3>Materiais Educativos</h3>
-
-            <p>
-                Conteúdos sobre saúde mental, autoestima e bem-estar.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-PROFISSIONAIS
-========================================== -->
-
-<section class="secao">
-
-    <h2>Profissionais em Destaque</h2>
-
-    <div class="grid">
-
-        <div class="card-home">
-
-            <h3>👩‍⚕️ Psicóloga Clínica</h3>
-
-            <p>
-                Especialista em ansiedade,
-                autoestima e autoconhecimento.
-            </p>
-
-        </div>
-
-        <div class="card-home">
-
-            <h3>👨‍⚕️ Psicólogo Escolar</h3>
-
-            <p>
-                Acompanhamento voltado para estudantes.
-            </p>
-
-        </div>
-
-        <div class="card-home">
-
-            <h3>🩺 Psiquiatra</h3>
-
-            <p>
-                Avaliação e suporte especializado.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-CONTEÚDOS
-========================================== -->
-
-<section class="secao">
-
-    <h2>Conteúdos para Você</h2>
-
-    <div class="grid">
-
-        <div class="card-home">
-
-            <h3>Ansiedade nos Estudos</h3>
-
-            <p>Leitura rápida • 5 minutos</p>
-
-        </div>
-
-        <div class="card-home">
-
-            <h3>Sono e Saúde Mental</h3>
-
-            <p>Vídeo educativo</p>
-
-        </div>
-
-        <div class="card-home">
-
-            <h3>Autoestima</h3>
-
-            <p>Guia prático</p>
-
-        </div>
-
-        <div class="card-home">
-
-            <h3>Podcast Bem-estar</h3>
-
-            <p>Conteúdo em áudio</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-FRASE FINAL
-========================================== -->
-
-<section class="frase-final-home">
-
-    <h2>
-        Você não precisa enfrentar tudo sozinho.
-    </h2>
-
-    <p>
-        Buscar apoio é um ato de coragem e autocuidado.
-    </p>
-
-</section>
-
-<!-- ==========================================
-RODAPÉ
-========================================== -->
-
-<footer class="footer-home">
-
-    <p>
-        Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
-    </p>
-
-</footer>
+</div>
 
 <script src="home.js"></script>
 

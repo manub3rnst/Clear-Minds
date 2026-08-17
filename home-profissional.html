@@ -9,263 +9,396 @@
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-<body>
+<body class="pro-body">
 
-<!-- ==========================================
-TOPO
-========================================== -->
+<div class="pro-shell">
 
-<header class="topo">
+    <!-- ==========================================
+    TOPO
+    ========================================== -->
 
-    <div class="logo-home">
-        <h2>Clear Minds</h2>
-    </div>
+    <header class="pro-topbar">
 
-    <nav>
+        <div class="pro-logo">
 
-        <a href="#">Início</a>
-        <a href="#">Solicitações</a>
-        <a href="#">Meus Pacientes</a>
-        <a href="#">Agenda</a>
-        <a href="#">Conteúdos</a>
+            <img src="imagem/logo.jpg" alt="Mente em Foco">
 
-    </nav>
-
-    <div class="usuario">
-
-        Olá,
-        <span id="nomeUsuario">Profissional</span>
-
-        <button id="btnSair">
-            Sair
-        </button>
-
-    </div>
-
-</header>
-
-<!-- ==========================================
-HERO
-========================================== -->
-
-<section class="home-hero">
-
-    <div class="hero-texto">
-
-        <span class="tag badge-profissional">
-            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-            Painel do Profissional
-        </span>
-
-        <h1>
-            Ajude estudantes a cuidar da saúde mental.
-        </h1>
-
-        <p>
-            Acompanhe solicitações de atendimento, gerencie
-            seus pacientes e mantenha seu perfil profissional atualizado.
-        </p>
-
-        <button class="btn-principal">
-            Ver Solicitações
-        </button>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-BOAS VINDAS
-========================================== -->
-
-<section class="boas-vindas">
-
-    <div class="card-boas-vindas">
-
-        <h2 id="saudacao">
-            Olá!
-        </h2>
-
-        <p id="mensagemPersonalizada">
-            Estamos felizes em ter você na plataforma.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-PERFIL PROFISSIONAL
-========================================== -->
-
-<section class="secao">
-
-    <h2>Seu Perfil Profissional</h2>
-
-    <div class="perfil-usuario">
-
-        <div class="info">
-            <strong>Nome</strong>
-            <span id="perfilNome">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Área de atuação</strong>
-            <span id="perfilArea">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Registro profissional</strong>
-            <span id="perfilRegistro">Não informado</span>
-        </div>
-
-        <div class="info">
-            <strong>Telefone</strong>
-            <span id="perfilTelefone">Não informado</span>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-STATUS DE VERIFICAÇÃO
-========================================== -->
-
-<section class="secao">
-
-    <h2>Status da Conta</h2>
-
-    <div class="card-home">
-
-        <i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
-
-        <p>
-            Seu cadastro está em análise. Assim que o registro
-            profissional (CRP/CRM) for verificado, seu perfil
-            passará a aparecer na busca de estudantes.
-        </p>
-
-    </div>
-
-</section>
-
-<!-- ==========================================
-SOLICITAÇÕES
-========================================== -->
-
-<section class="secao">
-
-    <h2>Solicitações Recentes</h2>
-
-    <div
-        class="card-home"
-        id="listaSolicitacoes"
-    >
-        Nenhuma solicitação de atendimento no momento.
-    </div>
-
-</section>
-
-<!-- ==========================================
-FERRAMENTAS DO PROFISSIONAL
-========================================== -->
-
-<section class="secao">
-
-    <h2>Ferramentas</h2>
-
-    <div class="grid">
-
-        <div class="card-home">
-
-            <div class="icone-card">📅</div>
-
-            <h3>Agenda de Atendimentos</h3>
-
-            <p>
-                Organize seus horários disponíveis
-                e confirme sessões com estudantes.
-            </p>
+            <div>
+                <h2>Mente em Foco</h2>
+                <span>Acolhe. Conecta. Transforma.</span>
+            </div>
 
         </div>
 
-        <div class="card-home">
+        <nav class="pro-topnav" aria-label="Navegação principal">
 
-            <div class="icone-card">📋</div>
+            <a href="#inicio" class="active">
+                <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+            </a>
 
-            <h3>Prontuário Simplificado</h3>
+            <a href="#pacientes">
+                <i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes
+            </a>
 
-            <p>
-                Registre anotações de acompanhamento
-                de forma segura.
-            </p>
+            <a href="#agenda">
+                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda
+            </a>
+
+            <a href="#conteudos">
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i> Conteúdos
+            </a>
+
+            <a href="#relatorios">
+                <i class="fa-solid fa-chart-column" aria-hidden="true"></i> Relatórios
+            </a>
+
+        </nav>
+
+        <div class="pro-topbar-right">
+
+            <button class="pro-icon-btn" type="button" aria-label="Ver notificações">
+                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                <span class="pro-badge" id="badgeNotificacoes">2</span>
+            </button>
+
+            <button class="pro-user-menu" type="button" aria-haspopup="true">
+
+                <span class="pro-avatar" id="avatarIniciais">P</span>
+
+                <span class="pro-user-info">
+                    <strong id="topoNomeUsuario">Olá, Profissional</strong>
+                    <small id="topoAreaUsuario">Área não informada</small>
+                </span>
+
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+
+            </button>
 
         </div>
 
-        <div class="card-home">
+    </header>
 
-            <div class="icone-card">📚</div>
+    <div class="pro-layout">
 
-            <h3>Publicar Conteúdo</h3>
+        <!-- ==========================================
+        MENU LATERAL
+        ========================================== -->
 
-            <p>
-                Compartilhe artigos e materiais
-                com os estudantes da plataforma.
-            </p>
+        <aside class="pro-sidebar" aria-label="Menu do profissional">
 
-        </div>
+            <nav>
 
-        <div class="card-home">
+                <a href="#inicio" class="pro-side-link active">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                </a>
 
-            <div class="icone-card">⭐</div>
+                <a href="#pacientes" class="pro-side-link">
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes
+                </a>
 
-            <h3>Avaliações</h3>
+                <a href="#agenda" class="pro-side-link">
+                    <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda
+                </a>
 
-            <p>
-                Acompanhe o feedback recebido
-                dos estudantes atendidos.
-            </p>
+                <a href="#diario" class="pro-side-link">
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i> Diário compartilhado
+                </a>
 
-        </div>
+                <a href="#conteudos" class="pro-side-link">
+                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i> Conteúdos
+                </a>
+
+                <a href="#mensagens" class="pro-side-link">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                    Mensagens
+                    <span class="pro-side-badge">2</span>
+                </a>
+
+                <a href="#relatorios" class="pro-side-link">
+                    <i class="fa-solid fa-chart-column" aria-hidden="true"></i> Relatórios
+                </a>
+
+                <a href="#configuracoes" class="pro-side-link">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i> Configurações
+                </a>
+
+                <a href="#ajuda" class="pro-side-link">
+                    <i class="fa-regular fa-circle-question" aria-hidden="true"></i> Ajuda
+                </a>
+
+            </nav>
+
+            <button class="pro-side-link pro-side-sair" id="btnSair" type="button">
+                <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Sair
+            </button>
+
+        </aside>
+
+        <!-- ==========================================
+        CONTEÚDO PRINCIPAL
+        ========================================== -->
+
+        <main class="pro-main" id="inicio">
+
+            <div class="pro-heading">
+                <h1 id="saudacao">Olá!</h1>
+                <p id="mensagemPersonalizada">Aqui está um resumo do seu dia e das atividades recentes.</p>
+            </div>
+
+            <!-- Resumo rápido -->
+
+            <section class="pro-stats" aria-label="Resumo do dia">
+
+                <div class="pro-stat-card">
+                    <div class="pro-stat-icon"><i class="fa-solid fa-calendar-day" aria-hidden="true"></i></div>
+                    <div class="pro-stat-body">
+                        <p class="pro-stat-label">Consultas de hoje</p>
+                        <p class="pro-stat-value">04</p>
+                        <a href="#agenda" class="pro-stat-link">Ver agenda <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="pro-stat-card">
+                    <div class="pro-stat-icon"><i class="fa-solid fa-user-group" aria-hidden="true"></i></div>
+                    <div class="pro-stat-body">
+                        <p class="pro-stat-label">Pacientes acompanhados</p>
+                        <p class="pro-stat-value">18</p>
+                        <a href="#pacientes" class="pro-stat-link">Ver pacientes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="pro-stat-card">
+                    <div class="pro-stat-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></div>
+                    <div class="pro-stat-body">
+                        <p class="pro-stat-label">Diários compartilhados</p>
+                        <p class="pro-stat-value">06</p>
+                        <a href="#diario" class="pro-stat-link">Ver diários <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="pro-stat-card">
+                    <div class="pro-stat-icon"><i class="fa-regular fa-bell" aria-hidden="true"></i></div>
+                    <div class="pro-stat-body">
+                        <p class="pro-stat-label">Solicitações pendentes</p>
+                        <p class="pro-stat-value">02</p>
+                        <a href="#mensagens" class="pro-stat-link">Ver solicitações <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Atendimentos + Diário -->
+
+            <div class="pro-grid-2">
+
+                <section class="pro-card" id="agenda">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Próximos atendimentos</h2>
+                        <a href="#agenda" class="pro-btn-outline">Ver agenda completa</a>
+                    </div>
+
+                    <ul class="pro-appointments">
+
+                        <li>
+                            <span class="pro-appointment-time">09:00</span>
+                            <span class="pro-dot" aria-hidden="true"></span>
+                            <div class="pro-appointment-info">
+                                <strong>Maria Silva</strong>
+                                <small>Psicologia</small>
+                            </div>
+                            <span class="pro-tag pro-tag-solid">Online</span>
+                            <button class="pro-more" type="button" aria-label="Mais opções sobre este atendimento">
+                                <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                            </button>
+                        </li>
+
+                        <li>
+                            <span class="pro-appointment-time">10:30</span>
+                            <span class="pro-dot" aria-hidden="true"></span>
+                            <div class="pro-appointment-info">
+                                <strong>João Pereira</strong>
+                                <small>Psicologia</small>
+                            </div>
+                            <span class="pro-tag pro-tag-muted">Presencial</span>
+                            <button class="pro-more" type="button" aria-label="Mais opções sobre este atendimento">
+                                <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                            </button>
+                        </li>
+
+                        <li>
+                            <span class="pro-appointment-time">14:00</span>
+                            <span class="pro-dot" aria-hidden="true"></span>
+                            <div class="pro-appointment-info">
+                                <strong>Ana Carolina</strong>
+                                <small>Acompanhamento</small>
+                            </div>
+                            <span class="pro-tag pro-tag-solid">Online</span>
+                            <button class="pro-more" type="button" aria-label="Mais opções sobre este atendimento">
+                                <i class="fa-solid fa-ellipsis" aria-hidden="true"></i>
+                            </button>
+                        </li>
+
+                    </ul>
+
+                    <button class="pro-add-link" type="button">
+                        <i class="fa-solid fa-plus" aria-hidden="true"></i> Adicionar atendimento
+                    </button>
+
+                </section>
+
+                <section class="pro-card" id="diario">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Diário compartilhado</h2>
+                        <a href="#diario" class="pro-btn-outline">Ver todos</a>
+                    </div>
+
+                    <ul class="pro-feed">
+
+                        <li>
+                            <span class="pro-avatar-sm">MS<span class="pro-online-dot" aria-hidden="true"></span></span>
+                            <div class="pro-feed-info">
+                                <p><strong>Maria Silva</strong> compartilhou uma nova entrada no diário.</p>
+                                <small>Hoje, 08:12</small>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                        <li>
+                            <span class="pro-avatar-sm">AC<span class="pro-online-dot" aria-hidden="true"></span></span>
+                            <div class="pro-feed-info">
+                                <p><strong>Ana Carolina</strong> atualizou seu diário.</p>
+                                <small>Hoje, 07:45</small>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                        <li>
+                            <span class="pro-avatar-sm">JP<span class="pro-online-dot" aria-hidden="true"></span></span>
+                            <div class="pro-feed-info">
+                                <p><strong>João Pereira</strong> compartilhou uma nova entrada no diário.</p>
+                                <small>Ontem, 21:30</small>
+                            </div>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                    </ul>
+
+                    <a href="#diario" class="pro-see-more">Ver diário <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+                </section>
+
+            </div>
+
+            <!-- Pacientes + Acesso rápido -->
+
+            <div class="pro-grid-2">
+
+                <section class="pro-card" id="pacientes">
+
+                    <div class="pro-card-head">
+
+                        <h2><i class="fa-solid fa-user-group" aria-hidden="true"></i> Meus pacientes</h2>
+
+                        <div class="pro-search">
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                            <input type="search" id="buscaPaciente" placeholder="Pesquisar paciente..." aria-label="Pesquisar paciente">
+                        </div>
+
+                    </div>
+
+                    <ul class="pro-patients" id="listaPacientes">
+
+                        <li data-nome="maria silva">
+                            <span class="pro-avatar-sm">MS</span>
+                            <div class="pro-feed-info">
+                                <strong>Maria Silva</strong>
+                                <small>Psicologia • Último atendimento: 11/08</small>
+                            </div>
+                            <span class="pro-tag pro-tag-solid"><span class="pro-dot-sm" aria-hidden="true"></span> Diário compartilhado</span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                        <li data-nome="joão pereira">
+                            <span class="pro-avatar-sm">JP</span>
+                            <div class="pro-feed-info">
+                                <strong>João Pereira</strong>
+                                <small>Psicologia • Último atendimento: 08/08</small>
+                            </div>
+                            <span class="pro-tag pro-tag-muted">Diário não compartilhado</span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                        <li data-nome="ana carolina">
+                            <span class="pro-avatar-sm">AC</span>
+                            <div class="pro-feed-info">
+                                <strong>Ana Carolina</strong>
+                                <small>Acompanhamento • Próxima sessão: 14/08</small>
+                            </div>
+                            <span class="pro-tag pro-tag-solid"><span class="pro-dot-sm" aria-hidden="true"></span> Diário compartilhado</span>
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </li>
+
+                    </ul>
+
+                    <p class="pro-empty" id="pacientesVazio" hidden>Nenhum paciente encontrado.</p>
+
+                    <a href="#pacientes" class="pro-see-more">Ver todos os pacientes</a>
+
+                </section>
+
+                <section class="pro-card" id="conteudos">
+
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-bolt" aria-hidden="true"></i> Acesso rápido</h2>
+                    </div>
+
+                    <div class="pro-quick-list">
+
+                        <a href="#pacientes" class="pro-quick-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-plus" aria-hidden="true"></i></span>
+                            Novo paciente
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#agenda" class="pro-quick-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></span>
+                            Abrir agenda
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#diario" class="pro-quick-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                            Diário compartilhado
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#relatorios" class="pro-quick-item">
+                            <span class="pro-quick-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
+                            Biblioteca de conteúdos
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                        </a>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
 
     </div>
 
-</section>
-
-<!-- ==========================================
-FRASE FINAL
-========================================== -->
-
-<section class="frase-final-home">
-
-    <h2>
-        Cada atendimento é um passo a mais no cuidado.
-    </h2>
-
-    <p>
-        Obrigado por fazer parte da rede de apoio Clear Minds.
-    </p>
-
-</section>
-
-<!-- ==========================================
-RODAPÉ
-========================================== -->
-
-<footer class="footer-home">
-
-    <p>
-        Desenvolvido por Manuella Bernst e Gabriela Becker | Clear Minds
-    </p>
-
-</footer>
+</div>
 
 <script src="home-profissional.js"></script>
 

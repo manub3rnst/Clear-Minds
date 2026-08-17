@@ -38,10 +38,12 @@ Site do TCC "Clear Minds" (também referido como "Mente em Foco"), uma plataform
 - **formulario.html → formulario2.html → formulario3.html**: formulário de perfil em 3 etapas,
   exclusivo do fluxo de Estudante. Ao concluir a Etapa 3, é exibida uma tela de sucesso com o
   botão "Acessar plataforma", que leva para `home.html`.
-- **home.html**: página inicial do Estudante, com os dados do perfil preenchido e um botão "Sair"
-  que encerra a sessão e volta para `login.html`.
-- **home-profissional.html**: painel do Profissional, com dados do perfil profissional, status de
-  verificação do cadastro e atalhos para agenda, prontuário e conteúdos.
+- **home.html**: painel (dashboard) do Estudante — cabeçalho com navegação, menu lateral, seletor de
+  humor, diário, próximo atendimento, comunidade, ferramentas, conteúdos e acompanhamento com o
+  profissional. Layout baseado no mesmo padrão visual do painel do profissional.
+- **home-profissional.html**: painel (dashboard) do Profissional — cabeçalho com navegação, menu
+  lateral, resumo do dia, próximos atendimentos, diário compartilhado pelos pacientes, lista de
+  pacientes com busca e acesso rápido.
 
 ## Modo de teste (sem back-end)
 
@@ -75,7 +77,10 @@ Chaves usadas no `localStorage`:
 
 - **Divisor Estudante/Profissional**: novo seletor em `index.html` e `login.html`, com campos e
   redirecionamento próprios para cada tipo de conta (antes só existia cadastro/login de estudante).
-- **Nova página `home-profissional.html`**: painel inicial para o profissional cadastrado.
+- **Painéis (dashboards) redesenhados**: `home.html` (Estudante) e `home-profissional.html`
+  (Profissional) foram reconstruídos no formato de painel administrativo (cabeçalho + menu lateral
+  + cartões), usando somente as cores já definidas em `:root` no `style.css`, para manter a
+  identidade visual do restante do site.
 - **`utils.js`**: extração de código duplicado (toggle de senha, validação) que antes se repetia
   em `cadastro.js` e `script.js`.
 - **Mensagens de erro inline** (`.form-erro`) substituindo `alert()` no cadastro e no login, mais
