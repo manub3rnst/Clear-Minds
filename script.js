@@ -23,6 +23,20 @@ configurarSeletorTipoConta({
     }
 });
 
+// Reforço independente do seletor no login
+document.querySelectorAll(".account-type-btn").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        document.querySelectorAll(".account-type-btn").forEach((b) => {
+            b.classList.toggle("active", b === botao);
+            b.setAttribute("aria-selected", b === botao ? "true" : "false");
+        });
+        if (tipoContaInput) tipoContaInput.value = botao.dataset.tipo;
+        if (emailLabelTipo) {
+            emailLabelTipo.textContent = botao.dataset.tipo === "profissional" ? " profissional" : " institucional";
+        }
+    });
+});
+
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -71,7 +85,10 @@ form.addEventListener("submit", async (e) => {
 // Estudante -> home.html | Profissional -> home-profissional.html
 // ================================
 function entrar(email, tipo) {
+    const botaoAtivo = document.querySelector(".account-type-btn.active");
+    const tipoBotao = botaoAtivo && botaoAtivo.dataset.tipo;
+    const tipoFinal = tipoBotao || tipo || "usuario";
     localStorage.setItem("cm_session", email);
-    localStorage.setItem("cm_tipo", tipo);
-    window.location.href = tipo === "profissional" ? "home-profissional.html" : "home.html";
+    localStorage.setItem("cm_tipo", tipoFinal);
+    window.location.href = tipoFinal === "profissional" ? "home-profissional.html" : "home.html";
 }

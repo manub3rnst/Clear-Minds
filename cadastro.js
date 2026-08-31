@@ -28,6 +28,22 @@ configurarSeletorTipoConta({
     }
 });
 
+// Reforço independente do seletor: garante a troca dos campos
+// mesmo que o utils.js não execute. Define o tipo ativo, alterna
+// os blocos de campos e o e-mail institucional/profissional.
+document.querySelectorAll(".account-type-btn").forEach((botao) => {
+    botao.addEventListener("click", () => {
+        document.querySelectorAll(".account-type-btn").forEach((b) => {
+            b.classList.toggle("active", b === botao);
+            b.setAttribute("aria-selected", b === botao ? "true" : "false");
+        });
+        obterTipoAtivo();
+        if (emailLabelTipo) {
+            emailLabelTipo.textContent = botao.dataset.tipo === "profissional" ? " profissional" : " institucional";
+        }
+    });
+});
+
 // ================================
 // REMOVE BORDA VERMELHA AO DIGITAR
 // ================================
@@ -42,6 +58,9 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     limparErroFormulario(form);
+
+    // Sincroniza os blocos de campos conforme o tipo ativo antes de validar
+    const tipo = obterTipoAtivo();
 
     // Validação: campos obrigatórios visíveis (depende do tipo de conta)
     if (!validarCamposObrigatorios(form)) {
@@ -63,8 +82,6 @@ form.addEventListener("submit", async (e) => {
         password.focus();
         return;
     }
-
-    const tipo = tipoContaInput ? tipoContaInput.value : "usuario";
 
     const dados = {
         tipo,
@@ -114,7 +131,24 @@ form.addEventListener("submit", async (e) => {
 // Estudante -> segue para o formulário de perfil (Etapa 1 de 3)
 // Profissional -> vai direto para o painel profissional
 // ================================
+function obterTipoAtivo() {
+    const botaoAtivo = document.querySelector(".account-type-btn.active");
+    const tipoBotao = botaoAtivo && botaoAtivo.dataset.tipo;
+    const tipo = tipoBotao || (tipoContaInput ? tipoContaInput.value : "usuario");
+
+    if (tipoContaInput) tipoContaInput.value = tipo;
+    document.querySelectorAll("[data-tipo-conta]").forEach((bloco) => {
+        const pertence = bloco.dataset.tipoConta === tipo;
+        bloco.style.display = pertence ? "" : "none";
+        bloco.querySelectorAll("[data-required-if-visible]").forEach((campo) => {
+            campo.required = pertence;
+        });
+    });
+
+    return tipo;
+}
 function finalizarCadastro(dados) {
+    dados.tipo = obterTipoAtivo();
     const chavePerfil = dados.tipo === "profissional" ? "cm_profile_profissional" : "cm_profile";
 
     const perfil = JSON.parse(localStorage.getItem(chavePerfil)) || {};
