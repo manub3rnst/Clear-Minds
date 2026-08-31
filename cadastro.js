@@ -124,5 +124,5 @@ function finalizarCadastro(dados) {
     localStorage.setItem("cm_session", dados.email);
     localStorage.setItem("cm_tipo", dados.tipo);
 
-    window.location.href = dados.tipo === "profissional" ? "home-profissional.html" : "formulario.html";
+    window.location.href = dados.tipo === "profissional" ? "cadastro-profissional.html" : "formulario.html";
 }

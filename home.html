@@ -17,7 +17,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-<body class="pro-body">
+<body class="pro-body stu-body">
 
 <div class="pro-shell">
 
@@ -242,6 +242,26 @@
                         <a href="#">Gerenciar acessos</a>
                     </p>
 
+                </section>
+
+                <section class="pro-card stu-access-card" id="acessos-diario">
+                    <div class="pro-card-head">
+                        <h2><i class="fa-solid fa-shield-heart" aria-hidden="true"></i> Acesso ao meu diário</h2>
+                        <span class="pro-tag pro-tag-solid" id="diarioStatus">Privado</span>
+                    </div>
+                    <p class="stu-access-description">Seu diário é seu. Se um profissional solicitar acesso, você recebe uma notificação e escolhe o que fazer.</p>
+                    <div class="stu-access-request" id="solicitacaoDiario">
+                        <span class="pro-avatar-sm">CR</span>
+                        <div class="pro-feed-info">
+                            <strong>Dra. Camila Rocha</strong>
+                            <small>Solicitou acesso ao seu diário compartilhado • Hoje, 09:10</small>
+                        </div>
+                        <div class="stu-request-actions">
+                            <button type="button" class="stu-btn-solid stu-btn-sm" id="aceitarDiario">Permitir</button>
+                            <button type="button" class="stu-btn-outline-small" id="recusarDiario">Recusar</button>
+                        </div>
+                    </div>
+                    <div class="stu-access-result" id="resultadoDiario" hidden></div>
                 </section>
 
                 <section class="pro-card" id="acompanhamento">
