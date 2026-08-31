@@ -62,4 +62,54 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.removeItem("cm_tipo");
     window.location.href = "login.html";
   });
+
+  // ================================
+  // COMUNIDADE — publicar
+  // ================================
+  const campoPublicacao = document.getElementById("novaPublicacao");
+  const btnPublicar = document.getElementById("btnPublicar");
+  const listaFeed = document.getElementById("listaFeedComunidade");
+  const posts = JSON.parse(localStorage.getItem("cm_comunidade_posts") || "[]");
+  const iniciais = nome ? nome.split(/\s+/).slice(0,2).map(p=>p[0].toUpperCase()).join("") : "EU";
+
+  function renderPost(item) {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span class="pro-avatar-sm">${item.autor === "eu" ? iniciais : (item.iniciais || "CM")}</span>
+      <div class="pro-feed-info">
+        <p><strong>${item.autor === "eu" ? ("Você" + (sessao && primeiroNome ? " (" + primeiroNome + ")" : "")) : item.nome}</strong> · <small>agora</small></p>
+        <p>${item.tag ? `${item.tag} ` : ""}${item.texto}</p>
+        <div class="stu-feed-actions">
+          <span><i class="fa-regular fa-heart"></i> 0</span>
+          <span><i class="fa-regular fa-comment"></i> 0</span>
+        </div>
+      </div>`;
+    listaFeed.insertBefore(li, listaFeed.firstChild);
+  }
+
+  let tagSelecionada = "";
+  document.querySelectorAll(".stu-chip-btn").forEach(chip => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".stu-chip-btn").forEach(c => c.classList.remove("active"));
+      chip.classList.toggle("active");
+      tagSelecionada = chip.classList.contains("active") ? chip.dataset.tag : "";
+    });
+  });
+
+  if (btnPublicar) btnPublicar.addEventListener("click", () => {
+    const texto = (campoPublicacao ? campoPublicacao.value : "").trim();
+    if (!texto) return;
+    const item = { texto, tag: tagSelecionada, autor: "eu", nome: primeiroNome || "Você" };
+    posts.push(item);
+    localStorage.setItem("cm_comunidade_posts", JSON.stringify(posts));
+    renderPost(item);
+    if (campoPublicacao) campoPublicacao.value = "";
+  });
+
+  if (campoPublicacao) {
+    campoPublicacao.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); btnPublicar && btnPublicar.click(); }
+    });
+  }
+  posts.filter(p => p.autor === "eu").forEach(renderPost);
 });

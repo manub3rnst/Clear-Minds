@@ -13,7 +13,7 @@
 <body class="professional-register-body">
 <main class="container professional-register">
 <section class="left">
-  <div class="logo"><img src="imagem/logo.jpg" alt="Logo"><div><h2>Mente</h2><h2>em Foco</h2></div></div>
+  <div class="logo"><img src="imagem/logo.jpg" alt="Logo"><div><h2>Clear</h2><h2>Minds</h2></div></div>
   <div class="hero">
     <h1>Seu perfil profissional, <span>completo e confiável.</span></h1>
     <p>Essas informações ajudam estudantes a conhecer seu trabalho e permitem que a plataforma organize seu atendimento.</p>
@@ -33,6 +33,14 @@
 
   <form id="professionalProfileForm">
     <div class="profile-section-title"><i class="fa-solid fa-user"></i><div><strong>Apresentação</strong><small>Como você será apresentado na plataforma.</small></div></div>
+    <div class="photo-upload-row">
+      <span class="pro-avatar pro-avatar-large" id="fotoPreview"><i class="fa-solid fa-user"></i></span>
+      <div class="photo-upload-fields">
+        <label class="photo-upload-btn" for="fotoPerfil"><i class="fa-solid fa-camera"></i> Adicionar foto de perfil</label>
+        <input type="file" id="fotoPerfil" accept="image/*" hidden>
+        <small>Formatos JPG ou PNG. As fotos são privadas e usadas apenas para apresentação.</small>
+      </div>
+    </div>
     <div class="form-grid">
       <div class="input-group"><label for="nomeProfissional">Nome profissional</label><div class="input"><i class="fa-regular fa-user"></i><input id="nomeProfissional" required placeholder="Nome que aparecerá no perfil"></div></div>
       <div class="input-group"><label for="nomeSocial">Nome social (opcional)</label><div class="input"><i class="fa-regular fa-id-card"></i><input id="nomeSocial" placeholder="Se desejar informar"></div></div>
@@ -85,7 +93,7 @@
 
     <div class="professional-verification-note"><i class="fa-solid fa-circle-info"></i><p><strong>Verificação profissional:</strong> o CRP será usado para identificação e futura validação pelo sistema. Não publique documentos pessoais ou informações clínicas de pacientes neste perfil.</p></div>
     <label class="checkbox"><input id="termosProf" type="checkbox" required><span>Confirmo que as informações profissionais fornecidas são verdadeiras e concordo com os termos da plataforma.</span></label>
-    <div class="form-buttons"><a href="index.html" class="back-button"><i class="fa-solid fa-arrow-left"></i> Voltar</a><button class="login-button" type="submit">Salvar perfil <i class="fa-solid fa-check"></i></button></div>
+    <div class="form-buttons"><a href="index.html" class="back-button" id="btnVoltarPerfil"><i class="fa-solid fa-arrow-left"></i> Voltar</a><button class="login-button" type="submit">Salvar perfil <i class="fa-solid fa-check"></i></button></div>
   </form>
 
   <div id="profileSuccess" class="success-message">

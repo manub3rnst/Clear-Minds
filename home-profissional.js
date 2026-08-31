@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const periodo = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
 
   const set = (id, value) => { const el=document.getElementById(id); if(el) el.textContent=value; };
+  const show = (id) => { const el=document.getElementById(id); if(el) el.hidden=false; };
   set("saudacao", sessao && primeiroNome ? `${periodo}, ${primeiroNome}! 🌿` : `${periodo}!`);
   set("topoNomeUsuario", sessao && primeiroNome ? `Olá, ${primeiroNome}` : "Olá, Profissional");
   set("topoAreaUsuario", area);
@@ -22,8 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
   set("perfilModalidade", perfil.modalidade || "Modalidade não informada");
   set("statusVerificacao", perfil.verificado ? "Perfil verificado" : "Verificação pendente");
 
+  if (perfil.abordagem) { set("perfilAbordagem", perfil.abordagem); show("perfilAbordagem"); }
+  if (perfil.faculdade) {
+    const formacao = `${perfil.faculdade}${perfil.anoFormacao ? ` • ${perfil.anoFormacao}` : ""}`;
+    set("perfilFormacao", formacao); show("perfilFormacao");
+  }
+  if (perfil.atuaDesde) {
+    const [ano, mes] = (perfil.atuaDesde || "").split("-");
+    const meses = ["", "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+    set("perfilAtuaDesde", `Atua desde ${meses[Number(mes)]}/${ano}`); show("perfilAtuaDesde");
+  }
+  if (perfil.especialidades) { show("perfilEspecialidades"); document.querySelector("#perfilEspecialidades strong").textContent = perfil.especialidades; }
+  if (perfil.disponibilidade) { show("perfilDisponibilidade"); document.querySelector("#perfilDisponibilidade strong").textContent = perfil.disponibilidade; }
+  if (perfil.valorSessao) { show("perfilValor"); document.querySelector("#perfilValor strong").textContent = `R$ ${Number(perfil.valorSessao).toFixed(2)}`; }
+
   const avatarText = nome ? nome.split(/\s+/).slice(0,2).map(p=>p[0].toUpperCase()).join("") : "P";
-  document.querySelectorAll("#avatarIniciais,#perfilAvatar").forEach(el=>el.textContent=avatarText);
+  const aplicarFoto = (el) => {
+    if (!el) return;
+    if (perfil.foto) { el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">`; }
+    else { el.textContent = avatarText; }
+  };
+  aplicarFoto(document.getElementById("avatarIniciais"));
+  aplicarFoto(document.getElementById("perfilAvatar"));
 
   const busca = document.getElementById("buscaPaciente");
   const lista = document.getElementById("listaPacientes");

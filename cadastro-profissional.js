@@ -4,9 +4,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const nomeInput = document.getElementById("nomeProfissional");
   const saved = JSON.parse(localStorage.getItem("cm_profile_profissional") || "{}");
 
-  if (saved.nome && !nomeInput.value) nomeInput.value = saved.nome;
-  if (saved.registroProfissional && !document.getElementById("crp").value) document.getElementById("crp").value = saved.registroProfissional;
-  if (saved.telefone && !document.getElementById("telefoneProf").value) document.getElementById("telefoneProf").value = saved.telefone;
+  let fotoDataURL = saved.foto || "";
+  const fotoInput = document.getElementById("fotoPerfil");
+  const fotoPreview = document.getElementById("fotoPreview");
+  if (fotoPreview && fotoDataURL) {
+    fotoPreview.innerHTML = `<img src="${fotoDataURL}" alt="Foto de perfil">`;
+  }
+  if (fotoInput) {
+    fotoInput.addEventListener("change", () => {
+      const file = fotoInput.files && fotoInput.files[0];
+      if (!file) return;
+      if (!file.type.startsWith("image/")) { alert("Selecione um arquivo de imagem."); return; }
+      if (file.size > 3 * 1024 * 1024) { alert("A imagem deve ter no máximo 3 MB."); return; }
+      const reader = new FileReader();
+      reader.onload = () => {
+        fotoDataURL = reader.result;
+        if (fotoPreview) fotoPreview.innerHTML = `<img src="${fotoDataURL}" alt="Foto de perfil">`;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const voltar = document.getElementById("btnVoltarPerfil");
+  if (voltar && (saved.perfilCompleto && saved.nome)) voltar.href = "home-profissional.html";
+
+  const fill = (id, value) => { const el=document.getElementById(id); if (el && value && !el.value) el.value = value; };
+  fill("nomeProfissional", saved.nome);
+  fill("nomeSocial", saved.nomeSocial);
+  fill("bioProfissional", saved.bio);
+  fill("crp", saved.registroProfissional);
+  fill("ufCrp", saved.ufCrp);
+  fill("faculdade", saved.faculdade);
+  fill("anoFormacao", saved.anoFormacao);
+  fill("posGraduacao", saved.posGraduacao);
+  fill("atuaDesde", saved.atuaDesde);
+  fill("idiomas", saved.idiomas);
+  fill("abordagem", saved.abordagem);
+  fill("especialidades", saved.especialidades);
+  (saved.faixasEtarias || []).forEach(f => {
+    const chk = document.querySelector(`input[name="faixa"][value="${f}"]`);
+    if (chk) chk.checked = true;
+  });
+  fill("cidadeProf", saved.cidade);
+  fill("estadoProf", saved.estado);
+  fill("modalidade", saved.modalidade);
+  fill("duracao", saved.duracaoSessao);
+  fill("endereco", saved.endereco);
+  fill("valorSessao", saved.valorSessao);
+  fill("disponibilidade", saved.disponibilidade);
+  fill("telefoneProf", saved.telefone);
+  fill("siteProf", saved.site);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -41,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       disponibilidade: document.getElementById("disponibilidade").value.trim(),
       telefone: document.getElementById("telefoneProf").value.trim(),
       site: document.getElementById("siteProf").value.trim(),
+      foto: fotoDataURL,
       perfilCompleto: true,
       verificado: false
     };

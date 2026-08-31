@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mente em Foco | Início</title>
+<title>Clear Minds | Início</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -29,10 +29,10 @@
 
         <div class="pro-logo">
 
-            <img src="imagem/logo.jpg" alt="Mente em Foco">
+            <img src="imagem/logo.jpg" alt="Clear Minds">
 
             <div>
-                <h2>Mente em Foco</h2>
+                <h2>Clear Minds</h2>
                 <span>Cuidar da mente é focar no que importa.</span>
             </div>
 
@@ -295,20 +295,21 @@
                         <button class="stu-btn-solid stu-btn-sm" type="button">+ Nova publicação</button>
                     </div>
 
-                    <div class="stu-post-composer">
+                    <div class="stu-post-composer" id="comunidadeComposer">
                         <i class="fa-regular fa-comment-dots" aria-hidden="true"></i>
-                        Como foi o seu dia?
+                        <textarea id="novaPublicacao" rows="1" placeholder="Como foi o seu dia? Compartilhe com a comunidade." aria-label="Escrever nova publicação"></textarea>
+                        <button type="button" class="stu-btn-solid stu-btn-sm" id="btnPublicar"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Publicar</button>
                     </div>
 
                     <div class="stu-tag-row">
-                        <span class="stu-chip">🙂 Humor</span>
-                        <span class="stu-chip">💭 Reflexão</span>
-                        <span class="stu-chip">🎓 Estudos</span>
-                        <span class="stu-chip">🌱 Conquista</span>
-                        <span class="stu-chip">💙 Apoio</span>
+                        <button type="button" class="stu-chip stu-chip-btn" data-tag="🙂 Humor">🙂 Humor</button>
+                        <button type="button" class="stu-chip stu-chip-btn" data-tag="💭 Reflexão">💭 Reflexão</button>
+                        <button type="button" class="stu-chip stu-chip-btn" data-tag="🎓 Estudos">🎓 Estudos</button>
+                        <button type="button" class="stu-chip stu-chip-btn" data-tag="🌱 Conquista">🌱 Conquista</button>
+                        <button type="button" class="stu-chip stu-chip-btn" data-tag="💙 Apoio">💙 Apoio</button>
                     </div>
 
-                    <ul class="stu-feed">
+                    <ul class="stu-feed" id="listaFeedComunidade">
 
                         <li>
                             <span class="pro-avatar-sm">MA</span>

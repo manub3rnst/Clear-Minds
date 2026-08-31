@@ -1,6 +1,6 @@
 # Clear Minds
 
-Site do TCC "Clear Minds" (também referido como "Mente em Foco"), uma plataforma de apoio à saúde mental de estudantes, com dois tipos de conta: **Estudante** e **Profissional**.
+Site do TCC "Clear Minds", uma plataforma de apoio à saúde mental de estudantes, com dois tipos de conta: **Estudante** e **Profissional**.
 
 ## Fluxo de navegação
 
