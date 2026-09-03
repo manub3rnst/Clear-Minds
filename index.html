@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clear Minds | Cadastro</title>
+    <title>Clear Minds | Criar conta</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -50,8 +50,6 @@
 
                 Sua saúde mental
                 começa <span>com você.</span>
-
-                <!--<i class="fa-regular fa-heart"></i>-->
 
             </h1>
 
@@ -208,49 +206,16 @@
 
         </div>
 
-        <!-- Seletor: Estudante ou Profissional -->
-
-        <div class="account-type-switch" role="tablist" aria-label="Tipo de conta">
-
-            <button
-                type="button"
-                class="account-type-btn active"
-                data-tipo="usuario"
-                role="tab"
-                aria-selected="true">
-
-                <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
-                Sou Estudante
-
-            </button>
-
-            <button
-                type="button"
-                class="account-type-btn"
-                data-tipo="profissional"
-                role="tab"
-                aria-selected="false">
-
-                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-                Sou Profissional
-
-            </button>
-
-        </div>
-
         <form id="registerForm">
 
-            <input type="hidden" id="tipoConta" value="usuario">
-
             <!-- Nome -->
-
             <div class="input-group">
 
                 <label for="nome">Nome completo</label>
 
                 <div class="input">
 
-                    <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    <i class="fa-regular fa-user"></i>
 
                     <input
                         type="text"
@@ -264,14 +229,13 @@
             </div>
 
             <!-- Email -->
-
             <div class="input-group">
 
-                <label for="email">E-mail<span id="emailLabelTipo"> institucional</span></label>
+                <label for="email">E-mail institucional</label>
 
                 <div class="input">
 
-                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                    <i class="fa-regular fa-envelope"></i>
 
                     <input
                         type="email"
@@ -285,14 +249,13 @@
             </div>
 
             <!-- Senha -->
-
             <div class="input-group">
 
                 <label for="password">Senha</label>
 
                 <div class="input">
 
-                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <i class="fa-solid fa-lock"></i>
 
                     <input
                         type="password"
@@ -306,7 +269,7 @@
                         id="togglePassword"
                         aria-label="Mostrar senha">
 
-                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                        <i class="fa-regular fa-eye"></i>
 
                     </button>
 
@@ -315,14 +278,13 @@
             </div>
 
             <!-- Confirmar -->
-
             <div class="input-group">
 
                 <label for="confirmPassword">Confirmar senha</label>
 
                 <div class="input">
 
-                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <i class="fa-solid fa-lock"></i>
 
                     <input
                         type="password"
@@ -336,7 +298,7 @@
                         id="toggleConfirmPassword"
                         aria-label="Mostrar senha">
 
-                        <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                        <i class="fa-regular fa-eye"></i>
 
                     </button>
 
@@ -344,148 +306,57 @@
 
             </div>
 
-            <!-- Campos exclusivos de Estudante -->
+            <!-- Curso -->
+            <div class="input-group">
 
-            <div data-tipo-conta="usuario">
+                <label for="curso">Curso</label>
 
-                <!-- Curso -->
+                <div class="input">
 
-                <div class="input-group">
+                    <i class="fa-solid fa-graduation-cap"></i>
 
-                    <label for="curso">Curso</label>
+                    <select id="curso" required>
 
-                    <div class="input">
+                        <option value="">Selecione seu curso</option>
 
-                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                        <option>Informática</option>
+                        <option>Administração</option>
+                        <option>Agropecuária</option>
+                        <option>Outro</option>
 
-                        <select id="curso" data-required-if-visible required>
-
-                            <option value="">Selecione seu curso</option>
-
-                            <option>Informática</option>
-                            <option>Administração</option>
-                            <option>Agropecuária</option>
-                            <option>Outro</option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <!-- Período -->
-
-                <div class="input-group">
-
-                    <label for="periodo">Período</label>
-
-                    <div class="input">
-
-                        <i class="fa-regular fa-calendar" aria-hidden="true"></i>
-
-                        <select id="periodo" data-required-if-visible required>
-
-                            <option value="">Selecione o período</option>
-
-                            <option>1º período</option>
-                            <option>2º período</option>
-                            <option>3º período</option>
-
-                        </select>
-
-                    </div>
+                    </select>
 
                 </div>
 
             </div>
 
-            <!-- Campos exclusivos de Profissional -->
+            <!-- Período -->
+            <div class="input-group">
 
-            <div data-tipo-conta="profissional" style="display:none">
+                <label for="periodo">Período</label>
 
-                <!-- Área de atuação -->
+                <div class="input">
 
-                <div class="input-group">
+                    <i class="fa-regular fa-calendar"></i>
 
-                    <label for="areaAtuacao">Área de atuação</label>
+                    <select id="periodo" required>
 
-                    <div class="input">
+                        <option value="">Selecione o período</option>
 
-                        <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                        <option>1º período</option>
+                        <option>2º período</option>
+                        <option>3º período</option>
 
-                        <select id="areaAtuacao" data-required-if-visible>
-
-                            <option value="">Selecione sua área</option>
-
-                            <option>Psicologia Clínica</option>
-                            <option>Psicologia Escolar</option>
-                            <option>Psicologia Organizacional</option>
-                            <option>Psicologia Social</option>
-                            <option>Psicologia Hospitalar</option>
-                            <option>Outro</option>
-
-                        </select>
-
-                    </div>
+                    </select>
 
                 </div>
-
-                <!-- Registro profissional -->
-
-                <div class="input-group">
-
-                    <label for="registroProfissional">Registro profissional (CRP/CRM)</label>
-
-                    <div class="input">
-
-                        <i class="fa-solid fa-id-card" aria-hidden="true"></i>
-
-                        <input
-                            type="text"
-                            id="registroProfissional"
-                            data-required-if-visible
-                            placeholder="Ex.: CRP 12/34567">
-
-                    </div>
-
-                </div>
-
-                <!-- Telefone de contato -->
-
-                <div class="input-group">
-
-                    <label for="telefoneProfissional">Telefone de contato</label>
-
-                    <div class="input">
-
-                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
-
-                        <input
-                            type="tel"
-                            id="telefoneProfissional"
-                            placeholder="(00) 00000-0000">
-
-                    </div>
-
-                </div>
-
-                <p class="account-type-note">
-
-                    <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                    Seu cadastro passará por uma verificação
-                    antes da liberação total do painel profissional.
-
-                </p>
 
             </div>
 
             <!-- Termos -->
-
             <label class="checkbox">
 
-                <input
-                    type="checkbox"
-                    required>
+                <input type="checkbox" required>
 
                 <span>
 
@@ -507,6 +378,31 @@
             </button>
 
         </form>
+
+        <!-- Acesso do profissional -->
+        <div class="pro-account-divider">
+
+            <span>ou</span>
+
+        </div>
+
+        <a href="cadastro-profissional.html" class="pro-account-btn">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            Criar conta profissional
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+        <p class="account-type-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+            Psicólogos e profissionais de saúde cadastram
+            em um fluxo próprio, com verificação do registro.
+
+        </p>
 
         <div class="divider">
 

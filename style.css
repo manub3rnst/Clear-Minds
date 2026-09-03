@@ -6345,3 +6345,62 @@ select:hover{
     .pro-request-actions{width:100%;margin-left:50px;}
     .verification-pill{margin-left:0;}
 }
+
+/* =========================
+   Acesso profissional
+   (index.html / login.html)
+   ========================= */
+.pro-account-divider{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--text);
+    font-size:.78rem;
+    font-weight:500;
+    letter-spacing:.4px;
+    text-transform:uppercase;
+    margin:18px 0 14px;
+}
+.pro-account-divider::before,
+.pro-account-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:rgba(22,42,70,.12);
+}
+.pro-account-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    width:100%;
+    padding:13px 18px;
+    border:2px solid var(--primary);
+    border-radius:12px;
+    background:var(--secondary);
+    color:var(--primary);
+    font-family:inherit;
+    font-size:.95rem;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+    transition:background .2s,color .2s,box-shadow .2s;
+    box-sizing:border-box;
+}
+.pro-account-btn i{
+    font-size:1rem;
+}
+.pro-account-btn:hover{
+    background:var(--primary);
+    color:#fff;
+    box-shadow:0 12px 26px rgba(33,150,243,.28);
+}
+.pro-account-btn:active{
+    transform:translateY(1px);
+}
+.pro-account-btn-login{
+    margin-top:0;
+}
+.account-type-note{
+    margin-top:12px;
+}

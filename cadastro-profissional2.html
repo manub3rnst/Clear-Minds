@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clear Minds | Perfil profissional (2 de 2)</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body class="professional-register-body">
+<main class="container professional-register">
+<section class="left">
+  <div class="logo"><img src="imagem/logo.jpg" alt="Logo"><div><h2>Clear</h2><h2>Minds</h2></div></div>
+  <div class="hero">
+    <h1>Atuação clínica e <span>localização.</span></h1>
+    <p>Defina como você trabalha, quem atende e onde encontrar você. Isso ajuda a conectar você aos pacientes certos.</p>
+  </div>
+  <div class="resources">
+    <div class="resource"><div class="icon"><i class="fa-solid fa-brain"></i></div><div><h3>Abordagem e especialidades</h3><p>Ajude pacientes a entenderem seu método de trabalho.</p></div></div>
+    <div class="resource"><div class="icon"><i class="fa-solid fa-location-dot"></i></div><div><h3>Onde você atende</h3><p>Cidade, estado, modalidade e valores de sessão.</p></div></div>
+    <div class="resource"><div class="icon"><i class="fa-solid fa-phone"></i></div><div><h3>Contato profissional</h3><p>Meios de contato usados para o atendimento.</p></div></div>
+  </div>
+  <div class="quote"><i class="fa-solid fa-shield-heart"></i><p>Não publique informações clínicas de pacientes. Seu perfil é voltado para apresentação e agendamento.</p></div>
+</section>
+
+<section class="right">
+<div class="login-card professional-form-card">
+  <div class="progress"><span>Etapa 2 de 2 · Atuação e contato</span><strong>Perfil profissional</strong></div>
+  <div class="title"><h1>Atuação e atendimento</h1><p>Faltam poucos dados para deixar seu perfil disponível para atendimento.</p></div>
+
+  <form id="professionalProfileForm2">
+    <div class="profile-section-title"><i class="fa-solid fa-brain"></i><div><strong>Atuação clínica</strong><small>Defina como você trabalha e quem atende.</small></div></div>
+    <div class="form-grid">
+      <div class="input-group"><label for="abordagem">Abordagem principal</label><div class="input"><i class="fa-solid fa-brain"></i><select id="abordagem" required><option value="">Selecione</option><option>Abordagem Cognitivo-Comportamental</option><option>Psicanálise</option><option>Humanista</option><option>Gestalt-terapia</option><option>Sistêmica</option><option>Comportamental</option><option>Outra</option></select></div></div>
+      <div class="input-group"><label for="especialidades">Especialidades</label><div class="input"><i class="fa-solid fa-list-check"></i><input id="especialidades" required placeholder="Ex.: ansiedade, adolescência, autoestima"></div></div>
+    </div>
+    <div class="input-group"><label>Faixas etárias atendidas</label><div class="check-grid">
+      <label class="checkbox"><input type="checkbox" name="faixa" value="Crianças"><span>Crianças</span></label>
+      <label class="checkbox"><input type="checkbox" name="faixa" value="Adolescentes"><span>Adolescentes</span></label>
+      <label class="checkbox"><input type="checkbox" name="faixa" value="Adultos"><span>Adultos</span></label>
+      <label class="checkbox"><input type="checkbox" name="faixa" value="Idosos"><span>Idosos</span></label>
+    </div></div>
+
+    <div class="profile-section-title"><i class="fa-solid fa-location-dot"></i><div><strong>Localização e atendimento</strong><small>Informações para encontrar e agendar com você.</small></div></div>
+    <div class="form-grid">
+      <div class="input-group"><label for="cidadeProf">Cidade</label><div class="input"><i class="fa-solid fa-location-dot"></i><input id="cidadeProf" required placeholder="Cidade onde atende"></div></div>
+      <div class="input-group"><label for="estadoProf">Estado</label><div class="input"><i class="fa-solid fa-map"></i><select id="estadoProf" required><option value="">Selecione</option><option>SC</option><option>RS</option><option>PR</option><option>SP</option><option>RJ</option><option>MG</option><option>BA</option><option>Outro</option></select></div></div>
+      <div class="input-group"><label for="modalidade">Modalidade</label><div class="input"><i class="fa-solid fa-video"></i><select id="modalidade" required><option value="">Selecione</option><option>Online</option><option>Presencial</option><option>Online e presencial</option></select></div></div>
+      <div class="input-group"><label for="duracao">Duração da sessão</label><div class="input"><i class="fa-regular fa-clock"></i><select id="duracao" required><option value="">Selecione</option><option>40 minutos</option><option>50 minutos</option><option>60 minutos</option><option>Outra</option></select></div></div>
+    </div>
+    <div class="form-grid">
+      <div class="input-group"><label for="endereco">Endereço de atendimento (opcional no perfil)</label><div class="input"><i class="fa-solid fa-location-dot"></i><input id="endereco" placeholder="Rua, número, sala..."></div></div>
+      <div class="input-group"><label for="valorSessao">Valor da sessão (opcional)</label><div class="input"><i class="fa-solid fa-brazilian-real-sign"></i><input id="valorSessao" type="number" min="0" step="0.01" placeholder="R$"></div></div>
+    </div>
+    <div class="input-group"><label for="disponibilidade">Disponibilidade de atendimento</label><textarea id="disponibilidade" maxlength="500" placeholder="Ex.: segunda a sexta, das 8h às 18h."></textarea></div>
+
+    <div class="profile-section-title"><i class="fa-solid fa-phone"></i><div><strong>Contato profissional</strong><small>Meios de contato usados para o atendimento.</small></div></div>
+    <div class="form-grid">
+      <div class="input-group"><label for="telefoneProf">Telefone profissional</label><div class="input"><i class="fa-solid fa-phone"></i><input id="telefoneProf" type="tel" required placeholder="(00) 00000-0000"></div></div>
+      <div class="input-group"><label for="siteProf">Site ou perfil profissional (opcional)</label><div class="input"><i class="fa-solid fa-globe"></i><input id="siteProf" type="url" placeholder="https://..."></div></div>
+    </div>
+
+    <div class="professional-verification-note"><i class="fa-solid fa-circle-info"></i><p><strong>Verificação profissional:</strong> o CRP informado será usado para identificação e futura validação pelo sistema. Não publique documentos pessoais ou informações clínicas de pacientes neste perfil.</p></div>
+    <label class="checkbox"><input id="termosProf" type="checkbox" required><span>Confirmo que as informações profissionais fornecidas são verdadeiras e concordo com os termos da plataforma.</span></label>
+    <div class="form-buttons"><a href="cadastro-profissional.html" class="back-button" id="btnVoltarEtapa2"><i class="fa-solid fa-arrow-left"></i> Voltar</a><button class="login-button" type="submit">Salvar e acessar painel <i class="fa-solid fa-check"></i></button></div>
+  </form>
+
+  <div id="profileSuccess" class="success-message">
+    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+    <h2>Perfil profissional salvo!</h2>
+    <p>Seu perfil está pronto. Enquanto a verificação não estiver concluída, algumas funções podem permanecer limitadas.</p>
+    <a href="home-profissional.html" class="login-button">Acessar painel <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</div>
+</section>
+</main>
+<script src="cadastro-profissional2.js"></script>
+</body>
+</html>
