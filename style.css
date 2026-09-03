@@ -6404,3 +6404,18 @@ select:hover{
 .account-type-note{
     margin-top:12px;
 }
+.success-secondary-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    margin-top:14px;
+    color:var(--text);
+    font-size:.9rem;
+    font-weight:500;
+    text-decoration:none;
+    transition:color .2s;
+}
+.success-secondary-link:hover{
+    color:var(--primary-dark);
+}
