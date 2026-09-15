@@ -1,124 +1,430 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clear Minds | Painel do Profissional</title>
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clear Minds | Home do profissional</title>
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- CSS do projeto -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
-<body class="pro-body">
-<div class="pro-shell">
-<header class="pro-topbar">
-  <div class="pro-logo"><img src="imagem/logo.jpg" alt="Clear Minds"><div><h2>Clear Minds</h2><span>Painel do profissional</span></div></div>
-  <nav class="pro-topnav" aria-label="Navegação principal">
-    <a class="active" href="#inicio"><i class="fa-solid fa-house"></i> Início</a>
-    <a href="#pacientes"><i class="fa-solid fa-user-group"></i> Pacientes</a>
-    <a href="#agenda"><i class="fa-solid fa-calendar-days"></i> Agenda</a>
-    <a href="#comunidade"><i class="fa-solid fa-users"></i> Comunidade</a>
-    <a href="#relatorios"><i class="fa-solid fa-chart-column"></i> Relatórios</a>
-  </nav>
-  <div class="pro-topbar-right">
-    <button class="pro-icon-btn" id="btnNotificacoes" aria-label="Ver notificações"><i class="fa-regular fa-bell"></i><span class="pro-badge" id="badgeNotificacoes">3</span></button>
-    <button class="pro-user-menu" type="button"><span class="pro-avatar" id="avatarIniciais">P</span><span class="pro-user-info"><strong id="topoNomeUsuario">Olá, Profissional</strong><small id="topoAreaUsuario">Psicólogo(a)</small></span><i class="fa-solid fa-chevron-down"></i></button>
-  </div>
-</header>
 
-<div class="pro-layout">
-<aside class="pro-sidebar" aria-label="Menu profissional">
-<nav>
-<a href="#inicio" class="pro-side-link active"><i class="fa-solid fa-house"></i> Início</a>
-<a href="#pacientes" class="pro-side-link"><i class="fa-solid fa-user-group"></i> Meus pacientes</a>
-<a href="#agenda" class="pro-side-link"><i class="fa-solid fa-calendar-days"></i> Agenda</a>
-<a href="#diario" class="pro-side-link"><i class="fa-solid fa-book-open"></i> Diários compartilhados</a>
-<a href="#comunidade" class="pro-side-link"><i class="fa-solid fa-users"></i> Comunidade</a>
-<a href="#mensagens" class="pro-side-link"><i class="fa-regular fa-envelope"></i> Mensagens <span class="pro-side-badge">2</span></a>
-<a href="#relatorios" class="pro-side-link"><i class="fa-solid fa-chart-column"></i> Relatórios</a>
-<a href="#perfil" class="pro-side-link"><i class="fa-regular fa-id-card"></i> Meu perfil</a>
-<a href="#configuracoes" class="pro-side-link"><i class="fa-solid fa-gear"></i> Configurações</a>
-</nav>
-<div class="pro-sidebar-mini"><i class="fa-solid fa-shield-heart"></i><div><strong>Ambiente profissional</strong><p>Informações de pacientes são confidenciais e devem ser usadas somente no contexto do atendimento.</p></div></div>
-<button class="pro-side-link pro-side-sair" id="btnSair"><i class="fa-solid fa-right-from-bracket"></i> Sair</button>
-</aside>
+<body class="cm-home cm-home-prof">
 
-<main class="pro-main" id="inicio">
-<div class="pro-heading"><div><h1 id="saudacao">Olá!</h1><p>Resumo da sua agenda, pacientes e atividades de hoje.</p></div><a href="#agenda" class="pro-btn-primary"><i class="fa-solid fa-plus"></i> Novo atendimento</a></div>
+    <!-- ==========================
+         TOPO
+    =========================== -->
+    <header class="cm-topbar">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between gap-3 py-3">
 
-<section class="pro-stats">
-<div class="pro-stat-card"><div class="pro-stat-icon"><i class="fa-solid fa-calendar-day"></i></div><div class="pro-stat-body"><p class="pro-stat-label">Atendimentos hoje</p><p class="pro-stat-value">04</p><a href="#agenda" class="pro-stat-link">Abrir agenda <i class="fa-solid fa-arrow-right"></i></a></div></div>
-<div class="pro-stat-card"><div class="pro-stat-icon"><i class="fa-solid fa-user-group"></i></div><div class="pro-stat-body"><p class="pro-stat-label">Pacientes ativos</p><p class="pro-stat-value">18</p><a href="#pacientes" class="pro-stat-link">Ver pacientes <i class="fa-solid fa-arrow-right"></i></a></div></div>
-<div class="pro-stat-card"><div class="pro-stat-icon"><i class="fa-solid fa-book-open"></i></div><div class="pro-stat-body"><p class="pro-stat-label">Diários compartilhados</p><p class="pro-stat-value">06</p><a href="#diario" class="pro-stat-link">Acessar diários <i class="fa-solid fa-arrow-right"></i></a></div></div>
-<div class="pro-stat-card"><div class="pro-stat-icon"><i class="fa-regular fa-bell"></i></div><div class="pro-stat-body"><p class="pro-stat-label">Pendências</p><p class="pro-stat-value" id="pendenciasNumero">03</p><a href="#mensagens" class="pro-stat-link">Revisar agora <i class="fa-solid fa-arrow-right"></i></a></div></div>
-</section>
+                <div class="cm-brand">
+                    <img src="imagem/logo.jpg" alt="Clear Minds">
+                    <div>
+                        <h2>Clear Minds</h2>
+                        <span>Cuide, acompanhe e fortaleça o seu trabalho.</span>
+                    </div>
+                </div>
 
-<div class="pro-grid-2">
-<section class="pro-card" id="agenda">
-<div class="pro-card-head"><h2><i class="fa-solid fa-calendar-days"></i> Próximos atendimentos</h2><a href="#agenda" class="pro-btn-outline">Agenda completa</a></div>
-<div class="pro-date-strip"><strong>HOJE</strong><span>18 de agosto</span><span class="pro-tag pro-tag-solid">4 atendimentos</span></div>
-<ul class="pro-appointments">
-<li><span class="pro-appointment-time">09:00</span><span class="pro-dot"></span><div class="pro-appointment-info"><strong>Maria Silva</strong><small>Psicologia clínica • Sessão 12</small></div><span class="pro-tag pro-tag-solid">Online</span><button class="pro-more" title="Opções"><i class="fa-solid fa-ellipsis"></i></button></li>
-<li><span class="pro-appointment-time">10:30</span><span class="pro-dot"></span><div class="pro-appointment-info"><strong>João Pereira</strong><small>Acompanhamento • Sessão 8</small></div><span class="pro-tag pro-tag-muted">Presencial</span><button class="pro-more" title="Opções"><i class="fa-solid fa-ellipsis"></i></button></li>
-<li><span class="pro-appointment-time">14:00</span><span class="pro-dot"></span><div class="pro-appointment-info"><strong>Ana Carolina</strong><small>Psicologia clínica • Sessão 5</small></div><span class="pro-tag pro-tag-solid">Online</span><button class="pro-more" title="Opções"><i class="fa-solid fa-ellipsis"></i></button></li>
-<li><span class="pro-appointment-time">16:30</span><span class="pro-dot"></span><div class="pro-appointment-info"><strong>Lucas Martins</strong><small>Primeira consulta</small></div><span class="pro-tag pro-tag-muted">Presencial</span><button class="pro-more" title="Opções"><i class="fa-solid fa-ellipsis"></i></button></li>
-</ul>
-</section>
+                <nav class="cm-nav d-none d-lg-flex" aria-label="Navegação principal">
+                    <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
+                    <a href="#pacientes"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes</a>
+                    <a href="#agenda"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda</a>
+                    <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
+                    <a href="#perfil"><i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil</a>
+                </nav>
 
-<section class="pro-card" id="mensagens">
-<div class="pro-card-head"><h2><i class="fa-regular fa-bell"></i> Solicitações e pendências</h2><span class="pro-tag pro-tag-solid">3 novas</span></div>
-<div class="pro-request"><span class="pro-avatar-sm">MS</span><div class="pro-feed-info"><strong>Maria Silva</strong><small>Solicitou acesso ao diário compartilhado.</small></div><div class="pro-request-actions"><button class="pro-btn-mini pro-accept">Aceitar</button><button class="pro-btn-mini pro-reject">Recusar</button></div></div>
-<div class="pro-request"><span class="pro-avatar-sm">LC</span><div class="pro-feed-info"><strong>Lucas Martins</strong><small>Novo pedido de acompanhamento.</small></div><button class="pro-btn-mini pro-accept">Ver pedido</button></div>
-<div class="pro-request"><span class="pro-avatar-sm">AC</span><div class="pro-feed-info"><strong>Ana Carolina</strong><small>Atualizou preferências de atendimento.</small></div><button class="pro-btn-mini pro-accept">Ver</button></div>
-<a class="pro-see-more" href="#mensagens">Ver todas as notificações <i class="fa-solid fa-arrow-right"></i></a>
-</section>
-</div>
+                <div class="cm-top-user">
+                    <span class="cm-avatar" id="avatarIniciais" aria-hidden="true">P</span>
+                    <span class="cm-top-user-info">
+                        <strong id="topoNomeUsuario">Olá, Profissional</strong>
+                        <small id="topoAreaUsuario">Psicólogo(a)</small>
+                    </span>
+                    <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                    </button>
+                </div>
 
-<div class="pro-grid-2">
-<section class="pro-card" id="pacientes">
-<div class="pro-card-head"><h2><i class="fa-solid fa-user-group"></i> Meus pacientes</h2><div class="pro-search"><i class="fa-solid fa-magnifying-glass"></i><input id="buscaPaciente" type="search" placeholder="Pesquisar paciente..."></div></div>
-<ul class="pro-patients" id="listaPacientes">
-<li data-nome="maria silva"><span class="pro-avatar-sm">MS</span><div class="pro-feed-info"><strong>Maria Silva</strong><small>Última sessão: hoje • Próxima: 25/08</small></div><span class="pro-tag pro-tag-solid">Diário compartilhado</span><i class="fa-solid fa-chevron-right"></i></li>
-<li data-nome="joão pereira"><span class="pro-avatar-sm">JP</span><div class="pro-feed-info"><strong>João Pereira</strong><small>Última sessão: 15/08 • Próxima: 22/08</small></div><span class="pro-tag pro-tag-muted">Privado</span><i class="fa-solid fa-chevron-right"></i></li>
-<li data-nome="ana carolina"><span class="pro-avatar-sm">AC</span><div class="pro-feed-info"><strong>Ana Carolina</strong><small>Última sessão: 14/08 • Próxima: 21/08</small></div><span class="pro-tag pro-tag-solid">Diário compartilhado</span><i class="fa-solid fa-chevron-right"></i></li>
-<li data-nome="lucas martins"><span class="pro-avatar-sm">LM</span><div class="pro-feed-info"><strong>Lucas Martins</strong><small>Primeira consulta • Cadastro recente</small></div><span class="pro-tag pro-tag-muted">Novo</span><i class="fa-solid fa-chevron-right"></i></li>
-</ul><p class="pro-empty" id="pacientesVazio" hidden>Nenhum paciente encontrado.</p><a class="pro-see-more" href="#pacientes">Ver prontuários e pacientes</a>
-</section>
+            </div>
+        </div>
 
-<section class="pro-card" id="diario">
-<div class="pro-card-head"><h2><i class="fa-solid fa-book-open"></i> Diários compartilhados</h2><a class="pro-btn-outline" href="#diario">Ver todos</a></div>
-<div class="diary-permission"><i class="fa-solid fa-shield-heart"></i><div><strong>O paciente decide o acesso</strong><p>Você só visualiza entradas quando o paciente conceder ou aceitar o compartilhamento.</p></div></div>
-<ul class="pro-feed">
-<li><span class="pro-avatar-sm">MS</span><div class="pro-feed-info"><p><strong>Maria Silva</strong> adicionou uma entrada.</p><small>Hoje, 08:12 • Humor: preocupado</small></div><i class="fa-solid fa-chevron-right"></i></li>
-<li><span class="pro-avatar-sm">AC</span><div class="pro-feed-info"><p><strong>Ana Carolina</strong> atualizou o diário.</p><small>Hoje, 07:45 • 1 nova entrada</small></div><i class="fa-solid fa-chevron-right"></i></li>
-<li><span class="pro-avatar-sm">JP</span><div class="pro-feed-info"><p><strong>João Pereira</strong> ainda não compartilha o diário.</p><small>Somente informações autorizadas ficam disponíveis.</small></div><i class="fa-solid fa-lock"></i></li>
-</ul>
-</section>
-</div>
+        <nav class="cm-subnav d-lg-none" aria-label="Navegação móvel">
+            <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
+            <a href="#pacientes"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes</a>
+            <a href="#agenda"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda</a>
+            <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
+            <a href="#perfil"><i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil</a>
+        </nav>
+    </header>
 
-<div class="pro-grid-2">
-<section class="pro-card" id="comunidade">
-<div class="pro-card-head"><h2><i class="fa-solid fa-users"></i> Comunidade</h2><a href="#comunidade" class="pro-btn-outline">Abrir comunidade</a></div>
-<div class="community-pro-banner"><div class="pro-quick-icon"><i class="fa-solid fa-comments"></i></div><div><strong>Espaço de conteúdo e acolhimento</strong><p>Acompanhe publicações, compartilhe conteúdos educativos e participe sem expor informações de pacientes.</p></div></div>
-<ul class="pro-feed">
-<li><span class="pro-avatar-sm">CM</span><div class="pro-feed-info"><p><strong>Comunidade Clear Minds</strong></p><small>Nova discussão: estratégias para rotina escolar e bem-estar.</small></div><i class="fa-solid fa-chevron-right"></i></li>
-<li><span class="pro-avatar-sm">DR</span><div class="pro-feed-info"><p><strong>Profissionais</strong></p><small>12 novas publicações na área profissional.</small></div><i class="fa-solid fa-chevron-right"></i></li>
-</ul>
-</section>
+    <main class="cm-main container" id="inicio">
 
-<section class="pro-card" id="relatorios">
-<div class="pro-card-head"><h2><i class="fa-solid fa-chart-column"></i> Visão do acompanhamento</h2><a href="#relatorios" class="pro-btn-outline">Relatórios</a></div>
-<div class="pro-report-grid"><div><strong>18</strong><small>pacientes ativos</small></div><div><strong>86%</strong><small>comparecimento</small></div><div><strong>06</strong><small>diários ativos</small></div><div><strong>03</strong><small>pendências</small></div></div>
-<p class="pro-helper"><i class="fa-solid fa-circle-info"></i> Indicadores demonstrativos do protótipo. Dados clínicos reais devem ser armazenados com segurança no backend.</p>
-</section>
-</div>
+        <!-- ==========================
+             1ª LINHA — DESTAQUE
+        =========================== -->
+        <div class="row gy-4">
 
-<section class="pro-card" id="perfil">
-<div class="pro-card-head"><h2><i class="fa-regular fa-id-card"></i> Meu perfil profissional</h2><a href="cadastro-profissional.html" class="pro-btn-outline">Editar perfil</a></div>
-<div class="pro-profile-summary"><span class="pro-avatar pro-avatar-large" id="perfilAvatar">P</span><div><h3 id="perfilNome">Profissional</h3><p id="perfilMeta">Psicólogo(a) • CRP não informado</p><div class="pro-profile-tags"><span class="pro-tag pro-tag-solid" id="perfilLocal">Localização não informada</span><span class="pro-tag pro-tag-muted" id="perfilModalidade">Modalidade não informada</span><span class="pro-tag pro-tag-solid" id="perfilAbordagem" hidden>Abordagem não informada</span><span class="pro-tag pro-tag-muted" id="perfilFormacao" hidden>Formação não informada</span><span class="pro-tag pro-tag-solid" id="perfilAtuaDesde" hidden>Atuação não informada</span></div><ul class="pro-profile-detail"><li id="perfilEspecialidades" hidden><span><i class="fa-solid fa-list-check"></i> Especialidades:</span> <strong>—</strong></li><li id="perfilDisponibilidade" hidden><span><i class="fa-solid fa-clock"></i> Disponibilidade:</span> <strong>—</strong></li><li id="perfilValor" hidden><span><i class="fa-solid fa-brazilian-real-sign"></i> Valor da sessão:</span> <strong>—</strong></li></ul></div><span class="verification-pill"><i class="fa-solid fa-shield-check"></i> <span id="statusVerificacao">Verificação pendente</span></span></div>
-</section>
+            <div class="col-12">
 
-<section class="pro-card" id="configuracoes"><div class="pro-card-head"><h2><i class="fa-solid fa-gear"></i> Configurações rápidas</h2></div><div class="pro-quick-list"><a class="pro-quick-item" href="#agenda"><span class="pro-quick-icon"><i class="fa-solid fa-clock"></i></span>Horários e disponibilidade<i class="fa-solid fa-chevron-right"></i></a><a class="pro-quick-item" href="#mensagens"><span class="pro-quick-icon"><i class="fa-solid fa-bell"></i></span>Notificações e solicitações<i class="fa-solid fa-chevron-right"></i></a><a class="pro-quick-item" href="#comunidade"><span class="pro-quick-icon"><i class="fa-solid fa-book-open"></i></span>Conteúdos profissionais<i class="fa-solid fa-chevron-right"></i></a></div></section>
-</main>
-</div></div>
-<script src="home-profissional.js"></script>
-</body></html>
+                <section class="cm-hero cm-hero-prof">
+
+                    <div class="cm-hero-content">
+
+                        <span class="cm-hero-badge">
+                            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                            Painel profissional
+                        </span>
+
+                        <h1 id="saudacao">Olá, profissional!</h1>
+
+                        <p class="cm-hero-sub">Acompanhe seus pacientes e fortaleça seu trabalho.</p>
+
+                        <p class="cm-hero-desc">
+                            Aqui você organiza sua agenda, acompanha registros
+                            compartilhados e mantém seu perfil sempre atualizado.
+                        </p>
+
+                        <div class="cm-hero-actions">
+                            <a href="#agenda" class="cm-btn cm-btn-primary">
+                                Ver minha agenda
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </a>
+                            <a href="#pacientes" class="cm-btn cm-btn-soft">
+                                Meus pacientes
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="cm-hero-art" aria-hidden="true">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================
+             2ª LINHA — DOIS BLOCOS
+        =========================== -->
+        <div class="row gy-4">
+
+            <div class="col-12 col-md-6">
+
+                <section class="cm-card" id="pacientes">
+
+                    <div class="cm-card-head">
+                        <div>
+                            <h2 class="cm-card-title">
+                                <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                                Meus pacientes
+                            </h2>
+                            <p class="cm-card-text">
+                                Acompanhe os pacientes e seus registros mais recentes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <label class="cm-search" for="buscaPaciente">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <input type="text" id="buscaPaciente" placeholder="Buscar paciente...">
+                    </label>
+
+                    <ul class="cm-list" id="listaPacientes">
+                        <li data-nome="Ana Beatriz Silva"><span class="cm-avatar cm-avatar-sm">AS</span><div><strong>Ana Beatriz Silva</strong><small>Última sessão · hoje</small></div></li>
+                        <li data-nome="Carlos Eduardo Lima"><span class="cm-avatar cm-avatar-sm">CL</span><div><strong>Carlos Eduardo Lima</strong><small>Última sessão · ontem</small></div></li>
+                        <li data-nome="Marina Souza Costa"><span class="cm-avatar cm-avatar-sm">MC</span><div><strong>Marina Souza Costa</strong><small>Última sessão · terça</small></div></li>
+                    </ul>
+
+                    <p class="cm-empty" id="pacientesVazio" hidden>Nenhum paciente encontrado.</p>
+
+                    <a href="#pacientes" class="cm-btn cm-btn-soft cm-btn-full mt-3">
+                        Ver pacientes
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+            <div class="col-12 col-md-6">
+
+                <section class="cm-card" id="agenda">
+
+                    <div class="cm-card-head">
+                        <div>
+                            <h2 class="cm-card-title">
+                                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                                Minha agenda
+                            </h2>
+                            <p class="cm-card-text">
+                                Próximos atendimentos do seu dia.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="cm-list">
+                        <li><span class="cm-time-box">14:00</span><div><strong>Ana Beatriz Silva</strong><small>Terapia · 50 minutos · Online</small></div></li>
+                        <li><span class="cm-time-box">15:30</span><div><strong>Carlos Eduardo Lima</strong><small>Terapia · 50 minutos · Presencial</small></div></li>
+                        <li><span class="cm-time-box">17:00</span><div><strong>Marina Souza Costa</strong><small>Terapia · 40 minutos · Online</small></div></li>
+                    </ul>
+
+                    <a href="#agenda" class="cm-btn cm-btn-soft cm-btn-full mt-3">
+                        Ver agenda
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================
+             3ª LINHA — TRÊS BLOCOS
+        =========================== -->
+        <div class="row gy-4">
+
+            <div class="col-12 col-md-4">
+
+                <section class="cm-card cm-card-stack" id="conteudos">
+
+                    <span class="cm-icon cm-icon-blue">
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    </span>
+
+                    <h2 class="cm-card-title">Conteúdos</h2>
+
+                    <p class="cm-card-text">
+                        Materiais e referências sobre saúde mental para
+                        apoiar sua prática profissional.
+                    </p>
+
+                    <a href="#conteudos" class="cm-link">
+                        Ver conteúdos
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+            <div class="col-12 col-md-4">
+
+                <section class="cm-card cm-card-stack" id="acompanhamento">
+
+                    <span class="cm-icon cm-icon-mint">
+                        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+                    </span>
+
+                    <h2 class="cm-card-title">Acompanhamento</h2>
+
+                    <p class="cm-card-text">
+                        Informações e registros dos pacientes para um
+                        acompanhamento mais completo.
+                    </p>
+
+                    <a href="#atividade" class="cm-link">
+                        Acompanhar
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+            <div class="col-12 col-md-4">
+
+                <section class="cm-card cm-card-stack" id="perfil">
+
+                    <span class="cm-icon cm-icon-blue">
+                        <i class="fa-regular fa-id-card" aria-hidden="true"></i>
+                    </span>
+
+                    <h2 class="cm-card-title">Perfil profissional</h2>
+
+                    <p class="cm-card-text">
+                        Seus dados, abordagens e configurações de atendimento.
+                    </p>
+
+                    <span class="cm-profile-chip">
+                        <span class="cm-avatar cm-avatar-sm" id="perfilAvatar">P</span>
+                        <span>
+                            <strong id="perfilNome">Profissional</strong>
+                            <small id="perfilMeta">Psicólogo(a) • CRP —</small>
+                        </span>
+                        <span class="cm-verif-badge" id="statusVerificacao">
+                            <i class="fa-solid fa-shield-check" aria-hidden="true"></i>
+                            Verificação pendente
+                        </span>
+                    </span>
+
+                    <div class="cm-profile-tags">
+                        <span class="cm-tag" id="perfilLocal">Localização —</span>
+                        <span class="cm-tag cm-tag-muted" id="perfilModalidade">Modalidade —</span>
+                        <span class="cm-tag" id="perfilAbordagem" hidden>Abordagem —</span>
+                        <span class="cm-tag cm-tag-muted" id="perfilFormacao" hidden>Formação —</span>
+                        <span class="cm-tag" id="perfilAtuaDesde" hidden>Atua desde —</span>
+                    </div>
+
+                    <ul class="cm-profile-detail">
+                        <li id="perfilEspecialidades" hidden><span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Especialidades:</span> <strong>—</strong></li>
+                        <li id="perfilDisponibilidade" hidden><span><i class="fa-solid fa-clock" aria-hidden="true"></i> Disponibilidade:</span> <strong>—</strong></li>
+                        <li id="perfilValor" hidden><span><i class="fa-solid fa-brazilian-real-sign" aria-hidden="true"></i> Valor da sessão:</span> <strong>—</strong></li>
+                    </ul>
+
+                    <a href="cadastro-profissional.html" class="cm-btn cm-btn-soft cm-btn-full mt-3">
+                        Editar perfil
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+        </div>
+
+        <!-- ==========================
+             4ª LINHA — RESUMO + ATIVIDADE RECENTE
+        =========================== -->
+        <div class="row gy-4">
+
+            <div class="col-12 col-md-4">
+
+                <section class="cm-card cm-summary-card">
+
+                    <h2 class="cm-card-title">
+                        <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+                        Resumo rápido
+                    </h2>
+
+                    <p class="cm-card-text">Visão geral do seu dia de trabalho.</p>
+
+                    <div class="cm-stat">
+                        <span class="cm-stat-icon cm-stat-blue"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
+                        <span class="cm-stat-body">
+                            <strong>18</strong>
+                            <small>Pacientes ativos</small>
+                        </span>
+                    </div>
+
+                    <div class="cm-stat">
+                        <span class="cm-stat-icon cm-stat-mint"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
+                        <span class="cm-stat-body">
+                            <strong>04</strong>
+                            <small>Próximos atendimentos</small>
+                        </span>
+                    </div>
+
+                    <div class="cm-stat">
+                        <span class="cm-stat-icon cm-stat-soft"><i class="fa-solid fa-bell" aria-hidden="true"></i></span>
+                        <span class="cm-stat-body">
+                            <strong>06</strong>
+                            <small>Novas atualizações</small>
+                        </span>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <div class="col-12 col-md-8">
+
+                <section class="cm-card" id="atividade">
+
+                    <div class="cm-card-head">
+                        <div>
+                            <h2 class="cm-card-title">
+                                <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+                                Atividade recente
+                            </h2>
+                            <p class="cm-card-text">
+                                Atualizações relevantes dos pacientes e do sistema.
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="cm-activity">
+
+                        <li class="cm-activity-item">
+                            <span class="cm-activity-dot"></span>
+                            <div>
+                                <p><strong>Ana Beatriz Silva</strong> registrou um novo humor no diário.</p>
+                                <small>Há 10 minutos</small>
+                            </div>
+                        </li>
+
+                        <li class="cm-activity-item">
+                            <span class="cm-activity-dot"></span>
+                            <div>
+                                <p><strong>Carlos Eduardo Lima</strong> aceitou compartilhar seu diário com você.</p>
+                                <small>Há 1 hora</small>
+                            </div>
+                        </li>
+
+                        <li class="cm-activity-item">
+                            <span class="cm-activity-dot"></span>
+                            <div>
+                                <p>Novo conteúdo disponível: <strong>“Higiene do sono para quem estuda”</strong>.</p>
+                                <small>Hoje às 08:00</small>
+                            </div>
+                        </li>
+
+                        <li class="cm-activity-item">
+                            <span class="cm-activity-dot"></span>
+                            <div>
+                                <p><strong>Marina Souza Costa</strong> pediu acesso ao acompanhamento.</p>
+                                <small>Ontem às 18:30</small>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ==========================
+         RODAPÉ
+    =========================== -->
+    <footer class="cm-footer">
+        <div class="container">
+            <div class="d-flex flex-md-row flex-column align-items-center justify-content-between gap-3 text-center text-md-start">
+
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-regular fa-heart cm-footer-heart" aria-hidden="true"></i>
+                    <span>Cuide da mente, acompanhe o bem-estar.</span>
+                </div>
+
+                <span class="cm-footer-brand">Clear Minds <span>·</span> Saúde mental e bem-estar</span>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="home-profissional.js"></script>
+
+</body>
+
+</html>
