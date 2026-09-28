@@ -7,9 +7,6 @@
 
     <title>Clear Minds | Home</title>
 
-    <!-- Bootstrap 5 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
 
@@ -30,7 +27,7 @@
     =========================== -->
     <header class="cm-topbar">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between gap-3 py-3">
+            <div class="cm-topbar-row">
 
                 <div class="cm-brand">
                     <img src="imagem/logo.jpg" alt="Clear Minds">
@@ -40,18 +37,10 @@
                     </div>
                 </div>
 
-                <nav class="cm-nav d-none d-lg-flex" aria-label="Navegação principal">
-                    <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
-                    <a href="#diario"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Meu diário</a>
-                    <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
-                    <a href="#ferramentas"><i class="fa-solid fa-spa" aria-hidden="true"></i> Ferramentas</a>
-                    <a href="#profissional"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Profissional</a>
-                </nav>
-
                 <div class="cm-top-user">
                     <span class="cm-avatar" id="avatarIniciais" aria-hidden="true">CM</span>
                     <span class="cm-top-user-info">
-                        <strong id="topoNomeUsuario">Olá, Visitante</strong>
+                        <strong id="topoNomeUsuario">Olá, Estudante</strong>
                         <small>Estudante</small>
                     </span>
                     <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
@@ -61,317 +50,352 @@
 
             </div>
         </div>
-
-        <nav class="cm-subnav d-lg-none" aria-label="Navegação móvel">
-            <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
-            <a href="#diario"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Diário</a>
-            <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
-            <a href="#ferramentas"><i class="fa-solid fa-spa" aria-hidden="true"></i> Ferramentas</a>
-            <a href="#profissional"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Profissional</a>
-        </nav>
     </header>
 
-    <main class="cm-main container" id="inicio">
+    <main class="cm-main container">
 
-        <!-- ==========================
-             1ª LINHA — DESTAQUE
-        =========================== -->
-        <div class="row gy-4">
+        <div class="cm-dash">
 
-            <div class="col-12">
+            <!-- ==========================
+                 MENU LATERAL
+            =========================== -->
+            <aside class="cm-side" id="menuLateral" aria-label="Menu do painel do estudante">
 
-                <section class="cm-hero cm-hero-cliente">
+                <button type="button" class="cm-side-item active" data-secao="inicio">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                </button>
+                <button type="button" class="cm-side-item" data-secao="diario">
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i> Meu diário
+                </button>
+                <button type="button" class="cm-side-item" data-secao="comunidade">
+                    <i class="fa-solid fa-comments" aria-hidden="true"></i> Comunidade
+                </button>
+                <button type="button" class="cm-side-item" data-secao="profissionais">
+                    <i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Meus profissionais
+                </button>
+                <button type="button" class="cm-side-item" data-secao="mensagens">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Mensagens
+                </button>
+                <button type="button" class="cm-side-item" data-secao="agenda">
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Agenda
+                </button>
 
-                    <div class="cm-hero-content">
+                <div class="cm-side-sep"></div>
 
-                        <span class="cm-hero-badge">
-                            <i class="fa-solid fa-seedling" aria-hidden="true"></i>
-                            Sua jornada de autocuidado
-                        </span>
+                <button type="button" class="cm-side-item" data-secao="perfil">
+                    <i class="fa-regular fa-id-card" aria-hidden="true"></i> Meu perfil
+                </button>
+                <button type="button" class="cm-side-item" data-secao="config">
+                    <i class="fa-solid fa-gear" aria-hidden="true"></i> Configurações
+                </button>
 
+            </aside>
+
+            <!-- ==========================
+                 ÁREA CENTRAL
+            =========================== -->
+            <div class="cm-content">
+
+                <!-- ===== INÍCIO ===== -->
+                <section id="sec-inicio" class="cm-section active">
+
+                    <div class="cm-section-head">
                         <h1 id="saudacao">Olá! Que bom ter você aqui.</h1>
+                        <p>Um espaço acolhedor para registrar sentimentos, explorar conteúdos e encontrar apoio.</p>
+                    </div>
 
-                        <p class="cm-hero-sub">Cuide da sua mente no seu ritmo.</p>
+                    <div class="cm-stat-grid">
 
-                        <p class="cm-hero-desc">
-                            Aqui você encontra um espaço acolhedor para registrar seus
-                            sentimentos, explorar conteúdos e encontrar apoio para o
-                            seu bem-estar.
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:var(--secondary);color:var(--primary-dark);">
+                                <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
+                            </span>
+                            <strong id="resumoHumor">—</strong>
+                            <small>Humor de hoje</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                            </span>
+                            <strong id="resumoDiario">0</strong>
+                            <small>Registros no diário</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#FFF4E6;color:#E76F51;">
+                                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                            </span>
+                            <strong id="resumoProfissionais">0</strong>
+                            <small>Profissionais vinculados</small>
+                        </div>
+
+                    </div>
+
+                    <!-- FEED DA COMUNIDADE — ELEMENTO CENTRAL -->
+                    <div class="cm-panel">
+
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                                    Comunidade
+                                </h2>
+                                <p class="cm-panel-sub">Compartilhe como você está, apoie e se inspire no que os outros estudantes estão vivendo.</p>
+                            </div>
+                        </div>
+
+                        <div class="cm-composer">
+                            <textarea id="composerTexto" maxlength="500" placeholder="Como você está se sentindo hoje? Aqui é um espaço seguro e acolhedor."></textarea>
+                            <div class="cm-composer-actions">
+                                <div class="cm-mood-mini" id="composerMoods">
+                                    <button type="button" class="cm-mood-chip" data-humor="Ótimo" title="Ótimo">😊</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Bem" title="Bem">🙂</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Neutro" title="Neutro">😐</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Ansioso(a)" title="Ansioso(a)">😟</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Difícil" title="Difícil">😔</button>
+                                </div>
+                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnPublicar">
+                                    Publicar
+                                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="feedPosts"></div>
+
+                        <div class="cm-empty-state" id="feedVazio">
+                            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                            <strong>Nenhuma publicação ainda</strong>
+                            <span>Seja a primeira pessoa a compartilhar algo na comunidade!</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ===== MEU DIÁRIO ===== -->
+                <section id="sec-diario" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Meu diário</h1>
+                        <p>Registre pensamentos, sentimentos e acontecimentos em um espaço seguro e só seu.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <h2 class="cm-panel-title" style="margin-bottom:14px;">
+                            <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
+                            Como você está se sentindo hoje?
+                        </h2>
+
+                        <div class="cm-mood-grid" id="diaryMoods">
+                            <button type="button" class="cm-mood-btn" data-humor="Ótimo" aria-label="Ótimo">
+                                <span class="cm-mood-emoji">😊</span><span class="cm-mood-label">Ótimo</span>
+                            </button>
+                            <button type="button" class="cm-mood-btn" data-humor="Bem" aria-label="Bem">
+                                <span class="cm-mood-emoji">🙂</span><span class="cm-mood-label">Bem</span>
+                            </button>
+                            <button type="button" class="cm-mood-btn" data-humor="Neutro" aria-label="Neutro">
+                                <span class="cm-mood-emoji">😐</span><span class="cm-mood-label">Neutro</span>
+                            </button>
+                            <button type="button" class="cm-mood-btn" data-humor="Ansioso(a)" aria-label="Ansioso">
+                                <span class="cm-mood-emoji">😟</span><span class="cm-mood-label">Ansioso</span>
+                            </button>
+                            <button type="button" class="cm-mood-btn" data-humor="Difícil" aria-label="Difícil">
+                                <span class="cm-mood-emoji">😔</span><span class="cm-mood-label">Difícil</span>
+                            </button>
+                        </div>
+
+                        <p class="cm-feel-status">
+                            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                            Hoje: <strong id="humorRegistrado">não registrado</strong>
                         </p>
 
-                        <div class="cm-hero-actions">
-                            <a href="#diario" class="cm-btn cm-btn-primary">
-                                Continuar minha jornada
-                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                            </a>
-                            <a href="#conteudos" class="cm-btn cm-btn-soft">
-                                Explorar conteúdos
-                            </a>
+                        <div class="input-group" style="margin-top:10px;">
+                            <label for="diarioTexto">Como foi o seu dia?</label>
+                            <textarea id="diarioTexto" maxlength="1000" placeholder="Escreva livremente o que quiser registrar..."></textarea>
+                        </div>
+
+                        <button type="button" class="cm-btn cm-btn-primary" id="btnSalvarDiario" style="margin-top:12px;">
+                            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                            Salvar registro
+                        </button>
+                        <p class="cm-panel-sub" id="diarioStatus" hidden></p>
+
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+                                    Registros anteriores
+                                </h2>
+                            </div>
+                        </div>
+
+                        <ul class="cm-dash-list" id="listaDiario"></ul>
+
+                        <div class="cm-empty-state" id="diarioVazio">
+                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                            <strong>Nenhum registro ainda</strong>
+                            <span>Seus registros do diário aparecerão aqui.</span>
                         </div>
 
                     </div>
 
-                    <div class="cm-hero-art" aria-hidden="true">
-                        <i class="fa-solid fa-brain"></i>
+                </section>
+
+                <!-- ===== COMUNIDADE ===== -->
+                <section id="sec-comunidade" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Comunidade</h1>
+                        <p>Um espaço para compartilhar experiências e apoiar outros estudantes.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-composer">
+                            <textarea id="composerTexto2" maxlength="500" placeholder="Como você está se sentindo hoje? Aqui é um espaço seguro e acolhedor."></textarea>
+                            <div class="cm-composer-actions">
+                                <div class="cm-mood-mini" id="composerMoods2">
+                                    <button type="button" class="cm-mood-chip" data-humor="Ótimo" title="Ótimo">😊</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Bem" title="Bem">🙂</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Neutro" title="Neutro">😐</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Ansioso(a)" title="Ansioso(a)">😟</button>
+                                    <button type="button" class="cm-mood-chip" data-humor="Difícil" title="Difícil">😔</button>
+                                </div>
+                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnPublicar2">
+                                    Publicar
+                                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="feedPosts2"></div>
+
+                        <div class="cm-empty-state" id="feedVazio2">
+                            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                            <strong>Nenhuma publicação ainda</strong>
+                            <span>Seja a primeira pessoa a compartilhar algo na comunidade!</span>
+                        </div>
+
                     </div>
 
                 </section>
 
-            </div>
+                <!-- ===== MEUS PROFISSIONAIS ===== -->
+                <section id="sec-profissionais" class="cm-section">
 
-        </div>
+                    <div class="cm-section-head">
+                        <h1>Meus profissionais</h1>
+                        <p>Profissionais que acompanham a sua jornada.</p>
+                    </div>
 
-        <!-- ==========================
-             2ª LINHA — DOIS BLOCOS
-        =========================== -->
-        <div class="row gy-4">
+                    <div class="cm-panel">
 
-            <div class="col-12 col-md-6">
+                        <ul class="cm-dash-list" id="listaProfissionais"></ul>
 
-                <section class="cm-card" id="diario">
-
-                    <span class="cm-icon cm-icon-blue">
-                        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Meu diário</h2>
-
-                    <p class="cm-card-text">
-                        Registre seus pensamentos, sentimentos e acontecimentos do
-                        dia em um espaço seguro e só seu.
-                    </p>
-
-                    <a href="#humor" class="cm-btn cm-btn-primary cm-btn-sm">
-                        Abrir diário
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-6">
-
-                <section class="cm-card" id="profissional">
-
-                    <span class="cm-icon cm-icon-mint">
-                        <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Encontre um profissional</h2>
-
-                    <p class="cm-card-text">
-                        Pesquise psicólogos e profissionais disponíveis para
-                        acompanhar sua jornada com cuidado e confiança.
-                    </p>
-
-                    <a href="#profissional" class="cm-btn cm-btn-primary cm-btn-sm">
-                        Encontrar profissional
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-        </div>
-
-        <!-- ==========================
-             3ª LINHA — TRÊS BLOCOS
-        =========================== -->
-        <div class="row gy-4">
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="conteudos">
-
-                    <span class="cm-icon cm-icon-blue">
-                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Conteúdos</h2>
-
-                    <p class="cm-card-text">
-                        Artigos e materiais sobre saúde mental preparados
-                        especialmente para estudantes.
-                    </p>
-
-                    <a href="#recomendacoes" class="cm-link">
-                        Ver conteúdos
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="ferramentas">
-
-                    <span class="cm-icon cm-icon-mint">
-                        <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Ferramentas</h2>
-
-                    <p class="cm-card-text">
-                        Recursos práticos para autocuidado, respiração e
-                        reflexão no seu dia a dia.
-                    </p>
-
-                    <a href="#recomendacoes" class="cm-link">
-                        Ver ferramentas
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="progresso">
-
-                    <span class="cm-icon cm-icon-blue">
-                        <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Meu progresso</h2>
-
-                    <p class="cm-card-text">
-                        Acompanhe seus registros, humores e a evolução da
-                        sua jornada de bem-estar.
-                    </p>
-
-                    <a href="#humor" class="cm-link">
-                        Ver progresso
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-        </div>
-
-        <!-- ==========================
-             4ª LINHA — INTERAÇÃO + RECOMENDAÇÕES
-        =========================== -->
-        <div class="row gy-4">
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-feel-card" id="humor">
-
-                    <h2 class="cm-card-title">
-                        <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
-                        Como você está se sentindo hoje?
-                    </h2>
-
-                    <p class="cm-card-text">
-                        Registre seu estado emocional agora. Isso ajuda a
-                        acompanhar sua jornada.
-                    </p>
-
-                    <div class="cm-mood-grid">
-
-                        <button type="button" class="cm-mood-btn" data-humor="Ótimo" aria-label="Ótimo">
-                            <span class="cm-mood-emoji">😊</span>
-                            <span class="cm-mood-label">Ótimo</span>
-                        </button>
-
-                        <button type="button" class="cm-mood-btn" data-humor="Bem" aria-label="Bem">
-                            <span class="cm-mood-emoji">🙂</span>
-                            <span class="cm-mood-label">Bem</span>
-                        </button>
-
-                        <button type="button" class="cm-mood-btn" data-humor="Neutro" aria-label="Neutro">
-                            <span class="cm-mood-emoji">😐</span>
-                            <span class="cm-mood-label">Neutro</span>
-                        </button>
-
-                        <button type="button" class="cm-mood-btn" data-humor="Ansioso(a)" aria-label="Ansioso">
-                            <span class="cm-mood-emoji">😟</span>
-                            <span class="cm-mood-label">Ansioso</span>
-                        </button>
-
-                        <button type="button" class="cm-mood-btn" data-humor="Difícil" aria-label="Difícil">
-                            <span class="cm-mood-emoji">😔</span>
-                            <span class="cm-mood-label">Difícil</span>
-                        </button>
+                        <div class="cm-empty-state" id="profissionaisVazio">
+                            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                            <strong>Nenhum profissional vinculado</strong>
+                            <span>Quando você iniciar um acompanhamento, os profissionais aparecerão aqui.</span>
+                        </div>
 
                     </div>
 
-                    <p class="cm-feel-status">
-                        <i class="fa-solid fa-heart" aria-hidden="true"></i>
-                        Hoje: <strong id="humorRegistrado">não registrado</strong>
-                    </p>
-
                 </section>
 
-            </div>
+                <!-- ===== MENSAGENS ===== -->
+                <section id="sec-mensagens" class="cm-section">
 
-            <div class="col-12 col-md-8">
+                    <div class="cm-section-head">
+                        <h1>Mensagens</h1>
+                        <p>Conversas com profissionais e outros estudantes.</p>
+                    </div>
 
-                <section class="cm-card cm-rec-card" id="recomendacoes">
-
-                    <div class="cm-card-head">
-                        <div>
-                            <h2 class="cm-card-title">
-                                <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                                Recomendações para você
-                            </h2>
-                            <p class="cm-card-text">
-                                Sugestões de artigos, atividades e conteúdos
-                                selecionados para o seu momento.
-                            </p>
+                    <div class="cm-panel">
+                        <div class="cm-empty-state">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <strong>Nenhuma conversa</strong>
+                            <span>Suas conversas aparecerão aqui quando você iniciar um acompanhamento ou contato com alguém.</span>
                         </div>
                     </div>
 
-                    <div class="cm-rec-list">
+                </section>
 
-                        <article class="cm-rec-item">
-                            <span class="cm-rec-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
-                            <div>
-                                <h3>Como lidar com a ansiedade antes de provas</h3>
-                                <p>
-                                    Técnicas simples de respiração e organização
-                                    para reduzir a tensão nos estudos.
-                                </p>
-                                <a href="#recomendacoes" class="cm-link">Ler artigo</a>
-                            </div>
-                        </article>
+                <!-- ===== AGENDA ===== -->
+                <section id="sec-agenda" class="cm-section">
 
-                        <article class="cm-rec-item">
-                            <span class="cm-rec-icon"><i class="fa-solid fa-mug-hot" aria-hidden="true"></i></span>
-                            <div>
-                                <h3>5 minutos de pausa consciente</h3>
-                                <p>
-                                    Uma prática rápida para descansar a mente
-                                    entre uma tarefa e outra.
-                                </p>
-                                <a href="#recomendacoes" class="cm-link">Experimentar</a>
-                            </div>
-                        </article>
+                    <div class="cm-section-head">
+                        <h1>Agenda</h1>
+                        <p>Seus próximos atendimentos e consultas.</p>
+                    </div>
 
-                        <article class="cm-rec-item">
-                            <span class="cm-rec-icon"><i class="fa-solid fa-bed" aria-hidden="true"></i></span>
-                            <div>
-                                <h3>Higiene do sono para quem estuda</h3>
-                                <p>
-                                    Hábitos que ajudam a dormir melhor e
-                                    melhoram o rendimento nos estudos.
-                                </p>
-                                <a href="#recomendacoes" class="cm-link">Ler artigo</a>
-                            </div>
-                        </article>
+                    <div class="cm-panel">
+
+                        <ul class="cm-dash-list" id="listaConsultas"></ul>
+
+                        <div class="cm-empty-state" id="consultasVazio">
+                            <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            <strong>Nenhuma consulta agendada</strong>
+                            <span>Quando você marcar um atendimento, ele aparecerá aqui.</span>
+                        </div>
 
                     </div>
 
-                    <a href="#conteudos" class="cm-btn cm-btn-soft cm-btn-full mt-3">
-                        Ver mais recomendações
-                    </a>
+                </section>
+
+                <!-- ===== MEU PERFIL ===== -->
+                <section id="sec-perfil" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Meu perfil</h1>
+                        <p>Seus dados de cadastro e informações pessoais.</p>
+                    </div>
+
+                    <div class="cm-panel">
+                        <ul class="cm-profile-detail" id="listaDadosPerfil"></ul>
+                    </div>
+
+                </section>
+
+                <!-- ===== CONFIGURAÇÕES ===== -->
+                <section id="sec-config" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Configurações</h1>
+                        <p>Preferências de privacidade e notificações.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-settings-item">
+                            <div class="cm-info">
+                                <span class="cm-panel-title" style="font-size:.9rem;">Compartilhar registros com meu profissional</span>
+                                <span class="cm-panel-sub" style="margin-top:2px;">Permite que profissionais vinculados vejam seus registros do diário.</span>
+                            </div>
+                            <label class="cm-switch">
+                                <input type="checkbox" id="cfgCompartilharDiario" checked>
+                                <span class="cm-slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="cm-settings-item">
+                            <div class="cm-info">
+                                <span class="cm-panel-title" style="font-size:.9rem;">Notificações de novos conteúdos</span>
+                                <span class="cm-panel-sub" style="margin-top:2px;">Avise-me quando houver novos artigos e recomendações.</span>
+                            </div>
+                            <label class="cm-switch">
+                                <input type="checkbox" id="cfgNotificacoes" checked>
+                                <span class="cm-slider"></span>
+                            </label>
+                        </div>
+
+                    </div>
 
                 </section>
 
@@ -386,20 +410,16 @@
     =========================== -->
     <footer class="cm-footer">
         <div class="container">
-            <div class="d-flex flex-md-row flex-column align-items-center justify-content-between gap-3 text-center text-md-start">
-
-                <div class="d-flex align-items-center gap-2">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+                <div style="display:flex;align-items:center;gap:8px;">
                     <i class="fa-regular fa-heart cm-footer-heart" aria-hidden="true"></i>
                     <span>Cada pequena atitude em direção ao autocuidado faz diferença.</span>
                 </div>
-
                 <span class="cm-footer-brand">Clear Minds <span>·</span> Saúde mental e bem-estar</span>
-
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="home.js"></script>
 
 </body>

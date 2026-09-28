@@ -7,9 +7,6 @@
 
     <title>Clear Minds | Home do profissional</title>
 
-    <!-- Bootstrap 5 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
 
@@ -30,7 +27,7 @@
     =========================== -->
     <header class="cm-topbar">
         <div class="container">
-            <div class="d-flex align-items-center justify-content-between gap-3 py-3">
+            <div class="cm-topbar-row">
 
                 <div class="cm-brand">
                     <img src="imagem/logo.jpg" alt="Clear Minds">
@@ -40,19 +37,11 @@
                     </div>
                 </div>
 
-                <nav class="cm-nav d-none d-lg-flex" aria-label="Navegação principal">
-                    <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
-                    <a href="#pacientes"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes</a>
-                    <a href="#agenda"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda</a>
-                    <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
-                    <a href="#perfil"><i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil</a>
-                </nav>
-
                 <div class="cm-top-user">
                     <span class="cm-avatar" id="avatarIniciais" aria-hidden="true">P</span>
                     <span class="cm-top-user-info">
                         <strong id="topoNomeUsuario">Olá, Profissional</strong>
-                        <small id="topoAreaUsuario">Psicólogo(a)</small>
+                        <small id="topoAreaUsuario">Profissional de saúde</small>
                     </span>
                     <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
                         <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
@@ -61,340 +50,331 @@
 
             </div>
         </div>
-
-        <nav class="cm-subnav d-lg-none" aria-label="Navegação móvel">
-            <a href="#inicio"><i class="fa-solid fa-house" aria-hidden="true"></i> Início</a>
-            <a href="#pacientes"><i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes</a>
-            <a href="#agenda"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda</a>
-            <a href="#conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos</a>
-            <a href="#perfil"><i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil</a>
-        </nav>
     </header>
 
-    <main class="cm-main container" id="inicio">
+    <main class="cm-main container">
 
-        <!-- ==========================
-             1ª LINHA — DESTAQUE
-        =========================== -->
-        <div class="row gy-4">
+        <div class="cm-dash">
 
-            <div class="col-12">
+            <!-- ==========================
+                 MENU LATERAL
+            =========================== -->
+            <aside class="cm-side" id="menuLateral" aria-label="Menu do painel profissional">
 
-                <section class="cm-hero cm-hero-prof">
+                <button type="button" class="cm-side-item active" data-secao="inicio">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                </button>
+                <button type="button" class="cm-side-item" data-secao="pacientes">
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes
+                </button>
+                <button type="button" class="cm-side-item" data-secao="agenda">
+                    <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda
+                </button>
+                <button type="button" class="cm-side-item" data-secao="conteudos">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos
+                </button>
+                <button type="button" class="cm-side-item" data-secao="financeiro">
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Financeiro
+                </button>
 
-                    <div class="cm-hero-content">
+                <div class="cm-side-sep"></div>
 
-                        <span class="cm-hero-badge">
-                            <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-                            Painel profissional
-                        </span>
+                <button type="button" class="cm-side-item" data-secao="perfil">
+                    <i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil
+                </button>
 
+            </aside>
+
+            <!-- ==========================
+                 ÁREA CENTRAL
+            =========================== -->
+            <div class="cm-content">
+
+                <!-- ===== INÍCIO ===== -->
+                <section id="sec-inicio" class="cm-section active">
+
+                    <div class="cm-section-head">
                         <h1 id="saudacao">Olá, profissional!</h1>
+                        <p>Acompanhe sua rotina, seus pacientes e seus resultados em um só lugar.</p>
+                    </div>
 
-                        <p class="cm-hero-sub">Acompanhe seus pacientes e fortaleça seu trabalho.</p>
+                    <!-- GRÁFICO GRANDE (dia | mês | ano) -->
+                    <div class="cm-panel">
 
-                        <p class="cm-hero-desc">
-                            Aqui você organiza sua agenda, acompanha registros
-                            compartilhados e mantém seu perfil sempre atualizado.
-                        </p>
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                                    Atividades e resultados
+                                </h2>
+                                <p class="cm-panel-sub">Movimentação de atendimentos e ganho líquido.</p>
+                            </div>
+                            <div class="cm-chart-tabs" id="chartTabs" role="tablist" aria-label="Período do gráfico">
+                                <button type="button" class="cm-chart-tab active" data-periodo="dia" role="tab">Dia</button>
+                                <button type="button" class="cm-chart-tab" data-periodo="mes" role="tab">Mês</button>
+                                <button type="button" class="cm-chart-tab" data-periodo="ano" role="tab">Ano</button>
+                            </div>
+                        </div>
 
-                        <div class="cm-hero-actions">
-                            <a href="#agenda" class="cm-btn cm-btn-primary">
-                                Ver minha agenda
-                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                            </a>
-                            <a href="#pacientes" class="cm-btn cm-btn-soft">
-                                Meus pacientes
-                            </a>
+                        <div class="cm-chart-zone" id="chartZone">
+                            <div class="cm-chart-summary">
+                                <div class="cm-chart-metric">
+                                    <small id="chartMetricLabel">Atendimentos hoje</small>
+                                    <strong id="chartMovimentacao">0 <span>atendimento(s)</span></strong>
+                                </div>
+                                <div class="cm-chart-metric">
+                                    <small>Ganho líquido</small>
+                                    <strong id="chartGanho">R$ 0,00</strong>
+                                </div>
+                            </div>
+                            <div class="cm-bars" id="chartBars"></div>
+                            <div class="cm-empty-state" id="chartEmpty" hidden>
+                                <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+                                <strong>Nenhuma movimentação</strong>
+                                <span>Quando houver atendimentos registrados, o gráfico será preenchido automaticamente.</span>
+                            </div>
                         </div>
 
                     </div>
 
-                    <div class="cm-hero-art" aria-hidden="true">
-                        <i class="fa-solid fa-hand-holding-heart"></i>
-                    </div>
+                    <!-- RESUMO RÁPIDO + ATIVIDADES RECENTES -->
+                    <div class="cm-stat-grid">
 
-                </section>
-
-            </div>
-
-        </div>
-
-        <!-- ==========================
-             2ª LINHA — DOIS BLOCOS
-        =========================== -->
-        <div class="row gy-4">
-
-            <div class="col-12 col-md-6">
-
-                <section class="cm-card" id="pacientes">
-
-                    <div class="cm-card-head">
-                        <div>
-                            <h2 class="cm-card-title">
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:var(--secondary);color:var(--primary-dark);">
                                 <i class="fa-solid fa-user-group" aria-hidden="true"></i>
-                                Meus pacientes
-                            </h2>
-                            <p class="cm-card-text">
-                                Acompanhe os pacientes e seus registros mais recentes.
-                            </p>
-                        </div>
-                    </div>
-
-                    <label class="cm-search" for="buscaPaciente">
-                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-                        <input type="text" id="buscaPaciente" placeholder="Buscar paciente...">
-                    </label>
-
-                    <ul class="cm-list" id="listaPacientes">
-                        <li data-nome="Ana Beatriz Silva"><span class="cm-avatar cm-avatar-sm">AS</span><div><strong>Ana Beatriz Silva</strong><small>Última sessão · hoje</small></div></li>
-                        <li data-nome="Carlos Eduardo Lima"><span class="cm-avatar cm-avatar-sm">CL</span><div><strong>Carlos Eduardo Lima</strong><small>Última sessão · ontem</small></div></li>
-                        <li data-nome="Marina Souza Costa"><span class="cm-avatar cm-avatar-sm">MC</span><div><strong>Marina Souza Costa</strong><small>Última sessão · terça</small></div></li>
-                    </ul>
-
-                    <p class="cm-empty" id="pacientesVazio" hidden>Nenhum paciente encontrado.</p>
-
-                    <a href="#pacientes" class="cm-btn cm-btn-soft cm-btn-full mt-3">
-                        Ver pacientes
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-6">
-
-                <section class="cm-card" id="agenda">
-
-                    <div class="cm-card-head">
-                        <div>
-                            <h2 class="cm-card-title">
-                                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
-                                Minha agenda
-                            </h2>
-                            <p class="cm-card-text">
-                                Próximos atendimentos do seu dia.
-                            </p>
-                        </div>
-                    </div>
-
-                    <ul class="cm-list">
-                        <li><span class="cm-time-box">14:00</span><div><strong>Ana Beatriz Silva</strong><small>Terapia · 50 minutos · Online</small></div></li>
-                        <li><span class="cm-time-box">15:30</span><div><strong>Carlos Eduardo Lima</strong><small>Terapia · 50 minutos · Presencial</small></div></li>
-                        <li><span class="cm-time-box">17:00</span><div><strong>Marina Souza Costa</strong><small>Terapia · 40 minutos · Online</small></div></li>
-                    </ul>
-
-                    <a href="#agenda" class="cm-btn cm-btn-soft cm-btn-full mt-3">
-                        Ver agenda
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-        </div>
-
-        <!-- ==========================
-             3ª LINHA — TRÊS BLOCOS
-        =========================== -->
-        <div class="row gy-4">
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="conteudos">
-
-                    <span class="cm-icon cm-icon-blue">
-                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Conteúdos</h2>
-
-                    <p class="cm-card-text">
-                        Materiais e referências sobre saúde mental para
-                        apoiar sua prática profissional.
-                    </p>
-
-                    <a href="#conteudos" class="cm-link">
-                        Ver conteúdos
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="acompanhamento">
-
-                    <span class="cm-icon cm-icon-mint">
-                        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Acompanhamento</h2>
-
-                    <p class="cm-card-text">
-                        Informações e registros dos pacientes para um
-                        acompanhamento mais completo.
-                    </p>
-
-                    <a href="#atividade" class="cm-link">
-                        Acompanhar
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-card-stack" id="perfil">
-
-                    <span class="cm-icon cm-icon-blue">
-                        <i class="fa-regular fa-id-card" aria-hidden="true"></i>
-                    </span>
-
-                    <h2 class="cm-card-title">Perfil profissional</h2>
-
-                    <p class="cm-card-text">
-                        Seus dados, abordagens e configurações de atendimento.
-                    </p>
-
-                    <span class="cm-profile-chip">
-                        <span class="cm-avatar cm-avatar-sm" id="perfilAvatar">P</span>
-                        <span>
-                            <strong id="perfilNome">Profissional</strong>
-                            <small id="perfilMeta">Psicólogo(a) • CRP —</small>
-                        </span>
-                        <span class="cm-verif-badge" id="statusVerificacao">
-                            <i class="fa-solid fa-shield-check" aria-hidden="true"></i>
-                            Verificação pendente
-                        </span>
-                    </span>
-
-                    <div class="cm-profile-tags">
-                        <span class="cm-tag" id="perfilLocal">Localização —</span>
-                        <span class="cm-tag cm-tag-muted" id="perfilModalidade">Modalidade —</span>
-                        <span class="cm-tag" id="perfilAbordagem" hidden>Abordagem —</span>
-                        <span class="cm-tag cm-tag-muted" id="perfilFormacao" hidden>Formação —</span>
-                        <span class="cm-tag" id="perfilAtuaDesde" hidden>Atua desde —</span>
-                    </div>
-
-                    <ul class="cm-profile-detail">
-                        <li id="perfilEspecialidades" hidden><span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Especialidades:</span> <strong>—</strong></li>
-                        <li id="perfilDisponibilidade" hidden><span><i class="fa-solid fa-clock" aria-hidden="true"></i> Disponibilidade:</span> <strong>—</strong></li>
-                        <li id="perfilValor" hidden><span><i class="fa-solid fa-brazilian-real-sign" aria-hidden="true"></i> Valor da sessão:</span> <strong>—</strong></li>
-                    </ul>
-
-                    <a href="cadastro-profissional.html" class="cm-btn cm-btn-soft cm-btn-full mt-3">
-                        Editar perfil
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-
-                </section>
-
-            </div>
-
-        </div>
-
-        <!-- ==========================
-             4ª LINHA — RESUMO + ATIVIDADE RECENTE
-        =========================== -->
-        <div class="row gy-4">
-
-            <div class="col-12 col-md-4">
-
-                <section class="cm-card cm-summary-card">
-
-                    <h2 class="cm-card-title">
-                        <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
-                        Resumo rápido
-                    </h2>
-
-                    <p class="cm-card-text">Visão geral do seu dia de trabalho.</p>
-
-                    <div class="cm-stat">
-                        <span class="cm-stat-icon cm-stat-blue"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
-                        <span class="cm-stat-body">
-                            <strong>18</strong>
+                            </span>
+                            <strong id="statPacientes">0</strong>
                             <small>Pacientes ativos</small>
-                        </span>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                            </span>
+                            <strong id="statAtendimentos">0</strong>
+                            <small>Atendimentos registrados</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#FFF4E6;color:#E76F51;">
+                                <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
+                            </span>
+                            <strong id="statGanho">R$ 0,00</strong>
+                            <small>Ganho acumulado</small>
+                        </div>
+
                     </div>
 
-                    <div class="cm-stat">
-                        <span class="cm-stat-icon cm-stat-mint"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
-                        <span class="cm-stat-body">
-                            <strong>04</strong>
-                            <small>Próximos atendimentos</small>
-                        </span>
-                    </div>
+                    <!-- ATIVIDADE RECENTE -->
+                    <div class="cm-panel">
 
-                    <div class="cm-stat">
-                        <span class="cm-stat-icon cm-stat-soft"><i class="fa-solid fa-bell" aria-hidden="true"></i></span>
-                        <span class="cm-stat-body">
-                            <strong>06</strong>
-                            <small>Novas atualizações</small>
-                        </span>
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+                                    Atividade recente
+                                </h2>
+                                <p class="cm-panel-sub">Atualizações relevantes dos pacientes e do sistema.</p>
+                            </div>
+                        </div>
+
+                        <ul class="cm-list cm-activity" id="listAtividades">
+
+                            <li class="cm-empty-state cm-activity-vazio" id="atividadesVazio">
+                                <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                                <strong>Sem atividades por enquanto</strong>
+                                <span>As ações dos seus pacientes aparecerão aqui.</span>
+                            </li>
+
+                        </ul>
+
                     </div>
 
                 </section>
 
-            </div>
+                <!-- ===== PACIENTES ===== -->
+                <section id="sec-pacientes" class="cm-section">
 
-            <div class="col-12 col-md-8">
-
-                <section class="cm-card" id="atividade">
-
-                    <div class="cm-card-head">
-                        <div>
-                            <h2 class="cm-card-title">
-                                <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
-                                Atividade recente
-                            </h2>
-                            <p class="cm-card-text">
-                                Atualizações relevantes dos pacientes e do sistema.
-                            </p>
-                        </div>
+                    <div class="cm-section-head">
+                        <h1>Meus pacientes</h1>
+                        <p>Consulte os pacientes que você acompanha.</p>
                     </div>
 
-                    <ul class="cm-activity">
+                    <div class="cm-panel">
 
-                        <li class="cm-activity-item">
-                            <span class="cm-activity-dot"></span>
+                        <label class="cm-search" for="buscaPaciente">
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                            <input type="text" id="buscaPaciente" placeholder="Buscar paciente...">
+                        </label>
+
+                        <ul class="cm-dash-list" id="listaPacientes"></ul>
+
+                        <div class="cm-empty-state" id="pacientesVazio">
+                            <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                            <strong>Nenhum paciente ainda</strong>
+                            <span>Quando estudantes solicitarem acompanhamento, eles aparecerão aqui.</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ===== AGENDA ===== -->
+                <section id="sec-agenda" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Minha agenda</h1>
+                        <p>Seus próximos atendimentos e horários.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <ul class="cm-dash-list" id="listaAgenda"></ul>
+
+                        <div class="cm-empty-state" id="agendaVazio">
+                            <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                            <strong>Nenhum atendimento agendado</strong>
+                            <span>Seus próximos atendimentos aparecerão aqui.</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ===== CONTEÚDOS ===== -->
+                <section id="sec-conteudos" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Conteúdos</h1>
+                        <p>Materiais e referências para apoiar sua prática.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <ul class="cm-dash-list" id="listaConteudos"></ul>
+
+                        <div class="cm-empty-state" id="conteudosVazio">
+                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                            <strong>Nenhum conteúdo disponível</strong>
+                            <span>Os conteúdos profissionais aparecerão aqui.</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ===== FINANCEIRO ===== -->
+                <section id="sec-financeiro" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Financeiro</h1>
+                        <p>Visão completa da sua movimentação e ganhos.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-panel-head">
                             <div>
-                                <p><strong>Ana Beatriz Silva</strong> registrou um novo humor no diário.</p>
-                                <small>Há 10 minutos</small>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                                    Movimentação
+                                </h2>
+                                <p class="cm-panel-sub">Fluxo de atendimentos e valor recebido.</p>
                             </div>
-                        </li>
+                            <div class="cm-chart-tabs" id="chartTabsFull" role="tablist" aria-label="Período do gráfico">
+                                <button type="button" class="cm-chart-tab active" data-periodo="dia" role="tab">Dia</button>
+                                <button type="button" class="cm-chart-tab" data-periodo="mes" role="tab">Mês</button>
+                                <button type="button" class="cm-chart-tab" data-periodo="ano" role="tab">Ano</button>
+                            </div>
+                        </div>
 
-                        <li class="cm-activity-item">
-                            <span class="cm-activity-dot"></span>
+                        <div class="cm-chart-summary">
+                            <div class="cm-chart-metric">
+                                <small id="chartFullMetricLabel">Atendimentos hoje</small>
+                                <strong id="chartFullMovimentacao">0 <span>atendimento(s)</span></strong>
+                            </div>
+                            <div class="cm-chart-metric">
+                                <small>Ganho líquido</small>
+                                <strong id="chartFullGanho">R$ 0,00</strong>
+                            </div>
+                        </div>
+
+                        <div class="cm-bars" id="chartFullBars"></div>
+
+                        <div class="cm-empty-state" id="chartFullEmpty">
+                            <i class="fa-solid fa-coins" aria-hidden="true"></i>
+                            <strong>Sem movimentação</strong>
+                            <span>Os lançamentos de atendimentos aparecerão aqui.</span>
+                        </div>
+
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-panel-head">
                             <div>
-                                <p><strong>Carlos Eduardo Lima</strong> aceitou compartilhar seu diário com você.</p>
-                                <small>Há 1 hora</small>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                                    Extrato de movimentações
+                                </h2>
                             </div>
-                        </li>
+                        </div>
 
-                        <li class="cm-activity-item">
-                            <span class="cm-activity-dot"></span>
-                            <div>
-                                <p>Novo conteúdo disponível: <strong>“Higiene do sono para quem estuda”</strong>.</p>
-                                <small>Hoje às 08:00</small>
-                            </div>
-                        </li>
+                        <ul class="cm-dash-list" id="listaMovimentacoes"></ul>
 
-                        <li class="cm-activity-item">
-                            <span class="cm-activity-dot"></span>
-                            <div>
-                                <p><strong>Marina Souza Costa</strong> pediu acesso ao acompanhamento.</p>
-                                <small>Ontem às 18:30</small>
-                            </div>
-                        </li>
+                        <div class="cm-empty-state" id="movimentacoesVazio">
+                            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+                            <strong>Nenhum lançamento</strong>
+                            <span>Os registros financeiros aparecerão aqui.</span>
+                        </div>
 
-                    </ul>
+                    </div>
+
+                </section>
+
+                <!-- ===== PERFIL ===== -->
+                <section id="sec-perfil" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Perfil profissional</h1>
+                        <p>Seus dados, abordagens e configurações de atendimento.</p>
+                    </div>
+
+                    <div class="cm-panel">
+
+                        <div class="cm-profile-chip">
+                            <span class="cm-avatar cm-avatar-sm" id="perfilAvatar">P</span>
+                            <span>
+                                <strong id="perfilNome">Profissional</strong>
+                                <small id="perfilMeta">Profissional de saúde</small>
+                            </span>
+                            <span class="cm-verif-badge" id="statusVerificacao">
+                                <i class="fa-solid fa-shield-check" aria-hidden="true"></i>
+                                Verificação pendente
+                            </span>
+                        </div>
+
+                        <div class="cm-profile-tags">
+                            <span class="cm-tag" id="perfilLocal">Localização não informada</span>
+                            <span class="cm-tag cm-tag-muted" id="perfilModalidade">Modalidade não informada</span>
+                            <span class="cm-tag" id="perfilAbordagem" hidden>Abordagem não informada</span>
+                            <span class="cm-tag cm-tag-muted" id="perfilFormacao" hidden>Formação —</span>
+                            <span class="cm-tag" id="perfilAtuaDesde" hidden>Atua desde —</span>
+                        </div>
+
+                        <ul class="cm-profile-detail">
+                            <li id="perfilEspecialidades" hidden><span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Especialidades:</span> <strong>—</strong></li>
+                            <li id="perfilDisponibilidade" hidden><span><i class="fa-solid fa-clock" aria-hidden="true"></i> Disponibilidade:</span> <strong>—</strong></li>
+                            <li id="perfilValor" hidden><span><i class="fa-solid fa-brazilian-real-sign" aria-hidden="true"></i> Valor da sessão:</span> <strong>—</strong></li>
+                        </ul>
+
+                        <a href="cadastro-profissional.html" class="cm-btn cm-btn-soft" style="margin-top:16px;">
+                            Editar perfil
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+
+                    </div>
 
                 </section>
 
@@ -409,20 +389,16 @@
     =========================== -->
     <footer class="cm-footer">
         <div class="container">
-            <div class="d-flex flex-md-row flex-column align-items-center justify-content-between gap-3 text-center text-md-start">
-
-                <div class="d-flex align-items-center gap-2">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
+                <div style="display:flex;align-items:center;gap:8px;">
                     <i class="fa-regular fa-heart cm-footer-heart" aria-hidden="true"></i>
                     <span>Cuide da mente, acompanhe o bem-estar.</span>
                 </div>
-
                 <span class="cm-footer-brand">Clear Minds <span>·</span> Saúde mental e bem-estar</span>
-
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="home-profissional.js"></script>
 
 </body>

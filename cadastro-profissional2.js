@@ -1,52 +1,66 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("professionalProfileForm2");
-  const success = document.getElementById("profileSuccess");
+  const form = document.getElementById("professionalProfile2Form");
+  const success = document.getElementById("profileSuccess2");
   const saved = JSON.parse(localStorage.getItem("cm_profile_profissional") || "{}");
 
-  const fill = (id, value) => { const el=document.getElementById(id); if (el && value && !el.value) el.value = value; };
-  fill("cidadeProf", saved.cidade);
-  fill("estadoProf", saved.estado);
-  fill("modalidade", saved.modalidade);
-  fill("duracao", saved.duracao);
-  fill("endereco", saved.endereco);
-  fill("valorSessao", saved.valorSessao);
-  fill("disponibilidade", saved.disponibilidade);
-  fill("telefoneProf", saved.telefoneProfissional);
-  fill("siteProf", saved.siteProfissional);
-  fill("abordagem", saved.abordagem);
-  fill("especialidades", saved.especialidades);
-
-  const faixasSalvas = saved.faixas || [];
-  if (Array.isArray(faixasSalvas)) {
-    document.querySelectorAll('input[name="faixa"]').forEach(cb => {
-      if (faixasSalvas.includes(cb.value)) cb.checked = true;
-    });
+  // Etapa 2 só faz sentido após a Etapa 1
+  if (!saved.nome && localStorage.getItem("cm_tipo") !== "profissional") {
+    window.location.href = "cadastro-profissional.html";
+    return;
   }
 
-  const voltar = document.getElementById("btnVoltarEtapa2");
-  if (voltar) voltar.href = "cadastro-profissional.html";
+  const fill = (id, value) => { const el=document.getElementById(id); if (el && value && !el.value) el.value = value; };
+  fill("modalidade", saved.modalidade);
+  fill("abordagem", saved.abordagem);
+  fill("especialidades", saved.especialidades);
+  fill("faixaEtaria", saved.faixaEtaria);
+  fill("cidade", saved.cidade);
+  fill("estado", saved.estado);
+  fill("telefone2", saved.telefone || "");
+  fill("valorSessao", saved.valorSessao);
+  fill("disponibilidade", saved.disponibilidade);
+
+  if (saved.verificado) {
+    const check = document.getElementById("verificadoInput");
+    const termos = document.getElementById("termosInput");
+    if (check) check.checked = true;
+    if (termos) termos.checked = true;
+  }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const faixas = Array.from(document.querySelectorAll('input[name="faixa"]:checked')).map(cb => cb.value);
+    limparErroFormulario(form);
+
+    if (!validarCamposObrigatorios(form)) {
+      mostrarErroFormulario(form, "Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    const verificado = document.getElementById("verificadoInput").checked;
+    const termos = document.getElementById("termosInput").checked;
+
+    if (!verificado || !termos) {
+      mostrarErroFormulario(form, "Marque a declaração de verificação e os termos para concluir.");
+      return;
+    }
+
+    const tel = document.getElementById("telefone2").value.trim();
 
     const profile = {
       ...saved,
-      cidade: document.getElementById("cidadeProf").value.trim(),
-      estado: document.getElementById("estadoProf").value,
       modalidade: document.getElementById("modalidade").value,
-      duracao: document.getElementById("duracao").value,
-      endereco: document.getElementById("endereco").value.trim(),
+      abordagem: document.getElementById("abordagem").value.trim(),
+      especialidades: document.getElementById("especialidades").value.trim(),
+      faixaEtaria: document.getElementById("faixaEtaria").value,
+      cidade: document.getElementById("cidade").value.trim(),
+      estado: document.getElementById("estado").value,
+      telefone: tel,
       valorSessao: document.getElementById("valorSessao").value,
       disponibilidade: document.getElementById("disponibilidade").value.trim(),
-      telefoneProfissional: document.getElementById("telefoneProf").value.trim(),
-      siteProfissional: document.getElementById("siteProf").value.trim(),
-      abordagem: document.getElementById("abordagem").value,
-      especialidades: document.getElementById("especialidades").value.trim(),
-      faixas,
-      perfilCompleto: true,
-      etapa: 2
+      verificado: true,
+      etapa: 2,
+      concluido: true
     };
 
     localStorage.setItem("cm_profile_profissional", JSON.stringify(profile));

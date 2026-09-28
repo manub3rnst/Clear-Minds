@@ -4,6 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const nomeInput = document.getElementById("nomeProfissional");
   const saved = JSON.parse(localStorage.getItem("cm_profile_profissional") || "{}");
 
+  // ================================
+  // MOSTRAR / OCULTAR SENHA
+  // ================================
+  const senha = document.getElementById("senhaProfissional");
+  const confirm = document.getElementById("confirmSenhaProfissional");
+  configurarTogglePassword(document.getElementById("toggleSenhaProfissional"), senha);
+  configurarTogglePassword(document.getElementById("toggleConfirmSenhaProfissional"), confirm);
+
+  // Senha só é obrigatória quando ainda não há cadastro concluído.
+  const editando = Boolean(saved.email && saved.senha);
+  if (editando && senha) {
+    senha.required = false;
+    senha.placeholder = "Deixe em branco para manter a senha atual";
+  }
+  if (editando && confirm) confirm.required = false;
+
+  document.getElementById("confirmSenhaProfissional").addEventListener("input", () => {
+    confirm.parentElement.style.borderColor = "";
+  });
+
   let fotoDataURL = saved.foto || "";
   const fotoInput = document.getElementById("fotoPerfil");
   const fotoPreview = document.getElementById("fotoPreview");
@@ -33,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fill = (id, value) => { const el=document.getElementById(id); if (el && value && !el.value) el.value = value; };
   fill("nomeProfissional", saved.nome);
   fill("nomeSocial", saved.nomeSocial);
+  fill("profissao", saved.profissao);
   fill("bioProfissional", saved.bio);
   fill("crp", saved.registroProfissional);
   fill("ufCrp", saved.ufCrp);
@@ -41,14 +62,42 @@ document.addEventListener("DOMContentLoaded", () => {
   fill("posGraduacao", saved.posGraduacao);
   fill("atuaDesde", saved.atuaDesde);
   fill("idiomas", saved.idiomas);
+  fill("emailProfissional", saved.email);
+  if (!saved.senha) {
+    // Nunca pré-preenche a senha caso já exista (por segurança no protótipo).
+    if (senha) senha.value = "";
+    if (confirm) confirm.value = "";
+  }
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    limparErroFormulario(form);
+
+    if (!validarCamposObrigatorios(form)) {
+      mostrarErroFormulario(form, "Preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    if (!editando) {
+      if (senha.value !== confirm.value) {
+        mostrarErroFormulario(form, "As senhas não coincidem.");
+        confirm.focus();
+        confirm.parentElement.style.borderColor = "#dc3545";
+        return;
+      }
+      if (senha.value.length < 6) {
+        mostrarErroFormulario(form, "A senha deve ter pelo menos 6 caracteres.");
+        senha.focus();
+        return;
+      }
+    }
 
     const profile = {
       ...saved,
       nome: nomeInput.value.trim(),
       nomeSocial: document.getElementById("nomeSocial").value.trim(),
+      profissao: document.getElementById("profissao").value,
       bio: document.getElementById("bioProfissional").value.trim(),
       registroProfissional: document.getElementById("crp").value.trim(),
       ufCrp: document.getElementById("ufCrp").value,
@@ -57,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
       posGraduacao: document.getElementById("posGraduacao").value.trim(),
       atuaDesde: document.getElementById("atuaDesde").value,
       idiomas: document.getElementById("idiomas").value.trim(),
+      email: document.getElementById("emailProfissional").value.trim(),
+      senha: senha.value || saved.senha || "",
       foto: fotoDataURL,
       etapa: 1
     };

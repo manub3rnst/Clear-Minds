@@ -1,5 +1,5 @@
 // ==========================================
-// FORMULÁRIO — ETAPA 2 de 3 (Bem-estar Emocional)
+// FORMULÁRIO — ETAPA 2 de 2 (Bem-estar Emocional)
 // ==========================================
 
 const wellBeingForm = document.getElementById("wellBeingForm");
@@ -39,8 +39,11 @@ if (wellBeingForm) {
 
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
 
-        // Segue para a Etapa 3
-        window.location.href = "formulario3.html";
+        // Última etapa do cadastro: inicia a sessão e abre a home.
+        localStorage.setItem("cm_session", perfil.email || perfil.nome || "usuario");
+        localStorage.setItem("cm_tipo", "estudante");
+
+        window.location.href = "home.html";
 
     });
 
