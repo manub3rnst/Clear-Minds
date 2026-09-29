@@ -6,6 +6,15 @@ const personalForm = document.getElementById("personalForm");
 
 if (personalForm) {
 
+    // Pré-preenche o nome informado no cadastro (index.html)
+    (() => {
+        const perfil = JSON.parse(localStorage.getItem("cm_profile") || "{}");
+        const nomeEl = document.getElementById("nome");
+        if (nomeEl && perfil.nome && !nomeEl.value) {
+            nomeEl.value = perfil.nome;
+        }
+    })();
+
     personalForm.addEventListener("submit", function (e) {
 
         e.preventDefault();

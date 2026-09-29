@@ -16,6 +16,30 @@ configurarTogglePassword(togglePassword, password);
 configurarTogglePassword(toggleConfirmPassword, confirmPassword);
 
 // ================================
+// FOTO DE PERFIL
+// ================================
+const fotoInput = document.getElementById("fotoPerfilRegistro");
+const fotoPreview = document.getElementById("fotoPreviewRegistro");
+let fotoDataURL = (JSON.parse(localStorage.getItem("cm_profile") || "{}")).foto || "";
+if (fotoPreview && fotoDataURL) {
+    fotoPreview.innerHTML = `<img src="${fotoDataURL}" alt="Foto de perfil">`;
+}
+if (fotoInput) {
+    fotoInput.addEventListener("change", () => {
+        const file = fotoInput.files && fotoInput.files[0];
+        if (!file) return;
+        if (!file.type.startsWith("image/")) { alert("Selecione um arquivo de imagem."); return; }
+        if (file.size > 3 * 1024 * 1024) { alert("A imagem deve ter no máximo 3 MB."); return; }
+        const reader = new FileReader();
+        reader.onload = () => {
+            fotoDataURL = reader.result;
+            if (fotoPreview) fotoPreview.innerHTML = `<img src="${fotoDataURL}" alt="Foto de perfil">`;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+// ================================
 // REMOVE BORDA VERMELHA AO DIGITAR
 // ================================
 confirmPassword.addEventListener("input", () => {
@@ -56,7 +80,8 @@ form.addEventListener("submit", async (e) => {
         nome: document.getElementById("nome").value.trim(),
         email: document.getElementById("email").value.trim(),
         curso: document.getElementById("curso").value,
-        periodo: document.getElementById("periodo").value
+        periodo: document.getElementById("periodo").value,
+        foto: fotoDataURL
     };
 
     if (MODO_TESTE) {

@@ -6,6 +6,40 @@
    ========================================== */
 
 /**
+ * Exibe um aviso discreto ("toast") sem depender de uma página
+ * específica. Usado para ações de demonstração que ainda não
+ * estão implementadas (ex.: "Login via Google").
+ */
+function avisarDemonstracao(mensagem) {
+    let toast = document.querySelector(".cm-toast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "cm-toast";
+        document.body.appendChild(toast);
+    }
+    toast.textContent = mensagem;
+    toast.classList.add("show");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+/**
+ * Liga avisos de demonstração a qualquer elemento marcado com
+ * `data-aviso="mensagem"`. Interrompe o comportamento padrão
+ * (ex.: evitar `href="#"`) e mostra o toast no lugar.
+ */
+function configurarAvisosDemonstracao() {
+    document.addEventListener("click", (e) => {
+        const alvo = e.target.closest("[data-aviso]");
+        if (!alvo) return;
+        e.preventDefault();
+        avisarDemonstracao(alvo.getAttribute("data-aviso") || "Em breve.");
+    });
+}
+
+configurarAvisosDemonstracao();
+
+/**
  * Liga um botão de "olho" a um campo de senha,
  * alternando entre texto visível/oculto.
  */

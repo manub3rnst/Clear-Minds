@@ -208,6 +208,16 @@
 
         <form id="registerForm">
 
+            <!-- Foto de perfil -->
+            <div class="photo-upload-row">
+                <span class="pro-avatar pro-avatar-large" id="fotoPreviewRegistro"><i class="fa-solid fa-user"></i></span>
+                <div class="photo-upload-fields">
+                    <label class="photo-upload-btn" for="fotoPerfilRegistro"><i class="fa-solid fa-camera"></i> Adicionar foto de perfil</label>
+                    <input type="file" id="fotoPerfilRegistro" accept="image/*" hidden>
+                    <small>Formatos JPG ou PNG. A foto fica visível no seu perfil e na comunidade.</small>
+                </div>
+            </div>
+
             <!-- Nome -->
             <div class="input-group">
 
@@ -363,21 +373,25 @@
                 <span>
 
                     Li e concordo com os
-                    <a href="#">Termos de Uso</a>
+                    <a href="#" data-aviso="Os Termos de Uso completos estarão disponíveis na versão final.">Termos de Uso</a>
                     e a
-                    <a href="#">Política de Privacidade</a>.
+                    <a href="#" data-aviso="A Política de Privacidade completa estará disponível na versão final.">Política de Privacidade</a>.
 
                 </span>
 
             </label>
 
-            <button
-                type="submit"
-                class="login-button">
+            <div class="form-buttons register-form-buttons">
 
-                Criar conta
+                <button
+                    type="submit"
+                    class="login-button">
 
-            </button>
+                    Criar conta
+
+                </button>
+
+            </div>
 
         </form>
 
@@ -407,7 +421,7 @@
 
         <div class="social-login">
 
-            <button type="button">
+            <button type="button" data-aviso="Entrar com Google estará disponível em breve na versão final.">
 
                 <img src="imagem/google.jpg" alt="Google">
 
@@ -415,7 +429,7 @@
 
             </button>
 
-            <button type="button">
+            <button type="button" data-aviso="Entrar com Microsoft estará disponível em breve na versão final.">
 
                 <img src="imagem/microsoft.jpg" alt="Microsoft">
 
@@ -435,22 +449,11 @@
 
     <div class="footer-card">
 
-        <div class="footer-left">
-
-            <i class="fa-regular fa-heart"></i>
-
-            <p>
-
-                Cada pequena atitude em direção ao
-                autocuidado faz diferença.
-
-            </p>
+            <span class="footer-brand-cm">Clear Minds</span>
+            <p class="footer-tag-cm">Um sistema a favor da saúde mental no ensino médio.</p>
+            <p class="footer-credit-cm">Desenvolvido por Manuella Bernst · Projeto Integrador · 2026</p>
 
         </div>
-
-        <i class="fa-solid fa-hand-holding-heart footer-icon"></i>
-
-    </div>
 
 </footer>
 

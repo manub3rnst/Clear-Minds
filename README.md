@@ -37,15 +37,32 @@ Site do TCC "Clear Minds", uma plataforma de apoio à saúde mental de estudante
 - **formulario.html → formulario2.html**: formulário de perfil do Estudante em 2 etapas.
   A Etapa 2 (bem-estar emocional) é a última: ela inicia a sessão e redireciona para `home.html`.
 - **home.html**: painel do Estudante — cabeçalho, menu lateral (Início, Meu diário, Comunidade,
-  Meus profissionais, Mensagens, Agenda, Meu perfil, Configurações), registro de humor e diário,
-  e **feed da comunidade** como elemento central: criar publicação (com humor opcional), curtir,
-  comentar e compartilhar **somente com conexões** (`cm_amizades`). Sem conexões, o compartilhamento
-  é desabilitado com aviso. Estruturas de dados prontas no `localStorage` (sem dados fictícios).
+  Meus profissionais, Mensagens, Agenda, Conteúdos, Meu perfil, Configurações), registro de humor
+  e diário, **feed da comunidade** como elemento central: criar publicação (com humor opcional),
+  curtir, comentar e compartilhar **somente com conexões** (`cm_amizades`). A seção **Conteúdos**
+  traz **5 artigos demonstrativos** (autocuidado, ansiedade, sono, amizades e emoções) abrindo em
+  um leitor próprio. Sem conexões, o compartilhamento é desabilitado com aviso. Estruturas de dados
+  prontas no `localStorage` (sem dados fictícios além dos conteúdos, claramente rotulados como
+  informativos).
 - **home-profissional.html**: painel do Profissional — cabeçalho, menu lateral (Início, Pacientes,
   Agenda, Conteúdos, Financeiro, Perfil), resumo rápido (pacientes ativos, atendimentos e ganho),
   lista de atividades recentes e **gráfico grande Dia | Mês | Ano** (movimentação de atendimentos e
   ganho líquido), alimentado por `cm_movimentacoes`. Nome e profissão/cargo vêm do cadastro
   profissional.
+  - **Pacientes**: lista com busca e adição manual. Inclui um **paciente de demonstração
+    claramente marcado** ("Demonstração") com **4 registros fictícios de diário**; o acesso aos
+    registros depende da **autorização do paciente** (estados: sem acesso → pendente → liberado),
+    e somente pacientes autorizados têm o botão "Ver diário" ativo.
+  - **Conteúdos**: **6 materiais demonstrativos** (escuta ativa, ansiedade, confidencialidade,
+    registro de evolução, autocuidado do terapeuta e ação em crise) com leitor próprio.
+  - **Financeiro**: filtro por período (hoje, semana, mês, ano ou personalizado), 6 cards de
+    resumo (recebido, a receber, previsto, despesas, atendimentos e valor médio), extrato com
+    entradas/saídas e status, e gráfico Dia | Mês | Ano atualizado sobre o filtro ativo.
+  - **Perfil**: apresentação em cards (bio, informações pessoais, registro e formação, atendimento)
+    com edição que reflete nos resumos do painel.
+- **Avisos de demonstrativo**: botões e links de funcionalidades ainda não implementadas
+  (entrar com Google/Microsoft, "Esqueceu sua senha?", Termos de Uso e Política de Privacidade)
+  exibem um aviso discreto ("toast") em vez de parecerem inativos, via `utils.js` e `[data-aviso]`.
 
 ## Modo de teste (sem back-end)
 
@@ -53,6 +70,11 @@ Todos os formulários funcionam em `MODO_TESTE = true` (ver `cadastro.js`, `scri
 `cadastro-profissional.js` e `login-profissional.js`), ou seja, os dados são salvos no
 `localStorage` do navegador para simular uma conta e alimentar as páginas internas, sem precisar de
 um servidor/back-end. Quando o back-end estiver pronto, basta trocar `MODO_TESTE` para `false`.
+
+Dados de demonstração são semeados automaticamente na primeira visita ao painel profissional
+(paciente fictício, diário fictício e 6 conteúdos) e exibidos em `home.html` (5 conteúdos do
+Estudante): todos são **claramente fictícios/informativos** e não representam pacientes, registros
+ou profissionais reais.
 
 Chaves usadas no `localStorage`:
 
@@ -62,7 +84,7 @@ Chaves usadas no `localStorage`:
 - `cm_profile_profissional` — dados do perfil profissional (nome, profissão/cargo, CRP, e-mail,
   senha, formação, modalidade, abordagem, especialidades, cidade/estado, valor da sessão, etc.).
 - `cm_humor_atual` — humor registrado mais recentemente.
-- `cm_diario` — registros do diário do Estudante.
+- `cm_diario` — registros do diário (do Estudante e do paciente de demonstração, filtrados por autor).
 - `cm_postagens` — publicações do feed da comunidade.
 - `cm_curtidas` — ids de postagens curtidas pelo usuário logado.
 - `cm_amizades` — conexões do usuário (estrutura para compartilhamento futuro).
@@ -71,6 +93,7 @@ Chaves usadas no `localStorage`:
 - `cm_consultas` — consultas/atendimentos agendados do Estudante.
 - `cm_pacientes`, `cm_agenda_profissional`, `cm_atividades_profissional`,
   `cm_conteudos_profissional`, `cm_movimentacoes` — dados do painel profissional.
+- `cm_solicitacoes_diario` — solicitações de acesso ao diário enviadas (pendentes de autorização).
 - `cm_config` — preferências (compartilhamento de diário e notificações).
 
 ## Estrutura de arquivos
@@ -80,8 +103,8 @@ Chaves usadas no `localStorage`:
 - `login-profissional.html` / `login-profissional.js` — Login do Profissional
 - `cadastro-profissional.html` / `cadastro-profissional.js` — Cadastro profissional (Etapa 1/2)
 - `cadastro-profissional2.html` / `cadastro-profissional2.js` — Cadastro profissional (Etapa 2/2)
-- `utils.js` — Funções compartilhadas: mostrar/ocultar senha, validação de campos obrigatórios e
-  exibição de erros de formulário
+- `utils.js` — Funções compartilhadas: mostrar/ocultar senha, validação de campos obrigatórios,
+  exibição de erros de formulário e avisos de demonstração (`[data-aviso]`)
 - `formulario.html` / `formulario1.js` — Informações pessoais (Etapa 1, Estudante)
 - `formulario2.html` / `formulario2.js` — Bem-estar emocional (Etapa 2, Estudante, última etapa)
 - `home.html` / `home.js` — Página inicial do Estudante (sidebar + comunidade/diário)
@@ -110,3 +133,29 @@ Chaves usadas no `localStorage`:
 - **Guarda de acesso**: `home-profissional.js` redireciona para `login-profissional.html` sem sessão;
   `home.js` redireciona para `login.html` (Estudante) e para a home profissional quando o tipo é
   profissional.
+
+## Melhorias realizadas nesta revisão (2ª rodada)
+
+- **Correção do cadastro profissional**: os campos de e-mail/senha/confirmação foram retirados do
+  grid de 2 colunas e empilhados em largura total, corrigindo o alinhamento inconsistente de
+  "Confirmar senha".
+- **Perfil do Profissional em cards**: `sec-perfil` reescrita com hero (avatar grande, nome,
+  profissão/CRP), cards de Apresentação, Informações pessoais, Registro e formação e Atendimento,
+  e edição funcional que atualiza os resumos do painel (formatos de data e moeda em pt-BR).
+- **Financeiro funcional**: filtro por período (tudo/hoje/semana/mês/ano/personalizado), 6 cards
+  de resumo com os cálculos reais (recebido, a receber, previsto, despesas, atendimentos e valor
+  médio), extrato com entradas/saídas e status, e suporte a movimentações antigas
+  (`normalizarMov`).
+- **Conteúdos (Estudante e Profissional)**: seções próprias no menu lateral, com 5 e 6 materiais
+  demonstrativos respectivamente, abertos em um **leitor de conteúdo** (overlay com bloco de
+  texto, recomendações e aviso de que não substitui acompanhamento profissional).
+- **Acesso ao diário dependente de autorização**: botão com ícones de cadeado/relógio/livro nos
+  estados sem-acesso, pendente e liberado; apenas pacientes autorizados podem ter o diário
+  visualizado (overlay dedicado), e as solicitações são persistidas em `cm_solicitacoes_diario`.
+- **Paciente e diário de demonstração**: um paciente fictício ("Demonstração", claramente rotulado)
+  e 4 registros fictícios de diário são semeados na primeira visita, para facilitar a demonstração.
+  O diário do Estudante filtra por autor, então os registros fictícios não aparecem para o usuário.
+- **Botões "Cancelar" dos formulários**: os três formulários do painel profissional (paciente,
+  atendimento e movimentação) agora fecham e limpam com o botão "Cancelar".
+- **Avisos de funcionalidades futuras**: entrar com Google/Microsoft, "Esqueceu sua senha?", Termos
+  de Uso e Política de Privacidade exibem um toast informativo em vez de parecerem botões mortos.

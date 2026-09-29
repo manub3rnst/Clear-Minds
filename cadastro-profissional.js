@@ -116,8 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("cm_tipo", "profissional");
     localStorage.setItem("cm_session", profile.email || saved.email || "");
 
-    form.hidden = true;
-    success.classList.add("show");
-    window.scrollTo({top:0, behavior:"smooth"});
+    // Já concluiu a Etapa 2? Volta direto para a home. Senão, segue para a Etapa 2.
+    if (profile.concluido) {
+      window.location.href = "home-profissional.html";
+    } else {
+      window.location.href = "cadastro-profissional2.html";
+    }
   });
 });

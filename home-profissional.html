@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clear Minds | Home do profissional</title>
+    <title>Clear Minds | Início do profissional</title>
 
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
@@ -29,11 +29,16 @@
         <div class="container">
             <div class="cm-topbar-row">
 
-                <div class="cm-brand">
-                    <img src="imagem/logo.jpg" alt="Clear Minds">
-                    <div>
-                        <h2>Clear Minds</h2>
-                        <span>Cuide, acompanhe e fortaleça o seu trabalho.</span>
+                <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+                    <button type="button" class="cm-hamburger" id="btnMenu" aria-label="Abrir menu" aria-expanded="false">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <div class="cm-brand">
+                        <img src="imagem/logo.jpg" alt="Clear Minds">
+                        <div>
+                            <h2>Clear Minds</h2>
+                            <span>Cuide, acompanhe e fortaleça o seu trabalho.</span>
+                        </div>
                     </div>
                 </div>
 
@@ -61,6 +66,14 @@
             =========================== -->
             <aside class="cm-side" id="menuLateral" aria-label="Menu do painel profissional">
 
+                <div class="cm-side-user">
+                    <span class="cm-avatar" id="sideAvatar" aria-hidden="true">P</span>
+                    <span class="cm-side-user-info">
+                        <strong id="sideNome">Profissional</strong>
+                        <small>Profissional de saúde</small>
+                    </span>
+                </div>
+
                 <button type="button" class="cm-side-item active" data-secao="inicio">
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Início
                 </button>
@@ -84,6 +97,7 @@
                 </button>
 
             </aside>
+            <div class="cm-side-overlay" id="menuOverlay"></div>
 
             <!-- ==========================
                  ÁREA CENTRAL
@@ -96,6 +110,26 @@
                     <div class="cm-section-head">
                         <h1 id="saudacao">Olá, profissional!</h1>
                         <p>Acompanhe sua rotina, seus pacientes e seus resultados em um só lugar.</p>
+                    </div>
+
+                    <!-- AÇÕES RÁPIDAS -->
+                    <div class="cm-actions-row">
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes">
+                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                            Adicionar paciente
+                        </button>
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="agenda">
+                            <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+                            Registrar atendimento
+                        </button>
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="financeiro">
+                            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
+                            Lançar valor
+                        </button>
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes" data-open="0">
+                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                            Pedir acesso ao diário
+                        </button>
                     </div>
 
                     <!-- GRÁFICO GRANDE (dia | mês | ano) -->
@@ -203,6 +237,31 @@
 
                     <div class="cm-panel">
 
+                        <div class="cm-actions-row">
+                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovoPaciente">
+                                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                                Adicionar paciente
+                            </button>
+                        </div>
+
+                        <form class="cm-add-form" id="addPacienteForm">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="addPacNome">Nome completo</label>
+                                    <input class="cm-input" id="addPacNome" type="text" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addPacEmail">E-mail do paciente</label>
+                                    <input class="cm-input" id="addPacEmail" type="email" required>
+                                </div>
+                            </div>
+                            <div class="cm-add-form-actions">
+                                <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm">Salvar paciente</button>
+                                <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm btn-cancel-form">Cancelar</button>
+                            </div>
+                            <p class="cm-feedback" id="pacAddFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Paciente adicionado!</p>
+                        </form>
+
                         <label class="cm-search" for="buscaPaciente">
                             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                             <input type="text" id="buscaPaciente" placeholder="Buscar paciente...">
@@ -213,7 +272,7 @@
                         <div class="cm-empty-state" id="pacientesVazio">
                             <i class="fa-solid fa-user-group" aria-hidden="true"></i>
                             <strong>Nenhum paciente ainda</strong>
-                            <span>Quando estudantes solicitarem acompanhamento, eles aparecerão aqui.</span>
+                            <span>Adicione seus pacientes e acompanhe o acesso ao diário pelo botão em cada item.</span>
                         </div>
 
                     </div>
@@ -230,12 +289,54 @@
 
                     <div class="cm-panel">
 
+                        <div class="cm-actions-row">
+                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovoAtendimento">
+                                <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
+                                Registrar atendimento
+                            </button>
+                        </div>
+
+                        <form class="cm-add-form" id="addAtendimentoForm">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="addAtendPaciente">Paciente</label>
+                                    <input class="cm-input" id="addAtendPaciente" type="text" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addAtendTipo">Tipo</label>
+                                    <input class="cm-input" id="addAtendTipo" type="text" placeholder="Ex.: Consulta, retorno">
+                                </div>
+                                <div class="input-group">
+                                    <label for="addAtendData">Data</label>
+                                    <input class="cm-input" id="addAtendData" type="date" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addAtendHora">Horário</label>
+                                    <input class="cm-input" id="addAtendHora" type="time" required>
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin-top:6px;max-width:340px;">
+                                <label for="addAtendStatus">Status</label>
+                                <select class="cm-input" id="addAtendStatus" required>
+                                    <option value="realizado">Realizado</option>
+                                    <option value="agendado">Agendado</option>
+                                    <option value="cancelado">Cancelado</option>
+                                </select>
+                            </div>
+                            <div class="cm-add-form-actions">
+                                <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm">Salvar atendimento</button>
+                                <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm btn-cancel-form">Cancelar</button>
+                            </div>
+                            <p class="cm-form-note">Atendimentos cancelados não entram nos cálculos do Financeiro.</p>
+                            <p class="cm-feedback" id="atendFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Atendimento registrado!</p>
+                        </form>
+
                         <ul class="cm-dash-list" id="listaAgenda"></ul>
 
                         <div class="cm-empty-state" id="agendaVazio">
                             <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
                             <strong>Nenhum atendimento agendado</strong>
-                            <span>Seus próximos atendimentos aparecerão aqui.</span>
+                            <span>Registre seus atendimentos pelo botão acima.</span>
                         </div>
 
                     </div>
@@ -272,6 +373,94 @@
                         <p>Visão completa da sua movimentação e ganhos.</p>
                     </div>
 
+                    <!-- FILTRO POR PERÍODO -->
+                    <div class="cm-panel">
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title">
+                                    <i class="fa-solid fa-filter" aria-hidden="true"></i>
+                                    Período analisado
+                                </h2>
+                                <p class="cm-panel-sub" id="finPeriodoLabel">Exibindo os lançamentos de <strong>todo o período</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="cm-fin-filter" id="finFilterBar" role="group" aria-label="Filtrar por período">
+                            <button type="button" class="cm-chart-tab active" data-fin-periodo="tudo">Tudo</button>
+                            <button type="button" class="cm-chart-tab" data-fin-periodo="hoje">Hoje</button>
+                            <button type="button" class="cm-chart-tab" data-fin-periodo="semana">Esta semana</button>
+                            <button type="button" class="cm-chart-tab" data-fin-periodo="mes">Este mês</button>
+                            <button type="button" class="cm-chart-tab" data-fin-periodo="ano">Este ano</button>
+                            <button type="button" class="cm-chart-tab" data-fin-periodo="personalizado">Personalizado</button>
+                        </div>
+                        <div class="cm-fin-custom" id="finCustomRange" hidden>
+                            <div class="input-group">
+                                <label for="finDe">De</label>
+                                <input class="cm-input" id="finDe" type="date">
+                            </div>
+                            <div class="input-group">
+                                <label for="finAte">Até</label>
+                                <input class="cm-input" id="finAte" type="date">
+                            </div>
+                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnFinAplicar">
+                                <i class="fa-solid fa-check" aria-hidden="true"></i>
+                                Aplicar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RESUMO FINANCEIRO -->
+                    <div class="cm-stat-grid cm-fin-stat-grid">
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finTotalRecebido">R$ 0,00</strong>
+                            <small>Total recebido</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#EAF3FD;color:var(--primary-dark);">
+                                <i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finTotalPendente">R$ 0,00</strong>
+                            <small>A receber</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#FFF4E6;color:#E76F51;">
+                                <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finTotalPrevisto">R$ 0,00</strong>
+                            <small>Total previsto</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#F3E8FF;color:#7C3AED;">
+                                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finAtendimentos">0</strong>
+                            <small>Atendimentos no período</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                                <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finValorMedio">R$ 0,00</strong>
+                            <small>Valor médio por atendimento</small>
+                        </div>
+
+                        <div class="cm-stat-card">
+                            <span class="cm-stat-icon-lg" style="background:#FDECEC;color:#E63946;">
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </span>
+                            <strong id="finDespesas">R$ 0,00</strong>
+                            <small>Despesas no período</small>
+                        </div>
+
+                    </div>
+
                     <div class="cm-panel">
 
                         <div class="cm-panel-head">
@@ -280,7 +469,7 @@
                                     <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
                                     Movimentação
                                 </h2>
-                                <p class="cm-panel-sub">Fluxo de atendimentos e valor recebido.</p>
+                                <p class="cm-panel-sub">Fluxo de atendimentos e valor recebido no período filtrado.</p>
                             </div>
                             <div class="cm-chart-tabs" id="chartTabsFull" role="tablist" aria-label="Período do gráfico">
                                 <button type="button" class="cm-chart-tab active" data-periodo="dia" role="tab">Dia</button>
@@ -302,9 +491,9 @@
 
                         <div class="cm-bars" id="chartFullBars"></div>
 
-                        <div class="cm-empty-state" id="chartFullEmpty">
+                        <div class="cm-empty-state" id="chartFullEmpty" hidden>
                             <i class="fa-solid fa-coins" aria-hidden="true"></i>
-                            <strong>Sem movimentação</strong>
+                            <strong>Sem movimentação no período</strong>
                             <span>Os lançamentos de atendimentos aparecerão aqui.</span>
                         </div>
 
@@ -319,14 +508,55 @@
                                     Extrato de movimentações
                                 </h2>
                             </div>
+                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovaMovimentacao">
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                                Lançar valor
+                            </button>
                         </div>
+
+                        <form class="cm-add-form" id="addMovimentacaoForm">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="addMovDescricao">Descrição</label>
+                                    <input class="cm-input" id="addMovDescricao" type="text" placeholder="Ex.: Consulta — paciente" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addMovTipo">Tipo</label>
+                                    <select class="cm-input" id="addMovTipo" required>
+                                        <option value="entrada">Entrada (recebimento)</option>
+                                        <option value="saida">Saída (despesa)</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addMovStatus">Status</label>
+                                    <select class="cm-input" id="addMovStatus" required>
+                                        <option value="recebido">Recebido / Pago</option>
+                                        <option value="pendente">Pendente</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addMovValor">Valor (R$)</label>
+                                    <input class="cm-input" id="addMovValor" type="number" min="0" step="0.01" placeholder="0,00" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="addMovData">Data</label>
+                                    <input class="cm-input" id="addMovData" type="date" required>
+                                </div>
+                            </div>
+                            <div class="cm-add-form-actions">
+                                <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm">Salvar lançamento</button>
+                                <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm btn-cancel-form">Cancelar</button>
+                            </div>
+                            <p class="cm-form-note">Entradas de "Recebido" somam no total recebido; "Pendente" entra em a receber (previsto). Despesas reduzem o ganho líquido. Lançamentos de sessões canceladas não são contabilizados.</p>
+                            <p class="cm-feedback" id="movFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Lançamento salvo!</p>
+                        </form>
 
                         <ul class="cm-dash-list" id="listaMovimentacoes"></ul>
 
                         <div class="cm-empty-state" id="movimentacoesVazio">
                             <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
-                            <strong>Nenhum lançamento</strong>
-                            <span>Os registros financeiros aparecerão aqui.</span>
+                            <strong>Nenhum lançamento no período</strong>
+                            <span>Registre a movimentação pelo botão acima ou ajuste o filtro.</span>
                         </div>
 
                     </div>
@@ -343,36 +573,123 @@
 
                     <div class="cm-panel">
 
-                        <div class="cm-profile-chip">
-                            <span class="cm-avatar cm-avatar-sm" id="perfilAvatar">P</span>
-                            <span>
-                                <strong id="perfilNome">Profissional</strong>
-                                <small id="perfilMeta">Profissional de saúde</small>
-                            </span>
-                            <span class="cm-verif-badge" id="statusVerificacao">
-                                <i class="fa-solid fa-shield-check" aria-hidden="true"></i>
-                                Verificação pendente
-                            </span>
+                        <div class="cm-profile-hero">
+                            <span class="cm-avatar cm-avatar-lg" id="perfilAvatar" aria-hidden="true">P</span>
+                            <div class="cm-profile-hero-info">
+                                <h2 id="perfilNome">Profissional</h2>
+                                <p class="cm-profile-user" id="perfilMeta">Profissional de saúde</p>
+                                <span class="cm-verif-badge" id="statusVerificacao">
+                                    <i class="fa-solid fa-shield-check" aria-hidden="true"></i>
+                                    Verificação pendente
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="cm-profile-tags">
-                            <span class="cm-tag" id="perfilLocal">Localização não informada</span>
-                            <span class="cm-tag cm-tag-muted" id="perfilModalidade">Modalidade não informada</span>
-                            <span class="cm-tag" id="perfilAbordagem" hidden>Abordagem não informada</span>
-                            <span class="cm-tag cm-tag-muted" id="perfilFormacao" hidden>Formação —</span>
-                            <span class="cm-tag" id="perfilAtuaDesde" hidden>Atua desde —</span>
-                        </div>
+                    </div>
 
-                        <ul class="cm-profile-detail">
-                            <li id="perfilEspecialidades" hidden><span><i class="fa-solid fa-list-check" aria-hidden="true"></i> Especialidades:</span> <strong>—</strong></li>
-                            <li id="perfilDisponibilidade" hidden><span><i class="fa-solid fa-clock" aria-hidden="true"></i> Disponibilidade:</span> <strong>—</strong></li>
-                            <li id="perfilValor" hidden><span><i class="fa-solid fa-brazilian-real-sign" aria-hidden="true"></i> Valor da sessão:</span> <strong>—</strong></li>
-                        </ul>
+                    <!-- APRESENTAÇÃO -->
+                    <div class="cm-panel">
 
-                        <a href="cadastro-profissional.html" class="cm-btn cm-btn-soft" style="margin-top:16px;">
+                        <h2 class="cm-profile-section-title">
+                            <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                            Apresentação profissional
+                        </h2>
+                        <p class="cm-profile-section-sub">Como você retrata sua atuação na plataforma.</p>
+
+                        <p class="cm-bio-text" id="perfilBio">Nenhuma apresentação adicionada ainda.</p>
+
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-prof style="margin-top:14px;">
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                            Editar apresentação
+                        </button>
+
+                    </div>
+
+                    <!-- INFORMAÇÕES PESSOAIS -->
+                    <div class="cm-panel">
+
+                        <h2 class="cm-profile-section-title">
+                            <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                            Informações pessoais
+                        </h2>
+                        <p class="cm-profile-section-sub">Dados básicos do seu cadastro.</p>
+
+                        <div class="cm-profile-grid" id="listaInfoPessoalProf"></div>
+
+                    </div>
+
+                    <!-- REGISTRO E FORMAÇÃO -->
+                    <div class="cm-panel">
+
+                        <h2 class="cm-profile-section-title">
+                            <i class="fa-solid fa-stamp" aria-hidden="true"></i>
+                            Registro e formação
+                        </h2>
+                        <p class="cm-profile-section-sub">Identificação e formação profissional.</p>
+
+                        <div class="cm-profile-grid" id="listaInfoProfissional"></div>
+
+                    </div>
+
+                    <!-- ATENDIMENTO -->
+                    <div class="cm-panel">
+
+                        <h2 class="cm-profile-section-title">
+                            <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+                            Atendimento
+                        </h2>
+                        <p class="cm-profile-section-sub">Como e onde você atende seus pacientes.</p>
+
+                        <div class="cm-profile-grid" id="listaAtendimento"></div>
+
+                    </div>
+
+                    <!-- EDIÇÃO -->
+                    <div class="cm-panel">
+
+                        <h2 class="cm-profile-section-title">
+                            <i class="fa-solid fa-sliders" aria-hidden="true"></i>
                             Editar perfil
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                        </a>
+                        </h2>
+                        <p class="cm-profile-section-sub">Atualize rapidamente os dados exibidos no seu perfil.</p>
+
+                        <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnEditarPerfilProf">
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                            Editar dados
+                        </button>
+
+                        <div class="cm-edit-form" id="editFormProf">
+                            <div class="form-grid">
+                                <div class="input-group">
+                                    <label for="editNome">Nome profissional</label>
+                                    <input class="cm-input" id="editNome" type="text">
+                                </div>
+                                <div class="input-group">
+                                    <label for="editTelefone">Telefone</label>
+                                    <input class="cm-input" id="editTelefone" type="tel" placeholder="(00) 00000-0000">
+                                </div>
+                                <div class="input-group">
+                                    <label for="editCidade">Cidade</label>
+                                    <input class="cm-input" id="editCidade" type="text">
+                                </div>
+                                <div class="input-group">
+                                    <label for="editValorSessao">Valor da sessão (R$)</label>
+                                    <input class="cm-input" id="editValorSessao" type="number" min="0" step="0.01" placeholder="0,00">
+                                </div>
+                            </div>
+                            <div class="input-group" style="margin-top:6px;">
+                                <label for="editBioProf">Apresentação profissional</label>
+                                <textarea class="cm-input" id="editBioProf" rows="3" maxlength="800"></textarea>
+                            </div>
+                            <div class="cm-add-form-actions" style="margin-top:14px;">
+                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfilProf">
+                                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+                                    Salvar
+                                </button>
+                                <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfilProf">Cancelar</button>
+                            </div>
+                            <p class="cm-feedback" id="perfilProfFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dados atualizados!</p>
+                        </div>
 
                     </div>
 
@@ -389,15 +706,64 @@
     =========================== -->
     <footer class="cm-footer">
         <div class="container">
-            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;">
-                <div style="display:flex;align-items:center;gap:8px;">
-                    <i class="fa-regular fa-heart cm-footer-heart" aria-hidden="true"></i>
-                    <span>Cuide da mente, acompanhe o bem-estar.</span>
-                </div>
-                <span class="cm-footer-brand">Clear Minds <span>·</span> Saúde mental e bem-estar</span>
+            <div class="cm-footer-inner">
+                <span class="cm-footer-brand-lg">Clear Minds</span>
+                <p class="cm-footer-tag">Um sistema a favor da saúde mental no ensino médio.</p>
+                <p class="cm-footer-credit">Desenvolvido por Manuella Bernst · Projeto Integrador · 2026</p>
             </div>
         </div>
     </footer>
+
+    <!-- ==========================
+         LEITOR DE CONTEÚDOS
+    =========================== -->
+    <div class="cm-modal-overlay" id="cmReaderOverlay" role="dialog" aria-modal="true" aria-label="Leitor de conteúdo">
+        <div class="cm-reader">
+            <button type="button" class="cm-reader-close" id="cmReaderClose" aria-label="Fechar leitor">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <div class="cm-reader-head">
+                <span class="cm-tag" id="cmReaderCategoria">Material</span>
+                <span class="cm-reader-data" id="cmReaderData">—</span>
+            </div>
+            <h2 id="cmReaderTitulo">Conteúdo</h2>
+            <p class="cm-reader-teaser" id="cmReaderTeaser"></p>
+            <div class="cm-reader-body" id="cmReaderCorpo"></div>
+            <p class="cm-reader-note">
+                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                Material de apoio profissional. Adapte-o à sua realidade e formação.
+            </p>
+        </div>
+    </div>
+
+    <!-- ==========================
+         DIÁRIO DO PACIENTE
+    =========================== -->
+    <div class="cm-modal-overlay" id="cmDiarioOverlay" role="dialog" aria-modal="true" aria-label="Diário do paciente">
+        <div class="cm-reader">
+            <button type="button" class="cm-reader-close" id="cmDiarioClose" aria-label="Fechar diário">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+            <div class="cm-reader-head">
+                <span class="cm-tag">Diário do paciente</span>
+                <span class="cm-reader-data">Somente com autorização</span>
+            </div>
+            <h2 id="cmDiarioPacNome">Paciente</h2>
+            <p class="cm-reader-teaser">Registros escritos pelo(a) paciente neste dispositivo (demonstração fictícia).</p>
+            <div class="cm-reader-body">
+                <div class="cm-diary-list" id="listaDiarioPaciente"></div>
+                <div class="cm-empty-state" id="diarioPacienteVazio">
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                    <strong>Nenhum registro no diário</strong>
+                    <span>Quando o paciente escrever no diário, os registros aparecerão aqui.</span>
+                </div>
+            </div>
+            <p class="cm-reader-note">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                O acesso ocorre somente após a autorização do paciente.
+            </p>
+        </div>
+    </div>
 
     <script src="home-profissional.js"></script>
 
