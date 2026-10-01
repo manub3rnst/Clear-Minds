@@ -235,12 +235,50 @@ aplicarFoto(document.getElementById("avatarIniciais"));
         const secao = document.getElementById(`sec-${alvo}`);
         if (secao) secao.classList.add("active");
         fecharMenu();
+        recolherMenuLateral();
+        if (document.activeElement && menuLateral && menuLateral.contains(document.activeElement)) {
+            document.activeElement.blur();
+        }
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-botoesMenu.forEach(btn => {
+    botoesMenu.forEach(btn => {
         btn.addEventListener("click", () => alternarSecao(btn.dataset.secao));
     });
+
+    /* ==========================================
+       MENU LATERAL — barra fixa na lateral esquerda
+       (recolhida com só ícones; expande sobre o conteúdo
+        quando o mouse entra, sem empurrar a página)
+     ========================================== */
+
+    function expandirMenuLateral() {
+        if (menuLateral) menuLateral.classList.add("sidebar-expanded");
+    }
+
+    function recolherMenuLateral() {
+        if (menuLateral) menuLateral.classList.remove("sidebar-expanded");
+    }
+
+    /* a barra começa logo abaixo do topo fixo */
+    const cmTopbar = document.querySelector(".cm-topbar");
+
+    function alinharMenuLateral() {
+        if (!cmTopbar) return;
+        document.body.style.setProperty("--cm-rail-top", cmTopbar.offsetHeight + "px");
+    }
+
+    alinharMenuLateral();
+    window.addEventListener("resize", alinharMenuLateral);
+
+    if (menuLateral) {
+        menuLateral.addEventListener("mouseenter", expandirMenuLateral);
+        menuLateral.addEventListener("mouseleave", recolherMenuLateral);
+        menuLateral.addEventListener("focusin", expandirMenuLateral);
+        menuLateral.addEventListener("focusout", (e) => {
+            if (!menuLateral.contains(e.relatedTarget)) recolherMenuLateral();
+        });
+    }
 
     // Botões de ação rápida (Início) que levam à seção correspondente
     document.querySelectorAll("[data-ir]").forEach(btn => {
@@ -1126,6 +1164,175 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
     atualizarResumo();
 
     /* ==========================================
+       CONFIGURAÇÕES
+       Mesma tela de Configurações já existente no ambiente do
+       usuário, agora disponível também para o profissional.
+       Usa a mesma chave de preferências (cm_config) e o mesmo
+       perfil do profissional (cm_profile_profissional).
+    ========================================== */
+    const getConfigObj = () => JSON.parse(localStorage.getItem("cm_config") || "{}");
+
+    const cfgDefaults = {
+        compartilharDiario: true,
+        notificacoes: true,
+        profissionaisVeemProgresso: false,
+        quemInterage: "todos",
+        notifMensagens: true,
+        notifComunidade: true,
+        notifInteracoes: true,
+        lembretesDiario: true,
+        permitirInteracoes: true,
+        mostrarSugestoes: true,
+        visibilidadePerfil: "publico",
+        tema: "claro",
+        tamanhoTexto: "normal"
+    };
+
+    const aplicarAparencia = (cfg) => {
+        const escala = { pequeno: "15px", normal: "16px", grande: "18px" };
+        document.documentElement.style.fontSize = escala[cfg.tamanhoTexto] || "16px";
+    };
+
+    const salvarConfiguracao = (parcial) => {
+        const nova = Object.assign({}, getConfigObj(), parcial);
+        localStorage.setItem("cm_config", JSON.stringify(nova));
+        aplicarAparencia(nova);
+        return nova;
+    };
+
+    const carregarConfiguracao = () => {
+        const padrao = Object.assign({}, cfgDefaults, getConfigObj());
+        document.querySelectorAll("[data-cfg]").forEach(el => {
+            const chave = el.dataset.cfg;
+            const valor = padrao[chave];
+            if (valor === undefined) return;
+            if (el.type === "checkbox") el.checked = Boolean(valor);
+            else el.value = valor;
+        });
+        return padrao;
+    };
+
+    carregarConfiguracao();
+    aplicarAparencia(getConfigObj());
+
+    document.querySelectorAll("[data-cfg]").forEach(el => {
+        el.addEventListener("change", () => {
+            salvarConfiguracao({ [el.dataset.cfg]: el.type === "checkbox" ? el.checked : el.value });
+        });
+    });
+
+    /* ---------- Conta: nome e e-mail ---------- */
+    const atualizarNomeExibido = (novoNome) => {
+        const n = (novoNome || "").trim();
+        set("topoNomeUsuario", `Olá, ${n ? n.split(" ")[0] : "Profissional"}`);
+        set("sideNome", n || "Profissional");
+        renderPerfilProf();
+        aplicarFoto(document.getElementById("avatarIniciais"));
+        aplicarFoto(document.getElementById("sideAvatar"));
+        aplicarFoto(document.getElementById("perfilAvatar"));
+    };
+
+    const btnCfgNome = document.getElementById("btnCfgNome");
+    if (btnCfgNome) btnCfgNome.addEventListener("click", () => {
+        const v = document.getElementById("cfgNovoNome")?.value.trim();
+        if (!v) { notificar("Digite um novo nome."); return; }
+        perfil.nome = v;
+        perfil.email = perfil.email || sessao;
+        localStorage.setItem("cm_profile_profissional", JSON.stringify(perfil));
+        atualizarNomeExibido(v);
+        registrarAtividade("Nome atualizado.");
+        notificar("Nome atualizado com sucesso.");
+        document.getElementById("cfgNovoNome").value = "";
+    });
+
+    const btnCfgEmail = document.getElementById("btnCfgEmail");
+    if (btnCfgEmail) btnCfgEmail.addEventListener("click", () => {
+        const v = document.getElementById("cfgNovoEmail")?.value.trim();
+        if (!v || !v.includes("@")) { notificar("Digite um e-mail válido."); return; }
+        const emailAntigo = sessao;
+        perfil.email = v;
+        localStorage.setItem("cm_profile_profissional", JSON.stringify(perfil));
+        if (localStorage.getItem("cm_session") === sessao) localStorage.setItem("cm_session", v);
+        renderPerfilProf();
+        registrarAtividade(`E-mail atualizado (${emailAntigo} → ${v}).`);
+        notificar("E-mail atualizado. Use-o no próximo login.");
+        document.getElementById("cfgNovoEmail").value = "";
+    });
+
+    /* ---------- Conta: senha ---------- */
+    const cfgSenhaAtual = document.getElementById("cfgSenhaAtual");
+    const cfgSenhaNova = document.getElementById("cfgSenhaNova");
+    const cfgSenhaConf = document.getElementById("cfgSenhaConf");
+    const btnCfgSenha = document.getElementById("btnCfgSenha");
+
+    if (btnCfgSenha) btnCfgSenha.addEventListener("click", () => {
+        const atual = cfgSenhaAtual ? cfgSenhaAtual.value : "";
+        const nova = cfgSenhaNova ? cfgSenhaNova.value : "";
+        const conf = cfgSenhaConf ? cfgSenhaConf.value : "";
+        if (nova.length < 6) { notificar("A nova senha precisa ter no mínimo 6 caracteres."); return; }
+        if (nova !== conf) { notificar("A confirmação não confere com a nova senha."); return; }
+        if (perfil.senha && atual !== perfil.senha) { notificar("A senha atual está incorreta."); return; }
+        perfil.email = perfil.email || sessao;
+        perfil.senha = nova;
+        localStorage.setItem("cm_profile_profissional", JSON.stringify(perfil));
+        registrarAtividade("Senha alterada.");
+        notificar("Senha alterada com sucesso.");
+        if (cfgSenhaAtual) cfgSenhaAtual.value = "";
+        if (cfgSenhaNova) cfgSenhaNova.value = "";
+        if (cfgSenhaConf) cfgSenhaConf.value = "";
+    });
+
+    /* ---------- Sessão: sair da conta ---------- */
+    const btnCfgSair = document.getElementById("btnCfgSair");
+    if (btnCfgSair) btnCfgSair.addEventListener("click", () => {
+        localStorage.removeItem("cm_session");
+        localStorage.removeItem("cm_tipo");
+        window.location.href = "login-profissional.html";
+    });
+
+    /* ---------- Dados: exportar e excluir ---------- */
+    const btnCfgExportar = document.getElementById("btnCfgExportar");
+    if (btnCfgExportar) btnCfgExportar.addEventListener("click", () => {
+        const dados = {
+            exportadoEm: new Date().toISOString(),
+            perfil,
+            config: getConfigObj(),
+            pacientes,
+            agenda,
+            atividades,
+            movimentacoes
+        };
+        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "clear-minds-dados-profissional.json";
+        a.click();
+        URL.revokeObjectURL(a.href);
+        notificar("Dados exportados.");
+    });
+
+    const btnCfgExcluir = document.getElementById("btnCfgExcluir");
+    if (btnCfgExcluir) btnCfgExcluir.addEventListener("click", () => {
+        if (!window.confirm("Finalizar e apagar os seus dados do Clear Minds neste dispositivo? Essa ação não pode ser desfeita.")) return;
+        localStorage.removeItem("cm_profile_profissional");
+        localStorage.removeItem("cm_pacientes");
+        localStorage.removeItem("cm_agenda_profissional");
+        localStorage.removeItem("cm_atividades_profissional");
+        localStorage.removeItem("cm_movimentacoes");
+        localStorage.removeItem("cm_conteudos_profissional");
+        localStorage.removeItem("cm_session");
+        localStorage.removeItem("cm_tipo");
+        window.location.href = "login-profissional.html";
+    });
+
+    /* ---------- Atalho para o perfil ---------- */
+    const btnCfgIrPerfil = document.getElementById("btnCfgIrPerfil");
+    if (btnCfgIrPerfil) btnCfgIrPerfil.addEventListener("click", () => {
+        const b = document.querySelector('.cm-side-item[data-secao="perfil"]');
+        if (b) b.click();
+    });
+
+    /* ==========================================
        LOGOUT
     ========================================== */
     const btnSair = document.getElementById("btnSair");
@@ -1134,5 +1341,12 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
         localStorage.removeItem("cm_tipo");
         window.location.href = "login-profissional.html";
     });
+    const btnSairMenu = document.getElementById("btnSairMenu");
+    if (btnSairMenu) btnSairMenu.addEventListener("click", () => {
+        localStorage.removeItem("cm_session");
+        localStorage.removeItem("cm_tipo");
+        window.location.href = "login-profissional.html";
+    });
+
 
 });

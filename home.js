@@ -328,9 +328,45 @@ document.addEventListener("DOMContentLoaded", () => {
             const secao = document.getElementById(`sec-${alvo}`);
             if (secao) secao.classList.add("active");
             fecharMenu();
+            recolherMenuLateral();
+            btn.blur();
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     });
+
+    /* ==========================================
+       MENU LATERAL — barra fixa na lateral esquerda
+       (recolhida com só ícones; expande sobre o conteúdo
+        quando o mouse entra, sem empurrar a página)
+    ========================================== */
+
+    function expandirMenuLateral() {
+        if (menuLateral) menuLateral.classList.add("sidebar-expanded");
+    }
+
+    function recolherMenuLateral() {
+        if (menuLateral) menuLateral.classList.remove("sidebar-expanded");
+    }
+
+    /* a barra começa logo abaixo do topo fixo */
+    const cmTopbar = document.querySelector(".cm-topbar");
+
+    function alinharMenuLateral() {
+        if (!cmTopbar) return;
+        document.body.style.setProperty("--cm-rail-top", cmTopbar.offsetHeight + "px");
+    }
+
+    alinharMenuLateral();
+    window.addEventListener("resize", alinharMenuLateral);
+
+    if (menuLateral) {
+        menuLateral.addEventListener("mouseenter", expandirMenuLateral);
+        menuLateral.addEventListener("mouseleave", recolherMenuLateral);
+        menuLateral.addEventListener("focusin", expandirMenuLateral);
+        menuLateral.addEventListener("focusout", (e) => {
+            if (!menuLateral.contains(e.relatedTarget)) recolherMenuLateral();
+        });
+    }
 
     /* ==========================================
        PESSOAS PARA SEGUIR (comunidade) + busca
@@ -1481,5 +1517,12 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem("cm_tipo");
         window.location.href = "login.html";
     });
+    const btnSairMenu = document.getElementById("btnSairMenu");
+    if (btnSairMenu) btnSairMenu.addEventListener("click", () => {
+        localStorage.removeItem("cm_session");
+        localStorage.removeItem("cm_tipo");
+        window.location.href = "login.html";
+    });
+
 
 });

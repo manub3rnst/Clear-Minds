@@ -75,26 +75,32 @@
                 </div>
 
                 <button type="button" class="cm-side-item active" data-secao="inicio">
-                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                    <i class="fa-solid fa-house" aria-hidden="true"></i><span class="cm-side-label">Início</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="pacientes">
-                    <i class="fa-solid fa-user-group" aria-hidden="true"></i> Pacientes
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i><span class="cm-side-label">Pacientes</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="agenda">
-                    <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Agenda
+                    <i class="fa-solid fa-calendar-days" aria-hidden="true"></i><span class="cm-side-label">Agenda</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="conteudos">
-                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span class="cm-side-label">Conteúdos</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="financeiro">
-                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i> Financeiro
+                    <i class="fa-solid fa-chart-line" aria-hidden="true"></i><span class="cm-side-label">Financeiro</span>
                 </button>
 
-                <div class="cm-side-sep"></div>
-
-                <button type="button" class="cm-side-item" data-secao="perfil">
-                    <i class="fa-regular fa-id-card" aria-hidden="true"></i> Perfil
-                </button>
+                <div class="cm-side-bottom">
+                    <button type="button" class="cm-side-item" data-secao="perfil">
+                        <i class="fa-regular fa-id-card" aria-hidden="true"></i><span class="cm-side-label">Perfil</span>
+                    </button>
+                    <button type="button" class="cm-side-item" data-secao="config">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i><span class="cm-side-label">Configurações</span>
+                    </button>
+                    <button type="button" class="cm-side-item" id="btnSairMenu">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i><span class="cm-side-label">Sair</span>
+                    </button>
+                </div>
 
             </aside>
             <div class="cm-side-overlay" id="menuOverlay"></div>
@@ -115,20 +121,16 @@
                     <!-- AÇÕES RÁPIDAS -->
                     <div class="cm-actions-row">
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes">
-                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                            Adicionar paciente
+                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>Adicionar paciente
                         </button>
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="agenda">
-                            <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
-                            Registrar atendimento
+                            <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>Registrar atendimento
                         </button>
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="financeiro">
-                            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
-                            Lançar valor
+                            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>Lançar valor
                         </button>
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes" data-open="0">
-                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                            Pedir acesso ao diário
+                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>Pedir acesso ao diário
                         </button>
                     </div>
 
@@ -239,8 +241,7 @@
 
                         <div class="cm-actions-row">
                             <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovoPaciente">
-                                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
-                                Adicionar paciente
+                                <i class="fa-solid fa-user-plus" aria-hidden="true"></i>Adicionar paciente
                             </button>
                         </div>
 
@@ -291,8 +292,7 @@
 
                         <div class="cm-actions-row">
                             <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovoAtendimento">
-                                <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>
-                                Registrar atendimento
+                                <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>Registrar atendimento
                             </button>
                         </div>
 
@@ -402,8 +402,7 @@
                                 <input class="cm-input" id="finAte" type="date">
                             </div>
                             <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnFinAplicar">
-                                <i class="fa-solid fa-check" aria-hidden="true"></i>
-                                Aplicar
+                                <i class="fa-solid fa-check" aria-hidden="true"></i>Aplicar
                             </button>
                         </div>
                     </div>
@@ -509,8 +508,7 @@
                                 </h2>
                             </div>
                             <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovaMovimentacao">
-                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
-                                Lançar valor
+                                <i class="fa-solid fa-plus" aria-hidden="true"></i>Lançar valor
                             </button>
                         </div>
 
@@ -599,8 +597,7 @@
                         <p class="cm-bio-text" id="perfilBio">Nenhuma apresentação adicionada ainda.</p>
 
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-prof style="margin-top:14px;">
-                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                            Editar apresentação
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar apresentação
                         </button>
 
                     </div>
@@ -654,8 +651,7 @@
                         <p class="cm-profile-section-sub">Atualize rapidamente os dados exibidos no seu perfil.</p>
 
                         <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnEditarPerfilProf">
-                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                            Editar dados
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
                         </button>
 
                         <div class="cm-edit-form" id="editFormProf">
@@ -683,14 +679,301 @@
                             </div>
                             <div class="cm-add-form-actions" style="margin-top:14px;">
                                 <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfilProf">
-                                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
-                                    Salvar
+                                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar
                                 </button>
                                 <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfilProf">Cancelar</button>
                             </div>
                             <p class="cm-feedback" id="perfilProfFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dados atualizados!</p>
                         </div>
 
+                    </div>
+
+                </section>
+
+                <!-- ===== CONFIGURAÇÕES =====
+                     Mesma seção e mesmas classes da tela de
+                     Configurações do ambiente do usuário. Não é uma
+                     página nova: é a seção de configurações já
+                     existente, disponibilizada também aqui. -->
+                <section id="sec-config" class="cm-section">
+
+                    <div class="cm-section-head">
+                        <h1>Configurações</h1>
+                        <p>Ajuste sua conta, privacidade, notificações e preferências.</p>
+                    </div>
+
+                    <!-- ===== CONTA ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-solid fa-user" aria-hidden="true"></i>
+                            Conta
+                        </h2>
+                        <p class="cm-settings-group-sub">Informações da sua conta e dados de acesso.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Alterar nome</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Atualiza o nome exibido no site.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <input type="text" class="cm-input" id="cfgNovoNome" placeholder="Seu nome completo">
+                                    <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnCfgNome">Salvar</button>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Alterar e-mail</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Usado para entrar no Clear Minds.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <input type="email" class="cm-input" id="cfgNovoEmail" placeholder="novo@email.com">
+                                    <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnCfgEmail">Salvar</button>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Alterar senha</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Disponível na categoria <strong>Segurança</strong>.</span>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Gerenciar informações profissionais</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Nome, telefone, cidade e apresentação.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgIrPerfil">
+                                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Abrir meu perfil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== PRIVACIDADE ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                            Privacidade
+                        </h2>
+                        <p class="cm-settings-group-sub">Quem pode ver o seu perfil e as suas informações.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Visibilidade do perfil</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Controla quem pode visualizar suas informações públicas.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <select class="cm-input" data-cfg="visibilidadePerfil">
+                                        <option value="publico">Público</option>
+                                        <option value="privado">Privado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Exibir dados de atendimento</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Mostra seu perfil e as informações de atendimento na busca de pacientes.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" data-cfg="profissionaisVeemProgresso">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Quem pode solicitar acesso ao Diário</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Restringe os profissionais que podem pedir acesso aos registros dos pacientes.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <select class="cm-input" data-cfg="quemInterage">
+                                        <option value="todos">Todos os pacientes</option>
+                                        <option value="vinculados">Apenas pacientes vinculados</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== NOTIFICAÇÕES ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                            Notificações
+                        </h2>
+                        <p class="cm-settings-group-sub">Escolha o que você quer receber.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Receber notificações</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Ativa ou desativa todas as notificações.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" id="cfgNotificacoes" data-cfg="notificacoes">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Mensagens</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Avisos de novas conversas e mensagens.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" data-cfg="notifMensagens">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Agenda</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Novos agendamentos e lembretes de atendimento.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" data-cfg="notifComunidade">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Interações</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Curtidas, comentários e compartilhamentos nos seus posts.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" data-cfg="notifInteracoes">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Lembretes de acompanhamento</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Lembre-me de revisar o acompanhamento dos pacientes.</span>
+                                </div>
+                                <label class="cm-switch">
+                                    <input type="checkbox" data-cfg="lembretesDiario">
+                                    <span class="cm-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== APARÊNCIA ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                            Aparência
+                        </h2>
+                        <p class="cm-settings-group-sub">Personalize a visualização do site.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Tema</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Tema claro — padrão acolhedor do Clear Minds.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <select class="cm-input" data-cfg="tema">
+                                        <option value="claro">Claro (padrão)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Tamanho do texto</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Ajusta o tamanho da fonte em todo o painel.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <select class="cm-input" data-cfg="tamanhoTexto">
+                                        <option value="pequeno">Pequeno</option>
+                                        <option value="normal">Normal (padrão)</option>
+                                        <option value="grande">Grande</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== SEGURANÇA ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                            Segurança
+                        </h2>
+                        <p class="cm-settings-group-sub">Senha, sessões e saída da conta.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Alterar senha</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Informe a senha atual e a nova senha.</span>
+                                </div>
+                            </div>
+                            <div class="cm-settings-item" style="align-items:flex-start;">
+                                <div class="cm-settings-list" style="max-width:420px;">
+                                    <input type="password" class="cm-input" id="cfgSenhaAtual" placeholder="Senha atual">
+                                    <input type="password" class="cm-input" id="cfgSenhaNova" placeholder="Nova senha (mín. 6 caracteres)">
+                                    <input type="password" class="cm-input" id="cfgSenhaConf" placeholder="Confirmar nova senha">
+                                    <div class="cm-settings-actions">
+                                        <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnCfgSenha">Salvar senha</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Sessão atual</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;" id="cfgSessaoInfo">Este dispositivo — ativo agora.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgSair">Sair da conta</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== DADOS E CONTA ===== -->
+                    <div class="cm-settings-group">
+                        <h2 class="cm-settings-group-title">
+                            <i class="fa-solid fa-database" aria-hidden="true"></i>
+                            Dados e conta
+                        </h2>
+                        <p class="cm-settings-group-sub">Exporte seus dados ou exclua sua conta.</p>
+
+                        <div class="cm-settings-box">
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Exportar dados</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Baixa um arquivo com os seus dados no Clear Minds.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgExportar">
+                                        <i class="fa-solid fa-download" aria-hidden="true"></i>Exportar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="cm-settings-item">
+                                <div class="cm-info">
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Excluir conta</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Apaga permanentemente seus dados neste dispositivo. Essa ação não pode ser desfeita.</span>
+                                </div>
+                                <div class="cm-settings-ctrl">
+                                    <button type="button" class="cm-btn cm-btn-danger cm-btn-sm" id="btnCfgExcluir">Excluir conta</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </section>

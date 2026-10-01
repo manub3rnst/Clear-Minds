@@ -159,3 +159,58 @@ Chaves usadas no `localStorage`:
   atendimento e movimentação) agora fecham e limpam com o botão "Cancelar".
 - **Avisos de funcionalidades futuras**: entrar com Google/Microsoft, "Esqueceu sua senha?", Termos
   de Uso e Política de Privacidade exibem um toast informativo em vez de parecerem botões mortos.
+
+## Redesign visual (tema azul)
+
+- **Nova paleta sofisticada**: azul-marinho `#0F2438`/`#16324A` (painel de identidade e menu lateral),
+  azul-médio `#3D7CC9` (botões principais, ícones, ativos), azul-profundo `#1B4B7A` (acentos e hovers),
+  azul-claro `#A9C8E8`/`#DCECFB` (fundos suaves, badges) e off-white azulado `#F1F6FC`/`#F2F6FB`
+  (fundos das páginas). Os tons verdes anteriores foram substituídos pela família azul.
+- **Redesign estrutural (não é apenas troca de cor)**: as páginas de autenticação foram reorganizadas em
+  **duas áreas** — à esquerda, um **painel de identidade** azul-escuro com a logo, uma frase curta e
+  formas orgânicas decorativas (sem informação desnecessária); à direita, o **formulário** em card.
+  Os dashboards usam **sidebar azul-escura + topo fixo + cards em grade**, com o conteúdo ocupando
+  melhor o espaço horizontal (`.cm-dash` em tela cheia, sem `max-width`).
+- **Sidebar recolhida por padrão**: no desktop, o menu lateral começa apenas com os ícones (**82px**) e
+  expande para **286px** quando o mouse passa por cima ou quando um item recebe foco. Os rótulos ficam
+  **completamente ocultos** (`opacity:0`, `width:0`) quando recolhido, e os ícones e o avatar ficam
+  centralizados na barra (a barra também esconde a própria barra de rolagem, que desviaria o eixo).
+- **A sidebar é overlay, não uma coluna**: ela é `position:fixed` e começa logo abaixo do cabeçalho
+  (`.cm-topbar`). Ao expandir no hover ela **passa por cima do conteúdo** — o `main` não muda de
+  largura e **nada é empurrado**. Por isso **não existe calha reservada** para a expansão: o painel
+  reserva apenas a largura **recolhida** (`padding-left: calc(82px + 24px)`) e centraliza o conteúdo
+  com `max-width:1280px`. A posição do conteúdo é idêntica com o menu fechado e aberto. A pequena
+  sobreposição do menu sobre o texto durante o hover é intencional. Ao clicar em um comando, o menu
+  volta a ficar só com os ícones imediatamente, mesmo com o cursor ainda sobre a barra. No mobile
+  (abaixo de 992px) continua o menu lateral deslizante de 280px.
+- **Ícone e texto próximos**: os itens usam `gap:9px` e o ícone não recebe `margin:auto`, para que
+  **icone + nome leiam como um bloco só** quando expandidos.
+- **Ações do usuário no fim da barra**: em `.cm-side-bottom` ficam **Meu perfil, Configurações e
+  Sair**, separados do restante por uma divisória com respiro curto (**18px**, sem vão exagerado).
+  O painel do profissional tem a mesma estrutura: **Perfil, Configurações e Sair**.
+- **Configurações também no painel do profissional**: a seção de Configurações (`#sec-config`) que já
+  existia no Home do usuário foi disponibilizada também no Home do profissional, com os mesmos
+  componentes e a mesma chave de preferências (`cm_config`). Nenhuma página nova foi criada e o
+  `home.html`, o login e as regras de acesso não foram alterados.
+- **Aproveitamento total da tela**: as páginas de autenticação usam o contêiner em largura quase total
+  (até 1800px), com o painel de identidade e o card do formulário esticados à altura da janela; os
+  dashboards usam todo o espaço vertical e horizontal disponíveis, com cards e tipografia maiores.
+- **Formulários compactos**: campos relacionados ficam **lado a lado** (Nome|E-mail, Senha|Confirmar,
+  Curso|Período no cadastro; Nome|Nascimento, Gênero|Telefone, Cidade|Estado nas etapas; Humor|Sono,
+  Ansiedade|Atividade na etapa emocional), empilhando no celular (`.field-pair`).
+- **Inputs com respiro**: padding interno confortável (14px) e altura de 54px em todos os campos de
+  login, cadastro, perfil e configurações, com foco em anel azul.
+- **Etapas do cadastro profissional**: indicador de etapa destacado com medalhão numerado (01/02),
+  brilho de anel no passo atual e título da etapa legível (`.progress .step-number` + `.step-info`).
+- **Setas de voltar corrigidas**: nenhum botão "Voltar" de autenticação leva mais ao Home.
+  O "Voltar" do cadastro profissional (etapa 1) vai agora para `login-profissional.html`; as demais
+  voltam ao passo anterior do fluxo (etapa 2 → etapa 1; formulário → cadastro; login profissional → login).
+- **Componentes padronizados**: botões, inputs, listas, estatísticas, humor/diário, comunidade,
+  financeiro, perfis, configurações, conteúdos, leitor de conteúdos, modais, toasts e footer seguem a
+  mesma linguagem azul em todo o sistema.
+- **Importante**: o redesign foi feito **via CSS** (`style.css`: variáveis `:root` + bloco de sobreposição
+  "TEMA AZUL" ao final) com pequenos ajustes de **estrutura HTML** apenas nas páginas de autenticação
+  (wrappers `.field-pair`, medalhão de etapa e o destino das setas de voltar). **Nenhuma funcionalidade,
+  regra de negócio, banco de dados, validação ou rota foi alterada.** A imagem de referência não pôde
+  ser inspecionada (modelo sem suporte a imagem); o layout foi aplicado a partir da descrição escrita e
+  validado com Chrome headless (formulários, homes com dados semeados, troca de seções e setas de voltar).

@@ -75,35 +75,38 @@
                 </div>
 
                 <button type="button" class="cm-side-item active" data-secao="inicio">
-                    <i class="fa-solid fa-house" aria-hidden="true"></i> Início
+                    <i class="fa-solid fa-house" aria-hidden="true"></i><span class="cm-side-label">Início</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="diario">
-                    <i class="fa-solid fa-book-open" aria-hidden="true"></i> Meu diário
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i><span class="cm-side-label">Meu diário</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="comunidade">
-                    <i class="fa-solid fa-comments" aria-hidden="true"></i> Comunidade
+                    <i class="fa-solid fa-comments" aria-hidden="true"></i><span class="cm-side-label">Comunidade</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="profissionais">
-                    <i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Meus profissionais
+                    <i class="fa-solid fa-user-doctor" aria-hidden="true"></i><span class="cm-side-label">Meus profissionais</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="mensagens">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> Mensagens
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="cm-side-label">Mensagens</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="agenda">
-                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Agenda
+                    <i class="fa-solid fa-calendar-check" aria-hidden="true"></i><span class="cm-side-label">Agenda</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="conteudos">
-                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Conteúdos
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><span class="cm-side-label">Conteúdos</span>
                 </button>
 
-                <div class="cm-side-sep"></div>
-
-                <button type="button" class="cm-side-item" data-secao="perfil">
-                    <i class="fa-regular fa-id-card" aria-hidden="true"></i> Meu perfil
-                </button>
-                <button type="button" class="cm-side-item" data-secao="config">
-                    <i class="fa-solid fa-gear" aria-hidden="true"></i> Configurações
-                </button>
+                <div class="cm-side-bottom">
+                    <button type="button" class="cm-side-item" data-secao="perfil">
+                        <i class="fa-regular fa-id-card" aria-hidden="true"></i><span class="cm-side-label">Meu perfil</span>
+                    </button>
+                    <button type="button" class="cm-side-item" data-secao="config">
+                        <i class="fa-solid fa-gear" aria-hidden="true"></i><span class="cm-side-label">Configurações</span>
+                    </button>
+                    <button type="button" class="cm-side-item" id="btnSairMenu">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i><span class="cm-side-label">Sair</span>
+                    </button>
+                </div>
 
             </aside>
             <div class="cm-side-overlay" id="menuOverlay"></div>
@@ -170,16 +173,16 @@
                             <textarea id="composerTexto" maxlength="500" placeholder="Compartilhe como você está se sentindo... Aqui é um espaço seguro e acolhedor."></textarea>
                             <div class="cm-media-row">
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="foto" title="Adicionar foto">
-                                    <i class="fa-solid fa-camera" aria-hidden="true"></i> Foto
+                                    <i class="fa-solid fa-camera" aria-hidden="true"></i>Foto
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="imagem" title="Adicionar imagem">
-                                    <i class="fa-regular fa-image" aria-hidden="true"></i> Imagem
+                                    <i class="fa-regular fa-image" aria-hidden="true"></i>Imagem
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="video" title="Adicionar vídeo">
-                                    <i class="fa-solid fa-video" aria-hidden="true"></i> Vídeo
+                                    <i class="fa-solid fa-video" aria-hidden="true"></i>Vídeo
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="arquivo" title="Anexar arquivo">
-                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i> Anexar
+                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>Anexar
                                 </button>
                                 <span class="cm-media-hint">Deixe sua publicação ainda mais acolhedora</span>
                             </div>
@@ -276,8 +279,7 @@
                                 <span id="diarioDataHoje">—</span>
                             </span>
                             <button type="button" class="cm-btn cm-btn-primary" id="btnSalvarDiario">
-                                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                                Salvar entrada
+                                <i class="fa-solid fa-book-open" aria-hidden="true"></i>Salvar entrada
                             </button>
                         </div>
                         <p class="cm-panel-sub" id="diarioStatus" hidden></p>
@@ -332,16 +334,16 @@
                             <textarea id="composerTexto2" maxlength="500" placeholder="Como você está se sentindo hoje? Aqui é um espaço seguro e acolhedor."></textarea>
                             <div class="cm-media-row">
                                 <button type="button" class="cm-media-btn" data-midia-btn="2" data-tipo="foto" title="Adicionar foto">
-                                    <i class="fa-solid fa-camera" aria-hidden="true"></i> Foto
+                                    <i class="fa-solid fa-camera" aria-hidden="true"></i>Foto
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="2" data-tipo="imagem" title="Adicionar imagem">
-                                    <i class="fa-regular fa-image" aria-hidden="true"></i> Imagem
+                                    <i class="fa-regular fa-image" aria-hidden="true"></i>Imagem
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="2" data-tipo="video" title="Adicionar vídeo">
-                                    <i class="fa-solid fa-video" aria-hidden="true"></i> Vídeo
+                                    <i class="fa-solid fa-video" aria-hidden="true"></i>Vídeo
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="2" data-tipo="arquivo" title="Anexar arquivo">
-                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i> Anexar
+                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>Anexar
                                 </button>
                                 <span class="cm-media-hint">Deixe sua publicação ainda mais acolhedora</span>
                             </div>
@@ -530,8 +532,7 @@
                         <div class="cm-profile-grid" id="listaInfoPessoal"></div>
 
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnEditarPerfil" style="margin-top:16px;">
-                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                            Editar dados
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
                         </button>
 
                         <div class="cm-edit-form" id="editForm">
@@ -559,8 +560,7 @@
                             </div>
                             <div class="cm-add-form-actions" style="margin-top:14px;">
                                 <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfil">
-                                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
-                                    Salvar
+                                    <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar
                                 </button>
                                 <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfil">Cancelar</button>
                             </div>
@@ -581,8 +581,7 @@
                         <p class="cm-bio-text" id="perfilSobre">Nenhuma descrição adicionada ainda.</p>
 
                         <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-perfil style="margin-top:14px;">
-                            <i class="fa-solid fa-pen" aria-hidden="true"></i>
-                            Escrever sobre mim
+                            <i class="fa-solid fa-pen" aria-hidden="true"></i>Escrever sobre mim
                         </button>
 
                     </div>
@@ -668,7 +667,7 @@
                                 </div>
                                 <div class="cm-settings-ctrl">
                                     <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgIrPerfil">
-                                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i> Abrir meu perfil
+                                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>Abrir meu perfil
                                     </button>
                                 </div>
                             </div>
@@ -939,7 +938,7 @@
                                 </div>
                                 <div class="cm-settings-ctrl">
                                     <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgExportar">
-                                        <i class="fa-solid fa-download" aria-hidden="true"></i> Exportar
+                                        <i class="fa-solid fa-download" aria-hidden="true"></i>Exportar
                                     </button>
                                 </div>
                             </div>

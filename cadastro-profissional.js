@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const voltar = document.getElementById("btnVoltarPerfil");
-  if (voltar && (localStorage.getItem("cm_tipo") === "profissional" || saved.nome)) {
-    voltar.href = "home-profissional.html";
+  if (voltar) {
+    voltar.href = "login-profissional.html";
   }
 
   const fill = (id, value) => { const el=document.getElementById(id); if (el && value && !el.value) el.value = value; };
