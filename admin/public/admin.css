@@ -1,21 +1,21 @@
 /* ==========================================================
-   CLEAR MINDS — Painel administrativo
+   CLEAR MINDS â€” Painel administrativo
    ------------------------------------------------------------
    Mesma identidade visual das Homes: mesma fonte (Poppins),
    mesma paleta azul, mesmos raios, mesma sombra e mesmo
-   comportamento da barra lateral (recolhida em ícones,
-   overlay, sem empurrar o conteúdo).
+   comportamento da barra lateral (recolhida em Ã­cones,
+   overlay, sem empurrar o conteÃºdo).
 
-   Os nomes de classe continuam sendo .adm-* para não ter que
+   Os nomes de classe continuam sendo .adm-* para nÃ£o ter que
    reescrever a interface inteira; o que mudou aqui foram os
-   valores, que agora vêm da mesma paleta de style.css.
+   valores, que agora vÃªm da mesma paleta de style.css.
 
-   O tema escuro é o mesmo das Homes: o atributo data-tema no
-   <html> é escrito por /tema.js (arquivo compartilhado).
+   O tema escuro Ã© o mesmo das Homes: o atributo data-tema no
+   <html> Ã© escrito por /tema.js (arquivo compartilhado).
    ========================================================== */
 
 :root {
-  /* Mesma família de azuis das Homes */
+  /* Mesma famÃ­lia de azuis das Homes */
   --azul-900: #0F2438;
   --azul-800: #16324A;
   --azul-700: #1B3E5C;
@@ -145,7 +145,7 @@ code {
   font-size: .78rem; color: #DCE8F5;
 }
 
-/* Coluna do formulário: fundo da Home + card branco. */
+/* Coluna do formulÃ¡rio: fundo da Home + card branco. */
 .adm-login-panel {
   display: grid; place-items: center;
   padding: 40px 30px;
@@ -189,7 +189,7 @@ code {
 .adm-field textarea { resize: vertical; min-height: 84px; line-height: 1.55; }
 .adm-field small { display: block; margin-top: 5px; font-size: .72rem; color: var(--texto-tenue); }
 
-/* Checkbox em linha (usado no Perfil, Conteúdos e Config). */
+/* Checkbox em linha (usado no Perfil, ConteÃºdos e Config). */
 .adm-item-check {
   display: flex; align-items: center; gap: 10px;
   margin-top: 10px;
@@ -367,8 +367,8 @@ code {
 
 /* ============================= SIDEBAR =============================
    Mesmo comportamento do restante do site:
-   recolhida mostra só ícones; expande no hover/foco; é overlay
-   e NÃO reserva espaço — o conteúdo não se move.
+   recolhida mostra sÃ³ Ã­cones; expande no hover/foco; Ã© overlay
+   e NÃƒO reserva espaÃ§o â€” o conteÃºdo nÃ£o se move.
    ========================================================== */
 
 .adm-side {
@@ -385,7 +385,7 @@ code {
   z-index: 50;
   overflow-x: hidden;
   overflow-y: auto;
-  scrollbar-width: none;          /* mantém o eixo dos ícones centrado */
+  scrollbar-width: none;          /* mantÃ©m o eixo dos Ã­cones centrado */
   transition: width .2s ease;
 }
 .adm-side::-webkit-scrollbar { width: 0; height: 0; }
@@ -459,7 +459,7 @@ code {
 /* ============================= MAIN ============================= */
 
 .adm-main {
-  padding: 24px 22px 60px calc(var(--side-w) + 20px);
+  padding: calc(var(--topbar-h) + 24px) 22px 60px calc(var(--side-w) + 20px);
   min-height: 100vh;
   overflow-y: auto;
   height: 100vh;
@@ -543,7 +543,7 @@ code {
 }
 .adm-vazio i { font-size: 1.4rem; display: block; margin-bottom: 8px; }
 
-/* Pares rótulo/valor usados em várias telas. */
+/* Pares rÃ³tulo/valor usados em vÃ¡rias telas. */
 .adm-info-linha {
   display: flex; gap: 12px;
   padding: 8px 0;
@@ -675,7 +675,7 @@ table.adm-tabela { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .adm-atv-texto { font-size: .85rem; color: var(--texto); }
 .adm-atv-meta { font-size: .73rem; color: var(--texto-tenue); margin-top: 3px; }
 
-/* ============================= GRÁFICOS ============================= */
+/* ============================= GRÃFICOS ============================= */
 
 .adm-barra-item { margin-bottom: 12px; }
 .adm-barra-topo {
@@ -855,7 +855,7 @@ table.adm-tabela { width: 100%; border-collapse: collapse; font-size: .85rem; }
 @keyframes admSpin { to { transform: rotate(360deg); } }
 
 /* ============================= AUXILIARES =============================
-   Poucas classes para o espaçamento que se repete nas telas,
+   Poucas classes para o espaÃ§amento que se repete nas telas,
    no lugar de style="" espalhado pelo HTML.
    ========================================================== */
 
@@ -912,7 +912,7 @@ table.adm-tabela { width: 100%; border-collapse: collapse; font-size: .85rem; }
    TEMA ESCURO
    ------------------------------------------------------------
    Mesmo atributo das Homes (data-tema no <html>), escrito
-   pelo mesmo /tema.js. Aqui só os valores do painel.
+   pelo mesmo /tema.js. Aqui sÃ³ os valores do painel.
    ========================================================== */
 
 [data-tema="escuro"] {

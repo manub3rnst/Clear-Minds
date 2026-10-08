@@ -218,7 +218,7 @@ body{
 }
 
 /* ==========================================
-   CITAÇÃO
+   CITAÃƒâ€¡ÃƒÆ’O
 ========================================== */
 
 .quote{
@@ -253,7 +253,7 @@ body{
 }
 
 /* ==========================================
-   DECORAÇÃO DO LADO ESQUERDO
+   DECORAÃƒâ€¡ÃƒÆ’O DO LADO ESQUERDO
 ========================================== */
 
 .left::before{
@@ -378,7 +378,7 @@ body{
 }
 
 /* ==========================================
-   TÍTULO
+   TÃƒÂTULO
 ========================================== */
 
 .title{
@@ -406,7 +406,7 @@ body{
 }
 
 /* ==========================================
-   FORMULÁRIO
+   FORMULÃƒÂRIO
 ========================================== */
 
 form{
@@ -585,7 +585,7 @@ form{
 }
 
 /* ==========================================
-   BOTÃO LOGIN
+   BOTÃƒÆ’O LOGIN
 ========================================== */
 
 .login-button{
@@ -717,7 +717,7 @@ form{
 }
 
 /* ==========================================
-   RODAPÉ
+   RODAPÃƒâ€°
 ========================================== */
 
 footer{
@@ -797,7 +797,7 @@ footer{
 }
 
 /* ==========================================
-   ANIMAÇÕES
+   ANIMAÃƒâ€¡Ãƒâ€¢ES
 ========================================== */
 
 .login-card{
@@ -1262,7 +1262,7 @@ html{
 
 /* ==========================================
    CADASTRO
-   FORMULÁRIO
+   FORMULÃƒÂRIO
 ========================================== */
 
 #registerForm{
@@ -1402,7 +1402,7 @@ html{
 }
 
 /* ==========================================
-   BOTÃO
+   BOTÃƒÆ’O
 ========================================== */
 
 #registerForm .login-button{
@@ -1456,7 +1456,7 @@ html{
 }
 
 /* ==========================================
-   ESPAÇAMENTO
+   ESPAÃƒâ€¡AMENTO
 ========================================== */
 
 #registerForm .input-group{
@@ -1473,7 +1473,7 @@ html{
 
 /* ==========================================
    CADASTRO
-   TÍTULOS E ESPAÇAMENTOS
+   TÃƒÂTULOS E ESPAÃƒâ€¡AMENTOS
 ========================================== */
 
 .top-link{    
@@ -1511,7 +1511,7 @@ html{
 }
 
 /* ==========================================
-   BOTÃO CRIAR CONTA
+   BOTÃƒÆ’O CRIAR CONTA
 ========================================== */
 
 #registerForm .login-button{
@@ -1594,7 +1594,7 @@ html{
 }
 
 /* ==========================================
-   RODAPÉ
+   RODAPÃƒâ€°
 ========================================== */
 
 .footer-card{
@@ -1604,7 +1604,7 @@ html{
 }
 
 /* ==========================================
-   ANIMAÇÕES
+   ANIMAÃƒâ€¡Ãƒâ€¢ES
 ========================================== */
 
 .checkbox{
@@ -1737,7 +1737,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 1
+   FORMULÃƒÂRIO 1
 ========================================== */
 
 /* Card principal */
@@ -1768,7 +1768,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO
+   FORMULÃƒÂRIO
 ========================================== */
 
 #personalForm{
@@ -1870,7 +1870,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 1
+   FORMULÃƒÂRIO 1
    TEXTAREA
 ========================================== */
 
@@ -1915,7 +1915,7 @@ select:hover{
 }
 
 /* ==========================================
-   BOTÕES
+   BOTÃƒâ€¢ES
 ========================================== */
 
 .form-buttons{
@@ -1930,7 +1930,7 @@ select:hover{
 
 }
 
-/* Botão de entrar do login: largura total e centralizado */
+/* BotÃƒÂ£o de entrar do login: largura total e centralizado */
 
 .form-buttons.login-form-buttons{
 
@@ -1948,7 +1948,7 @@ select:hover{
 
 }
 
-/* Botão "Criar conta" do cadastro do usuário */
+/* BotÃƒÂ£o "Criar conta" do cadastro do usuÃƒÂ¡rio */
 #registerForm .form-buttons.register-form-buttons{
     justify-content:center;
 }
@@ -2031,7 +2031,7 @@ select:hover{
 }
 
 /* ==========================================
-   ÍCONES
+   ÃƒÂCONES
 ========================================== */
 
 #personalForm .input i{
@@ -2041,7 +2041,7 @@ select:hover{
 }
 
 /* ==========================================
-   ANIMAÇÃO
+   ANIMAÃƒâ€¡ÃƒÆ’O
 ========================================== */
 
 #personalForm{
@@ -2057,11 +2057,11 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 1
+   FORMULÃƒÂRIO 1
    AJUSTES FINAIS
 ========================================== */
 
-/* Título */
+/* TÃƒÂ­tulo */
 
 .progress span{
 
@@ -2119,7 +2119,7 @@ select:hover{
 
 }
 
-/* Botões */
+/* BotÃƒÂµes */
 
 .back-button i,
 .login-button i{
@@ -2273,7 +2273,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 2
+   FORMULÃƒÂRIO 2
 ========================================== */
 
 /* Barra de progresso */
@@ -2304,7 +2304,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO
+   FORMULÃƒÂRIO
 ========================================== */
 
 #wellBeingForm{
@@ -2423,7 +2423,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 2
+   FORMULÃƒÂRIO 2
    TEXTAREA
 ========================================== */
 
@@ -2468,7 +2468,7 @@ select:hover{
 }
 
 /* ==========================================
-   BOTÕES
+   BOTÃƒâ€¢ES
 ========================================== */
 
 .form-buttons{
@@ -2556,7 +2556,7 @@ select:hover{
 }
 
 /* ==========================================
-   ÍCONES
+   ÃƒÂCONES
 ========================================== */
 
 #wellBeingForm .input i{
@@ -2582,7 +2582,7 @@ select:hover{
 }
 
 /* ==========================================
-   ANIMAÇÕES
+   ANIMAÃƒâ€¡Ãƒâ€¢ES
 ========================================== */
 
 #wellBeingForm{
@@ -2598,7 +2598,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 2
+   FORMULÃƒÂRIO 2
    AJUSTES FINAIS
 ========================================== */
 
@@ -2660,7 +2660,7 @@ select:hover{
 
 }
 
-/* Botões */
+/* BotÃƒÂµes */
 
 .back-button i,
 .login-button i{
@@ -2937,7 +2937,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 3
+   FORMULÃƒÂRIO 3
 ========================================== */
 
 /* Barra de progresso */
@@ -2968,7 +2968,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO
+   FORMULÃƒÂRIO
 ========================================== */
 
 #preferencesForm{
@@ -3093,8 +3093,8 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 3
-   BOTÕES
+   FORMULÃƒÂRIO 3
+   BOTÃƒâ€¢ES
 ========================================== */
 
 .form-buttons{
@@ -3229,7 +3229,7 @@ select:hover{
 }
 
 /* ==========================================
-   INFORMAÇÕES
+   INFORMAÃƒâ€¡Ãƒâ€¢ES
 ========================================== */
 
 .success-items{
@@ -3271,7 +3271,7 @@ select:hover{
 }
 
 /* ==========================================
-   ANIMAÇÕES
+   ANIMAÃƒâ€¡Ãƒâ€¢ES
 ========================================== */
 
 .success-message{
@@ -3300,7 +3300,7 @@ select:hover{
 }
 
 /* ==========================================
-   FORMULÁRIO 3
+   FORMULÃƒÂRIO 3
    AJUSTES FINAIS
 ========================================== */
 
@@ -3396,7 +3396,7 @@ select:hover{
 
 }
 
-/* Botões */
+/* BotÃƒÂµes */
 
 .back-button{
 
@@ -3563,7 +3563,7 @@ select:hover{
 }
 
 /* ==========================================
-   ANIMAÇÃO DE ENTRADA
+   ANIMAÃƒâ€¡ÃƒÆ’O DE ENTRADA
 ========================================== */
 
 @keyframes pop{
@@ -3747,7 +3747,7 @@ select:hover{
     font-size:1.05rem;
 }
 
-/* Seções gerais */
+/* SeÃƒÂ§ÃƒÂµes gerais */
 
 .secao{
     padding:60px 60px 20px;
@@ -3761,7 +3761,7 @@ select:hover{
     color:var(--title);
 }
 
-/* Perfil do usuário */
+/* Perfil do usuÃƒÂ¡rio */
 
 .perfil-usuario{
     display:grid;
@@ -3803,7 +3803,7 @@ select:hover{
 
 .progresso-perfil p{
     color:var(--text);
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .barra{
@@ -3830,7 +3830,7 @@ select:hover{
     margin-bottom:0;
 }
 
-/* Grade de cartões (ferramentas / profissionais / conteúdos) */
+/* Grade de cartÃƒÂµes (ferramentas / profissionais / conteÃƒÂºdos) */
 
 .grid{
     display:grid;
@@ -3887,7 +3887,7 @@ select:hover{
     font-size:1.1rem;
 }
 
-/* Rodapé da home */
+/* RodapÃƒÂ© da home */
 
 .footer-home{
     text-align:center;
@@ -4026,8 +4026,8 @@ select:hover{
 }
 
 /* Blocos condicionais de campos (Estudante / Profissional)
-   dentro do form: precisam do mesmo espaçamento vertical
-   usado entre os demais .input-group do formulário. */
+   dentro do form: precisam do mesmo espaÃƒÂ§amento vertical
+   usado entre os demais .input-group do formulÃƒÂ¡rio. */
 
 [data-tipo-conta]{
 
@@ -4039,7 +4039,7 @@ select:hover{
 }
 
 /* ==========================================
-   MENSAGEM DE ERRO DE FORMULÁRIO
+   MENSAGEM DE ERRO DE FORMULÃƒÂRIO
    (substitui o uso de alert())
 ========================================== */
 
@@ -4088,7 +4088,7 @@ select:hover{
 /* ==========================================
    PAINEL DO PROFISSIONAL (dashboard)
    home-profissional.html
-   Usa somente as variáveis de cor já definidas
+   Usa somente as variÃƒÂ¡veis de cor jÃƒÂ¡ definidas
    em :root, para manter a identidade do site.
 ========================================== */
 
@@ -4360,7 +4360,7 @@ select:hover{
 
 }
 
-/* ---------- Layout (sidebar + conteúdo) ---------- */
+/* ---------- Layout (sidebar + conteÃƒÂºdo) ---------- */
 
 .pro-layout{
 
@@ -4488,7 +4488,7 @@ select:hover{
 
 }
 
-/* ---------- Conteúdo principal ---------- */
+/* ---------- ConteÃƒÂºdo principal ---------- */
 
 .pro-main{
 
@@ -4637,7 +4637,7 @@ select:hover{
 
     gap:12px;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 
 }
 
@@ -4871,7 +4871,7 @@ select:hover{
 
 }
 
-/* Feed do diário compartilhado */
+/* Feed do diÃƒÂ¡rio compartilhado */
 
 .pro-feed{
 
@@ -5100,7 +5100,7 @@ select:hover{
 
 }
 
-/* Acesso rápido */
+/* Acesso rÃƒÂ¡pido */
 
 .pro-quick-list{
 
@@ -5291,8 +5291,8 @@ select:hover{
    PAINEL DO ESTUDANTE (dashboard)
    home.html
    Reaproveita os componentes .pro-* (topo, menu
-   lateral, cartões, etiquetas, avatares) e usa
-   somente as variáveis de cor já definidas em :root.
+   lateral, cartÃƒÂµes, etiquetas, avatares) e usa
+   somente as variÃƒÂ¡veis de cor jÃƒÂ¡ definidas em :root.
 ========================================== */
 
 .stu-side-note{
@@ -5466,7 +5466,7 @@ select:hover{
 
 }
 
-/* Botões sólidos reutilizáveis */
+/* BotÃƒÂµes sÃƒÂ³lidos reutilizÃƒÂ¡veis */
 
 .stu-btn-solid{
 
@@ -5548,7 +5548,7 @@ select:hover{
 
 }
 
-/* Grade de 3 colunas: diário / atendimento / comunidade */
+/* Grade de 3 colunas: diÃƒÂ¡rio / atendimento / comunidade */
 
 .stu-grid-3{
 
@@ -5631,7 +5631,7 @@ select:hover{
 
 }
 
-/* Próximo atendimento */
+/* PrÃƒÂ³ximo atendimento */
 
 .stu-appointment-box{
 
@@ -5873,7 +5873,7 @@ select:hover{
 
 }
 
-/* Conteúdos */
+/* ConteÃƒÂºdos */
 
 .stu-content-list{
 
@@ -6096,9 +6096,9 @@ select:hover{
 }
 
 /* =========================================================
-   MELHORIAS CLEAR MINDS — PERFIL PROFISSIONAL + DASHBOARDS
-   Mantém a mesma identidade visual entre cadastro, usuário
-   e profissional, mas diferencia o conteúdo de cada perfil.
+   MELHORIAS CLEAR MINDS Ã¢â‚¬â€ PERFIL PROFISSIONAL + DASHBOARDS
+   MantÃƒÂ©m a mesma identidade visual entre cadastro, usuÃƒÂ¡rio
+   e profissional, mas diferencia o conteÃƒÂºdo de cada perfil.
 ========================================================= */
 
 /* Cadastro profissional */
@@ -6276,7 +6276,7 @@ select option{
 
 #professionalProfileForm[hidden]{display:none;}
 
-/* Botão primário do dashboard profissional */
+/* BotÃƒÂ£o primÃƒÂ¡rio do dashboard profissional */
 .pro-btn-primary{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
     padding:11px 16px;border-radius:12px;
@@ -6390,7 +6390,7 @@ select option{
 .pro-sidebar-mini strong{display:block;color:var(--title);font-size:.76rem;margin-bottom:3px;}
 .pro-sidebar-mini p{color:var(--text);font-size:.69rem;line-height:1.45;}
 
-/* Usuário: privacidade e autorização do diário */
+/* UsuÃƒÂ¡rio: privacidade e autorizaÃƒÂ§ÃƒÂ£o do diÃƒÂ¡rio */
 .stu-access-card{
     margin-bottom:20px;
 }
@@ -6416,7 +6416,7 @@ select option{
 .stu-access-result strong{display:block;color:var(--title);margin-bottom:2px;}
 .stu-access-result span{display:block;}
 
-/* Deixa a home do usuário e a profissional parte da mesma família visual */
+/* Deixa a home do usuÃƒÂ¡rio e a profissional parte da mesma famÃƒÂ­lia visual */
 .stu-body .pro-topbar{box-shadow:0 8px 25px rgba(18,55,42,.06);}
 .stu-body .pro-main{max-width:1500px;}
 .stu-body .pro-card:hover,.pro-body:not(.stu-body) .pro-card:hover{
@@ -6558,7 +6558,7 @@ select option{
 }
 
 /* ==========================================================
-   HOMES BOOTSTRAP 5 — CLEAR MINDS
+   HOMES BOOTSTRAP 5 Ã¢â‚¬â€ CLEAR MINDS
    (home.html e home-profissional.html)
    ========================================================== */
 body.cm-home{
@@ -6734,7 +6734,7 @@ body.cm-home .cm-dash .cm-content{
     color:#dc3545;
 }
 
-/* ---------- Conteúdo ---------- */
+/* ---------- ConteÃƒÂºdo ---------- */
 .cm-main{
     padding:26px .9rem 60px;
 }
@@ -6745,7 +6745,7 @@ body.cm-home .cm-dash .cm-content{
     scroll-margin-top:110px;
 }
 
-/* ---------- Botões ---------- */
+/* ---------- BotÃƒÂµes ---------- */
 .cm-btn{
     display:inline-flex;
     align-items:center;
@@ -6835,7 +6835,7 @@ body.cm-home .cm-dash .cm-content{
     margin-bottom:0;
 }
 
-/* ---------- Ícones de destaque ---------- */
+/* ---------- ÃƒÂcones de destaque ---------- */
 .cm-icon{
     display:inline-flex;
     align-items:center;
@@ -7016,12 +7016,12 @@ body.cm-home .cm-dash .cm-content{
     color:var(--title);
 }
 
-/* ---------- Recomendações ---------- */
+/* ---------- RecomendaÃƒÂ§ÃƒÂµes ---------- */
 .cm-rec-list{
     display:flex;
     flex-direction:column;
     gap:14px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 .cm-rec-item{
     display:flex;
@@ -7234,7 +7234,7 @@ body.cm-home .cm-dash .cm-content{
     font-weight:500;
 }
 
-/* ---------- Resumo rápido ---------- */
+/* ---------- Resumo rÃƒÂ¡pido ---------- */
 .cm-stat{
     display:flex;
     align-items:center;
@@ -7331,7 +7331,7 @@ body.cm-home .cm-dash .cm-content{
     color:var(--text);
 }
 
-/* ---------- Rodapé ---------- */
+/* ---------- RodapÃƒÂ© ---------- */
 .cm-footer{
     padding:22px .9rem;
     background:var(--white);
@@ -7382,7 +7382,7 @@ body.cm-home .cm-dash .cm-content{
     align-items:start;
 }
 
-/* ---------- Topo (painéis sem Bootstrap) ---------- */
+/* ---------- Topo (painÃƒÂ©is sem Bootstrap) ---------- */
 .cm-topbar-row{
     display:flex;
     align-items:center;
@@ -7426,7 +7426,7 @@ body.cm-home .cm-dash .cm-content{
     transform:translateY(-6px) rotate(-45deg);
 }
 
-/* ---------- Sidebar (coluna própria, sem sobrepor o conteúdo) ---------- */
+/* ---------- Sidebar (coluna prÃƒÂ³pria, sem sobrepor o conteÃƒÂºdo) ---------- */
 .cm-side{
     position:static;
     align-self:start;
@@ -7525,14 +7525,14 @@ body.cm-home .cm-dash .cm-content{
     background:var(--border);
     margin:8px 4px;
 }
-/* Overlay do menu móvel: fora de fluxo no desktop (fixa a sobreposição
-   no grid: antes ele ocupava a coluna 2 e empurrava o conteúdo
+/* Overlay do menu mÃƒÂ³vel: fora de fluxo no desktop (fixa a sobreposiÃƒÂ§ÃƒÂ£o
+   no grid: antes ele ocupava a coluna 2 e empurrava o conteÃƒÂºdo
    para a coluna do menu). */
 .cm-side-overlay{
     display:none;
 }
 
-/* ---------- Área central ---------- */
+/* ---------- ÃƒÂrea central ---------- */
 .cm-content{
     flex:1;
     min-width:0;
@@ -7563,13 +7563,13 @@ body.cm-home .cm-dash .cm-content{
     color:var(--text);
 }
 
-/* ---------- Painéis / cartões do dashboard ---------- */
+/* ---------- PainÃƒÂ©is / cartÃƒÂµes do dashboard ---------- */
 .cm-panel{
     background:var(--white);
     border:1px solid var(--border);
     border-radius:18px;
     padding:22px;
-    margin-bottom:18px;
+    margin-bottom:20px;
     box-shadow:0 8px 25px rgba(18,55,42,.05);
 }
 .cm-panel-head{
@@ -7600,8 +7600,7 @@ body.cm-home .cm-dash .cm-content{
 .cm-stat-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:14px;
-}
+    gap:14px; margin-bottom:20px; }
 .cm-stat-card{
     background:#FFFFFF;
     border:1px solid var(--border);
@@ -7631,7 +7630,7 @@ body.cm-home .cm-dash .cm-content{
     line-height:1.4;
 }
 
-/* ---------- Financeiro: filtro por período ---------- */
+/* ---------- Financeiro: filtro por perÃƒÂ­odo ---------- */
 .cm-fin-filter{
     display:flex;
     flex-wrap:wrap;
@@ -7733,7 +7732,7 @@ body.cm-home .cm-dash .cm-content{
     display:block;
 }
 
-/* ---------- Gráfico (dia/mês/ano) ---------- */
+/* ---------- GrÃƒÂ¡fico (dia/mÃƒÂªs/ano) ---------- */
 .cm-chart-tabs{
     display:flex;
     gap:6px;
@@ -7766,7 +7765,7 @@ body.cm-home .cm-dash .cm-content{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:14px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 .cm-chart-metric{
     background:var(--secondary);
@@ -7832,7 +7831,7 @@ body.cm-home .cm-dash .cm-content{
     border:1px solid var(--border);
     border-radius:14px;
     padding:14px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 .cm-composer textarea{
     width:100%;
@@ -8025,7 +8024,7 @@ body.cm-home .cm-dash .cm-content{
     padding:8px 14px;
 }
 
-/* ---------- Configurações ---------- */
+/* ---------- ConfiguraÃƒÂ§ÃƒÂµes ---------- */
 .cm-settings-item{
     display:flex;
     align-items:center;
@@ -8134,7 +8133,7 @@ body.cm-home .cm-dash .cm-content{
 }
 
 /* ==========================================================
-   APERFEIÇOAMENTOS — SUGESTÕES, BUSCA, ENTRADA DE DADOS
+   APERFEIÃƒâ€¡OAMENTOS Ã¢â‚¬â€ SUGESTÃƒâ€¢ES, BUSCA, ENTRADA DE DADOS
    (home.html e home-profissional.html)
    ========================================================== */
 
@@ -8171,7 +8170,7 @@ body.cm-home .cm-dash .cm-content{
     color:#7D8F80;
 }
 
-/* Sugestões para seguir */
+/* SugestÃƒÂµes para seguir */
 .cm-sugestoes-list{
     list-style:none;
     margin:0;
@@ -8228,12 +8227,12 @@ body.cm-home .cm-dash .cm-content{
     color:var(--primary-dark);
 }
 
-/* Ações rápidas (adicionar dados) */
+/* AÃƒÂ§ÃƒÂµes rÃƒÂ¡pidas (adicionar dados) */
 .cm-actions-row{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 .cm-add-form{
     display:none;
@@ -8297,7 +8296,7 @@ body.cm-home .cm-dash .cm-content{
     margin-top:8px;
 }
 
-/* Item com ações (paciente na lista) */
+/* Item com aÃƒÂ§ÃƒÂµes (paciente na lista) */
 .cm-list-item-actions{
     margin-left:auto;
     display:flex;
@@ -8327,7 +8326,7 @@ body.cm-home .cm-dash .cm-content{
     background:var(--secondary);
 }
 
-/* Edição de perfil simples (em linha) */
+/* EdiÃƒÂ§ÃƒÂ£o de perfil simples (em linha) */
 .cm-edit-form{
     display:none;
     border:1px solid var(--border);
@@ -8347,7 +8346,7 @@ body.cm-home .cm-dash .cm-content{
     border:1px solid var(--border);
     border-radius:20px;
     padding:16px;
-    margin-bottom:18px;
+    margin-bottom:20px;
     box-shadow:0 6px 20px rgba(18,55,42,.04);
 }
 .cm-composer .cm-composer-head{
@@ -8385,7 +8384,7 @@ body.cm-home .cm-dash .cm-content{
     margin-top:12px;
 }
 
-/* Avisos / balões de feedback */
+/* Avisos / balÃƒÂµes de feedback */
 .cm-feedback{
     display:none;
     align-items:center;
@@ -8404,7 +8403,7 @@ body.cm-home .cm-dash .cm-content{
     animation:cmFade .25s ease;
 }
 
-/* Ajuste fino: lista de pacientes com ação no mobile */
+/* Ajuste fino: lista de pacientes com aÃƒÂ§ÃƒÂ£o no mobile */
 @media(max-width:560px){
     .cm-dash-list li{
         flex-wrap:wrap;
@@ -8422,8 +8421,8 @@ body.cm-home .cm-dash .cm-content{
 }
 
 /* ==========================================================
-   HARDENING GLOBAL — selects, checkboxes, humor e social login
-   (corrige sobreposições e padroniza os controles de opção)
+   HARDENING GLOBAL Ã¢â‚¬â€ selects, checkboxes, humor e social login
+   (corrige sobreposiÃƒÂ§ÃƒÂµes e padroniza os controles de opÃƒÂ§ÃƒÂ£o)
    ========================================================== */
 
 /* 1) Selects: remove a caixa nativa (quadrado cinza) e
@@ -8472,7 +8471,7 @@ select option{
 }
 
 /* 2) Checkboxes customizadas nas telas de cadastro/login
-      (mantém o .cm-switch das duas homes intacto) */
+      (mantÃƒÂ©m o .cm-switch das duas homes intacto) */
 body:not(.cm-home) input[type="checkbox"]{
     appearance:none;
     -webkit-appearance:none;
@@ -8512,7 +8511,7 @@ body:not(.cm-home) input[type="checkbox"]:focus-visible{
     outline-offset:2px;
 }
 
-/* 3) Linha de verificação / aceite (cadastro profissional) */
+/* 3) Linha de verificaÃƒÂ§ÃƒÂ£o / aceite (cadastro profissional) */
 .pro-check-row{
     display:flex;
     align-items:flex-start;
@@ -8540,7 +8539,7 @@ body:not(.cm-home) input[type="checkbox"]:focus-visible{
     line-height:1.6;
 }
 
-/* 4) Botões de humor (diário + compositor) */
+/* 4) BotÃƒÂµes de humor (diÃƒÂ¡rio + compositor) */
 .cm-mood-grid{
     gap:12px;
 }
@@ -8583,7 +8582,7 @@ body:not(.cm-home) input[type="checkbox"]:focus-visible{
     box-shadow:0 0 0 3px rgba(67,104,80,.2);
 }
 
-/* 5) Botões de escolha social (Google / Microsoft etc.) */
+/* 5) BotÃƒÂµes de escolha social (Google / Microsoft etc.) */
 .social-login button{
     font-family:"Poppins",sans-serif;
     box-shadow:none;
@@ -8604,7 +8603,7 @@ body{
     font-size:.95rem;
 }
 
-/* Campos de formulário */
+/* Campos de formulÃƒÂ¡rio */
 .input{
     height:52px;
     border-radius:13px;
@@ -8626,7 +8625,7 @@ body{
     font-weight:500;
 }
 
-/* Títulos e cartões de login/cadastro */
+/* TÃƒÂ­tulos e cartÃƒÂµes de login/cadastro */
 .title h2{
     font-size:1.85rem;
 }
@@ -8645,7 +8644,7 @@ body{
     font-size:.9rem;
 }
 
-/* Botões padrão (login/cadastro) */
+/* BotÃƒÂµes padrÃƒÂ£o (login/cadastro) */
 .login-button{
     height:56px;
     box-sizing:border-box;
@@ -8771,7 +8770,7 @@ body{
 }
 
 /* ==========================================================
-   PADRÃO ÚNICO DE BOTÕES (login/cadastro/profissional)
+   PADRÃƒÆ’O ÃƒÅ¡NICO DE BOTÃƒâ€¢ES (login/cadastro/profissional)
    ========================================================== */
 .form-buttons.login-form-buttons .login-button{
     width:100%;
@@ -8816,7 +8815,7 @@ body{
 }
 
 /* ==========================================================
-   MENU DE TRÊS PONTINHOS NOS COMENTÁRIOS (comunidade)
+   MENU DE TRÃƒÅ S PONTINHOS NOS COMENTÃƒÂRIOS (comunidade)
    ========================================================== */
 .cm-comment-item{
     position:relative;
@@ -8890,7 +8889,7 @@ body{
     color:#B33434;
 }
 
-/* Edição inline de comentário */
+/* EdiÃƒÂ§ÃƒÂ£o inline de comentÃƒÂ¡rio */
 .cm-comment-edit-input{
     width:100%;
     border:1px solid var(--primary);
@@ -8909,7 +8908,7 @@ body{
     margin-top:8px;
 }
 
-/* Aviso rápido (toast) */
+/* Aviso rÃƒÂ¡pido (toast) */
 .cm-toast{
     position:fixed;
     left:50%;
@@ -8935,7 +8934,7 @@ body{
 }
 
 /* ==========================================================
-   MÍDIA NA CRIAÇÃO DE PUBLICAÇÕES (comunidade)
+   MÃƒÂDIA NA CRIAÃƒâ€¡ÃƒÆ’O DE PUBLICAÃƒâ€¡Ãƒâ€¢ES (comunidade)
    ========================================================== */
 .cm-media-row{
     display:flex;
@@ -9037,7 +9036,7 @@ body{
 }
 
 /* ==========================================================
-   MÍDIA EXIBIDA NA PUBLICAÇÃO
+   MÃƒÂDIA EXIBIDA NA PUBLICAÃƒâ€¡ÃƒÆ’O
    ========================================================== */
 .cm-post-midia{
     margin:2px 0 12px;
@@ -9053,7 +9052,7 @@ body{
 }
 
 /* ==========================================================
-   MENU DE TRÊS PONTINHOS NAS PUBLICAÇÕES
+   MENU DE TRÃƒÅ S PONTINHOS NAS PUBLICAÃƒâ€¡Ãƒâ€¢ES
    ========================================================== */
 .cm-post-menu{
     position:relative;
@@ -9123,7 +9122,7 @@ body{
     color:#B33434;
 }
 
-/* Edição inline de publicação */
+/* EdiÃƒÂ§ÃƒÂ£o inline de publicaÃƒÂ§ÃƒÂ£o */
 .cm-post-edit-area{
     width:100%;
     min-height:80px;
@@ -9149,7 +9148,7 @@ body{
 }
 
 /* ==========================================================
-   MODAL DE CONFIRMAÇÃO (USO GERAL)
+   MODAL DE CONFIRMAÃƒâ€¡ÃƒÆ’O (USO GERAL)
    ========================================================== */
 .cm-modal-overlay{
     position:fixed;
@@ -9220,7 +9219,7 @@ body{
 }
 
 /* ==========================================================
-   LEITOR DE CONTEÚDOS (home.html e home-profissional.html)
+   LEITOR DE CONTEÃƒÅ¡DOS (home.html e home-profissional.html)
    ========================================================== */
 .cm-reader{
     width:100%;
@@ -9339,7 +9338,7 @@ body{
 }
 
 /* ==========================================================
-   MEU DIÁRIO — NOVA ESTRUTURA
+   MEU DIÃƒÂRIO Ã¢â‚¬â€ NOVA ESTRUTURA
    ========================================================== */
 .cm-diary-card{
     background:var(--white);
@@ -9570,7 +9569,7 @@ body{
 }
 
 /* ==========================================================
-   PERFIL — NOVA ESTRUTURA
+   PERFIL Ã¢â‚¬â€ NOVA ESTRUTURA
    ========================================================== */
 .cm-profile-hero{
     display:flex;
@@ -9685,7 +9684,7 @@ body{
 }
 
 /* ==========================================================
-   CONFIGURAÇÕES — CATEGORIAS
+   CONFIGURAÃƒâ€¡Ãƒâ€¢ES Ã¢â‚¬â€ CATEGORIAS
    ========================================================== */
 .cm-settings-group{
     margin-bottom:24px;
@@ -9786,7 +9785,7 @@ body{
 }
 
 /* ==========================================================
-   RODAPÉ — VERSÃO DE AUTORIA
+   RODAPÃƒâ€° Ã¢â‚¬â€ VERSÃƒÆ’O DE AUTORIA
    ========================================================== */
 .cm-footer{
     text-align:center;
@@ -9839,8 +9838,8 @@ body{
 
 /* ==========================================================
 /* ==========================================================
-   REDESIGN VISUAL — TEMA AZUL CLEAR MINDS
-   (só visual; NÃO altera nenhuma funcionalidade)
+   REDESIGN VISUAL Ã¢â‚¬â€ TEMA AZUL CLEAR MINDS
+   (sÃƒÂ³ visual; NÃƒÆ’O altera nenhuma funcionalidade)
    Paleta: #0F2438 / #1B4B7A / #3D7CC9 / #A9C8E8 / #F1F6FC
    ========================================================== */
 
@@ -9865,7 +9864,7 @@ body.cm-home{
     color:#fff;
 }
 
-/* ---------- Títulos ---------- */
+/* ---------- TÃƒÂ­tulos ---------- */
 .cm-section-head h1{
     font-size:1.5rem;
     font-weight:700;
@@ -9877,7 +9876,7 @@ body.cm-home{
 }
 
 /* ==========================================================
-   HOMES — TOPO
+   HOMES Ã¢â‚¬â€ TOPO
    ========================================================== */
 .cm-topbar{
     background:rgba(255,255,255,.94);
@@ -9914,7 +9913,7 @@ body.cm-home{
 }
 
 /* ==========================================================
-   HOMES — SIDEBAR (azul-escuro, estilo dashboard)
+   HOMES Ã¢â‚¬â€ SIDEBAR (azul-escuro, estilo dashboard)
    ========================================================== */
 .cm-side{
     background:linear-gradient(170deg,#0F2438 0%,#16324A 68%,#1B3E5C 100%);
@@ -10004,7 +10003,7 @@ body.cm-home{
 }
 
 /* ==========================================================
-   HOMES — CONTEÚDO / CARDS
+   HOMES Ã¢â‚¬â€ CONTEÃƒÅ¡DO / CARDS
    ========================================================== */
 .cm-main{
     max-width:1360px;
@@ -10052,7 +10051,7 @@ body.cm-home{
     font-weight:600;
 }
 
-/* ---------- Botões ---------- */
+/* ---------- BotÃƒÂµes ---------- */
 .cm-btn{
     border-radius:14px;
     font-weight:600;
@@ -10085,7 +10084,7 @@ body.cm-home{
     color:#1B4B7A;
 }
 
-/* ---------- Inputs (todos os formulários) ---------- */
+/* ---------- Inputs (todos os formulÃƒÂ¡rios) ---------- */
 .cm-input,
 .cm-search,
 .cm-composer textarea,
@@ -10125,7 +10124,7 @@ body.cm-home{
     padding:12px 14px;
 }
 .cm-search{
-    margin-bottom:18px;
+    margin-bottom:20px;
     padding:0 14px;
     box-shadow:0 8px 20px rgba(18,45,80,.04);
 }
@@ -10142,7 +10141,7 @@ body.cm-home{
 }
 
 /* ==========================================================
-   HOMES — ESTATÍSTICAS
+   HOMES Ã¢â‚¬â€ ESTATÃƒÂSTICAS
    ========================================================== */
 .cm-stat-card{
     background:#FFFFFF;
@@ -10236,7 +10235,7 @@ body.cm-home{
     border-color:#3D7CC9;
 }
 
-/* ---------- Diário ---------- */
+/* ---------- DiÃƒÂ¡rio ---------- */
 .cm-diary-area{
     border-radius:16px;
     background:#EFF5FC;
@@ -10306,7 +10305,7 @@ body.cm-home{
     color:#1B4B7A;
 }
 
-/* ---------- Sugestões para seguir ---------- */
+/* ---------- SugestÃƒÂµes para seguir ---------- */
 .cm-sugestoes-list li{
     border-radius:16px;
     background:#FFFFFF;
@@ -10378,7 +10377,7 @@ body.cm-home{
     box-shadow:0 8px 20px rgba(18,45,80,.04);
 }
 
-/* ---------- Configurações: switch ---------- */
+/* ---------- ConfiguraÃƒÂ§ÃƒÂµes: switch ---------- */
 .cm-switch .cm-slider{
     background:#A9C8E8;
 }
@@ -10389,7 +10388,7 @@ body.cm-home{
     color:var(--title);
 }
 
-/* ---------- Conteúdos ---------- */
+/* ---------- ConteÃƒÂºdos ---------- */
 .cm-conteudo-lista li{
     border-radius:16px;
     background:#FFFFFF;
@@ -10473,8 +10472,8 @@ body.cm-home{
 }
 
 /* ==========================================================
-   PÁGINAS DE AUTENTICAÇÃO (index, login, cadastro)
-   Estrutura: [painel de identidade] [formulário]
+   PÃƒÂGINAS DE AUTENTICAÃƒâ€¡ÃƒÆ’O (index, login, cadastro)
+   Estrutura: [painel de identidade] [formulÃƒÂ¡rio]
    ========================================================== */
 .container{
     width:100%;
@@ -10525,7 +10524,7 @@ body.cm-home{
     z-index:0;
 }
 
-/* Marca + texto curto (z-index acima da decoração) */
+/* Marca + texto curto (z-index acima da decoraÃƒÂ§ÃƒÂ£o) */
 .left .logo{
     position:relative;
     z-index:1;
@@ -10564,7 +10563,7 @@ body.cm-home{
     line-height:1.75;
 }
 
-/* Informação secundária oculta no painel de identidade */
+/* InformaÃƒÂ§ÃƒÂ£o secundÃƒÂ¡ria oculta no painel de identidade */
 .left .resources,
 .left .quote{
     display:none;
@@ -10640,7 +10639,7 @@ body.cm-home{
     font-weight:600;
 }
 
-/* ---- Inputs da autenticação (padding confortável) ---- */
+/* ---- Inputs da autenticaÃƒÂ§ÃƒÂ£o (padding confortÃƒÂ¡vel) ---- */
 .input{
     height:56px;
     border:1.5px solid rgba(18,45,80,.16);
@@ -10748,7 +10747,7 @@ body.cm-home{
     box-shadow:0 10px 24px rgba(61,124,201,.35);
 }
 
-/* ---- Seções do perfil profissional ---- */
+/* ---- SeÃƒÂ§ÃƒÂµes do perfil profissional ---- */
 .profile-section-title{
     display:flex;
     align-items:flex-start;
@@ -10807,7 +10806,7 @@ body.cm-home{
     color:#7B90A5;
 }
 
-/* ---- Botões ---- */
+/* ---- BotÃƒÂµes ---- */
 .login-button{
     width:100%;
     border:none;
@@ -10949,7 +10948,7 @@ body.cm-home{
     object-fit:contain;
 }
 
-/* ---- Checkbox / confirmações ---- */
+/* ---- Checkbox / confirmaÃƒÂ§ÃƒÂµes ---- */
 .pro-check-row{
     display:flex;
     align-items:flex-start;
@@ -11118,7 +11117,7 @@ footer .footer-credit-cm{
 }
 
 /* ==========================================================
-   CADASTRO PROFISSIONAL — DESTAQUE DA ETAPA ATUAL
+   CADASTRO PROFISSIONAL Ã¢â‚¬â€ DESTAQUE DA ETAPA ATUAL
    ========================================================== */
 .progress-step-1 .step-number{
     background:linear-gradient(135deg,#4C8ADB,#1B4B7A);
@@ -11130,8 +11129,8 @@ footer .footer-credit-cm{
 }
 
 /* ==========================================================
-   PÁGINAS DE AUTENTICAÇÃO — AJUSTES FINOS
-   (organização do painel de identidade e da área do formulário)
+   PÃƒÂGINAS DE AUTENTICAÃƒâ€¡ÃƒÆ’O Ã¢â‚¬â€ AJUSTES FINOS
+   (organizaÃƒÂ§ÃƒÂ£o do painel de identidade e da ÃƒÂ¡rea do formulÃƒÂ¡rio)
    ========================================================== */
 body:not(.cm-home) main.container{
     min-height:100vh;
@@ -11155,18 +11154,18 @@ body:not(.cm-home) .right .professional-form-card::-webkit-scrollbar-thumb{
     border-radius:999px;
 }
 
-/* Sucesso do cadastro profissional: texto legível no card */
+/* Sucesso do cadastro profissional: texto legÃƒÂ­vel no card */
 .success-message .success-icon{
     font-size:3.2rem;
     color:#2A9D8F;
 }
 
 /* ==========================================================
-   TELA CHEIA — aproveita todo o espaço da tela
+   TELA CHEIA Ã¢â‚¬â€ aproveita todo o espaÃƒÂ§o da tela
    (somente estilo; funcionalidades, dados e scripts intactos)
    ========================================================== */
 
-/* ---------- AUTENTICAÇÃO em largura total ---------- */
+/* ---------- AUTENTICAÃƒâ€¡ÃƒÆ’O em largura total ---------- */
 body:not(.cm-home) .container{
     max-width:1800px;
     min-height:100vh;
@@ -11319,14 +11318,14 @@ body.professional-register-body .professional-form-card{
 @media(min-width:992px){
     /* ---------- ESTRUTURA DO LAYOUT (desktop) ----------
        APP = SIDEBAR (position:fixed, overlay) + MAIN
-       A sidebar é FIXA e está fora do fluxo: ao expandir no hover ela
-       SOBREPÕE o conteúdo, sem empurrar nada e sem recalcular a
+       A sidebar ÃƒÂ© FIXA e estÃƒÂ¡ fora do fluxo: ao expandir no hover ela
+       SOBREPÃƒâ€¢E o conteÃƒÂºdo, sem empurrar nada e sem recalcular a
        largura do main.
        O main reserva APENAS a largura RECOLHIDA (82px) + uma folga,
-       ou seja: não existe calha/faixa vazia esperando a expansão.
-       Assim o conteúdo:
-         - ocupa toda a área disponível ao lado da barra fechada;
-         - nunca fica escondido atrás da barra quando fechada;
+       ou seja: nÃƒÂ£o existe calha/faixa vazia esperando a expansÃƒÂ£o.
+       Assim o conteÃƒÂºdo:
+         - ocupa toda a ÃƒÂ¡rea disponÃƒÂ­vel ao lado da barra fechada;
+         - nunca fica escondido atrÃƒÂ¡s da barra quando fechada;
          - nunca se desloca ao expandir/recolher. */
     /* seletor com .container para vencer a regra de padding do topo */
     body.cm-home .cm-main.container{
@@ -11338,7 +11337,7 @@ body.professional-register-body .professional-form-card{
         display:block;
         margin-top:0;
     }
-    /* CONTEÚDO: largura própria, centralizado na área restante */
+    /* CONTEÃƒÅ¡DO: largura prÃƒÂ³pria, centralizado na ÃƒÂ¡rea restante */
     body.cm-home .cm-dash .cm-content{
         display:block;
         width:100%;
@@ -11366,8 +11365,8 @@ body.professional-register-body .professional-form-card{
         z-index:60;
         will-change:width;
     }
-    /* Sem barra de rolagem visível dentro da barra: ela consumia
-       alguns pixels da largura interna e deslocava os ícones do
+    /* Sem barra de rolagem visÃƒÂ­vel dentro da barra: ela consumia
+       alguns pixels da largura interna e deslocava os ÃƒÂ­cones do
        eixo central. A rolagem pelo mouse/trackpad continua. */
     body.cm-home .cm-side::-webkit-scrollbar{
         width:0;
@@ -11377,11 +11376,11 @@ body.professional-register-body .professional-form-card{
         width:286px;
         box-shadow:22px 0 48px rgba(15,36,56,.32);
     }
-    /* Item: ícone e texto colados (gap curto) quando expandido.
-       A centralização do ícone no estado recolhido é feita por
+    /* Item: ÃƒÂ­cone e texto colados (gap curto) quando expandido.
+       A centralizaÃƒÂ§ÃƒÂ£o do ÃƒÂ­cone no estado recolhido ÃƒÂ© feita por
        justify-content:center + padding lateral 0 (ver regras
-       :not(.sidebar-expanded) abaixo), e NÃO por margin:auto —
-       margin:auto afastaria o texto do ícone ao expandir. */
+       :not(.sidebar-expanded) abaixo), e NÃƒÆ’O por margin:auto Ã¢â‚¬â€
+       margin:auto afastaria o texto do ÃƒÂ­cone ao expandir. */
     body.cm-home .cm-side .cm-side-item{
         min-height:44px;
         gap:9px;
@@ -11393,7 +11392,7 @@ body.professional-register-body .professional-form-card{
     }
     /* avatar do topo da barra centralizado quando recolhido:
        o bloco de nome sai do fluxo (flex-basis 0) para sobrar
-       espaço livre e o margin:auto centralizar o avatar. */
+       espaÃƒÂ§o livre e o margin:auto centralizar o avatar. */
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-user-info{
         flex:0 0 0;
         width:0;
@@ -11417,7 +11416,7 @@ body.professional-register-body .professional-form-card{
     body.cm-home .cm-side-title{
         transition:opacity .15s ease;
     }
-    /* Rótulos some COMPLETAMENTE quando recolhido (não ficam
+    /* RÃƒÂ³tulos some COMPLETAMENTE quando recolhido (nÃƒÂ£o ficam
        espremidos/cortados dentro da barra de 82px). */
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-user-info,
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-item span,
@@ -11447,10 +11446,10 @@ body.professional-register-body .professional-form-card{
         margin-left:8px;
         margin-right:8px;
     }
-    /* Conta no fim da barra: divisória + respiro ANTES dela.
-       Não usamos margin-top:auto de propósito: isso empurrava as
-       opções de conta para o rodapé e criava um vão grande e
-       desproporcional entre os itens principais e a divisória. */
+    /* Conta no fim da barra: divisÃƒÂ³ria + respiro ANTES dela.
+       NÃƒÂ£o usamos margin-top:auto de propÃƒÂ³sito: isso empurrava as
+       opÃƒÂ§ÃƒÂµes de conta para o rodapÃƒÂ© e criava um vÃƒÂ£o grande e
+       desproporcional entre os itens principais e a divisÃƒÂ³ria. */
     body.cm-home .cm-side .cm-side-bottom{
         margin-top:18px;
         padding-top:16px;

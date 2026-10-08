@@ -221,9 +221,21 @@
     border-color: #23384D;
 }
 
-[data-tema="escuro"] .cm-tag-muted {
-    background: #1B3247;
-    color: var(--text);
+[data-tema="escuro"] .cm-panel-sub,
+[data-tema="escuro"] .cm-panel-title small,
+[data-tema="escuro"] .cm-profile-sub,
+[data-tema="escuro"] .cm-settings-group-sub,
+[data-tema="escuro"] .cm-top-user-info small,
+[data-tema="escuro"] .cm-side-user small,
+[data-tema="escuro"] .cm-avatar,
+[data-tema="escuro"] .cm-activity-meta,
+[data-tema="escuro"] .cm-media-hint,
+[data-tema="escuro"] .cm-list small,
+[data-tema="escuro"] .cm-dash-list small,
+[data-tema="escuro"] .cm-bio-text,
+[data-tema="escuro"] .cm-info-text,
+[data-tema="escuro"] .cm-empty {
+    color: #B9C9DC;
 }
 
 /* ==========================================================
