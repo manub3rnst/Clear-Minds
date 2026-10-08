@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Uso EFETIVO da sessÃ£o real (nÃ£o Ã© apenas para verificaÃ§Ã£o):
+    // Uso EFETIVO da sessão real (não é apenas para verificação):
     const emailUsuario = sessao;
 
     const perfil = JSON.parse(localStorage.getItem("cm_profile") || "{}");
@@ -35,17 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Feed da comunidade (postagens de todos)
     let postagens = getLista("cm_postagens");
-    // RemoÃ§Ã£o de publicaÃ§Ã£o inadequada registrada no sistema
+    // Remoção de publicação inadequada registrada no sistema
     (() => {
         const antes = postagens.length;
         postagens = postagens.filter(p => !((p.texto || "").toLowerCase().includes("toma no cu")));
         if (postagens.length !== antes) salvarLista("cm_postagens", postagens);
     })();
-    // Postagens curtidas pelo usuÃ¡rio logado
+    // Postagens curtidas pelo usuário logado
     let curtidas = getLista("cm_curtidas");
-    // ConexÃµes do usuÃ¡rio (estrutura pronta â€” amizades futuras)
+    // Conexões do usuário (estrutura pronta — amizades futuras)
     const amizades = getLista("cm_amizades");
-    // DiÃ¡rio do usuÃ¡rio
+    // Diário do usuário
     let diario = getLista("cm_diario");
     // Profissionais vinculados
     const vinculados = getLista("cm_profissionais_usuario");
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const show = (id) => { const el = document.getElementById(id); if (el) el.hidden = false; };
     const hide = (id) => { const el = document.getElementById(id); if (el) el.hidden = true; };
     const limpar = (id) => { const el = document.getElementById(id); if (el) el.innerHTML = ""; };
-    /* PreferÃªncias (tema, tamanho do texto, privacidadeâ€¦) ficam em
+    /* Preferências (tema, tamanho do texto, privacidade…) ficam em
        tema.js, o arquivo compartilhado com a Home do profissional
-       e com o painel. Aqui sÃ³ usamos a leitura. */
+       e com o painel. Aqui só usamos a leitura. */
     const getConfigObj = window.CMTema ? window.CMTema.lerConfig : () => JSON.parse(localStorage.getItem("cm_config") || "{}");
 
-    /* Modal de confirmaÃ§Ã£o reutilizÃ¡vel (Delete/Denunciar nÃ£o usa confirmaÃ§Ã£o, etc.) */
+    /* Modal de confirmação reutilizável (Delete/Denunciar não usa confirmação, etc.) */
     const abrirConfirmacao = ({ titulo = "Confirmar", mensagem = "", rotuloConfirmar = "Confirmar", perigoso = false, aoConfirmar }) => {
         let overlay = document.getElementById("cmConfirmOverlay");
         if (!overlay) {
@@ -92,19 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.add("show");
     };
 
-    /* Muda para uma seÃ§Ã£o do painel (usado por botÃµes de atalho) */
+    /* Muda para uma seção do painel (usado por botões de atalho) */
     const irParaSecao = (nome) => {
         const item = document.querySelector(`.cm-side-item[data-secao="${nome}"]`);
         if (item) item.click();
     };
 
-    /* Emoji correspondente ao humor (DiÃ¡rio) */
+    /* Emoji correspondente ao humor (Diário) */
     const humorEmoji = (humor) => {
-        const mapa = { "Ã“timo": "ðŸ˜Š", "Bem": "ðŸ™‚", "Neutro": "ðŸ˜", "Ansioso(a)": "ðŸ˜Ÿ", "DifÃ­cil": "ðŸ˜”" };
-        return mapa[humor] || "ðŸ““";
+        const mapa = { "Ótimo": "😊", "Bem": "🙂", "Neutro": "😐", "Ansioso(a)": "😟", "Difícil": "😔" };
+        return mapa[humor] || "📓";
     };
 
-    /* Aviso discreto no rodapÃ© da tela */
+    /* Aviso discreto no rodapé da tela */
     const notificar = (msg) => {
         let toast = document.querySelector(".cm-toast");
         if (!toast) {
@@ -126,49 +126,49 @@ document.addEventListener("DOMContentLoaded", () => {
         .replace(/"/g, "&quot;");
 
     /* ==========================================
-       CONTEÃšDOS EDUCATIVOS (demonstrativos)
+       CONTEÚDOS EDUCATIVOS (demonstrativos)
     ========================================== */
     const conteudosUsuario = [
         {
             id: 1,
-            categoria: "SaÃºde mental",
+            categoria: "Saúde mental",
             icone: "fa-solid fa-brain",
-            titulo: "O que Ã© o autocuidado e por onde comeÃ§ar",
+            titulo: "O que é o autocuidado e por onde começar",
             data: "Fevereiro de 2026",
-            teaser: "Autocuidado vai muito alÃ©m de skincare ou banho demorado. Entenda o que Ã©, por que importa e como criar uma rotina simples.",
+            teaser: "Autocuidado vai muito além de skincare ou banho demorado. Entenda o que é, por que importa e como criar uma rotina simples.",
             corpo: [
-                { tipo: "p", texto: "Autocuidado Ã© a prÃ¡tica de cuidar ativamente da prÃ³pria saÃºde fÃ­sica, emocional e social. NÃ£o Ã© um luxo nem um item da agenda: Ã© uma necessidade que ajuda a manter o equilÃ­brio no dia a dia." },
-                { tipo: "h3", texto: "Por onde comeÃ§ar?" },
-                { tipo: "ul", itens: ["Escolha um hÃ¡bito pequeno e realista para esta semana.", "Reserve um tempo fixo do dia sÃ³ para vocÃª.", "Preste atenÃ§Ã£o em como vocÃª se sente durante a atividade."] },
-                { tipo: "p", texto: "O autocuidado Ã© individual: o que funciona para outra pessoa pode nÃ£o funcionar para vocÃª. A ideia nÃ£o Ã© ser perfeito, e sim ser constante." }
+                { tipo: "p", texto: "Autocuidado é a prática de cuidar ativamente da própria saúde física, emocional e social. Não é um luxo nem um item da agenda: é uma necessidade que ajuda a manter o equilíbrio no dia a dia." },
+                { tipo: "h3", texto: "Por onde começar?" },
+                { tipo: "ul", itens: ["Escolha um hábito pequeno e realista para esta semana.", "Reserve um tempo fixo do dia só para você.", "Preste atenção em como você se sente durante a atividade."] },
+                { tipo: "p", texto: "O autocuidado é individual: o que funciona para outra pessoa pode não funcionar para você. A ideia não é ser perfeito, e sim ser constante." }
             ]
         },
         {
             id: 2,
             categoria: "Ansiedade",
             icone: "fa-solid fa-wind",
-            titulo: "TÃ©cnica 3-3-3 para momentos de ansiedade",
+            titulo: "Técnica 3-3-3 para momentos de ansiedade",
             data: "Fevereiro de 2026",
-            teaser: "Um exercÃ­cio rÃ¡pido de ancoragem para usar quando a ansiedade aparecer: 3-3-3.",
+            teaser: "Um exercício rápido de ancoragem para usar quando a ansiedade aparecer: 3-3-3.",
             corpo: [
-                { tipo: "p", texto: "Quando a ansiedade chega de repente, o corpo acelera e a mente cria uma sensaÃ§Ã£o de urgÃªncia. A tÃ©cnica 3-3-3 ajuda a trazer a atenÃ§Ã£o de volta para o presente." },
+                { tipo: "p", texto: "Quando a ansiedade chega de repente, o corpo acelera e a mente cria uma sensação de urgência. A técnica 3-3-3 ajuda a trazer a atenção de volta para o presente." },
                 { tipo: "h3", texto: "Como fazer" },
-                { tipo: "ul", itens: ["Nomeie 3 coisas que vocÃª consegue ver Ã  sua volta.", "Identifique 3 sons que vocÃª consegue ouvir agora.", "Mexa 3 partes do corpo: pÃ©s, dedos e mÃ£os." ] },
-                { tipo: "p", texto: "Se a ansiedade for frequente ou intensa, procure um profissional de saÃºde mental. TÃ©cnicas rÃ¡pidas ajudam, mas nÃ£o substituem o acompanhamento." }
+                { tipo: "ul", itens: ["Nomeie 3 coisas que você consegue ver à sua volta.", "Identifique 3 sons que você consegue ouvir agora.", "Mexa 3 partes do corpo: pés, dedos e mãos." ] },
+                { tipo: "p", texto: "Se a ansiedade for frequente ou intensa, procure um profissional de saúde mental. Técnicas rápidas ajudam, mas não substituem o acompanhamento." }
             ]
         },
         {
             id: 3,
             categoria: "Rotina de estudos",
             icone: "fa-solid fa-book-open",
-            titulo: "Como o sono afeta sua memÃ³ria e suas notas",
+            titulo: "Como o sono afeta sua memória e suas notas",
             data: "Janeiro de 2026",
-            teaser: "Dormir bem nÃ£o Ã© 'perder tempo': Ã© parte essencial do aprendizado.",
+            teaser: "Dormir bem não é 'perder tempo': é parte essencial do aprendizado.",
             corpo: [
-                { tipo: "p", texto: "Durante o sono, o cÃ©rebro organiza e consolida o que vocÃª estudou durante o dia. Estudar a madrugada toda, sem dormir, costuma trazer mais prejuÃ­zo que benefÃ­cio." },
+                { tipo: "p", texto: "Durante o sono, o cérebro organiza e consolida o que você estudou durante o dia. Estudar a madrugada toda, sem dormir, costuma trazer mais prejuízo que benefício." },
                 { tipo: "h3", texto: "O que ajuda" },
-                { tipo: "ul", itens: ["Mantenha horÃ¡rios regulares de dormir e acordar.", "Evite telas atÃ© 30 ou 40 minutos antes de deitar.", "Prefira revisÃµes curtas diÃ¡rias a 'noites viradas' de vÃ©spera."] },
-                { tipo: "p", texto: "Uma boa noite de sono melhora atenÃ§Ã£o, humor e memÃ³ria â€” trÃªs fatores diretos no seu desempenho escolar." }
+                { tipo: "ul", itens: ["Mantenha horários regulares de dormir e acordar.", "Evite telas até 30 ou 40 minutos antes de deitar.", "Prefira revisões curtas diárias a 'noites viradas' de véspera."] },
+                { tipo: "p", texto: "Uma boa noite de sono melhora atenção, humor e memória — três fatores diretos no seu desempenho escolar." }
             ]
         },
         {
@@ -177,26 +177,26 @@ document.addEventListener("DOMContentLoaded", () => {
             icone: "fa-solid fa-heart",
             titulo: "Amizades que fazem bem: sinais e limites",
             data: "Janeiro de 2026",
-            teaser: "RelaÃ§Ãµes saudÃ¡veis precisam de cuidado mÃºtuo â€” e de limites claros.",
+            teaser: "Relações saudáveis precisam de cuidado mútuo — e de limites claros.",
             corpo: [
-                { tipo: "p", texto: "Amizades boas trazem apoio e leveza. Mas nem todo vÃ­nculo faz bem. Perceber quando uma relaÃ§Ã£o estÃ¡ te desgastando Ã© um primeiro passo importante." },
-                { tipo: "h3", texto: "Alguns sinais de uma relaÃ§Ã£o saudÃ¡vel" },
-                { tipo: "ul", itens: ["VocÃª se sente ouvido(a) e respeitado(a).", "HÃ¡ espaÃ§o para discordar sem medo de represÃ¡lia.", "O apoio Ã© mÃºtuo, nÃ£o sÃ³ de um lado."] },
-                { tipo: "p", texto: "Estabelecer limites nÃ£o Ã© egoÃ­smo â€” Ã© cuidado consigo mesmo. VocÃª pode escolher suas amizades." }
+                { tipo: "p", texto: "Amizades boas trazem apoio e leveza. Mas nem todo vínculo faz bem. Perceber quando uma relação está te desgastando é um primeiro passo importante." },
+                { tipo: "h3", texto: "Alguns sinais de uma relação saudável" },
+                { tipo: "ul", itens: ["Você se sente ouvido(a) e respeitado(a).", "Há espaço para discordar sem medo de represália.", "O apoio é mútuo, não só de um lado."] },
+                { tipo: "p", texto: "Estabelecer limites não é egoísmo — é cuidado consigo mesmo. Você pode escolher suas amizades." }
             ]
         },
         {
             id: 5,
-            categoria: "EmoÃ§Ãµes",
+            categoria: "Emoções",
             icone: "fa-solid fa-face-smile",
-            titulo: "Por que nomear emoÃ§Ãµes ajuda a lidar com elas",
+            titulo: "Por que nomear emoções ajuda a lidar com elas",
             data: "Janeiro de 2026",
             teaser: "Dar nome aos sentimentos reduz sua intensidade e aumenta o autoconhecimento.",
             corpo: [
-                { tipo: "p", texto: "Estudos mostram que colocar em palavras o que sentimos (por exemplo: 'estou frustrado', 'estou inseguro') reduz a ativaÃ§Ã£o emocional e ajuda o raciocÃ­nio." },
+                { tipo: "p", texto: "Estudos mostram que colocar em palavras o que sentimos (por exemplo: 'estou frustrado', 'estou inseguro') reduz a ativação emocional e ajuda o raciocínio." },
                 { tipo: "h3", texto: "Como praticar" },
-                { tipo: "ul", itens: ["Quando sentir algo forte, tente descrever em 1 ou 2 palavras.", "Escreva no diÃ¡rio o que aconteceu, o que sentiu e por quÃª.", "NÃ£o julgue a emoÃ§Ã£o: apenas reconheÃ§a que ela existe."] },
-                { tipo: "p", texto: "Reconhecer emoÃ§Ãµes Ã© o primeiro passo para lidar com elas de forma mais equilibrada." }
+                { tipo: "ul", itens: ["Quando sentir algo forte, tente descrever em 1 ou 2 palavras.", "Escreva no diário o que aconteceu, o que sentiu e por quê.", "Não julgue a emoção: apenas reconheça que ela existe."] },
+                { tipo: "p", texto: "Reconhecer emoções é o primeiro passo para lidar com elas de forma mais equilibrada." }
             ]
         }
     ];
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </span>
                 <div class="cm-info">
                     <strong>${esc(c.titulo)}</strong>
-                    <small><span class="cm-tag" style="font-size:.68rem;">${esc(c.categoria)}</span> Â· ${esc(c.data)} Â· ${esc(c.teaser)}</small>
+                    <small><span class="cm-tag" style="font-size:.68rem;">${esc(c.categoria)}</span> · ${esc(c.data)} · ${esc(c.teaser)}</small>
                 </div>
                 <i class="fa-solid fa-chevron-right" style="color:#C4D4E6;flex-shrink:0;" aria-hidden="true"></i>`;
             li.addEventListener("click", () => abrirLeitor(c));
@@ -262,11 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     renderConteudosUsuario();
 
-    /* ---------- IdentificaÃ§Ã£o ---------- */
-    set("saudacao", `${periodo}, ${nomeUsuario.split(" ")[0]}! ðŸŒ¿`);
-    set("topoNomeUsuario", `OlÃ¡, ${nomeUsuario.split(" ")[0]}`);
+    /* ---------- Identificação ---------- */
+    set("saudacao", `${periodo}, ${nomeUsuario.split(" ")[0]}! 🌿`);
+    set("topoNomeUsuario", `Olá, ${nomeUsuario.split(" ")[0]}`);
     set("sideNome", nomeUsuario);
-    set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como vocÃª estÃ¡?`);
+    set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como você está?`);
     set("composerNomeAut2", `${nomeUsuario.split(" ")[0]}, compartilhe com a comunidade`);
 
     const aplicarFoto = (el, nome) => {
@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     aplicarFoto(document.getElementById("perfilAvatar"), nomeUsuario);
 
     /* ==========================================
-       MENU HAMBÃšRGUER (mobile)
+       MENU HAMBÚRGUER (mobile)
     ========================================== */
     const btnMenu = document.getElementById("btnMenu");
     const menuLateral = document.getElementById("menuLateral");
@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (menuOverlay) menuOverlay.addEventListener("click", fecharMenu);
     }
 
-    /* Fecha os menus de trÃªs pontinhos ao clicar fora deles */
+    /* Fecha os menus de três pontinhos ao clicar fora deles */
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".cm-comm-menu")) {
             document.querySelectorAll(".cm-comm-dropdown.show").forEach(d => d.classList.remove("show"));
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       NAVEGAÃ‡ÃƒO ENTRE SEÃ‡Ã•ES (menu lateral)
+       NAVEGAÇÃO ENTRE SEÇÕES (menu lateral)
     ========================================== */
     const botoesMenu = document.querySelectorAll(".cm-side-item[data-secao]");
 
@@ -338,9 +338,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       MENU LATERAL â€” barra fixa na lateral esquerda
-       (recolhida com sÃ³ Ã­cones; expande sobre o conteÃºdo
-        quando o mouse entra, sem empurrar a pÃ¡gina)
+       MENU LATERAL — barra fixa na lateral esquerda
+       (recolhida com só ícones; expande sobre o conteúdo
+        quando o mouse entra, sem empurrar a página)
     ========================================== */
 
     function expandirMenuLateral() {
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (menuLateral) menuLateral.classList.remove("sidebar-expanded");
     }
 
-    /* a barra comeÃ§a logo abaixo do topo fixo */
+    /* a barra começa logo abaixo do topo fixo */
     const cmTopbar = document.querySelector(".cm-topbar");
 
     function alinharMenuLateral() {
@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================================
        PESSOAS PARA SEGUIR (comunidade) + busca
     ========================================== */
-    // Conjunto de pessoas conhecidas da comunidade (a partir de quem jÃ¡ publicou)
+    // Conjunto de pessoas conhecidas da comunidade (a partir de quem já publicou)
     const conhecerPessoas = () => {
         const mapa = {};
         postagens.forEach(p => {
@@ -385,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return Object.values(mapa);
     };
 
-    // Quem o usuÃ¡rio jÃ¡ segue (estrutura cm_amizades)
+    // Quem o usuário já segue (estrutura cm_amizades)
     const seguirPessoa = (email) => {
         if (!amizades.some(a => a.email === email)) {
             amizades.push({ email, nome: "", data: new Date().toISOString() });
@@ -439,12 +439,12 @@ document.addEventListener("DOMContentLoaded", () => {
     renderSugestoes("");
 
     /* ==========================================
-       SIDEBAR AUTOMÃTICA PARA DESTAQUES
+       SIDEBAR AUTOMÁTICA PARA DESTAQUES
     ========================================== */
-    // Ao publicar, volta para a seÃ§Ã£o InÃ­cio para o usuÃ¡rio ver a publicaÃ§Ã£o.
+    // Ao publicar, volta para a seção Início para o usuário ver a publicação.
 
     /* ==========================================
-       COMUNIDADE â€” CRIAÃ‡ÃƒO DE POST
+       COMUNIDADE — CRIAÇÃO DE POST
     ========================================== */
     const limparPost = (idTexto, idMoods, n) => {
         const texto = document.getElementById(idTexto);
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     /* ==========================================
-       COMUNIDADE â€” MÃDIA NA CRIAÃ‡ÃƒO DE POST
+       COMUNIDADE — MÍDIA NA CRIAÇÃO DE POST
     ========================================== */
     const midiasPendentes = { "1": null, "2": null };
 
@@ -489,7 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     canvas.getContext("2d").drawImage(img, 0, 0, w, h);
                     ok({ tipo: "imagem", url: canvas.toDataURL("image/jpeg", 0.82), nome: file.name });
                 };
-                img.onerror = () => erro("NÃ£o foi possÃ­vel ler a imagem.");
+                img.onerror = () => erro("Não foi possível ler a imagem.");
                 img.src = leitor.result;
             };
             leitor.onerror = () => erro("Erro ao ler o arquivo.");
@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (file.size > 3 * 1024 * 1024) {
-            erro("Arquivo muito grande no momento (mÃ¡x. ~3MB).");
+            erro("Arquivo muito grande no momento (máx. ~3MB).");
             return;
         }
 
@@ -519,11 +519,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         slot.classList.add("show");
         slot.innerHTML = (pend.tipo === "imagem"
-                ? `<img src="${pend.url}" alt="PrÃ©via da imagem">`
+                ? `<img src="${pend.url}" alt="Prévia da imagem">`
                 : pend.tipo === "video"
                     ? `<video src="${pend.url}" controls preload="metadata"></video>`
                     : `<div class="cm-file-chip"><i class="fa-solid fa-paperclip"></i><span>${esc(pend.nome || "Arquivo anexado")}</span></div>`)
-            + `<button type="button" class="cm-media-remove" data-midia-remove="${n}" aria-label="Remover mÃ­dia"><i class="fa-solid fa-xmark"></i></button>`;
+            + `<button type="button" class="cm-media-remove" data-midia-remove="${n}" aria-label="Remover mídia"><i class="fa-solid fa-xmark"></i></button>`;
     };
 
     const configurarMidia = (n) => {
@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
             processarArquivo(f, (pend) => {
                 midiasPendentes[alvo] = pend;
                 renderPreviewMidia(alvo);
-                notificar("MÃ­dia adicionada a esta publicaÃ§Ã£o.");
+                notificar("Mídia adicionada a esta publicação.");
             }, (erro) => notificar(erro));
         });
 
@@ -602,7 +602,7 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarFeeds();
         limparPost(idTexto, idMoods, n);
 
-        // Mostra uma confirmaÃ§Ã£o discreta
+        // Mostra uma confirmação discreta
         const confirm = document.getElementById("postConfirm");
         if (confirm) {
             confirm.hidden = false;
@@ -622,11 +622,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnPub2) btnPub2.addEventListener("click", () => publicar("composerTexto2", "composerMoods2", "2"));
 
     /* ==========================================
-       COMUNIDADE â€” RENDER DO FEED
+       COMUNIDADE — RENDER DO FEED
     ========================================== */
     const formatarData = (iso) => {
         const d = new Date(iso);
-        return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")} Ã s ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+        return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")} às ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
     };
 
     const renderFeed = (container) => {
@@ -657,14 +657,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const midia = p.midia;
             const midiaHtml = midia && midia.url
                 ? (midia.tipo === "imagem"
-                    ? `<div class="cm-post-midia"><img src="${midia.url}" alt="Imagem da publicaÃ§Ã£o"></div>`
+                    ? `<div class="cm-post-midia"><img src="${midia.url}" alt="Imagem da publicação"></div>`
                     : midia.tipo === "video"
                         ? `<div class="cm-post-midia"><video src="${midia.url}" controls preload="metadata"></video></div>`
                         : `<div class="cm-post-midia"><div class="cm-file-chip"><i class="fa-solid fa-paperclip"></i><span>${esc(midia.nome || "Arquivo anexado")}</span></div></div>`)
                 : "";
 
             const postAcoes = ehMeuPost
-                ? `<button type="button" data-post-acao="excluir" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicaÃ§Ã£o</button>`
+                ? `<button type="button" data-post-acao="excluir" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicação</button>`
                 : ((() => {
                     const jaSigo = p.autorEmail ? amizades.some(a => a.email === p.autorEmail) : false;
                     let html = "";
@@ -673,7 +673,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <i class="fa-${jaSigo ? "solid" : "regular"} fa-user-${jaSigo ? "minus" : "plus"}"></i> ${jaSigo ? "Deixar de seguir" : "Seguir"}
                         </button>`;
                     }
-                    html += `<button type="button" data-post-acao="denunciar" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar publicaÃ§Ã£o</button>`;
+                    html += `<button type="button" data-post-acao="denunciar" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar publicação</button>`;
                     return html;
                 })());
 
@@ -681,9 +681,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const ehMeu = (c.autorEmail || "") === emailUsuario;
                 const inicial = (c.autor || "?").split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
                 const acoes = ehMeu
-                    ? `<button type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar comentÃ¡rio</button>
-                       <button type="button" data-acao="excluir" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir comentÃ¡rio</button>`
-                    : `<button type="button" data-acao="denunciar" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar comentÃ¡rio</button>`;
+                    ? `<button type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar comentário</button>
+                       <button type="button" data-acao="excluir" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir comentário</button>`
+                    : `<button type="button" data-acao="denunciar" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar comentário</button>`;
                 return `
                 <div class="cm-comment-item" data-post="${esc(p.id)}" data-idx="${i}">
                     <span class="cm-avatar cm-avatar-sm">${esc(inicial)}</span>
@@ -692,7 +692,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>${esc(c.texto)}</p>
                     </div>
                     <div class="cm-comm-menu">
-                        <button type="button" class="cm-comm-dots" aria-label="OpÃ§Ãµes do comentÃ¡rio"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        <button type="button" class="cm-comm-dots" aria-label="Opções do comentário"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         <div class="cm-comm-dropdown">${acoes}</div>
                     </div>
                 </div>`;
@@ -703,10 +703,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span class="cm-avatar cm-avatar-sm">${inicial}</span>
                     <div class="cm-author">
                         <strong>${p.autor}</strong>
-                        <small>${formatarData(p.data)}${p.humor ? ` Â· ${p.humor}` : ""}</small>
+                        <small>${formatarData(p.data)}${p.humor ? ` · ${p.humor}` : ""}</small>
                     </div>
                     <div class="cm-post-menu">
-                        <button type="button" class="cm-post-dots" aria-label="OpÃ§Ãµes da publicaÃ§Ã£o"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                        <button type="button" class="cm-post-dots" aria-label="Opções da publicação"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                         <div class="cm-post-dropdown">${postAcoes}</div>
                     </div>
                 </div>
@@ -729,15 +729,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     ${amizades.length
                         ? `<p class="cm-share-note">Escolha com quem compartilhar:</p>
                            <ul class="cm-share-list">${amizades.map(a => `
-                                <li><label><input type="checkbox" value="${a.id || a.email || a.nome}"> ${a.nome || a.email || "ConexÃ£o"}</label></li>`).join("")}
+                                <li><label><input type="checkbox" value="${a.id || a.email || a.nome}"> ${a.nome || a.email || "Conexão"}</label></li>`).join("")}
                            </ul>
                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm share-confirm" data-post="${p.id}">Enviar</button>`
-                        : `<p class="cm-share-note">VocÃª ainda nÃ£o tem conexÃµes para compartilhar.</p>`}
+                        : `<p class="cm-share-note">Você ainda não tem conexões para compartilhar.</p>`}
                 </div>
                 <div class="cm-comments" id="comments-${p.id}" style="display:none;">
                     ${comentariosHtml}
                     <form class="cm-comment-form" data-post="${p.id}">
-                        <input type="text" placeholder="Escreva um comentÃ¡rio..." maxlength="200" required>
+                        <input type="text" placeholder="Escreva um comentário..." maxlength="200" required>
                         <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm">Comentar</button>
                     </form>
                 </div>`;
@@ -808,7 +808,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const selecionados = [...box.querySelectorAll("input:checked")].map(i => i.value);
                 if (!selecionados.length) return;
 
-                // Estrutura preparada: registra o compartilhamento (sem dados fictÃ­cios)
+                // Estrutura preparada: registra o compartilhamento (sem dados fictícios)
                 const registros = getLista("cm_compartilhamentos");
                 selecionados.forEach(dest => {
                     registros.push({ postId: id, de: emailUsuario, para: dest, data: new Date().toISOString() });
@@ -816,13 +816,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 salvarLista("cm_compartilhamentos", registros);
 
                 if (box) {
-                    box.innerHTML = `<p class="cm-share-note">Compartilhado com sucesso! âœ…</p>`;
+                    box.innerHTML = `<p class="cm-share-note">Compartilhado com sucesso! ✅</p>`;
                     setTimeout(() => { if (box) box.classList.remove("open"); }, 1800);
                 }
             });
         });
 
-        /* ---- Menu de trÃªs pontinhos dos comentÃ¡rios ---- */
+        /* ---- Menu de três pontinhos dos comentários ---- */
         const fecharDropdowns = () => {
             container.querySelectorAll(".cm-comm-dropdown.show").forEach(d => d.classList.remove("show"));
             container.querySelectorAll(".cm-post-dropdown.show").forEach(d => d.classList.remove("show"));
@@ -849,10 +849,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const acao = btn.dataset.acao;
 
                 if (acao === "excluir") {
-                    if (confirm("Excluir este comentÃ¡rio?")) {
+                    if (confirm("Excluir este comentário?")) {
                         post.comentarios.splice(idx, 1);
                         salvarLista("cm_postagens", postagens);
-                        notificar("ComentÃ¡rio excluÃ­do.");
+                        notificar("Comentário excluído.");
                         atualizarFeeds();
                     }
                     return;
@@ -868,7 +868,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         data: new Date().toISOString()
                     });
                     salvarLista("cm_denuncias", denuncias);
-                    notificar("ComentÃ¡rio denunciado. Nossa equipe vai avaliar.");
+                    notificar("Comentário denunciado. Nossa equipe vai avaliar.");
                     fecharDropdowns();
                     return;
                 }
@@ -878,7 +878,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const bolha = item.querySelector(".cm-bubble");
                     if (!bolha) return;
                     bolha.innerHTML = `
-                        <input type="text" class="cm-comment-edit-input" maxlength="200" placeholder="Editar comentÃ¡rio">
+                        <input type="text" class="cm-comment-edit-input" maxlength="200" placeholder="Editar comentário">
                         <div class="cm-comment-edit-actions">
                             <button type="button" class="cm-btn cm-btn-primary cm-btn-sm cm-comm-save">Salvar</button>
                             <button type="button" class="cm-btn cm-btn-soft cm-btn-sm cm-comm-cancel">Cancelar</button>
@@ -903,7 +903,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!post || !post.comentarios || !post.comentarios[idx] || !texto) return;
                 post.comentarios[idx].texto = texto;
                 salvarLista("cm_postagens", postagens);
-                notificar("ComentÃ¡rio editado.");
+                notificar("Comentário editado.");
                 atualizarFeeds();
             });
         });
@@ -912,7 +912,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener("click", () => atualizarFeeds());
         });
 
-        /* ---- Menu de trÃªs pontinhos das publicaÃ§Ãµes ---- */
+        /* ---- Menu de três pontinhos das publicações ---- */
         container.querySelectorAll(".cm-post-dots").forEach(dots => {
             dots.addEventListener("click", () => {
                 const menu = dots.closest(".cm-post-menu");
@@ -936,8 +936,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const post = postagens.find(x => String(x.id) === id);
                     if (post) {
                         abrirConfirmacao({
-                            titulo: "Excluir publicaÃ§Ã£o",
-                            mensagem: "Tem certeza que deseja excluir esta publicaÃ§Ã£o? Essa aÃ§Ã£o nÃ£o pode ser desfeita.",
+                            titulo: "Excluir publicação",
+                            mensagem: "Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita.",
                             rotuloConfirmar: "Excluir",
                             perigoso: true,
                             aoConfirmar: () => {
@@ -945,7 +945,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 salvarLista("cm_postagens", postagens);
                                 curtidas = curtidas.filter(c => c !== id);
                                 salvarLista("cm_curtidas", curtidas);
-                                notificar("PublicaÃ§Ã£o excluÃ­da.");
+                                notificar("Publicação excluída.");
                                 atualizarFeeds();
                                 atualizarSugestoes();
                             }
@@ -961,10 +961,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     const i = amizades.findIndex(a => a.email === emailAlvo);
                     if (i === -1) {
                         amizades.push({ email: emailAlvo, nome: nomeAlvo, data: new Date().toISOString() });
-                        notificar(`Agora vocÃª segue ${nomeAlvo || emailAlvo}.`);
+                        notificar(`Agora você segue ${nomeAlvo || emailAlvo}.`);
                     } else {
                         amizades.splice(i, 1);
-                        notificar(`VocÃª deixou de seguir ${nomeAlvo || emailAlvo}.`);
+                        notificar(`Você deixou de seguir ${nomeAlvo || emailAlvo}.`);
                     }
                     salvarLista("cm_amizades", amizades);
                     atualizarFeeds();
@@ -984,7 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         data: new Date().toISOString()
                     });
                     salvarLista("cm_denuncias", denuncias);
-                    notificar("PublicaÃ§Ã£o denunciada. Nossa equipe vai avaliar.");
+                    notificar("Publicação denunciada. Nossa equipe vai avaliar.");
                     return;
                 }
             });
@@ -1000,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderFeed(feed2);
 
     /* ==========================================
-       DIÃRIO â€” REGISTRO DE HUMOR E TEXTO
+       DIÁRIO — REGISTRO DE HUMOR E TEXTO
     ========================================== */
     const humorRegistrado = document.getElementById("humorRegistrado");
     const humorSalvo = localStorage.getItem("cm_humor_atual");
@@ -1016,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     if (humorSalvo && humorRegistrado) humorRegistrado.textContent = humorSalvo;
-    set("resumoHumor", humorSalvo || "â€”");
+    set("resumoHumor", humorSalvo || "—");
 
     const renderDiario = () => {
         const lista = document.getElementById("listaDiario");
@@ -1041,7 +1041,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button type="button" class="cm-diary-delete" title="Excluir registro" aria-label="Excluir registro"><i class="fa-regular fa-trash-can"></i></button>
                 </div>
                 <div class="cm-diary-meta">
-                    <i class="fa-regular fa-calendar" aria-hidden="true"></i> ${formatarData(r.data)}${r.humor ? ` Â· Humor: ${esc(r.humor)}` : ""}
+                    <i class="fa-regular fa-calendar" aria-hidden="true"></i> ${formatarData(r.data)}${r.humor ? ` · Humor: ${esc(r.humor)}` : ""}
                 </div>
                 ${apenasHumor
                     ? `<div class="cm-diary-text"><em>Registro de humor apenas.</em></div>`
@@ -1053,7 +1053,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.querySelector(".cm-diary-delete").addEventListener("click", () => {
                 abrirConfirmacao({
                     titulo: "Excluir registro",
-                    mensagem: "Tem certeza que deseja excluir este registro do diÃ¡rio? Essa aÃ§Ã£o nÃ£o pode ser desfeita.",
+                    mensagem: "Tem certeza que deseja excluir este registro do diário? Essa ação não pode ser desfeita.",
                     rotuloConfirmar: "Excluir",
                     perigoso: true,
                     aoConfirmar: () => {
@@ -1061,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         salvarLista("cm_diario", diario);
                         renderDiario();
                         set("resumoDiario", String(diario.length));
-                        notificar("Registro excluÃ­do.");
+                        notificar("Registro excluído.");
                     }
                 });
             });
@@ -1106,7 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const status = document.getElementById("diarioStatus");
             if (status) {
-                status.textContent = `Registro salvo em ${new Date().toLocaleString("pt-BR")}. âœ“`;
+                status.textContent = `Registro salvo em ${new Date().toLocaleString("pt-BR")}. ✓`;
                 status.hidden = false;
                 setTimeout(() => { status.hidden = true; }, 3500);
             }
@@ -1144,7 +1144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lista.appendChild(li);
             });
 
-        // MantÃ©m o estado vazio se nenhum resultado corresponder
+        // Mantém o estado vazio se nenhum resultado corresponder
         if (!lista.children.length) vazio.hidden = false;
     };
     const buscaProfissional = document.getElementById("buscaProfissional");
@@ -1153,7 +1153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     set("resumoProfissionais", String(vinculados.length));
 
     /* ==========================================
-       AGENDA â€” CONSULTAS
+       AGENDA — CONSULTAS
     ========================================== */
     const renderConsultas = () => {
         const lista = document.getElementById("listaConsultas");
@@ -1168,7 +1168,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="cm-time-box">${c.horario || "--:--"}</span>
                 <div class="cm-info">
                     <strong>${c.profissional || "Profissional"}</strong>
-                    <small>${c.data || ""}${c.tipo ? ` Â· ${c.tipo}` : ""}</small>
+                    <small>${c.data || ""}${c.tipo ? ` · ${c.tipo}` : ""}</small>
                 </div>`;
             lista.appendChild(li);
         });
@@ -1176,7 +1176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderConsultas();
 
     /* ==========================================
-       PERFIL â€” DADOS DO CADASTRO
+       PERFIL — DADOS DO CADASTRO
     ========================================== */
     const renderPerfil = () => {
         const nome = (perfil.nome || "").trim() || "Estudante";
@@ -1184,7 +1184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         set("perfilNome", nome);
         set("perfilUsuario", usuario);
-        set("perfilSobre", (perfil.sobre || "").trim() || "Que bom ter vocÃª por aqui! Escreva um pouco sobre vocÃª.");
+        set("perfilSobre", (perfil.sobre || "").trim() || "Que bom ter você por aqui! Escreva um pouco sobre você.");
         aplicarFoto(document.getElementById("perfilAvatar"), nome);
 
         const grid = document.getElementById("listaInfoPessoal");
@@ -1192,7 +1192,7 @@ document.addEventListener("DOMContentLoaded", () => {
             limpar("listaInfoPessoal");
             const itens = [
                 ["Nome", nome],
-                ["UsuÃ¡rio", usuario],
+                ["Usuário", usuario],
                 ["E-mail", perfil.email || emailUsuario],
                 ["Data de nascimento", perfil.nascimento || perfil.dataNascimento],
                 ["Telefone", perfil.telefone],
@@ -1201,7 +1201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ];
             const visiveis = itens.filter(([, v]) => v && String(v).trim());
             if (!visiveis.length) {
-                grid.innerHTML = `<div class="cm-profile-item"><span>Perfil</span><strong>InformaÃ§Ãµes nÃ£o preenchidas</strong></div>`;
+                grid.innerHTML = `<div class="cm-profile-item"><span>Perfil</span><strong>Informações não preenchidas</strong></div>`;
             } else {
                 visiveis.forEach(([r, v]) => {
                     const d = document.createElement("div");
@@ -1217,7 +1217,7 @@ document.addEventListener("DOMContentLoaded", () => {
             limpar("listaInfoConta");
             const criado = perfil.criadoEm || perfil.dataCadastro;
             const itensConta = [
-                ["Conta criada em", criado ? new Date(criado).toLocaleDateString("pt-BR") : "â€”"],
+                ["Conta criada em", criado ? new Date(criado).toLocaleDateString("pt-BR") : "—"],
                 ["Status", `<span class="cm-status-badge">Ativa</span>`],
                 ["Tipo de conta", perfil.tipo === "profissional" ? "Profissional" : "Estudante"]
             ];
@@ -1234,11 +1234,11 @@ document.addEventListener("DOMContentLoaded", () => {
             limpar("listaPreferencias");
             const cfg = getConfigObj();
             const itensPref = [
-                ["Idioma", "PortuguÃªs (Brasil)"],
+                ["Idioma", "Português (Brasil)"],
                 ["Tema", cfg.tema === "escuro" ? "Escuro" : "Claro"],
                 ["Tamanho do texto", cfg.tamanhoTexto && cfg.tamanhoTexto !== "normal" ? (cfg.tamanhoTexto === "grande" ? "Grande" : "Pequeno") : "Normal"],
-                ["NotificaÃ§Ãµes", cfg.notificacoes === false ? "Desativadas" : "Ativadas"],
-                ["DiÃ¡rio compartilhado com profissionais", cfg.compartilharDiario === false ? "NÃ£o" : "Sim"]
+                ["Notificações", cfg.notificacoes === false ? "Desativadas" : "Ativadas"],
+                ["Diário compartilhado com profissionais", cfg.compartilharDiario === false ? "Não" : "Sim"]
             ];
             itensPref.forEach(([r, v]) => {
                 const d = document.createElement("div");
@@ -1250,7 +1250,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     renderPerfil();
 
-    /* ---------- EdiÃ§Ã£o de perfil (simples, inline) ---------- */
+    /* ---------- Edição de perfil (simples, inline) ---------- */
     const editForm = document.getElementById("editForm");
     const btnEditarPerfil = document.getElementById("btnEditarPerfil");
     const btnCancelarPerfil = document.getElementById("btnCancelarPerfil");
@@ -1286,9 +1286,9 @@ document.addEventListener("DOMContentLoaded", () => {
         perfil.nome = novo.nome;
 
         nomeUsuario = novo.nome || "Estudante";
-        set("topoNomeUsuario", `OlÃ¡, ${nomeUsuario.split(" ")[0]}`);
+        set("topoNomeUsuario", `Olá, ${nomeUsuario.split(" ")[0]}`);
         set("sideNome", nomeUsuario);
-        set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como vocÃª estÃ¡?`);
+        set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como você está?`);
         set("composerNomeAut2", `${nomeUsuario.split(" ")[0]}, compartilhe com a comunidade`);
         aplicarFoto(avatar, nomeUsuario);
         aplicarFoto(document.getElementById("sideAvatar"), nomeUsuario);
@@ -1305,29 +1305,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       CONFIGURAÃ‡Ã•ES â€” PREFERÃŠNCIAS
+       CONFIGURAÇÕES — PREFERÊNCIAS
     ==========================================
-       NÃ£o hÃ¡ lista de campos nem funÃ§Ã£o de salvar nesta pÃ¡gina:
-       o preenchimento dos [data-cfg], o salvamento e a aplicaÃ§Ã£o
+       Não há lista de campos nem função de salvar nesta página:
+       o preenchimento dos [data-cfg], o salvamento e a aplicação
        (tema + tamanho do texto) ficam em tema.js, compartilhado
        com a Home do profissional e com o painel administrativo.
     ========================================== */
     window.CMTema.iniciarPreferencias();
 
-    /* ---------- Contas seguidas (gerenciadas na ConfiguraÃ§Ã£o) ---------- */
+    /* ---------- Contas seguidas (gerenciadas na Configuração) ---------- */
     const renderListaSeguidas = () => {
         const lista = document.getElementById("cfgListaSeguidas");
         if (!lista) return;
         limpar("cfgListaSeguidas");
         if (!amizades.length) {
             lista.innerHTML = `<li class="cm-settings-item" style="width:100%;justify-content:center;border:0;">
-                <span class="cm-panel-sub">VocÃª ainda nÃ£o segue ninguÃ©m na Comunidade.</span>
+                <span class="cm-panel-sub">Você ainda não segue ninguém na Comunidade.</span>
             </li>`;
             return;
         }
         amizades.slice().forEach(a => {
             const li = document.createElement("li");
-            const nome = (a.nome || "").trim() || a.email || "UsuÃ¡rio";
+            const nome = (a.nome || "").trim() || a.email || "Usuário";
             const ini = nome.split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
             li.innerHTML = `
                 <span class="cm-avatar cm-avatar-sm">${esc(ini)}</span>
@@ -1339,7 +1339,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 salvarLista("cm_amizades", amizades);
                 renderListaSeguidas();
                 atualizarSugestoes();
-                notificar(`VocÃª deixou de seguir ${nome}.`);
+                notificar(`Você deixou de seguir ${nome}.`);
             });
             lista.appendChild(li);
         });
@@ -1362,7 +1362,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
         nomeUsuario = v;
         set("perfilNome", v);
-        set("topoNomeUsuario", `OlÃ¡, ${v.split(" ")[0]}`);
+        set("topoNomeUsuario", `Olá, ${v.split(" ")[0]}`);
         set("sideNome", v);
         aplicarFoto(avatar, v);
         aplicarFoto(document.getElementById("perfilAvatar"), v);
@@ -1373,7 +1373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnCfgEmail) btnCfgEmail.addEventListener("click", () => {
         const v = document.getElementById("cfgNovoEmail")?.value.trim();
-        if (!v || !v.includes("@")) { notificar("Digite um e-mail vÃ¡lido."); return; }
+        if (!v || !v.includes("@")) { notificar("Digite um e-mail válido."); return; }
         const posts = getLista("cm_postagens").map(p => {
             if (p.autorEmail === emailUsuario) return { ...p, autorEmail: v };
             p.comentarios = (p.comentarios || []).map(c => c.autorEmail === emailUsuario ? { ...c, autorEmail: v } : c);
@@ -1385,7 +1385,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (localStorage.getItem("cm_session") === emailUsuario) localStorage.setItem("cm_session", v);
         perfil.email = v;
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
-        notificar("E-mail atualizado. Use-o no prÃ³ximo login.");
+        notificar("E-mail atualizado. Use-o no próximo login.");
         renderPerfil();
         if (document.getElementById("cfgNovoEmail")) document.getElementById("cfgNovoEmail").value = "";
     });
@@ -1394,9 +1394,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const atual = cfgSenhaAtual ? cfgSenhaAtual.value : "";
         const nova = cfgSenhaNova ? cfgSenhaNova.value : "";
         const conf = cfgSenhaConf ? cfgSenhaConf.value : "";
-        if (nova.length < 6) { notificar("A nova senha precisa ter no mÃ­nimo 6 caracteres."); return; }
-        if (nova !== conf) { notificar("A confirmaÃ§Ã£o nÃ£o confere com a nova senha."); return; }
-        if (perfil.senha && atual !== perfil.senha) { notificar("A senha atual estÃ¡ incorreta."); return; }
+        if (nova.length < 6) { notificar("A nova senha precisa ter no mínimo 6 caracteres."); return; }
+        if (nova !== conf) { notificar("A confirmação não confere com a nova senha."); return; }
+        if (perfil.senha && atual !== perfil.senha) { notificar("A senha atual está incorreta."); return; }
         perfil.email = perfil.email || emailUsuario;
         perfil.senha = nova;
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
@@ -1406,7 +1406,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cfgSenhaConf) cfgSenhaConf.value = "";
     });
 
-    /* ---------- SessÃ£o: sair da conta ---------- */
+    /* ---------- Sessão: sair da conta ---------- */
     const btnCfgSair = document.getElementById("btnCfgSair");
     if (btnCfgSair) btnCfgSair.addEventListener("click", () => {
         localStorage.removeItem("cm_session");
@@ -1440,7 +1440,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnCfgExcluir) btnCfgExcluir.addEventListener("click", () => {
         abrirConfirmacao({
             titulo: "Excluir conta",
-            mensagem: "Finalizar e apagar os seus dados do Clear Minds neste dispositivo? Essa aÃ§Ã£o nÃ£o pode ser desfeita.",
+            mensagem: "Finalizar e apagar os seus dados do Clear Minds neste dispositivo? Essa ação não pode ser desfeita.",
             rotuloConfirmar: "Excluir minha conta",
             perigoso: true,
             aoConfirmar: () => {

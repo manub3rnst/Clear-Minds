@@ -5,9 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clear Minds | Acesso administrativo</title>
-  <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="admin.css">
-  <link rel="stylesheet" href="/tema.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,177 +13,138 @@
   <script src="/tema.js"></script>
 </head>
 
-<body class="login-body">
+<body class="adm-login-body">
 
-  <main class="container">
-
-    <!-- ============ LADO ESQUERDO ============ -->
-    <section class="left">
-
-      <div class="logo">
-        <img src="/imagem/logo.jpg" alt="Logo">
-        <div>
-          <h2>Clear</h2>
-          <h2>Minds</h2>
-        </div>
+  <section class="adm-login-brand" aria-label="Sobre o Clear Minds">
+    <div class="adm-logo">
+      <img src="../../imagem/logo.jpg" alt="Logo">
+      <div>
+        <h2>Clear</h2>
+        <h2>Minds</h2>
       </div>
+    </div>
 
-      <div class="hero">
-        <h1>GestÃ£o do sistema com <span>responsabilidade</span></h1>
-        <p>
-          Ãrea restrita da administraÃ§Ã£o do Clear Minds. Todo acesso e toda aÃ§Ã£o
-          realizada aqui ficam registrados em auditoria.
+    <div class="adm-login-hero">
+      <h1>Gestão do sistema com <span>responsabilidade</span></h1>
+      <p>
+        Área restrita da administração do Clear Minds. Todo acesso e toda ação
+        realizada aqui ficam registrados em auditoria.
+      </p>
+    </div>
+
+    <div class="adm-login-badges">
+      <div class="adm-login-badge">
+        <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+        <span>Acesso exclusivo para administradores</span>
+      </div>
+      <div class="adm-login-badge">
+        <i class="fa-solid fa-lock" aria-hidden="true"></i>
+        <span>Senhas protegidas com hash scrypt</span>
+      </div>
+      <div class="adm-login-badge">
+        <i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+        <span>Ações registradas em auditoria</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="adm-login-panel">
+    <div class="adm-login-card">
+
+      <div id="telaLogin">
+        <h2>Acesso administrativo</h2>
+        <p class="adm-login-sub">
+          Entre com as credenciais administrativas para gerenciar o Clear Minds.
+        </p>
+
+        <div class="adm-alerta adm-alerta-erro" id="alertaErro" role="alert"></div>
+
+        <form id="formLogin" novalidate>
+          <div class="adm-field">
+            <label for="email">E-mail administrativo</label>
+            <div class="adm-input">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <input type="email" id="email" autocomplete="username" placeholder="admin@clearminds.com.br" required>
+            </div>
+          </div>
+
+          <div class="adm-field">
+            <label for="senha">Senha</label>
+            <div class="adm-input adm-wrap-senha">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input type="password" id="senha" autocomplete="current-password" placeholder="Digite sua senha" required>
+              <button type="button" class="adm-toggle" data-alvo="senha" aria-label="Mostrar senha">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="adm-btn adm-btn-primary adm-btn-block" id="btnEntrar">
+            <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+            Entrar
+          </button>
+        </form>
+
+        <p class="adm-nota-legal">
+          Este acesso é exclusivo da administração. Contas de usuário e de profissional
+          não são aceitas aqui. A administração não acessa o conteúdo privado dos usuários.
         </p>
       </div>
 
-      <div class="resources">
-        <div class="resource">
-          <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
+      <div id="telaSetup" hidden>
+        <button type="button" class="adm-voltar" id="btnVoltarSetup">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar
+        </button>
+
+        <h2 style="margin-top: 20px;">Configurar conta administrativa</h2>
+        <p class="adm-login-sub">
+          Primeira utilização desta instalação. Crie a senha da conta administrativa
+          inicial. Ela não será escrita no código em lugar algum — o servidor guarda
+          apenas o hash.
+        </p>
+
+        <div class="adm-alerta adm-alerta-aviso" id="avisoSetup" data-visivel="1">
+          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
           <div>
-            <h3>role = admin</h3>
-            <p>Controle restrito com separaÃ§Ã£o de privilÃ©gios.</p>
+            Conta: <strong id="setupEmail">—</strong><br>
+            Escolha uma senha com ao menos 8 caracteres, contendo letras e números.
           </div>
         </div>
-        <div class="resource">
-          <div class="icon"><i class="fa-solid fa-lock"></i></div>
-          <div>
-            <h3>Senha com hash scrypt</h3>
-            <p>Senhas nunca ficam em texto puro no banco.</p>
-          </div>
-        </div>
-        <div class="resource">
-          <div class="icon"><i class="fa-solid fa-clipboard-list"></i></div>
-          <div>
-            <h3>Auditoria de aÃ§Ãµes</h3>
-            <p>Quem fez, o que fez e quando ficou registrado.</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="quote">
-        <i class="fa-solid fa-shield-heart"></i>
-        <p>Este acesso Ã© exclusivo da administraÃ§Ã£o.</p>
-      </div>
+        <div class="adm-alerta adm-alerta-erro" id="alertaSetup" role="alert"></div>
 
-    </section>
-
-    <!-- ============ LADO DIREITO ============ -->
-    <section class="right">
-
-      <div class="login-card">
-
-        <!-- ---------- PASSO 1: LOGIN ---------- -->
-        <div id="telaLogin">
-
-          <h2>Acesso administrativo</h2>
-          <p class="adm-login-sub">
-            Entre com as credenciais administrativas para gerenciar o Clear Minds.
-          </p>
-
-          <div class="adm-alerta adm-alerta-erro" id="alertaErro" role="alert"></div>
-
-          <form id="formLogin" novalidate>
-
-            <div class="field">
-              <label for="email">E-mail administrativo</label>
-              <div class="input">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="email" id="email" autocomplete="username" placeholder="admin@clearminds.com.br" required>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="senha">Senha</label>
-              <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="senha" autocomplete="current-password" placeholder="Digite sua senha" required>
-                <button type="button" class="toggle-btn adm-toggle" data-alvo="senha" aria-label="Mostrar senha">
-                  <i class="fa-regular fa-eye"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="form-buttons login-form-buttons">
-              <button type="submit" class="login-button" id="btnEntrar">
-                <i class="fa-solid fa-right-to-bracket"></i>
-                Entrar
+        <form id="formSetup" novalidate>
+          <div class="adm-field">
+            <label for="senhaNova">Nova senha</label>
+            <div class="adm-input adm-wrap-senha">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input type="password" id="senhaNova" autocomplete="new-password" placeholder="Crie uma senha segura" required>
+              <button type="button" class="adm-toggle" data-alvo="senhaNova" aria-label="Mostrar senha">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
               </button>
             </div>
+            <small id="forcaSenha">Mínimo de 8 caracteres, com letras e números.</small>
+          </div>
 
-          </form>
+          <div class="adm-field">
+            <label for="senhaConf">Confirmar senha</label>
+            <div class="adm-input adm-wrap-senha">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              <input type="password" id="senhaConf" autocomplete="new-password" placeholder="Repita a senha" required>
+              <button type="button" class="adm-toggle" data-alvo="senhaConf" aria-label="Mostrar senha">
+                <i class="fa-regular fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
 
-          <p class="adm-nota-legal">
-            Este acesso Ã© exclusivo da administraÃ§Ã£o. Contas de usuÃ¡rio e de profissional
-            nÃ£o sÃ£o aceitas aqui, e o inverso tambÃ©m vale: a administraÃ§Ã£o nÃ£o acessa
-            o conteÃºdo privado dos usuÃ¡rios.
-          </p>
-
-        </div>
-
-        <!-- ---------- PASSO 2: CONFIGURAÃ‡ÃƒO INICIAL ---------- -->
-        <div id="telaSetup" hidden>
-
-          <button type="button" class="back-button adm-voltar" id="btnVoltarSetup" style="width: fit-content;">
-            <i class="fa-solid fa-arrow-left"></i> Voltar
+          <button type="submit" class="adm-btn adm-btn-primary adm-btn-block" id="btnSalvarSenha">
+            <i class="fa-solid fa-key" aria-hidden="true"></i>
+            Criar senha e entrar
           </button>
-
-          <h2 style="margin-top: 20px;">Configurar conta administrativa</h2>
-          <p class="adm-login-sub">
-            Primeira utilizaÃ§Ã£o desta instalaÃ§Ã£o. Crie a senha da conta administrativa
-            inicial. Ela nÃ£o serÃ¡ escrita no cÃ³digo em lugar algum â€” o servidor guarda
-            apenas o hash.
-          </p>
-
-          <div class="adm-alerta adm-alerta-aviso" id="avisoSetup">
-            <i class="fa-solid fa-circle-info"></i>
-            <div>
-              Conta: <strong id="setupEmail">â€”</strong><br>
-              Escolha uma senha com ao menos 8 caracteres, contendo letras e nÃºmeros.
-            </div>
-          </div>
-
-          <div class="adm-alerta adm-alerta-erro" id="alertaSetup" role="alert"></div>
-
-          <form id="formSetup" novalidate>
-
-            <div class="field">
-              <label for="senhaNova">Nova senha</label>
-              <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="senhaNova" autocomplete="new-password" placeholder="Crie uma senha segura" required>
-                <button type="button" class="toggle-btn adm-toggle" data-alvo="senhaNova" aria-label="Mostrar senha">
-                  <i class="fa-regular fa-eye"></i>
-                </button>
-              </div>
-              <small id="forcaSenha">MÃ­nimo de 8 caracteres, com letras e nÃºmeros.</small>
-            </div>
-
-            <div class="field">
-              <label for="senhaConf">Confirmar senha</label>
-              <div class="input">
-                <i class="fa-solid fa-lock"></i>
-                <input type="password" id="senhaConf" autocomplete="new-password" placeholder="Repita a senha" required>
-                <button type="button" class="toggle-btn adm-toggle" data-alvo="senhaConf" aria-label="Mostrar senha">
-                  <i class="fa-regular fa-eye"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="form-buttons login-form-buttons">
-              <button type="submit" class="login-button" id="btnSalvarSenha">
-                <i class="fa-solid fa-key"></i>
-                Criar senha e entrar
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
+        </form>
       </div>
 
-    </section>
-
+    </div>
   </main>
 
   <script src="login.js"></script>
