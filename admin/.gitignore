@@ -1,0 +1,10 @@
+# Banco de dados local do painel administrativo
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db

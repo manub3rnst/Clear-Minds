@@ -1,0 +1,400 @@
+/* ==========================================================
+   CLEAR MINDS — TEMA (arquivo único, compartilhado)
+   ----------------------------------------------------------
+   Este arquivo é a única fonte do tema escuro. Ele é carregado
+   depois de style.css e vale para as duas Homes (paciente e
+   profissional) por meio do atributo data-tema no <html>.
+
+   O painel administrativo tem o seu próprio bloco escuro em
+   admin/public/admin.css, porque usa outra família de classes
+   (.adm-*). A lógica (gravar, aplicar, alternar) é a mesma e vem
+   de tema.js — não existe uma segunda implementação.
+
+   Como quase todo o estilo do projeto ainda usa cores fixas, o
+   bloco escuro abaixo troca os tokens E corrige os poucos
+   lugares que escrevem o branco literal (#FFFFFF, #E4EEFA…).
+   ========================================================== */
+
+/* ==========================================================
+   1. TOKENS DO TEMA ESCURO
+   ========================================================== */
+
+[data-tema="escuro"] {
+    /* Os mesmos nomes usados no tema claro: nada precisa ser
+       reescrito em JS, o seletor apenas muda o valor. */
+    --primary: #6FA8E8;
+    --primary-dark: #A9C8E8;
+    --primary-soft: #16324A;
+    --secondary: #1E3C57;
+    --secondary-soft: #14293C;
+    --title: #EAF2FB;
+    --text: #AFC2D6;
+    --white: #14202E;
+    --cream: #0E1823;
+    --card-bg: #14202E;
+    --border: #23384D;
+    --shadow: 0 18px 42px rgba(0, 0, 0, .38);
+
+    /* Controles nativos (select, calendário, scrollbar) */
+    color-scheme: dark;
+}
+
+/* O modo escuro começa no azul-escuro da barra lateral, igual
+   ao tema claro, para não piscar branco na troca. */
+[data-tema="escuro"] body.cm-home {
+    background: #0B1420;
+}
+
+/* ==========================================================
+   2. SUPERFÍCIES
+   ========================================================== */
+
+[data-tema="escuro"] .cm-topbar {
+    background: rgba(20, 32, 46, .94);
+    border-bottom-color: #23384D;
+}
+
+[data-tema="escuro"] .cm-subnav {
+    background: var(--card-bg);
+    border-top-color: #23384D;
+}
+
+[data-tema="escuro"] .cm-panel,
+[data-tema="escuro"] .cm-stat-card,
+[data-tema="escuro"] .cm-settings-box,
+[data-tema="escuro"] .cm-profile-hero,
+[data-tema="escuro"] .cm-diary-card,
+[data-tema="escuro"] .cm-chart-zone,
+[data-tema="escuro"] .cm-reader {
+    background: var(--card-bg);
+    border-color: #23384D;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
+}
+
+/* White literal: superfícies que a folha antiga escreve fixo. */
+[data-tema="escuro"] .cm-btn-ghost,
+[data-tema="escuro"] .cm-search,
+[data-tema="escuro"] .cm-add-form,
+[data-tema="escuro"] .cm-edit-form,
+[data-tema="escuro"] .cm-media-btn,
+[data-tema="escuro"] .cm-chart-tab,
+[data-tema="escuro"] .cm-mood-btn,
+[data-tema="escuro"] .cm-composer,
+[data-tema="escuro"] .cm-list li,
+[data-tema="escuro"] .cm-dash-list li,
+[data-tema="escuro"] .cm-conteudo-lista li,
+[data-tema="escuro"] .cm-sugestoes-list li,
+[data-tema="escuro"] .cm-fin-custom,
+[data-tema="escuro"] .cm-diary-area,
+[data-tema="escuro"] .cm-reader-close {
+    background: var(--card-bg);
+    color: var(--text);
+    border-color: #23384D;
+}
+
+/* ==========================================================
+   3. BLOCOS SUAVE (botões claros, chips, avisos)
+   ========================================================== */
+
+[data-tema="escuro"] .cm-btn-soft,
+[data-tema="escuro"] .cm-stat-card .cm-stat-icon-lg,
+[data-tema="escuro"] .cm-chart-summary,
+[data-tema="escuro"] .cm-reader-note,
+[data-tema="escuro"] .cm-chart-metric,
+[data-tema="escuro"] .cm-feel-status,
+[data-tema="escuro"] .cm-diary-icon,
+[data-tema="escuro"] .cm-diary-data,
+[data-tema="escuro"] .cm-profile-chip,
+[data-tema="escuro"] .cm-empty,
+[data-tema="escuro"] .cm-tag {
+    background: var(--secondary);
+    color: var(--title);
+}
+
+[data-tema="escuro"] .cm-btn-soft:hover,
+[data-tema="escuro"] .cm-btn-ghost:hover,
+[data-tema="escuro"] .cm-media-btn:hover,
+[data-tema="escuro"] .cm-reader-close:hover,
+[data-tema="escuro"] .cm-mood-btn:hover {
+    background: #27476A;
+    color: #FFFFFF;
+}
+
+[data-tema="escuro"] .cm-nav a:hover,
+[data-tema="escuro"] .cm-subnav a {
+    background: #1B3247;
+    color: var(--title);
+}
+
+/* ==========================================================
+   4. ESTADOS ATIVOS E SELETORES
+   ========================================================== */
+
+[data-tema="escuro"] .cm-mood-btn.active,
+[data-tema="escuro"] .cm-mood-chip.active,
+[data-tema="escuro"] .cm-chart-tab.active {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-color: var(--primary);
+}
+
+[data-tema="escuro"] .cm-mood-chip {
+    background: #1B3247;
+    border-color: #23384D;
+    color: var(--text);
+}
+
+[data-tema="escuro"] .cm-empty-state {
+    background: rgba(255, 255, 255, .05);
+    color: var(--text);
+}
+
+/* ==========================================================
+   5. FORMULÁRIOS
+   ========================================================== */
+
+[data-tema="escuro"] .cm-input,
+[data-tema="escuro"] .cm-search,
+[data-tema="escuro"] .cm-search input,
+[data-tema="escuro"] .cm-composer textarea,
+[data-tema="escuro"] .cm-diary-input,
+[data-tema="escuro"] .cm-diary-area,
+[data-tema="escuro"] .cm-add-form .cm-input,
+[data-tema="escuro"] select,
+[data-tema="escuro"] textarea,
+[data-tema="escuro"] input {
+    background: #0F1A27;
+    border-color: #23384D;
+    color: var(--title);
+}
+
+[data-tema="escuro"] .cm-input::placeholder,
+[data-tema="escuro"] textarea::placeholder,
+[data-tema="escuro"] input::placeholder {
+    color: #7C93AB;
+}
+
+[data-tema="escuro"] .cm-input:focus,
+[data-tema="escuro"] .cm-search:focus-within,
+[data-tema="escuro"] .cm-composer textarea:focus,
+[data-tema="escuro"] .cm-diary-input:focus,
+[data-tema="escuro"] .cm-diary-area:focus,
+[data-tema="escuro"] select:focus,
+[data-tema="escuro"] textarea:focus,
+[data-tema="escuro"] input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(111, 168, 232, .16);
+}
+
+[data-tema="escuro"] .cm-composer textarea {
+    background: #0F1A27;
+}
+
+/* ==========================================================
+   6. ETIQUETAS COLORIDAS
+   ========================================================== */
+
+[data-tema="escuro"] .cm-verif-badge {
+    background: #3A2E12;
+    color: #E8C877;
+}
+
+[data-tema="escuro"] .cm-profile-badge,
+[data-tema="escuro"] .cm-privacy-badge {
+    background: #17332F;
+    color: #7FC9B6;
+}
+
+[data-tema="escuro"] .cm-privacy-note {
+    background: #14293C;
+    color: var(--text);
+}
+
+[data-tema="escuro"] .cm-feedback {
+    background: #17324A;
+    color: #CFE0F2;
+}
+
+[data-tema="escuro"] .cm-media-preview img,
+[data-tema="escuro"] .cm-media-preview video {
+    background: #0F1A27;
+    border-color: #23384D;
+}
+
+[data-tema="escuro"] .cm-tag-muted {
+    background: #1B3247;
+    color: var(--text);
+}
+
+/* ==========================================================
+   7. INTERFACE DE APOIO (switch, slider, seleção de texto)
+   ========================================================== */
+
+[data-tema="escuro"] .cm-slider:before {
+    background: #D8E6F5;
+}
+
+[data-tema="escuro"] .cm-home ::selection {
+    background: rgba(111, 168, 232, .32);
+    color: #FFFFFF;
+}
+
+[data-tema="escuro"] .cm-footer {
+    background: var(--card-bg);
+    border-top-color: #23384D;
+}
+
+/* A barra lateral já é escura nos dois temas; só o contorno
+   acompanha a nova paleta. */
+[data-tema="escuro"] .cm-side {
+    box-shadow: 0 26px 52px rgba(0, 0, 0, .45);
+}
+
+[data-tema="escuro"] .cm-side-user {
+    border-bottom-color: rgba(169, 200, 232, .18);
+}
+
+[data-tema="escuro"] .cm-settings-box .cm-settings-item + .cm-settings-item,
+[data-tema="escuro"] .cm-settings-item {
+    border-color: #23384D;
+}
+
+/* ==========================================================
+   8. BOTÃO DE TROCA RÁPIDA DE TEMA
+   ========================================================== */
+
+.cm-tema-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    border-radius: 50%;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s;
+}
+
+.cm-tema-btn:hover {
+    background: var(--secondary);
+    color: var(--primary-dark);
+}
+
+/* ==========================================================
+   9. CADASTRO E ONBOARDING
+   ----------------------------------------------------------
+   formulario.html e cadastro-profissional2.html são as etapas
+   logo depois do cadastro. Usam classes antigas (.input,
+   .login-card, .progress span) com branco e cores fixas, então
+   precisam do mesmo cuidado das Homes.
+   ========================================================== */
+
+[data-tema="escuro"] body {
+    background: #0B1420;
+}
+
+[data-tema="escuro"] .professional-register-body {
+    background: radial-gradient(circle at top left, #14202E, #0E1823 45%, #101C2B);
+}
+
+/* .card/.professional-register aparecem como wrapper no HTML;
+   a regra acima usa o seletor com e sem o elemento body. */
+[data-tema="escuro"] body.professional-register-body .professional-form-card,
+[data-tema="escuro"] .login-card,
+[data-tema="escuro"] .footer-card,
+[data-tema="escuro"] .professional-form-card,
+[data-tema="escuro"] .card {
+    background: var(--card-bg);
+    border-color: #23384D;
+}
+
+/* .input é o invólucro: o branco fixo está nele, não no <input> */
+[data-tema="escuro"] .input,
+[data-tema="escuro"] .input textarea,
+[data-tema="escuro"] .input select {
+    background: #0F1A27;
+    border-color: #23384D;
+    color: var(--title);
+}
+
+[data-tema="escuro"] .input input,
+[data-tema="escuro"] .input select,
+[data-tema="escuro"] .input textarea {
+    color: var(--title);
+}
+
+[data-tema="escuro"] .input i:first-child,
+[data-tema="escuro"] .input .fa-eye,
+[data-tema="escuro"] .input .fa-eye-slash {
+    color: var(--primary);
+}
+
+[data-tema="escuro"] .input:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(111, 168, 232, .16);
+}
+
+[data-tema="escuro"] .progress span {
+    background: #1B3247;
+    color: var(--primary);
+}
+
+[data-tema="escuro"] .quote {
+    background: rgba(111, 168, 232, .10);
+}
+
+[data-tema="escuro"] .resource .icon {
+    background: rgba(111, 168, 232, .14);
+    color: var(--primary);
+}
+
+[data-tema="escuro"] .resource h3,
+[data-tema="escuro"] .quote p {
+    color: var(--title);
+}
+
+/* Botão primário: o texto tem de ficar claro sobre o azul, mesmo
+   com --white apontando para a superfície escura. */
+[data-tema="escuro"] .login-button,
+[data-tema="escuro"] .back-button {
+    background: var(--primary);
+    color: #0B1420;
+}
+
+[data-tema="escuro"] .back-button {
+    background: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+[data-tema="escuro"] .footer-tag-cm,
+[data-tema="escuro"] .footer-credit-cm,
+[data-tema="escuro"] .resource p,
+[data-tema="escuro"] .title p {
+    color: var(--text);
+}
+
+/* ==========================================================
+   10. SCROLLBAR NO TEMA ESCURO
+   ========================================================== */
+
+[data-tema="escuro"] ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+[data-tema="escuro"] ::-webkit-scrollbar-track {
+    background: #0F1A27;
+}
+
+[data-tema="escuro"] ::-webkit-scrollbar-thumb {
+    background: #2A4763;
+    border-radius: 999px;
+}
+
+[data-tema="escuro"] ::-webkit-scrollbar-thumb:hover {
+    background: #365B7E;
+}

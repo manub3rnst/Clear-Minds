@@ -1165,61 +1165,19 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
 
     /* ==========================================
        CONFIGURAÇÕES
-       Mesma tela de Configurações já existente no ambiente do
-       usuário, agora disponível também para o profissional.
-       Usa a mesma chave de preferências (cm_config) e o mesmo
+    ==========================================
+       A tela de Configurações é a mesma do usuário: usa a
+       chave única de preferências (cm_config) e o mesmo
        perfil do profissional (cm_profile_profissional).
+
+       A parte repetitiva — preencher os [data-cfg], gravar a
+       preferência e aplicar tema/tamanho do texto — é feita
+       por tema.js, o arquivo compartilhado com a Home do
+       paciente e com o painel administrativo.
     ========================================== */
-    const getConfigObj = () => JSON.parse(localStorage.getItem("cm_config") || "{}");
+    const getConfigObj = window.CMTema.lerConfig;
 
-    const cfgDefaults = {
-        compartilharDiario: true,
-        notificacoes: true,
-        profissionaisVeemProgresso: false,
-        quemInterage: "todos",
-        notifMensagens: true,
-        notifComunidade: true,
-        notifInteracoes: true,
-        lembretesDiario: true,
-        permitirInteracoes: true,
-        mostrarSugestoes: true,
-        visibilidadePerfil: "publico",
-        tema: "claro",
-        tamanhoTexto: "normal"
-    };
-
-    const aplicarAparencia = (cfg) => {
-        const escala = { pequeno: "15px", normal: "16px", grande: "18px" };
-        document.documentElement.style.fontSize = escala[cfg.tamanhoTexto] || "16px";
-    };
-
-    const salvarConfiguracao = (parcial) => {
-        const nova = Object.assign({}, getConfigObj(), parcial);
-        localStorage.setItem("cm_config", JSON.stringify(nova));
-        aplicarAparencia(nova);
-        return nova;
-    };
-
-    const carregarConfiguracao = () => {
-        const padrao = Object.assign({}, cfgDefaults, getConfigObj());
-        document.querySelectorAll("[data-cfg]").forEach(el => {
-            const chave = el.dataset.cfg;
-            const valor = padrao[chave];
-            if (valor === undefined) return;
-            if (el.type === "checkbox") el.checked = Boolean(valor);
-            else el.value = valor;
-        });
-        return padrao;
-    };
-
-    carregarConfiguracao();
-    aplicarAparencia(getConfigObj());
-
-    document.querySelectorAll("[data-cfg]").forEach(el => {
-        el.addEventListener("change", () => {
-            salvarConfiguracao({ [el.dataset.cfg]: el.type === "checkbox" ? el.checked : el.value });
-        });
-    });
+    window.CMTema.iniciarPreferencias();
 
     /* ---------- Conta: nome e e-mail ---------- */
     const atualizarNomeExibido = (novoNome) => {

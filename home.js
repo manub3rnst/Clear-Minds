@@ -56,7 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const show = (id) => { const el = document.getElementById(id); if (el) el.hidden = false; };
     const hide = (id) => { const el = document.getElementById(id); if (el) el.hidden = true; };
     const limpar = (id) => { const el = document.getElementById(id); if (el) el.innerHTML = ""; };
-    const getConfigObj = () => JSON.parse(localStorage.getItem("cm_config") || "{}");
+    /* Preferências (tema, tamanho do texto, privacidade…) ficam em
+       tema.js, o arquivo compartilhado com a Home do profissional
+       e com o painel. Aqui só usamos a leitura. */
+    const getConfigObj = window.CMTema ? window.CMTema.lerConfig : () => JSON.parse(localStorage.getItem("cm_config") || "{}");
 
     /* Modal de confirmação reutilizável (Delete/Denunciar não usa confirmação, etc.) */
     const abrirConfirmacao = ({ titulo = "Confirmar", mensagem = "", rotuloConfirmar = "Confirmar", perigoso = false, aoConfirmar }) => {
@@ -1302,56 +1305,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ==========================================
-       CONFIGURAÇÕES — SALVAR PREFERÊNCIAS
+       CONFIGURAÇÕES — PREFERÊNCIAS
+    ==========================================
+       Não há lista de campos nem função de salvar nesta página:
+       o preenchimento dos [data-cfg], o salvamento e a aplicação
+       (tema + tamanho do texto) ficam em tema.js, compartilhado
+       com a Home do profissional e com o painel administrativo.
     ========================================== */
-    const cfgDefaults = {
-        compartilharDiario: true,
-        notificacoes: true,
-        profissionaisVeemProgresso: false,
-        quemInterage: "todos",
-        notifMensagens: true,
-        notifComunidade: true,
-        notifInteracoes: true,
-        lembretesDiario: true,
-        permitirInteracoes: true,
-        mostrarSugestoes: true,
-        visibilidadePerfil: "publico",
-        tema: "claro",
-        tamanhoTexto: "normal"
-    };
-
-    const carregarConfiguracao = () => {
-        const padrao = Object.assign({}, cfgDefaults, getConfigObj());
-        document.querySelectorAll("[data-cfg]").forEach(el => {
-            const chave = el.dataset.cfg;
-            const valor = padrao[chave];
-            if (valor === undefined) return;
-            if (el.type === "checkbox") el.checked = Boolean(valor);
-            else el.value = valor;
-        });
-        return padrao;
-    };
-
-    const salvarConfiguracao = (parcial) => {
-        const nova = Object.assign({}, getConfigObj(), parcial);
-        localStorage.setItem("cm_config", JSON.stringify(nova));
-        aplicarAparencia(nova);
-        return nova;
-    };
-
-    const aplicarAparencia = (cfg) => {
-        const escala = { pequeno: "15px", normal: "16px", grande: "18px" };
-        document.documentElement.style.fontSize = escala[cfg.tamanhoTexto] || "16px";
-    };
-
-    const cfgAtual = carregarConfiguracao();
-    aplicarAparencia(cfgAtual);
-
-    document.querySelectorAll("[data-cfg]").forEach(el => {
-        el.addEventListener("change", () => {
-            salvarConfiguracao({ [el.dataset.cfg]: el.type === "checkbox" ? el.checked : el.value });
-        });
-    });
+    window.CMTema.iniciarPreferencias();
 
     /* ---------- Contas seguidas (gerenciadas na Configuração) ---------- */
     const renderListaSeguidas = () => {

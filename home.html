@@ -9,6 +9,7 @@
 
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tema.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,6 +18,12 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!--
+        Tema e preferências: carregados aqui, antes da primeira
+        pintura, para o tema salvo já entrar aplicado.
+    -->
+    <script src="tema.js"></script>
 
 </head>
 
@@ -48,6 +55,10 @@
                         <strong id="topoNomeUsuario">Olá, Estudante</strong>
                         <small>Estudante</small>
                     </span>
+                    <button type="button" class="cm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
+                        aria-label="Alternar tema" aria-pressed="false">
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                    </button>
                     <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
                         <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
                     </button>
@@ -859,11 +870,12 @@
                             <div class="cm-settings-item">
                                 <div class="cm-info">
                                     <span class="cm-panel-title" style="font-size:.9rem;">Tema</span>
-                                    <span class="cm-panel-sub" style="margin-top:2px;">Tema claro — padrão acolhedor do Clear Minds.</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;">Escolha entre o tema claro e o tema escuro.</span>
                                 </div>
                                 <div class="cm-settings-ctrl">
                                     <select class="cm-input" data-cfg="tema">
                                         <option value="claro">Claro (padrão)</option>
+                                        <option value="escuro">Escuro</option>
                                     </select>
                                 </div>
                             </div>

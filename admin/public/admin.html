@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clear Minds | Administração</title>
+  <link rel="stylesheet" href="admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!--
+      Tema: mesmo arquivo usado pelas Homes, servido pela raiz do
+      site. Carregado no head para o tema salvo já entrar aplicado.
+  -->
+  <link rel="stylesheet" href="/tema.css">
+  <script src="/tema.js"></script>
+</head>
+
+<body class="adm">
+
+  <!-- ===================== TOPBAR ===================== -->
+  <header class="adm-topbar">
+    <button type="button" class="adm-topbar-menu" id="btnMenuMobile" aria-label="Abrir menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div>
+      <div class="adm-topbar-titulo" id="topoTitulo">Dashboard</div>
+      <div class="adm-topbar-sub">Clear Minds · Ambiente administrativo</div>
+    </div>
+
+    <div class="adm-topbar-dir">
+      <span class="adm-pill-role">
+        <i class="fa-solid fa-user-shield"></i>
+        <span>admin</span>
+      </span>
+      <button type="button" class="adm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
+        aria-label="Alternar tema" aria-pressed="false">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+      <div class="adm-avatar-top" id="topoAvatar">—</div>
+    </div>
+  </header>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <nav class="adm-side" id="side" aria-label="Menu administrativo">
+
+    <div class="adm-side-nav">
+
+      <button type="button" class="adm-side-item ativo" data-pagina="dashboard">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span class="adm-side-label">Dashboard</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="usuarios">
+        <i class="fa-solid fa-users"></i>
+        <span class="adm-side-label">Usuários</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="profissionais">
+        <i class="fa-solid fa-user-doctor"></i>
+        <span class="adm-side-label">Profissionais</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="comunidade">
+        <i class="fa-solid fa-comments"></i>
+        <span class="adm-side-label">Comunidade</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="denuncias">
+        <i class="fa-solid fa-flag"></i>
+        <span class="adm-side-label">Denúncias</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="conteudos">
+        <i class="fa-solid fa-book-open"></i>
+        <span class="adm-side-label">Conteúdos</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="agendamentos">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span class="adm-side-label">Agendamentos</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="financeiro">
+        <i class="fa-solid fa-coins"></i>
+        <span class="adm-side-label">Financeiro</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="relatorios">
+        <i class="fa-solid fa-chart-line"></i>
+        <span class="adm-side-label">Relatórios</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="auditoria">
+        <i class="fa-solid fa-clipboard-list"></i>
+        <span class="adm-side-label">Auditoria</span>
+      </button>
+
+    </div>
+
+    <div class="adm-side-bottom">
+
+      <button type="button" class="adm-side-item" data-pagina="perfil">
+        <i class="fa-solid fa-user"></i>
+        <span class="adm-side-label">Meu perfil</span>
+      </button>
+
+      <button type="button" class="adm-side-item" data-pagina="config">
+        <i class="fa-solid fa-gear"></i>
+        <span class="adm-side-label">Configurações</span>
+      </button>
+
+      <button type="button" class="adm-side-item" id="btnSair">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span class="adm-side-label">Sair</span>
+      </button>
+
+    </div>
+
+  </nav>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="adm-main">
+    <div class="adm-conteudo">
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="adm-pagina ativa" id="pag-dashboard">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Dashboard</h2>
+            <p id="dashSaudacao">Visão geral do Clear Minds.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="btnAtualizarDash">
+              <i class="fa-solid fa-rotate"></i> Atualizar
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-4" id="dashCards"></div>
+
+        <div class="adm-grid adm-grid-2 adm-mt">
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Atividade recente</h3>
+            </div>
+            <div class="adm-atividade" id="dashAtividade"></div>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Pendências que exigem ação</h3>
+            </div>
+            <div id="dashPendencias"></div>
+          </div>
+
+        </div>
+
+        <div class="adm-card adm-mt">
+          <div class="adm-aviso-sensivel">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>Dados sensíveis protegidos.</strong> O Clear Minds lida com
+              informações de saúde mental. Por isso este painel mostra apenas
+              contagens e status: diários, anotações e conteúdo privado de usuários
+              não são acessíveis pela administração, e não há nenhuma rota que os
+              devolva.
+            </div>
+          </div>
+          <p class="adm-muted">
+            Quando uma informação sensível for estritamente necessária para uma
+            função administrativa legítima, o acesso é feito caso a caso e a ação fica
+            registrada na auditoria.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- ============ USUÁRIOS ============ -->
+      <section class="adm-pagina" id="pag-usuarios">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Usuários</h2>
+            <p>Gerencie contas de usuários e pacientes.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <button type="button" class="adm-btn adm-btn-primary adm-btn-sm" id="btnNovoUsuario">
+              <i class="fa-solid fa-user-plus"></i> Novo usuário
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-filtros">
+          <div class="adm-busca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="buscaUsuario" placeholder="Buscar por nome, e-mail ou telefone">
+          </div>
+          <select id="filtroStatusUsuario">
+            <option value="">Todos os status</option>
+            <option value="ativo">Ativos</option>
+            <option value="inativo">Inativos</option>
+            <option value="bloqueado">Bloqueados</option>
+          </select>
+        </div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Usuário</th>
+                  <th>Telefone</th>
+                  <th>Cadastro</th>
+                  <th>Status</th>
+                  <th class="adm-dir">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaUsuarios"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ PROFISSIONAIS ============ -->
+      <section class="adm-pagina" id="pag-profissionais">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Profissionais</h2>
+            <p>Análise, aprovação e gestão das contas profissionais.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <div class="adm-chip-periodo" id="chipsProf">
+              <button type="button" class="adm-chip" data-status="">Todos</button>
+              <button type="button" class="adm-chip" data-status="pendente">Pendentes</button>
+              <button type="button" class="adm-chip" data-status="aprovado">Aprovados</button>
+              <button type="button" class="adm-chip" data-status="rejeitado">Rejeitados</button>
+              <button type="button" class="adm-chip" data-status="inativo">Inativos</button>
+              <button type="button" class="adm-chip" data-status="bloqueado">Bloqueados</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-filtros">
+          <div class="adm-busca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="buscaProf" placeholder="Buscar por nome, e-mail, registro ou especialidade">
+          </div>
+        </div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Profissional</th>
+                  <th>Registro</th>
+                  <th>Especialidade</th>
+                  <th>Cadastro</th>
+                  <th>Status</th>
+                  <th class="adm-dir">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaProfissionais"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ COMUNIDADE ============ -->
+      <section class="adm-pagina" id="pag-comunidade">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Comunidade</h2>
+            <p>Publicações e comentários. Toda remoção exige motivo e fica auditada.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <div class="adm-chip-periodo" id="chipsComunidade">
+              <button type="button" class="adm-chip ativo" data-visao="publicacoes">Publicações</button>
+              <button type="button" class="adm-chip" data-visao="comentarios">Comentários</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-2">
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Publicações</h3>
+              <span class="adm-tag cinza" id="contPublicacoes">0</span>
+            </div>
+            <div id="listaPublicacoes"></div>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Comentários</h3>
+              <span class="adm-tag cinza" id="contComentarios">0</span>
+            </div>
+            <div id="listaComentarios"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============ DENÚNCIAS ============ -->
+      <section class="adm-pagina" id="pag-denuncias">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Denúncias</h2>
+            <p>Análise de denúncias da comunidade.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <div class="adm-chip-periodo" id="chipsDen">
+              <button type="button" class="adm-chip ativo" data-status="">Todas</button>
+              <button type="button" class="adm-chip" data-status="pendente">Pendentes</button>
+              <button type="button" class="adm-chip" data-status="em_analise">Em análise</button>
+              <button type="button" class="adm-chip" data-status="resolvida">Resolvidas</button>
+              <button type="button" class="adm-chip" data-status="arquivada">Arquivadas</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Conteúdo denunciado</th>
+                  <th>Responsável</th>
+                  <th>Motivo</th>
+                  <th>Data</th>
+                  <th>Status</th>
+                  <th class="adm-dir">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaDenuncias"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ CONTEÚDOS ============ -->
+      <section class="adm-pagina" id="pag-conteudos">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Gerenciar conteúdos</h2>
+            <p>Artigos e materiais destinados a usuários e a profissionais.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="btnCategorias">
+              <i class="fa-solid fa-tags"></i> Categorias
+            </button>
+            <button type="button" class="adm-btn adm-btn-primary adm-btn-sm" id="btnNovoConteudo">
+              <i class="fa-solid fa-plus"></i> Novo conteúdo
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-filtros">
+          <div class="adm-chip-periodo" id="chipsDestino">
+            <button type="button" class="adm-chip ativo" data-destino="">Todos</button>
+            <button type="button" class="adm-chip" data-destino="usuarios">Usuários</button>
+            <button type="button" class="adm-chip" data-destino="profissionais">Profissionais</button>
+          </div>
+        </div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Categoria</th>
+                  <th>Destino</th>
+                  <th>Publicação</th>
+                  <th class="adm-dir">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaConteudos"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ AGENDAMENTOS ============ -->
+      <section class="adm-pagina" id="pag-agendamentos">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Agendamentos</h2>
+            <p>Consultas, profissionais, pacientes e status.</p>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-4" id="cardsAgendamentos" class="adm-grid adm-grid-4 adm-mb"></div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Profissional</th>
+                  <th>Paciente</th>
+                  <th>Status</th>
+                  <th class="adm-dir">Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaConsultas"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ FINANCEIRO ============ -->
+      <section class="adm-pagina" id="pag-financeiro">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Financeiro</h2>
+            <p id="finPeriodoTexto">Movimentações do período.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <button type="button" class="adm-btn adm-btn-primary adm-btn-sm" id="btnNovaMovimentacao">
+              <i class="fa-solid fa-plus"></i> Nova movimentação
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-filtros">
+          <div class="adm-chip-periodo" id="chipsPeriodo">
+            <button type="button" class="adm-chip" data-periodo="dia">Hoje</button>
+            <button type="button" class="adm-chip ativo" data-periodo="semana">Semana</button>
+            <button type="button" class="adm-chip" data-periodo="mes">Mês</button>
+            <button type="button" class="adm-chip" data-periodo="ano">Ano</button>
+            <button type="button" class="adm-chip" data-periodo="personalizado">Personalizado</button>
+          </div>
+          <input type="date" id="finDe" hidden>
+          <input type="date" id="finAte" hidden>
+        </div>
+
+        <div class="adm-grid adm-grid-4" id="cardsFinanceiro"></div>
+
+        <div class="adm-grid adm-grid-2 adm-mt">
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Movimentações do período</h3>
+              <span class="adm-tag cinza" id="contMovimentacoes">0</span>
+            </div>
+            <div class="adm-tabela-scroll adm-scroll-alto">
+              <table class="adm-tabela">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th class="adm-dir">Valor</th>
+                    <th class="adm-w-min"></th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaMovimentacoes"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Composição por categoria</h3>
+            </div>
+            <div id="finCategorias"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============ RELATÓRIOS ============ -->
+      <section class="adm-pagina" id="pag-relatorios">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Relatórios</h2>
+            <p>Indicadores calculados a partir dos dados registrados no sistema.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <select id="mesesRelatorio">
+              <option value="6">Últimos 6 meses</option>
+              <option value="12">Últimos 12 meses</option>
+              <option value="24">Últimos 24 meses</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-4" id="cardsRelatorio" class="adm-grid adm-grid-4 adm-mb"></div>
+
+        <div class="adm-card">
+          <div class="adm-card-topo">
+            <h3>Crescimento mensal</h3>
+          </div>
+          <div class="adm-grafico" id="graficoCrescimento"></div>
+          <div class="adm-legenda">
+            <span><i></i> Usuários</span>
+            <span><i class="b2"></i> Profissionais</span>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-2 adm-mt">
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Utilização nos últimos 30 dias</h3>
+            </div>
+            <div id="relUtilizacao"></div>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Consultas e denúncias por mês</h3>
+            </div>
+            <div id="relOutros"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============ AUDITORIA ============ -->
+      <section class="adm-pagina" id="pag-auditoria">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Logs / Auditoria</h2>
+            <p>Registro das ações administrativas. Senhas, tokens e dados de diário nunca são gravados.</p>
+          </div>
+        </div>
+
+        <div class="adm-filtros">
+          <div class="adm-busca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" id="buscaAuditoria" placeholder="Buscar por ação, recurso ou administrador">
+          </div>
+        </div>
+
+        <div class="adm-tabela-box">
+          <div class="adm-tabela-scroll">
+            <table class="adm-tabela">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Hora</th>
+                  <th>Administrador</th>
+                  <th>Ação</th>
+                  <th>Recurso</th>
+                  <th>Resultado</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaAuditoria"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ MEU PERFIL ============ -->
+      <section class="adm-pagina" id="pag-perfil">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Meu perfil</h2>
+            <p>Dados da conta administrativa.</p>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-2">
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Dados pessoais</h3>
+            </div>
+
+            <div class="adm-alerta adm-alerta-info" data-visivel="1">
+              <i class="fa-solid fa-lock"></i>
+              <div>
+                O nível de acesso (<strong>role = admin</strong>) é definido pelo servidor
+                e <strong>não pode ser alterado</strong> por esta página.
+              </div>
+            </div>
+
+            <form id="formPerfil" novalidate>
+
+              <div class="adm-linha2">
+                <div class="adm-field">
+                  <label for="pfNome">Nome</label>
+                  <input type="text" id="pfNome" required>
+                </div>
+                <div class="adm-field">
+                  <label for="pfSobrenome">Sobrenome</label>
+                  <input type="text" id="pfSobrenome">
+                </div>
+              </div>
+
+              <div class="adm-linha2">
+                <div class="adm-field">
+                  <label for="pfEmail">E-mail</label>
+                  <input type="email" id="pfEmail" required>
+                </div>
+                <div class="adm-field">
+                  <label for="pfTelefone">Telefone</label>
+                  <input type="text" id="pfTelefone">
+                </div>
+              </div>
+
+              <div class="adm-field">
+                <label for="pfCargo">Cargo / função</label>
+                <input type="text" id="pfCargo" placeholder="Administradora do sistema">
+              </div>
+
+              <div class="adm-field">
+                <label for="pfDescricao">Descrição</label>
+                <textarea id="pfDescricao" placeholder="Breve apresentação"></textarea>
+              </div>
+
+              <div class="adm-field">
+                <label for="pfFoto">Foto de perfil</label>
+                <input type="file" id="pfFoto" accept="image/*">
+                <small>PNG ou JPG. Máx. 2 MB.</small>
+              </div>
+
+              <button type="submit" class="adm-btn adm-btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Salvar alterações
+              </button>
+
+            </form>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo">
+              <h3>Alterar senha</h3>
+            </div>
+
+            <form id="formSenha" novalidate>
+              <div class="adm-field">
+                <label for="pfSenhaAtual">Senha atual</label>
+                <input type="password" id="pfSenhaAtual" autocomplete="current-password" required>
+              </div>
+              <div class="adm-field">
+                <label for="pfSenhaNova">Nova senha</label>
+                <input type="password" id="pfSenhaNova" autocomplete="new-password" required>
+                <small>Mínimo de 8 caracteres, com letras e números.</small>
+              </div>
+              <div class="adm-field">
+                <label for="pfSenhaConf">Confirmar nova senha</label>
+                <input type="password" id="pfSenhaConf" autocomplete="new-password" required>
+              </div>
+              <button type="submit" class="adm-btn adm-btn-primary">
+                <i class="fa-solid fa-key"></i> Alterar senha
+              </button>
+              <p class="adm-muted adm-mt-s">
+                Ao trocar a senha, as demais sessões abertas são encerradas.
+              </p>
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============ CONFIGURAÇÕES ============ -->
+      <section class="adm-pagina" id="pag-config">
+
+        <div class="adm-pagina-topo">
+          <div>
+            <h2>Configurações do sistema</h2>
+            <p>Informações gerais, regras da comunidade e preferências.</p>
+          </div>
+          <div class="adm-pagina-acoes">
+            <button type="button" class="adm-btn adm-btn-primary adm-btn-sm" id="btnSalvarConfig">
+              <i class="fa-solid fa-floppy-disk"></i> Salvar
+            </button>
+          </div>
+        </div>
+
+        <div class="adm-grid adm-grid-2">
+
+          <div class="adm-card">
+            <div class="adm-card-topo"><h3>Informações gerais</h3></div>
+
+            <div class="adm-field">
+              <label for="cfgNomeSistema">Nome do sistema</label>
+              <input type="text" id="cfgNomeSistema" data-config="nome_sistema">
+            </div>
+            <div class="adm-field">
+              <label for="cfgDescricao">Descrição</label>
+              <textarea id="cfgDescricao" data-config="descricao_sistema"></textarea>
+            </div>
+            <div class="adm-field">
+              <label for="cfgContato">E-mail de contato</label>
+              <input type="email" id="cfgContato" data-config="contato_email">
+            </div>
+
+            <h4 class="adm-subtitulo">Preferências</h4>
+
+            <label class="adm-item-check">
+              <input type="checkbox" id="cfgTemaEscuro">
+              <span>Tema escuro em todo o Clear Minds</span>
+            </label>
+            <label class="adm-item-check">
+              <input type="checkbox" id="cfgPermiteUsers" data-config="permitir_cadastro_usuarios">
+              <span>Permitir cadastro de novos usuários</span>
+            </label>
+            <label class="adm-item-check">
+              <input type="checkbox" id="cfgPermiteProfs" data-config="permitir_cadastro_profissionais">
+              <span>Permitir cadastro de novos profissionais</span>
+            </label>
+            <label class="adm-item-check">
+              <input type="checkbox" id="cfgNotificaDen" data-config="notificar_admin_denuncia">
+              <span>Notificar a administração sobre novas denúncias</span>
+            </label>
+            <div class="adm-field adm-mt-s">
+              <label for="cfgMaxDen">Limite de denúncias pendentes para alerta</label>
+              <input type="number" id="cfgMaxDen" min="1" data-config="max_denuncias_pendentes">
+            </div>
+          </div>
+
+          <div class="adm-card">
+            <div class="adm-card-topo"><h3>Regras da comunidade</h3></div>
+
+            <div class="adm-field">
+              <label for="cfgRegraDenuncia">Regra geral</label>
+              <textarea id="cfgRegraDenuncia" data-config="regra_denuncia"></textarea>
+            </div>
+            <div class="adm-field">
+              <label for="cfgRegraJulgamento">Não julgar</label>
+              <textarea id="cfgRegraJulgamento" data-config="regra_sem_julgamento"></textarea>
+            </div>
+            <div class="adm-field">
+              <label for="cfgRegraPrivacidade">Privacidade</label>
+              <textarea id="cfgRegraPrivacidade" data-config="regra_privacidade"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="adm-card adm-mt">
+          <div class="adm-card-topo">
+            <h3>Importar dados do navegador</h3>
+          </div>
+          <p class="adm-muted adm-mb-s">
+            As páginas do app ainda guardam tudo em <code>localStorage</code>. Esta
+            ferramenta lê essas chaves e grava no banco do painel, para as telas
+            de usuários, comunidade, consultas e financeiro deixarem de estar vazias.
+          </p>
+
+          <div class="adm-alerta adm-alerta-info adm-mb-s" data-visivel="1">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              Diário, humor, sono, ansiedade, pacientes e solicitações de diário
+              <strong>são recusados na importação</strong>. O painel administrativo
+              nunca recebe esse tipo de conteúdo.
+            </div>
+          </div>
+
+          <div class="adm-field">
+            <label for="importarArquivo">Arquivo <code>.json</code> exportado do navegador</label>
+            <input type="file" id="importarArquivo" accept="application/json,.json">
+          </div>
+
+          <div class="adm-field">
+            <label for="importarColado">Ou cole o JSON aqui</label>
+            <textarea id="importarColado" rows="5"
+              placeholder='{ "cm_profile": { "nome": "...", "email": "..." } }'></textarea>
+          </div>
+
+          <div class="adm-acoes">
+            <button type="button" class="adm-btn adm-btn-primary adm-btn-sm" id="btnImportar">
+              <i class="fa-solid fa-file-import"></i> Importar arquivo
+            </button>
+            <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" id="btnImportarLocal">
+              <i class="fa-solid fa-bolt"></i> Importar direto deste navegador
+            </button>
+          </div>
+
+          <p class="adm-muted adm-mt-s adm-nota">
+            O botão direto só enxerga os dados guardados nesta mesma origem
+            (<code>http://127.0.0.1:4173</code>). Se você usa o app abrindo os
+            arquivos <code>.html</code> pelo duplo clique, o armazenamento é outro:
+            nesse caso use o arquivo <code>.json</code> ou o campo acima.
+          </p>
+
+          <div id="resultadoImportar" class="adm-mt-s"></div>
+        </div>
+
+        <div class="adm-card adm-mt">
+          <div class="adm-card-topo">
+            <h3>Gerenciamento administrativo</h3>
+          </div>
+          <p class="adm-muted adm-mb-s">
+            Conta administrativa ativa nesta instalação.
+          </p>
+          <div id="infoAdmin"></div>
+          <div class="adm-alerta adm-alerta-info adm-mt" data-visivel="1">
+            <i class="fa-solid fa-circle-info"></i>
+            <div>
+              Contas administrativas, e-mails de acesso, hashes de senha e papéis
+              <strong>não são editáveis por esta página</strong>. Tentar enviar esses
+              campos pela interface é bloqueado pelo servidor, que registra a tentativa.
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===================== MODAL ===================== -->
+  <div class="adm-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="adm-modal" id="modalCaixa">
+      <div class="adm-modal-topo">
+        <h3 id="modalTitulo">Título</h3>
+        <button type="button" class="adm-modal-fechar" id="modalFechar" aria-label="Fechar">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="adm-modal-corpo" id="modalCorpo"></div>
+      <div class="adm-modal-pe" id="modalPe"></div>
+    </div>
+  </div>
+
+  <div class="adm-toasts" id="toasts"></div>
+
+  <script src="admin.js"></script>
+
+</body>
+
+</html>

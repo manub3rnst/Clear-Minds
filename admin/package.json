@@ -1,0 +1,20 @@
+{
+  "name": "clear-minds-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ambiente administrativo do Clear Minds — painel de gestão com autorização por role no servidor.",
+  "type": "module",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node testes/api.test.js"
+  },
+  "dependencies": {},
+  "keywords": ["clear-minds", "admin", "painel", "saude-mental"],
+  "author": "Manuella Bernst",
+  "license": "UNLICENSED"
+}
