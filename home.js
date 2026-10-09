@@ -134,13 +134,27 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Saúde mental",
             icone: "fa-solid fa-brain",
             titulo: "O que é o autocuidado e por onde começar",
-            data: "Fevereiro de 2026",
-            teaser: "Autocuidado vai muito além de skincare ou banho demorado. Entenda o que é, por que importa e como criar uma rotina simples.",
+            data: "2026",
+            teaser: "Autocuidado é um conjunto de práticas que ajudam a manter saúde física, emocional e social de forma realista e sustentável.",
+            videoUrl: "https://youtu.be/yMWFtSSSgfk?si=e9V8P_3PncQniu7A",
+            fonte: "World Health Organization (WHO). Implementation of self-care interventions for health and well-being: guidance for health systems. 2024.",
+            fonteLink: "https://www.who.int/publications/i/item/9789240084574",
             corpo: [
-                { tipo: "p", texto: "Autocuidado é a prática de cuidar ativamente da própria saúde física, emocional e social. Não é um luxo nem um item da agenda: é uma necessidade que ajuda a manter o equilíbrio no dia a dia." },
-                { tipo: "h3", texto: "Por onde começar?" },
-                { tipo: "ul", itens: ["Escolha um hábito pequeno e realista para esta semana.", "Reserve um tempo fixo do dia só para você.", "Preste atenção em como você se sente durante a atividade."] },
-                { tipo: "p", texto: "O autocuidado é individual: o que funciona para outra pessoa pode não funcionar para você. A ideia não é ser perfeito, e sim ser constante." }
+                { tipo: "p", texto: "Autocuidado não é um ‘luxo’ ou uma tarefa extra na rotina. Na orientação da Organização Mundial da Saúde (OMS), publicada em 2024, intervenções de autocuidado fazem parte de estratégias para fortalecer bem-estar e saúde, desde hábitos diários até apoio em saúde mental e relações sociais." },
+                { tipo: "h3", texto: "O que você precisa saber" },
+                { tipo: "p", texto: "Autocuidado significa cuidar de si com intenção, sem depender de perfeição. Isso inclui sono, alimentação, movimento, pausas, organização, comunicação e atenção ao que você sente." },
+                { tipo: "h3", texto: "Autocuidado não é igual a “fazer tudo certo”" },
+                { tipo: "p", texto: "Ele não significa negar cansaço, ignorar sofrimento, fingir que tudo está bem ou agir como se o estudante precisasse lidar sozinho com tudo. Também não é apenas atividades prazerosas isoladas: assistir a um vídeo, ouvir música ou tomar um banho podem ser úteis, mas não substituem hábitos que sustentem bem-estar ao longo do tempo." },
+                { tipo: "h3", texto: "Autocuidado físico, emocional, social e de rotina" },
+                { tipo: "ul", itens: ["Físico: sono regular, água, alimentação, pausas, movimento e redução de excesso de estímulos.", "Emocional: nomear sentimentos, pedir apoio e respeitar limites.", "Social: conviver com pessoas que respeitam você e dar espaço para o que te faz bem.", "Rotina: organizar tarefas, priorizar estudos e reconhecer o que é possível em cada momento."] },
+                { tipo: "h3", texto: "Por onde começar" },
+                { tipo: "ul", itens: ["Escolha uma ação simples, como dormir no horário certo, beber água durante o dia, registrar como está se sentindo ou organizar a semana.", "Comece pelo que cabe no seu ritmo, em vez de tentar fazer tudo de uma vez.", "Faça pequenas verificações: ‘Estou cansado(a)? Estou muito sobrecarregado(a)? Preciso de ajuda?’"] },
+                { tipo: "h3", texto: "Quando é preciso buscar ajuda" },
+                { tipo: "p", texto: "Autocuidado pode ser parte do cuidado com a saúde, mas não substitui acompanhamento profissional quando há sofrimento intenso, ansiedade frequente, isolamento, irritabilidade muito alta ou impacto na rotina, estudo e relações. Em situações mais desafiadoras, conversar com um adulto de confiança, professor(a), orientador(a) ou profissional de saúde é uma decisão responsável." },
+                { tipo: "h3", texto: "O que as pesquisas mostram" },
+                { tipo: "p", texto: "A OMS, em 2024 e 2025, destacou que hábitos relacionados ao sono, atividade física, enfrentamento de desafios, resolução de problemas e manejo das emoções são importantes para o bem-estar na adolescência. A orientação da OMS reforça que intervenções de autocuidado funcionam melhor quando são integradas ao contexto real de vida da pessoa e não tratadas como solução única para todos os problemas." },
+                { tipo: "h3", texto: "Na prática" },
+                { tipo: "p", texto: "Para estudantes do ensino médio, um autocuidado realista pode ser: dormir na hora, fazer pausas entre estudos, conversar com alguém confiável, reduzir comparações, limitar uso de telas antes de dormir e reservar tempo para descanso ou lazer sem culpa." }
             ]
         },
         {
@@ -148,13 +162,25 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Ansiedade",
             icone: "fa-solid fa-wind",
             titulo: "Técnica 3-3-3 para momentos de ansiedade",
-            data: "Fevereiro de 2026",
-            teaser: "Um exercício rápido de ancoragem para usar quando a ansiedade aparecer: 3-3-3.",
+            data: "2026",
+            teaser: "Uma estratégia simples de grounding para voltar a atenção para o presente, especialmente em momentos de sobrecarga ou ansiedade.",
+            videoUrl: "",
+            fonte: "Newport Healthcare. Grounding techniques for anxiety: 3-3-3 method. June 2024.",
+            fonteLink: "https://www.newportacademy.com/resources/self-improvement/3-3-3-grounding-technique/",
             corpo: [
-                { tipo: "p", texto: "Quando a ansiedade chega de repente, o corpo acelera e a mente cria uma sensação de urgência. A técnica 3-3-3 ajuda a trazer a atenção de volta para o presente." },
-                { tipo: "h3", texto: "Como fazer" },
-                { tipo: "ul", itens: ["Nomeie 3 coisas que você consegue ver à sua volta.", "Identifique 3 sons que você consegue ouvir agora.", "Mexa 3 partes do corpo: pés, dedos e mãos." ] },
-                { tipo: "p", texto: "Se a ansiedade for frequente ou intensa, procure um profissional de saúde mental. Técnicas rápidas ajudam, mas não substituem o acompanhamento." }
+                { tipo: "p", texto: "A técnica 3-3-3 é uma estratégia de grounding bastante conhecida em contexto de saúde mental e bem-estar. Ela pode ajudar algumas pessoas a direcionar a atenção para o ambiente e para o momento presente em situações de ansiedade, sobrecarga ou sensação de aceleração mental." },
+                { tipo: "h3", texto: "O que você precisa saber" },
+                { tipo: "p", texto: "A técnica não tem como objetivo ‘curar’ a ansiedade nem substituir avaliação ou acompanhamento profissional. Ela é uma forma simples de redirecionar atenção, mas pode não funcionar do mesmo jeito para todas as pessoas." },
+                { tipo: "h3", texto: "Passo 1 — 3 coisas que você vê" },
+                { tipo: "p", texto: "Olhe ao redor e nomeie três objetos, detalhes ou pessoas que consegue ver. Pode ser a mochila, uma cadeira, uma janela, uma planta ou qualquer elemento do ambiente." },
+                { tipo: "h3", texto: "Passo 2 — 3 coisas que você ouve" },
+                { tipo: "p", texto: "Preste atenção a três sons presentes naquele momento: vento, passos, ventilador, conversas ao longe, clique do teclado ou um objeto vibrando." },
+                { tipo: "h3", texto: "Passo 3 — 3 movimentos" },
+                { tipo: "p", texto: "Ajuste o corpo de forma confortável e faça três movimentos: mexer os dedos, movimentar os ombros, erguer ou abaixar os pés, ou qualquer gesto leve que não cause desconforto." },
+                { tipo: "h3", texto: "O que as pesquisas mostram" },
+                { tipo: "p", texto: "Há materiais de saúde que descrevem a técnica 3-3-3 como uma estratégia de grounding, incluindo a Newport Healthcare em publicação de junho de 2024. Porém, não há evidência científica suficiente para afirmar que ela, isoladamente, tem eficácia clínica comprovada de forma generalizada. Por isso, a melhor forma de apresentar essa técnica é como um recurso de apoio e atenção para o presente, não como solução definitiva para ansiedade." },
+                { tipo: "h3", texto: "Na prática" },
+                { tipo: "p", texto: "Se a ansiedade for frequente, intensa ou estiver prejudicando sua rotina, procure um adulto de confiança e/ou um profissional de saúde. A técnica pode ser útil, mas não substitui cuidado adequado quando o sofrimento é persistente ou grave." }
             ]
         },
         {
@@ -162,13 +188,22 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Rotina de estudos",
             icone: "fa-solid fa-book-open",
             titulo: "Como o sono afeta sua memória e suas notas",
-            data: "Janeiro de 2026",
-            teaser: "Dormir bem não é 'perder tempo': é parte essencial do aprendizado.",
+            data: "2026",
+            teaser: "Sono não é descanso perdido: ele ajuda o cérebro a organizar, consolidar e recuperar o que você aprendeu.",
+            videoUrl: "https://youtu.be/4W16fpTlzac?si=Lv3krpbU9QIooKqT",
+            fonte: "Alhola P, Polo-Kantola P. Sleep deprivation: impact on cognitive performance. Neuropsychiatr Dis Treat. 2007. Disponível em PubMed/NCBI.",
+            fonteLink: "https://pubmed.ncbi.nlm.nih.gov/18047487/",
             corpo: [
-                { tipo: "p", texto: "Durante o sono, o cérebro organiza e consolida o que você estudou durante o dia. Estudar a madrugada toda, sem dormir, costuma trazer mais prejuízo que benefício." },
-                { tipo: "h3", texto: "O que ajuda" },
-                { tipo: "ul", itens: ["Mantenha horários regulares de dormir e acordar.", "Evite telas até 30 ou 40 minutos antes de deitar.", "Prefira revisões curtas diárias a 'noites viradas' de véspera."] },
-                { tipo: "p", texto: "Uma boa noite de sono melhora atenção, humor e memória — três fatores diretos no seu desempenho escolar." }
+                { tipo: "p", texto: "Dormir não é apenas uma pausa entre um dia e outro. Durante o sono, o cérebro continua trabalhando em processos importantes para aprendizagem, memória e atenção." },
+                { tipo: "h3", texto: "O que você precisa saber" },
+                { tipo: "p", texto: "A privação do sono prejudica a atenção, a memória de trabalho e a capacidade de aprender com rapidez. Isso não quer dizer que uma noite mal dormida vai arruinar sua vida acadêmica, mas ela pode afetar concentração e retenção de conteúdo." },
+                { tipo: "h3", texto: "O que as pesquisas mostram" },
+                { tipo: "p", texto: "Uma revisão sistemática e meta-análise publicada em 2024 na revista Neuroscience & Biobehavioral Reviews analisou 39 estudos e 1.234 participantes e encontrou que a restrição do sono prejudicou a formação de memórias, embora o efeito observado tenha sido pequeno. Em outras palavras, dormir pouco pode interferir na consolidação do que foi aprendido, especialmente quando a falta de sono é recorrente." },
+                { tipo: "p", texto: "Além disso, revisões e estudos clássicos sobre privação de sono apontam que a falta de descanso afeta atenção, vigilância e tempo de reação — elementos diretamente ligados à aprendizagem e ao desempenho escolar. O impacto varia de pessoa para pessoa, mas o padrão geral é consistente: sono insuficiente diminui capacidade de processamento e memória." },
+                { tipo: "h3", texto: "Na prática" },
+                { tipo: "ul", itens: ["Manter um horário regular de sono ajuda o cérebro a trabalhar melhor no dia seguinte.", "Dormir bem favorece revisão, concentração e organização de ideias.", "Escala de estudo e descanso são complemento de aprendizagem, não competição."] },
+                { tipo: "h3", texto: "Experimente" },
+                { tipo: "p", texto: "Pergunte a si mesmo: ‘Eu dormi o suficiente para lembrar tudo com clareza? Como estou me sentindo na aula?’. Essas observações ajudam a perceber que sono também faz parte do rendimento escolar." }
             ]
         },
         {
@@ -176,13 +211,22 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Relacionamentos",
             icone: "fa-solid fa-heart",
             titulo: "Amizades que fazem bem: sinais e limites",
-            data: "Janeiro de 2026",
-            teaser: "Relações saudáveis precisam de cuidado mútuo — e de limites claros.",
+            data: "2026",
+            teaser: "Amizades saudáveis são aquelas que dão apoio, respeito e espaço para você ser quem é — sem desgastar sua energia.",
+            videoUrl: "https://recordtv.r7.com/love-school-escola-amor/videos/amizades-que-ultrapassam-limites-e-entram-em-aspectos-pessoais-podem-abalar-relacionamentos-25032023",
+            fonte: "Brenning, K. M. et al. Associations Between Adolescent Friends' Responses During Problem Talk and Depressive Symptoms. Developmental Psychology. 2024.",
+            fonteLink: "https://psycnet.apa.org/record/2024-93984-001",
             corpo: [
-                { tipo: "p", texto: "Amizades boas trazem apoio e leveza. Mas nem todo vínculo faz bem. Perceber quando uma relação está te desgastando é um primeiro passo importante." },
-                { tipo: "h3", texto: "Alguns sinais de uma relação saudável" },
-                { tipo: "ul", itens: ["Você se sente ouvido(a) e respeitado(a).", "Há espaço para discordar sem medo de represália.", "O apoio é mútuo, não só de um lado."] },
-                { tipo: "p", texto: "Estabelecer limites não é egoísmo — é cuidado consigo mesmo. Você pode escolher suas amizades." }
+                { tipo: "p", texto: "Amizades que fazem bem geralmente têm um eixo de cuidado, respeito e limites. Elas não exigem que você se anule para agradar ou se sinta sempre responsável por cuidar do outro sem receber cuidado em troca." },
+                { tipo: "h3", texto: "O que você precisa saber" },
+                { tipo: "p", texto: "Uma amizade saudável costuma ter espaço para ouvir, apoiar e respeitar o tempo do outro. Quando alguém minimiza o que você sente, muda de assunto sempre que você fala sobre algo importante ou te faz sentir culpa por estabelecer limites, é um sinal de que a relação pode não estar sendo acolhedora." },
+                { tipo: "h3", texto: "O que as pesquisas mostram" },
+                { tipo: "p", texto: "Um estudo publicado na Developmental Psychology em 2024 acompanhou 271 duplas de amigos adolescentes e encontrou associações entre respostas positivas e engajadas — como oferecer apoio, compartilhar experiências e fazer perguntas — e menores níveis de sintomas depressivos ao longo do tempo. Já respostas negativas ou desengajadas, como minimizar o problema ou mudar de assunto, foram associadas a níveis maiores de sofrimento emocional." },
+                { tipo: "p", texto: "Em uma pesquisa publicada no Journal of Research on Adolescence em 2024, a qualidade da amizade também se relacionou com maior abertura para compartilhar aspectos pessoais e sentimentos. Isso mostra que vínculos saudáveis ajudam a desenvolver confiança e suporte emocional, e não apenas companhia na rotina." },
+                { tipo: "h3", texto: "Na prática" },
+                { tipo: "ul", itens: ["Você pode dizer ‘não’ sem se sentir culpado(a).", "Você pode pedir espaço quando precisa ficar em silêncio, descansar ou estudar.", "Você pode iniciar uma conversa sobre como se sente em relação a uma amizade, sem precisar transformar tudo em conflito imediato."] },
+                { tipo: "h3", texto: "Experimente" },
+                { tipo: "p", texto: "Observe: em suas amizades, alguém te escuta e respeita? Você se sente livre para dizer não? Quando uma conversa te deixa exausto(a), isso pode ser um sinal importante de que o vínculo não está sendo saudável para você." }
             ]
         },
         {
@@ -190,13 +234,22 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "Emoções",
             icone: "fa-solid fa-face-smile",
             titulo: "Por que nomear emoções ajuda a lidar com elas",
-            data: "Janeiro de 2026",
-            teaser: "Dar nome aos sentimentos reduz sua intensidade e aumenta o autoconhecimento.",
+            data: "2026",
+            teaser: "Reconhecer o que você sente com mais precisão pode ajudar a escolher uma resposta mais útil para aquilo que está vivendo.",
+            videoUrl: "",
+            fonte: "Preece, D. A. et al. Examining the association among adolescents' emotional clarity, emotion differentiation and the regulation of negative and positive affect using a daily diary approach. Emotion. 2024.",
+            fonteLink: "https://pubmed.ncbi.nlm.nih.gov/39325939/",
             corpo: [
-                { tipo: "p", texto: "Estudos mostram que colocar em palavras o que sentimos (por exemplo: 'estou frustrado', 'estou inseguro') reduz a ativação emocional e ajuda o raciocínio." },
-                { tipo: "h3", texto: "Como praticar" },
-                { tipo: "ul", itens: ["Quando sentir algo forte, tente descrever em 1 ou 2 palavras.", "Escreva no diário o que aconteceu, o que sentiu e por quê.", "Não julgue a emoção: apenas reconheça que ela existe."] },
-                { tipo: "p", texto: "Reconhecer emoções é o primeiro passo para lidar com elas de forma mais equilibrada." }
+                { tipo: "p", texto: "Dar nome a uma emoção não é apenas uma questão de linguagem. É um passo importante para compreender melhor o que está acontecendo dentro de você e reduzir a sensação de que tudo é confuso ou avassalador." },
+                { tipo: "h3", texto: "O que você precisa saber" },
+                { tipo: "p", texto: "Diferenciar entre ‘estou mal’ e ‘estou frustrado(a), ansioso(a), triste, com vergonha ou preocupado(a)’ ajuda a criar mais clareza. Quando a emoção é nomeada, o cérebro consegue processar melhor a experiência e escolher uma resposta mais adequada." },
+                { tipo: "h3", texto: "O que as pesquisas mostram" },
+                { tipo: "p", texto: "Um estudo publicado na revista Emotion em 2024, com adolescentes e jovens adultos, utilizou registros diários para examinar a relação entre clareza emocional, diferenciação das emoções e regulação afetiva. Os resultados sugerem que compreender e diferenciar melhor as próprias emoções está relacionado a processos de regulação emocional mais funcionais." },
+                { tipo: "p", texto: "Também há evidência de que adolescentes com maior diferenciação emocional tendem a ter uma experiência afetiva mais específica e menos generalizada, o que pode facilitar compreender melhor seus próprios sentimentos e escolher estratégias de enfrentamento mais adequadas." },
+                { tipo: "h3", texto: "Na prática" },
+                { tipo: "ul", itens: ["Em vez de dizer ‘estou mal’, tente identificar algo mais específico: ‘estou frustrado(a) por ter muitas tarefas’, ‘estou ansioso(a) porque tenho prova amanhã’, ‘estou triste porque me senti excluído(a)’.", "Usar palavras mais precisas ajuda a entender melhor a situação e o que precisa ser cuidado.", "Não julgar a emoção como certa ou errada: a emoção pode ser reconhecida sem ser ignorada."] },
+                { tipo: "h3", texto: "Experimente" },
+                { tipo: "p", texto: "No final do dia, faça uma mini-checagem: ‘O que senti hoje? Como isso apareceu? O que me ajudaria agora?’ Essa prática não resolve tudo sozinha, mas pode ser um primeiro passo importante para entender melhor o próprio estado emocional." }
             ]
         }
     ];
@@ -206,16 +259,58 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!overlay) return;
         const fmt = (v) => esc(String(v));
         const setEl = (id, valor) => { const el = document.getElementById(id); if (el) el.innerHTML = valor; };
+        const setHref = (id, href, label) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.href = href || "#";
+            el.textContent = label || "Ver fonte";
+            el.hidden = !href;
+        };
         setEl("cmReaderCategoria", `<i class="${fmt(c.icone)}" aria-hidden="true"></i> ${fmt(c.categoria)}`);
         setEl("cmReaderData", fmt(c.data));
         setEl("cmReaderTitulo", fmt(c.titulo));
         setEl("cmReaderTeaser", fmt(c.teaser || ""));
+
+        const videoWrap = document.getElementById("cmReaderVideo");
+        if (videoWrap) {
+            if (c.videoUrl) {
+                const isYouTube = /(youtu\.be|youtube\.com)/i.test(c.videoUrl || "");
+                if (isYouTube) {
+                    const videoId = (c.videoUrl.match(/(?:v=|be\/)([A-Za-z0-9_-]{11})/) || [null, ""])[1];
+                    const src = videoId ? `https://www.youtube.com/embed/${videoId}` : c.videoUrl;
+                    videoWrap.innerHTML = `<iframe src="${src}" title="Vídeo do conteúdo" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+                } else {
+                    videoWrap.innerHTML = `<div class="cm-reader-video-placeholder"><p><strong>Vídeo disponível:</strong><br><a href="${esc(c.videoUrl)}" target="_blank" rel="noopener noreferrer">Abrir vídeo original</a></p></div>`;
+                }
+            } else {
+                videoWrap.innerHTML = "";
+            }
+        }
+
         const corpo = (c.corpo || []).map(bloco => {
             if (bloco.tipo === "h3") return `<h3>${fmt(bloco.texto)}</h3>`;
             if (bloco.tipo === "ul") return `<ul>${bloco.itens.map(i => `<li>${fmt(i)}</li>`).join("")}</ul>`;
             return `<p>${fmt(bloco.texto)}</p>`;
         }).join("");
-        setEl("cmReaderCorpo", corpo);
+
+        if (c.id === 2) {
+            const checklist = [
+                "3 coisas que você vê",
+                "3 coisas que você ouve",
+                "3 movimentos que você consegue fazer agora"
+            ];
+            const passos = checklist.map((label, idx) => `
+                <div class="cm-grounding-item">
+                    <input id="ground-${idx}" type="checkbox">
+                    <label for="ground-${idx}">${label}</label>
+                </div>`).join("");
+            setEl("cmReaderCorpo", `${corpo}<div class="cm-grounding-checklist">${passos}</div><p><strong>Fonte:</strong> ${fmt(c.fonte)}</p><p><strong>Observação:</strong> esta técnica é uma estratégia simples de grounding e não substitui acompanhamento profissional quando a ansiedade é frequente, intensa ou interfere na rotina.</p>`);
+        } else {
+            setEl("cmReaderCorpo", `${corpo}<p><strong>Fonte:</strong> ${fmt(c.fonte)}</p>`);
+        }
+
+        setHref("cmReaderFonte", c.fonteLink || "#", "Ver fonte");
+        setHref("cmReaderVideoLink", c.videoUrl || "", c.videoUrl ? "Assistir ao vídeo" : "Assistir ao vídeo");
         overlay.classList.add("show");
     };
 
@@ -664,7 +759,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 : "";
 
             const postAcoes = ehMeuPost
-                ? `<button type="button" data-post-acao="excluir" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicação</button>`
+                ? `<button type="button" data-post-acao="editar" data-post="${esc(p.id)}"><i class="fa-solid fa-pen"></i> Editar publicação</button>
+                   <button type="button" data-post-acao="excluir" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicação</button>`
                 : ((() => {
                     const jaSigo = p.autorEmail ? amizades.some(a => a.email === p.autorEmail) : false;
                     let html = "";
@@ -932,6 +1028,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 fecharDropdowns();
 
+                if (acao === "editar") {
+                    const post = postagens.find(x => String(x.id) === id);
+                    const article = btn.closest(".cm-post");
+                    const body = article ? article.querySelector(".cm-post-body") : null;
+                    if (!post || !body) return;
+                    body.innerHTML = `
+                        <div class="cm-post-edit-box">
+                            <textarea class="cm-post-edit-input" rows="4" maxlength="500" aria-label="Editar publicação">${esc(post.texto || "")}</textarea>
+                            <div class="cm-post-edit-actions">
+                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm cm-post-save">Salvar</button>
+                                <button type="button" class="cm-btn cm-btn-soft cm-btn-sm cm-post-cancel">Cancelar</button>
+                            </div>
+                        </div>
+                    `;
+
+                    const salvar = body.querySelector(".cm-post-save");
+                    const cancelar = body.querySelector(".cm-post-cancel");
+                    const textarea = body.querySelector(".cm-post-edit-input");
+                    if (textarea) textarea.focus();
+
+                    salvar?.addEventListener("click", () => {
+                        const texto = (textarea?.value || "").trim();
+                        if (!texto) {
+                            notificar("Escreva algo antes de salvar.");
+                            return;
+                        }
+                        post.texto = texto;
+                        salvarLista("cm_postagens", postagens);
+                        notificar("Publicação atualizada.");
+                        atualizarFeeds();
+                    });
+
+                    cancelar?.addEventListener("click", () => atualizarFeeds());
+                    return;
+                }
+
                 if (acao === "excluir") {
                     const post = postagens.find(x => String(x.id) === id);
                     if (post) {
@@ -1038,15 +1170,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="cm-diary-head">
                     <span class="cm-diary-emoji">${humorEmoji(r.humor)}</span>
                     <h4>${esc(titulo)}</h4>
-                    <button type="button" class="cm-diary-delete" title="Excluir registro" aria-label="Excluir registro"><i class="fa-regular fa-trash-can"></i></button>
+                    <div class="cm-diary-actions">
+                        <button type="button" class="cm-diary-edit" title="Editar registro" aria-label="Editar registro"><i class="fa-solid fa-pen"></i></button>
+                        <button type="button" class="cm-diary-delete" title="Excluir registro" aria-label="Excluir registro"><i class="fa-regular fa-trash-can"></i></button>
+                    </div>
                 </div>
                 <div class="cm-diary-meta">
                     <i class="fa-regular fa-calendar" aria-hidden="true"></i> ${formatarData(r.data)}${r.humor ? ` · Humor: ${esc(r.humor)}` : ""}
                 </div>
-                ${apenasHumor
-                    ? `<div class="cm-diary-text"><em>Registro de humor apenas.</em></div>`
-                    : `<div class="cm-diary-text${longo ? " cm-clamped" : ""}">${esc(texto)}</div>
-                       ${longo ? `<button type="button" class="cm-diary-expand">Ver completo</button>` : ""}`}
+                <div class="cm-diary-body">
+                    ${apenasHumor
+                        ? `<div class="cm-diary-text"><em>Registro de humor apenas.</em></div>`
+                        : `<div class="cm-diary-text${longo ? " cm-clamped" : ""}">${esc(texto)}</div>
+                           ${longo ? `<button type="button" class="cm-diary-expand">Ver completo</button>` : ""}`}
+                </div>
             `;
 
             const idRef = String(r.id);
@@ -1064,6 +1201,40 @@ document.addEventListener("DOMContentLoaded", () => {
                         notificar("Registro excluído.");
                     }
                 });
+            });
+
+            card.querySelector(".cm-diary-edit").addEventListener("click", () => {
+                const body = card.querySelector(".cm-diary-body");
+                if (!body) return;
+                body.innerHTML = `
+                    <div class="cm-post-edit-box">
+                        <input type="text" class="cm-diary-edit-input" value="${esc(titulo)}" maxlength="120" aria-label="Editar título do diário">
+                        <textarea class="cm-diary-edit-text" rows="4" maxlength="1000" aria-label="Editar texto do diário">${esc(texto)}</textarea>
+                        <div class="cm-post-edit-actions">
+                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm cm-diary-save">Salvar</button>
+                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm cm-diary-cancel">Cancelar</button>
+                        </div>
+                    </div>
+                `;
+
+                const salvar = body.querySelector(".cm-diary-save");
+                const cancelar = body.querySelector(".cm-diary-cancel");
+                const inputTitulo = body.querySelector(".cm-diary-edit-input");
+                const inputTexto = body.querySelector(".cm-diary-edit-text");
+
+                salvar?.addEventListener("click", () => {
+                    const novoTitulo = (inputTitulo?.value || "").trim();
+                    const novoTexto = (inputTexto?.value || "").trim();
+                    const item = diario.find(x => String(x.id) === idRef);
+                    if (!item) return;
+                    item.titulo = novoTitulo;
+                    item.texto = novoTexto;
+                    salvarLista("cm_diario", diario);
+                    renderDiario();
+                    notificar("Registro atualizado.");
+                });
+
+                cancelar?.addEventListener("click", () => renderDiario());
             });
 
             const expandir = card.querySelector(".cm-diary-expand");
