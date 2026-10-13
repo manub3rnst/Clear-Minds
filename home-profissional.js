@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let atividades = JSON.parse(localStorage.getItem("cm_atividades_profissional") || "[]");
     const conteudos = JSON.parse(localStorage.getItem("cm_conteudos_profissional") || "[]");
     let movimentacoes = JSON.parse(localStorage.getItem("cm_movimentacoes") || "[]");
+    let profissionaisSeguidos = JSON.parse(localStorage.getItem("cm_profissionais_seguidos") || "[]");
 
     const getLista = (chave) => JSON.parse(localStorage.getItem(chave) || "[]");
     const salvarLista = (chave, lista) => localStorage.setItem(chave, JSON.stringify(lista));
@@ -152,8 +153,10 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
     };
 
     const renderPerfilProf = () => {
-        set("perfilNome", nome || "Profissional");
-        set("perfilMeta", `${profissao}${perfil.registroProfissional ? ` • ${perfil.registroProfissional}${perfil.ufCrp ? ` (${perfil.ufCrp})` : ""}` : ""}`);
+        const nomeAtual = (perfil.nome || "").trim();
+        const profissaoAtual = perfil.profissao || "Profissional de saúde";
+        set("perfilNome", nomeAtual || "Profissional");
+        set("perfilMeta", `${profissaoAtual}${perfil.registroProfissional ? ` • ${perfil.registroProfissional}${perfil.ufCrp ? ` (${perfil.ufCrp})` : ""}` : ""}`);
         set("statusVerificacao", perfil.verificado ? "Perfil verificado" : "Verificação pendente");
         set("perfilBio", (perfil.bio || "").trim() || "Nenhuma apresentação adicionada ainda.");
 
@@ -191,13 +194,106 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
         if (!el) return;
         const texto = (perfil.nome || "").trim();
         const ini = texto ? texto.split(/\s+/).slice(0, 2).map(p => p[0].toUpperCase()).join("") : "P";
-        if (perfil.foto) el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">`;
-        else el.textContent = ini;
+        el.innerHTML = perfil.foto
+            ? `<img src="${perfil.foto}" alt="">${el.id === "perfilAvatar" ? '<span class="cm-profile-photo-hint"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>' : ""}`
+            : `${ini}${el.id === "perfilAvatar" ? '<span class="cm-profile-photo-hint"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>' : ""}`;
     };
-aplicarFoto(document.getElementById("avatarIniciais"));
-    aplicarFoto(document.getElementById("perfilAvatar"));
-    aplicarFoto(document.getElementById("sideAvatar"));
+    const atualizarFotosPerfil = () => {
+        aplicarFoto(document.getElementById("avatarIniciais"));
+        aplicarFoto(document.getElementById("perfilAvatar"));
+        aplicarFoto(document.getElementById("sideAvatar"));
+    };
+    atualizarFotosPerfil();
     renderPerfilProf();
+
+    const perfisProfissionaisDemo = [
+        { email: "marina.alves@demo.clearminds.local", nome: "Marina Alves", detalhe: "Psicóloga · Perfil demonstrativo" },
+        { email: "rafael.costa@demo.clearminds.local", nome: "Rafael Costa", detalhe: "Psicólogo clínico · Perfil demonstrativo" },
+        { email: "juliana.rocha@demo.clearminds.local", nome: "Juliana Rocha", detalhe: "Terapeuta · Perfil demonstrativo" }
+    ];
+    const renderSugestoesProfissionais = () => {
+        const lista = document.getElementById("listaSugestoesProfissionais");
+        const vazio = document.getElementById("sugestoesProfissionaisVazio");
+        if (!lista) return;
+        lista.replaceChildren();
+
+        perfisProfissionaisDemo.forEach(pessoa => {
+            const seguindo = profissionaisSeguidos.some(p => p.email === pessoa.email);
+            const item = document.createElement("li");
+            const iniciais = pessoa.nome.split(/\s+/).slice(0, 2).map(parte => parte[0].toUpperCase()).join("");
+            item.innerHTML = `
+                <span class="cm-avatar cm-avatar-sm" aria-hidden="true">${esc(iniciais)}</span>
+                <div class="cm-info">
+                    <strong>${esc(pessoa.nome)}</strong>
+                    <small>${esc(pessoa.detalhe)}</small>
+                </div>
+                <button type="button" class="cm-follow-btn${seguindo ? " following" : ""}" aria-pressed="${seguindo}">
+                    ${seguindo ? "Seguindo" : "Seguir"}
+                    <i class="fa-solid fa-user-${seguindo ? "check" : "plus"}" aria-hidden="true"></i>
+                </button>`;
+
+            item.querySelector(".cm-follow-btn").addEventListener("click", () => {
+                const indice = profissionaisSeguidos.findIndex(p => p.email === pessoa.email);
+                if (indice === -1) {
+                    profissionaisSeguidos.push({ email: pessoa.email, nome: pessoa.nome, data: new Date().toISOString() });
+                } else {
+                    profissionaisSeguidos.splice(indice, 1);
+                }
+                try {
+                    localStorage.setItem("cm_profissionais_seguidos", JSON.stringify(profissionaisSeguidos));
+                } catch (erro) {
+                    console.error("Não foi possível atualizar os profissionais seguidos.", erro);
+                    notificar("Não foi possível atualizar a lista de perfis seguidos.");
+                    return;
+                }
+                renderSugestoesProfissionais();
+            });
+            lista.appendChild(item);
+        });
+        if (vazio) vazio.hidden = perfisProfissionaisDemo.length > 0;
+    };
+    renderSugestoesProfissionais();
+
+    const fotoPerfilProf = document.getElementById("fotoPerfilProf");
+    const perfilAvatar = document.getElementById("perfilAvatar");
+    if (fotoPerfilProf && perfilAvatar) {
+        perfilAvatar.addEventListener("click", () => {
+            fotoPerfilProf.value = "";
+            fotoPerfilProf.click();
+        });
+        fotoPerfilProf.addEventListener("change", () => {
+            const arquivo = fotoPerfilProf.files && fotoPerfilProf.files[0];
+            if (!arquivo) return;
+            if (!arquivo.type.startsWith("image/")) {
+                notificar("Selecione um arquivo de imagem.");
+                return;
+            }
+            if (arquivo.size > 3 * 1024 * 1024) {
+                notificar("A imagem deve ter no máximo 3 MB.");
+                return;
+            }
+
+            const leitor = new FileReader();
+            leitor.onload = () => {
+                if (typeof leitor.result !== "string") {
+                    notificar("Não foi possível carregar a imagem selecionada.");
+                    return;
+                }
+                const perfilAtualizado = { ...perfil, foto: leitor.result };
+                try {
+                    localStorage.setItem("cm_profile_profissional", JSON.stringify(perfilAtualizado));
+                    Object.assign(perfil, perfilAtualizado);
+                    atualizarFotosPerfil();
+                    notificar("Foto de perfil atualizada.");
+                } catch (erro) {
+                    console.error("Não foi possível salvar a foto de perfil.", erro);
+                    notificar("Não foi possível salvar a foto. Tente uma imagem menor.");
+                }
+            };
+            leitor.onerror = () => notificar("Não foi possível ler a imagem selecionada.");
+            leitor.readAsDataURL(arquivo);
+        });
+    }
 
     /* ==========================================
        MENU HAMBÚRGUER (mobile)
@@ -439,20 +535,55 @@ const renderAgenda = () => {
         limpar("listaAgenda");
         if (!agenda.length) { vazio.hidden = false; return; }
         vazio.hidden = true;
+
+        const grupos = new Map();
+
         agenda.slice().sort((a, b) => (a.data + (a.horario || "") > b.data + (b.horario || "") ? 1 : -1)).forEach(a => {
-            const li = document.createElement("li");
-            const status = a.status || "realizado";
-            const badgeColor = status === "cancelado" ? "#E63946" : status === "agendado" ? "#E76F51" : "var(--primary-dark)";
-            const badge = status === "cancelado" ? "Cancelado" : status === "agendado" ? "Agendado" : "Realizado";
-            const linhaData = a.data ? new Date(a.data + "T" + (a.horario || "00:00")).toLocaleDateString("pt-BR") : "";
-            li.innerHTML = `
-                <span class="cm-time-box">${a.horario || "--:--"}</span>
-                <div class="cm-info">
-                    <strong>${esc(a.paciente || "Paciente")}</strong>
-                    <small>${esc(a.tipo || "Atendimento")} · ${linhaData}${a.modalidade ? ` · ${esc(a.modalidade)}` : ""}</small>
-                </div>
-                <span class="cm-tag" style="color:${badgeColor};">${badge}</span>`;
-            lista.appendChild(li);
+            const chave = a.data || "Sem data";
+            if (!grupos.has(chave)) grupos.set(chave, []);
+            grupos.get(chave).push(a);
+        });
+
+        grupos.forEach((itens, dataKey) => {
+            const group = document.createElement("li");
+            group.className = "cm-agenda-group";
+
+            const dataLabel = document.createElement("div");
+            dataLabel.className = "cm-agenda-date";
+
+            const dateObj = dataKey !== "Sem data" ? new Date(dataKey + "T00:00:00") : null;
+            const dia = dateObj ? dateObj.getDate() : "";
+            const semana = dateObj ? dateObj.toLocaleDateString("pt-BR", { weekday: "short" }) : "Sem data";
+            const mes = dateObj ? dateObj.toLocaleDateString("pt-BR", { month: "short" }) : "";
+
+            dataLabel.innerHTML = `
+                <span class="cm-agenda-weekday">${semana}</span>
+                <strong>${dia || "--"}</strong>
+                <small>${mes || ""}</small>`;
+
+            const listaItens = document.createElement("div");
+            listaItens.className = "cm-agenda-list";
+
+            itens.forEach(a => {
+                const status = a.status || "realizado";
+                const badgeColor = status === "cancelado" ? "#E63946" : status === "agendado" ? "#E76F51" : "var(--primary-dark)";
+                const badge = status === "cancelado" ? "Cancelado" : status === "agendado" ? "Agendado" : "Realizado";
+                const linhaData = a.data ? new Date(a.data + "T" + (a.horario || "00:00")).toLocaleDateString("pt-BR") : "";
+                const item = document.createElement("div");
+                item.className = "cm-agenda-item";
+                item.innerHTML = `
+                    <span class="cm-time-box">${a.horario || "--:--"}</span>
+                    <div class="cm-info">
+                        <strong>${esc(a.paciente || "Paciente")}</strong>
+                        <small>${esc(a.tipo || "Atendimento")} · ${linhaData}${a.modalidade ? ` · ${esc(a.modalidade)}` : ""}</small>
+                    </div>
+                    <span class="cm-tag" style="color:${badgeColor};">${badge}</span>`;
+                listaItens.appendChild(item);
+            });
+
+            group.appendChild(dataLabel);
+            group.appendChild(listaItens);
+            lista.appendChild(group);
         });
     };
     renderAgenda();
@@ -955,53 +1086,52 @@ const atualizarResumo = () => {
         editBioProf: ["bio"]
     };
 
-    if (btnEditarPerfilProf) btnEditarPerfilProf.addEventListener("click", () => {
+    const abrirEdicaoPerfilProf = (focarApresentacao = false) => {
         Object.entries(mapearEditProf).forEach(([inputId, [campoObj]]) => {
             const el = document.getElementById(inputId);
             if (el) el.value = perfil[campoObj] || "";
         });
         if (editFormProf) editFormProf.classList.add("open");
         if (perfilProfFeedback) perfilProfFeedback.classList.remove("show");
-    });
+        editFormProf?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (focarApresentacao) document.getElementById("editBioProf")?.focus({ preventScroll: true });
+    };
+    if (btnEditarPerfilProf) btnEditarPerfilProf.addEventListener("click", () => abrirEdicaoPerfilProf());
     document.querySelectorAll("[data-abrir-edicao-prof]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const el = document.getElementById("editBioProf");
-            if (el) el.value = perfil.bio || "";
-            if (editFormProf) editFormProf.classList.add("open");
-            if (perfilProfFeedback) perfilProfFeedback.classList.remove("show");
-        });
+        btn.addEventListener("click", () => abrirEdicaoPerfilProf(true));
     });
     if (btnCancelarPerfilProf) btnCancelarPerfilProf.addEventListener("click", () => {
         if (editFormProf) editFormProf.classList.remove("open");
     });
     if (btnSalvarPerfilProf) btnSalvarPerfilProf.addEventListener("click", () => {
-        const lePrf = (inputId, alvo) => document.getElementById(inputId)?.value.trim() || perfil[alvo] || "";
+        const lePrf = (inputId, alvo) => {
+            const valor = document.getElementById(inputId)?.value.trim();
+            return valor === undefined ? perfil[alvo] || "" : valor;
+        };
+        const valorSessaoInput = document.getElementById("editValorSessao")?.value.trim();
         const novo = {
             ...perfil,
             nome: lePrf("editNome", "nome"),
             telefone: lePrf("editTelefone", "telefone"),
             cidade: lePrf("editCidade", "cidade"),
             bio: lePrf("editBioProf", "bio"),
-            valorSessao: Number(document.getElementById("editValorSessao")?.value) || perfil.valorSessao || ""
+            valorSessao: valorSessaoInput ? Number(valorSessaoInput) : perfil.valorSessao || ""
         };
-        localStorage.setItem("cm_profile_profissional", JSON.stringify(novo));
+        try {
+            localStorage.setItem("cm_profile_profissional", JSON.stringify(novo));
+        } catch (erro) {
+            console.error("Não foi possível salvar o perfil profissional.", erro);
+            notificar("Não foi possível salvar os dados do perfil.");
+            return;
+        }
 
-        perfil.nome = novo.nome;
-        perfil.bio = novo.bio;
-        perfil.valorSessao = novo.valorSessao;
+        Object.assign(perfil, novo);
         const novoNome = (novo.nome || "").trim();
         const labelNome = novoNome ? novoNome.split(" ")[0] : "Profissional";
         set("topoNomeUsuario", `Olá, ${labelNome}`);
         set("sideNome", novoNome || "Profissional");
         renderPerfilProf();
-
-        const avatarSrc = document.getElementById("avatarIniciais");
-        const avatarSide = document.getElementById("sideAvatar");
-        const perfilAv = document.getElementById("perfilAvatar");
-        const novoTxt = novoNome ? novoNome.split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("") : "P";
-        aplicarFoto(avatarSrc);
-        aplicarFoto(avatarSide);
-        aplicarFoto(perfilAv);
+        atualizarFotosPerfil();
 
         registrarAtividade(`Perfil atualizado (${novoNome || "profissional"}).`);
         if (editFormProf) editFormProf.classList.remove("open");

@@ -469,38 +469,44 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================================
        PESSOAS PARA SEGUIR (comunidade) + busca
     ========================================== */
-    // Conjunto de pessoas conhecidas da comunidade (a partir de quem já publicou)
+    const perfisPacienteDemonstrativos = [
+        { email: "ana.lima@demo.clearminds.local", nome: "Ana Lima", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true },
+        { email: "bruno.santos@demo.clearminds.local", nome: "Bruno Santos", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true },
+        { email: "clara.mendes@demo.clearminds.local", nome: "Clara Mendes", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true }
+    ];
+
+    // Perfis ativos da comunidade e exemplos demonstrativos para novos usuários.
     const conhecerPessoas = () => {
         const mapa = {};
         postagens.forEach(p => {
             if (p.autorEmail && p.autorEmail !== emailUsuario && p.autor) {
-                mapa[p.autorEmail] = { email: p.autorEmail, nome: p.autor };
+                mapa[p.autorEmail] = { email: p.autorEmail, nome: p.autor, detalhe: p.autorEmail };
             }
+        });
+        perfisPacienteDemonstrativos.forEach(p => {
+            if (!mapa[p.email]) mapa[p.email] = p;
         });
         return Object.values(mapa);
     };
 
     // Quem o usuário já segue (estrutura cm_amizades)
-    const seguirPessoa = (email) => {
-        if (!amizades.some(a => a.email === email)) {
-            amizades.push({ email, nome: "", data: new Date().toISOString() });
+    const seguirPessoa = (pessoa) => {
+        if (!amizades.some(a => a.email === pessoa.email)) {
+            amizades.push({ email: pessoa.email, nome: pessoa.nome, data: new Date().toISOString() });
             salvarLista("cm_amizades", amizades);
         }
     };
 
-    const renderSugestoes = (filtro) => {
-        const lista = document.getElementById("listaSugestoes");
-        const vazio = document.getElementById("sugestoesVazio");
+    const renderListaSugestoes = (lista, vazio, pessoas, filtro = "", limite = Infinity) => {
         if (!lista) return;
-
-        const pessoas = conhecerPessoas();
         const jaSeguidas = amizades.map(a => a.email);
-        const sugestoes = pessoas.filter(p => !jaSeguidas.includes(p.email));
         const busca = (filtro || "").trim().toLowerCase();
-        const exibir = sugestoes.filter(p =>
-            !busca || p.nome.toLowerCase().includes(busca) || p.email.toLowerCase().includes(busca));
+        const exibir = pessoas
+            .filter(p => !jaSeguidas.includes(p.email))
+            .filter(p => !busca || p.nome.toLowerCase().includes(busca) || p.email.toLowerCase().includes(busca))
+            .slice(0, limite);
 
-        limpar("listaSugestoes");
+        lista.replaceChildren();
         if (!exibir.length) { if (vazio) vazio.hidden = false; return; }
         if (vazio) vazio.hidden = true;
 
@@ -508,23 +514,37 @@ document.addEventListener("DOMContentLoaded", () => {
             const li = document.createElement("li");
             const ini = (p.nome || "U").split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
             li.innerHTML = `
-                <span class="cm-avatar cm-avatar-sm">${ini}</span>
+                <span class="cm-avatar cm-avatar-sm" aria-hidden="true">${esc(ini)}</span>
                 <div class="cm-info">
-                    <strong>${p.nome}</strong>
-                    <small>${p.email}</small>
+                    <strong>${esc(p.nome)}</strong>
+                    <small>${esc(p.detalhe || p.email)}</small>
                 </div>
-                <button type="button" class="cm-follow-btn follow-${p.email}">Seguir <i class="fa-solid fa-user-plus" aria-hidden="true"></i></button>
+                <button type="button" class="cm-follow-btn" aria-label="Seguir ${esc(p.nome)}">Seguir <i class="fa-solid fa-user-plus" aria-hidden="true"></i></button>
             `;
-            lista.appendChild(li);
-        });
-
-        lista.querySelectorAll(".cm-follow-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const email = btn.classList[1].replace("follow-", "");
-                seguirPessoa(email);
+            li.querySelector(".cm-follow-btn").addEventListener("click", () => {
+                seguirPessoa(p);
+                renderListaSeguidas();
                 renderSugestoes(document.getElementById("buscaSugestoes")?.value);
             });
+            lista.appendChild(li);
         });
+    };
+
+    const renderSugestoes = (filtro) => {
+        const pessoas = conhecerPessoas();
+        renderListaSugestoes(
+            document.getElementById("listaSugestoes"),
+            document.getElementById("sugestoesVazio"),
+            pessoas,
+            filtro
+        );
+        renderListaSugestoes(
+            document.getElementById("listaSugestoesPerfilPaciente"),
+            document.getElementById("sugestoesPerfilPacienteVazio"),
+            pessoas,
+            "",
+            3
+        );
     };
 
     const atualizarSugestoes = () => renderSugestoes(document.getElementById("buscaSugestoes")?.value || "");
