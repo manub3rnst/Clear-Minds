@@ -256,14 +256,69 @@
     border-top-color: #23384D;
 }
 
-/* A barra lateral já é escura nos dois temas; só o contorno
-   acompanha a nova paleta. */
+/* A barra lateral acompanha a aparência do tema selecionado. */
 [data-tema="escuro"] .cm-side {
-    box-shadow: 0 26px 52px rgba(0, 0, 0, .45);
+    background: #151515;
+    border-color: #28282B;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, .42);
+}
+
+[data-tema="escuro"] body.cm-home .cm-side {
+    border-right-color: #28282B;
+}
+
+[data-tema="escuro"] body.cm-home .cm-side.sidebar-expanded {
+    box-shadow: 18px 0 42px rgba(0, 0, 0, .48);
 }
 
 [data-tema="escuro"] .cm-side-user {
-    border-bottom-color: rgba(169, 200, 232, .18);
+    border-bottom-color: #2D2D30;
+}
+
+[data-tema="escuro"] .cm-side-user strong {
+    color: #F4F4F5;
+}
+
+[data-tema="escuro"] .cm-side-user small,
+[data-tema="escuro"] .cm-side-title {
+    color: #A1A1AA;
+}
+
+[data-tema="escuro"] .cm-side a,
+[data-tema="escuro"] .cm-side button.cm-side-item {
+    color: #D4D4D8;
+}
+
+[data-tema="escuro"] .cm-side a i,
+[data-tema="escuro"] .cm-side button.cm-side-item i {
+    color: #A1A1AA;
+}
+
+[data-tema="escuro"] .cm-side a:hover,
+[data-tema="escuro"] .cm-side button.cm-side-item:hover {
+    background: #262626;
+    color: #FAFAFA;
+}
+
+[data-tema="escuro"] .cm-side a:hover i,
+[data-tema="escuro"] .cm-side button.cm-side-item:hover i {
+    color: #60A5FA;
+}
+
+[data-tema="escuro"] .cm-side a.active,
+[data-tema="escuro"] .cm-side button.cm-side-item.active {
+    background: #28282B;
+    color: #FAFAFA;
+    box-shadow: none;
+}
+
+[data-tema="escuro"] .cm-side a.active i,
+[data-tema="escuro"] .cm-side button.cm-side-item.active i {
+    color: #60A5FA;
+}
+
+[data-tema="escuro"] .cm-side-sep {
+    background: #2D2D30;
 }
 
 [data-tema="escuro"] .cm-settings-box .cm-settings-item + .cm-settings-item,

@@ -8505,9 +8505,9 @@ body.cm-home .cm-dash .cm-content{
     display:none;
     border:1px solid var(--border);
     border-radius:16px;
-    background:#FFFFFF;
-    padding:16px;
-    margin-top:16px;
+    background:var(--card-bg);
+    padding:22px;
+    margin-top:22px;
 }
 .cm-edit-form.open{
     display:block;
@@ -10102,68 +10102,83 @@ body.cm-home{
 }
 
 /* ==========================================================
-   HOMES Ã¢â‚¬â€ SIDEBAR (azul-escuro, estilo dashboard)
+   HOMES - SIDEBAR
    ========================================================== */
 .cm-side{
-    background:linear-gradient(170deg,#0F2438 0%,#16324A 68%,#1B3E5C 100%);
-    border:none;
-    border-radius:26px;
-    padding:22px 14px 18px;
-    box-shadow:0 26px 52px rgba(15,36,56,.28);
+    background:var(--white);
+    border:1px solid #E7EAEE;
+    border-radius:20px;
+    padding:18px 12px 16px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08);
 }
 .cm-side-user{
-    border-bottom:1px solid rgba(217,228,243,.18);
-    padding-bottom:16px;
+    border-bottom:1px solid var(--border);
+    padding-bottom:14px;
 }
 .cm-side-user .cm-avatar{
-    background:#3D7CC9;
+    background:var(--primary);
     color:#fff;
 }
 .cm-side-user strong{
-    color:#FFFFFF;
+    color:var(--title);
     font-weight:600;
 }
 .cm-side-user small{
-    color:#A9C8E8;
+    color:var(--text);
+}
+.cm-side .cm-side-bottom{
+    margin-top:auto;
+}
+.cm-side-avatar-button{
+    padding:0;
+    border:0;
+    cursor:pointer;
+    font-family:inherit;
+    line-height:1;
+}
+.cm-side-avatar-button:focus-visible{
+    outline:3px solid var(--primary);
+    outline-offset:3px;
 }
 .cm-side a,
 .cm-side button.cm-side-item{
-    color:#C7D9EC;
-    border-radius:13px;
+    color:#454B54;
+    border-radius:9px;
     font-weight:500;
-    padding:12px 14px;
+    padding:10px 12px;
+    min-height:40px;
 }
 .cm-side a i,
 .cm-side button.cm-side-item i{
-    color:#8FB4DC;
+    color:#737B86;
     width:22px;
 }
 .cm-side a:hover,
 .cm-side button.cm-side-item:hover{
-    background:rgba(169,200,232,.14);
-    color:#FFFFFF;
+    background:#F2F3F5;
+    color:#20242A;
 }
 .cm-side a:hover i,
 .cm-side button.cm-side-item:hover i{
-    color:#FFFFFF;
+    color:#3D7CC9;
 }
 .cm-side a.active,
 .cm-side button.cm-side-item.active{
-    background:linear-gradient(90deg,#3D7CC9 0%,#2F6AAD 100%);
-    color:#FFFFFF;
-    box-shadow:0 12px 24px rgba(61,124,201,.4);
+    background:#ECEFF3;
+    color:#20242A;
+    box-shadow:none;
 }
 .cm-side a.active i,
 .cm-side button.cm-side-item.active i{
-    color:#FFFFFF;
+    color:#3D7CC9;
 }
 .cm-side-title{
-    color:#8FB4DC;
+    color:#737B86;
     font-size:.66rem;
     letter-spacing:.9px;
 }
 .cm-side-sep{
-    background:rgba(169,200,232,.2);
+    background:#E7EAEE;
 }
 @media(min-width:992px){
     .cm-dash{
@@ -10182,9 +10197,9 @@ body.cm-home{
 }
 @media(max-width:991px){
     .cm-side{
-        background:rgba(15,36,56,.98);
+        background:var(--white);
         backdrop-filter:blur(6px);
-        border-radius:0 26px 26px 0;
+        border-radius:0 18px 18px 0;
     }
     .cm-side-overlay{
         background:rgba(15,36,56,.55);
@@ -11510,7 +11525,7 @@ body.professional-register-body .professional-form-card{
        A sidebar ÃƒÂ© FIXA e estÃƒÂ¡ fora do fluxo: ao expandir no hover ela
        SOBREPÃƒâ€¢E o conteÃƒÂºdo, sem empurrar nada e sem recalcular a
        largura do main.
-       O main reserva APENAS a largura RECOLHIDA (82px) + uma folga,
+       O main reserva APENAS a largura RECOLHIDA (64px) + uma folga,
        ou seja: nÃƒÂ£o existe calha/faixa vazia esperando a expansÃƒÂ£o.
        Assim o conteÃƒÂºdo:
          - ocupa toda a ÃƒÂ¡rea disponÃƒÂ­vel ao lado da barra fechada;
@@ -11520,7 +11535,7 @@ body.professional-register-body .professional-form-card{
     body.cm-home .cm-main.container{
         max-width:none;
         width:100%;
-        padding:26px 32px 64px calc(82px + 24px);
+        padding:26px 32px 64px calc(64px + 24px);
     }
     body.cm-home .cm-dash{
         display:block;
@@ -11538,13 +11553,13 @@ body.professional-register-body .professional-form-card{
         position:fixed;
         left:0;
         top:var(--cm-rail-top,68px);
-        width:82px;
-        min-width:82px;
+        width:64px;
+        min-width:64px;
         height:calc(100vh - var(--cm-rail-top,68px));
         max-height:none;
         margin:0;
         border:0;
-        border-right:1px solid rgba(217,228,243,.16);
+        border-right:1px solid #E7EAEE;
         border-radius:0 22px 22px 0;
         padding:16px 12px 18px;
         overflow:hidden auto;
@@ -11588,6 +11603,8 @@ body.professional-register-body .professional-form-card{
         min-width:0;
     }
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-user .cm-avatar{
+        width:36px;
+        height:36px;
         margin:0 auto;
         flex:0 0 auto;
     }
@@ -11606,7 +11623,7 @@ body.professional-register-body .professional-form-card{
         transition:opacity .15s ease;
     }
     /* RÃƒÂ³tulos some COMPLETAMENTE quando recolhido (nÃƒÂ£o ficam
-       espremidos/cortados dentro da barra de 82px). */
+       espremidos/cortados dentro da barra de 64px). */
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-user-info,
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-item span,
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-title{
@@ -11635,26 +11652,23 @@ body.professional-register-body .professional-form-card{
         margin-left:8px;
         margin-right:8px;
     }
-    /* Conta no fim da barra: divisÃƒÂ³ria + respiro ANTES dela.
-       NÃƒÂ£o usamos margin-top:auto de propÃƒÂ³sito: isso empurrava as
-       opÃƒÂ§ÃƒÂµes de conta para o rodapÃƒÂ© e criava um vÃƒÂ£o grande e
-       desproporcional entre os itens principais e a divisÃƒÂ³ria. */
+    /* Mantém as ações de conta agrupadas junto à base do menu. */
     body.cm-home .cm-side .cm-side-bottom{
-        margin-top:18px;
-        padding-top:16px;
-        border-top:1px solid rgba(217,228,243,.20);
+        margin-top:auto;
+        padding-top:14px;
+        border-top:1px solid var(--border);
         display:flex;
         flex-direction:column;
-        gap:6px;
+        gap:4px;
     }
     body.cm-home .cm-side .cm-side-bottom #btnSairMenu{
-        margin-top:12px;
+        margin-top:4px;
     }
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-bottom{
         align-items:center;
     }
     body.cm-home .cm-side:not(.sidebar-expanded) .cm-side-bottom #btnSairMenu{
-        margin-top:8px;
+        margin-top:4px;
     }
     body.cm-home .cm-section-head h1{
         font-size:1.7rem;
@@ -11786,6 +11800,87 @@ body.professional-register-body .professional-form-card{
 }
 .cm-profile-content .cm-profile-grid{
     grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));
+    gap:14px;
+}
+.cm-profile-panel-heading{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+    margin-bottom:18px;
+}
+.cm-profile-panel-heading > div{
+    min-width:0;
+}
+.cm-profile-panel-heading .cm-profile-section-title{
+    margin:0 0 6px;
+}
+.cm-profile-panel-heading .cm-profile-section-sub{
+    margin:0;
+    line-height:1.55;
+}
+.cm-profile-panel-heading .cm-btn{
+    flex-shrink:0;
+    margin-top:2px;
+}
+.cm-profile-item{
+    padding:16px;
+}
+.cm-profile-item > .cm-profile-label,
+.cm-profile-item > span:first-child{
+    display:block;
+    margin-bottom:8px;
+    line-height:1.45;
+}
+.cm-profile-item > .cm-profile-value,
+.cm-profile-item > strong:last-child{
+    display:block;
+    line-height:1.55;
+    overflow-wrap:anywhere;
+}
+.cm-profile-edit-form .form-grid{
+    gap:20px 18px;
+    margin-bottom:20px;
+}
+.cm-profile-edit-form .input-group{
+    gap:8px;
+    min-width:0;
+}
+.cm-profile-edit-form .input-group label{
+    color:var(--title);
+    font-size:.86rem;
+    font-weight:600;
+    line-height:1.45;
+}
+.cm-profile-edit-form .cm-input{
+    width:100%;
+    min-height:46px;
+    padding:11px 13px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--white);
+    color:var(--title);
+    font:inherit;
+    line-height:1.5;
+}
+.cm-profile-edit-form .cm-input:focus{
+    border-color:var(--primary);
+    outline:3px solid rgba(61,124,201,.18);
+}
+.cm-profile-edit-form textarea.cm-input{
+    min-height:120px;
+    resize:vertical;
+}
+.cm-profile-edit-form .cm-profile-bio-field{
+    margin-top:22px;
+}
+.cm-profile-form-actions{
+    gap:12px;
+    margin-top:22px;
+}
+.cm-profile-form-actions .cm-btn{
+    min-height:42px;
+    padding:10px 16px;
 }
 .cm-profile-suggestions-panel .cm-panel-head{
     margin-bottom:10px;
@@ -11833,6 +11928,14 @@ body.professional-register-body .professional-form-card{
     .cm-profile-sidebar,
     .cm-profile-content{
         gap:14px;
+    }
+    .cm-profile-panel-heading{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:14px;
+    }
+    .cm-profile-edit-form{
+        padding:16px;
     }
     .cm-profile-identity-card .cm-profile-hero{
         flex-direction:row;

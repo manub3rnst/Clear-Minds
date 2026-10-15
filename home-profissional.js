@@ -187,6 +187,10 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
         if (!document.getElementById("listaInfoPessoalProf").children.length) {
             document.getElementById("listaInfoPessoalProf").innerHTML = `<div class="cm-profile-item"><span class="cm-profile-label">Perfil</span><span class="cm-profile-value">Informações não preenchidas.</span></div>`;
         }
+        ["listaInfoProfissional", "listaAtendimento"].forEach(id => {
+            const grid = document.getElementById(id);
+            if (grid) grid.closest(".cm-panel").hidden = grid.children.length === 0;
+        });
     };
 
 /* ---------- Foto / avatar ---------- */
@@ -323,10 +327,16 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
     /* ==========================================
        NAVEGAÇÃO ENTRE SEÇÕES (menu lateral)
     ========================================== */
-    const botoesMenu = document.querySelectorAll(".cm-side-item[data-secao]");
+    const botoesMenu = document.querySelectorAll(
+        ".cm-side-item[data-secao], .cm-side-avatar-button[data-secao]"
+    );
 
     const alternarSecao = (alvo) => {
-        botoesMenu.forEach(b => b.classList.toggle("active", b.dataset.secao === alvo));
+        botoesMenu.forEach(b => {
+            if (b.classList.contains("cm-side-item")) {
+                b.classList.toggle("active", b.dataset.secao === alvo);
+            }
+        });
         document.querySelectorAll(".cm-section").forEach(s => s.classList.remove("active"));
         const secao = document.getElementById(`sec-${alvo}`);
         if (secao) secao.classList.add("active");
@@ -1416,7 +1426,7 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
     /* ---------- Atalho para o perfil ---------- */
     const btnCfgIrPerfil = document.getElementById("btnCfgIrPerfil");
     if (btnCfgIrPerfil) btnCfgIrPerfil.addEventListener("click", () => {
-        const b = document.querySelector('.cm-side-item[data-secao="perfil"]');
+        const b = document.querySelector('.cm-side-avatar-button[data-secao="perfil"]');
         if (b) b.click();
     });
 

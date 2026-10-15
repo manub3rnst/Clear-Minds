@@ -78,7 +78,8 @@
             <aside class="cm-side" id="menuLateral" aria-label="Menu do painel profissional">
 
                 <div class="cm-side-user">
-                    <span class="cm-avatar" id="sideAvatar" aria-hidden="true">P</span>
+                    <button type="button" class="cm-avatar cm-side-avatar-button" id="sideAvatar"
+                        data-secao="perfil" aria-label="Abrir meu perfil">P</button>
                     <span class="cm-side-user-info">
                         <strong id="sideNome">Profissional</strong>
                         <small>Profissional de saúde</small>
@@ -102,9 +103,6 @@
                 </button>
 
                 <div class="cm-side-bottom">
-                    <button type="button" class="cm-side-item" data-secao="perfil">
-                        <i class="fa-regular fa-id-card" aria-hidden="true"></i><span class="cm-side-label">Perfil</span>
-                    </button>
                     <button type="button" class="cm-side-item" data-secao="config">
                         <i class="fa-solid fa-gear" aria-hidden="true"></i><span class="cm-side-label">Configurações</span>
                     </button>
@@ -577,7 +575,7 @@
 
                     <div class="cm-section-head">
                         <h1>Perfil profissional</h1>
-                        <p>Seus dados, abordagens e configurações de atendimento.</p>
+                        <p>Seus dados pessoais e informações profissionais.</p>
                     </div>
 
                     <div class="cm-profile-layout">
@@ -586,7 +584,7 @@
                             <div class="cm-panel cm-profile-identity-card">
                                 <div class="cm-profile-hero">
                                     <button type="button" class="cm-avatar cm-avatar-lg cm-profile-photo-button" id="perfilAvatar" aria-label="Alterar foto do perfil">
-                                        <span class="cm-profile-photo-hint"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>
+                                        <span class="cm-profile-photo-hint"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>
                                     </button>
                                     <input type="file" id="fotoPerfilProf" accept="image/*" hidden>
                                     <div class="cm-profile-hero-info">
@@ -640,13 +638,52 @@
                             <!-- INFORMAÇÕES PESSOAIS -->
                             <div class="cm-panel">
 
-                                <h2 class="cm-profile-section-title">
-                                    <i class="fa-solid fa-address-card" aria-hidden="true"></i>
-                                    Informações pessoais
-                                </h2>
-                                <p class="cm-profile-section-sub">Dados básicos do seu cadastro.</p>
+                                <div class="cm-profile-panel-heading">
+                                    <div>
+                                        <h2 class="cm-profile-section-title">
+                                            <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                                            Informações pessoais
+                                        </h2>
+                                        <p class="cm-profile-section-sub">Seus dados de contato e identificação.</p>
+                                    </div>
+                                    <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnEditarPerfilProf">
+                                        <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
+                                    </button>
+                                </div>
 
                                 <div class="cm-profile-grid" id="listaInfoPessoalProf"></div>
+
+                                <div class="cm-edit-form cm-profile-edit-form" id="editFormProf">
+                                    <div class="form-grid">
+                                        <div class="input-group">
+                                            <label for="editNome">Nome profissional</label>
+                                            <input class="cm-input" id="editNome" type="text">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="editTelefone">Telefone</label>
+                                            <input class="cm-input" id="editTelefone" type="tel" placeholder="(00) 00000-0000">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="editCidade">Cidade</label>
+                                            <input class="cm-input" id="editCidade" type="text">
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="editValorSessao">Valor da sessão (R$)</label>
+                                            <input class="cm-input" id="editValorSessao" type="number" min="0" step="0.01" placeholder="0,00">
+                                        </div>
+                                    </div>
+                                    <div class="input-group cm-profile-bio-field">
+                                        <label for="editBioProf">Apresentação profissional</label>
+                                        <textarea class="cm-input" id="editBioProf" rows="3" maxlength="800"></textarea>
+                                    </div>
+                                    <div class="cm-add-form-actions cm-profile-form-actions">
+                                        <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfilProf">
+                                            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar alterações
+                                        </button>
+                                        <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfilProf">Cancelar</button>
+                                    </div>
+                                    <p class="cm-feedback" id="perfilProfFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dados atualizados!</p>
+                                </div>
 
                             </div>
 
@@ -676,52 +713,6 @@
 
                             </div>
 
-                            <!-- EDIÇÃO -->
-                            <div class="cm-panel">
-
-                                <h2 class="cm-profile-section-title">
-                                    <i class="fa-solid fa-sliders" aria-hidden="true"></i>
-                                    Editar perfil
-                                </h2>
-                                <p class="cm-profile-section-sub">Atualize rapidamente os dados exibidos no seu perfil.</p>
-
-                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnEditarPerfilProf">
-                                    <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
-                                </button>
-
-                                <div class="cm-edit-form" id="editFormProf">
-                                    <div class="form-grid">
-                                        <div class="input-group">
-                                            <label for="editNome">Nome profissional</label>
-                                            <input class="cm-input" id="editNome" type="text">
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="editTelefone">Telefone</label>
-                                            <input class="cm-input" id="editTelefone" type="tel" placeholder="(00) 00000-0000">
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="editCidade">Cidade</label>
-                                            <input class="cm-input" id="editCidade" type="text">
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="editValorSessao">Valor da sessão (R$)</label>
-                                            <input class="cm-input" id="editValorSessao" type="number" min="0" step="0.01" placeholder="0,00">
-                                        </div>
-                                    </div>
-                                    <div class="input-group" style="margin-top:6px;">
-                                        <label for="editBioProf">Apresentação profissional</label>
-                                        <textarea class="cm-input" id="editBioProf" rows="3" maxlength="800"></textarea>
-                                    </div>
-                                    <div class="cm-add-form-actions" style="margin-top:14px;">
-                                        <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfilProf">
-                                            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar
-                                        </button>
-                                        <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfilProf">Cancelar</button>
-                                    </div>
-                                    <p class="cm-feedback" id="perfilProfFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dados atualizados!</p>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
 

@@ -78,7 +78,8 @@
             <aside class="cm-side" id="menuLateral" aria-label="Menu do painel do estudante">
 
                 <div class="cm-side-user">
-                    <span class="cm-avatar" id="sideAvatar" aria-hidden="true">CM</span>
+                    <button type="button" class="cm-avatar cm-side-avatar-button" id="sideAvatar"
+                        data-secao="perfil" aria-label="Abrir meu perfil">CM</button>
                     <span class="cm-side-user-info">
                         <strong id="sideNome">Estudante</strong>
                         <small>Estudante</small>
@@ -108,9 +109,6 @@
                 </button>
 
                 <div class="cm-side-bottom">
-                    <button type="button" class="cm-side-item" data-secao="perfil">
-                        <i class="fa-regular fa-id-card" aria-hidden="true"></i><span class="cm-side-label">Meu perfil</span>
-                    </button>
                     <button type="button" class="cm-side-item" data-secao="config">
                         <i class="fa-solid fa-gear" aria-hidden="true"></i><span class="cm-side-label">Configurações</span>
                     </button>
@@ -521,7 +519,11 @@
                     <aside class="cm-profile-sidebar">
                         <div class="cm-panel cm-profile-identity-card">
                             <div class="cm-profile-hero">
-                                <span class="cm-avatar cm-avatar-lg" id="perfilAvatar" aria-hidden="true">CM</span>
+                                <button type="button" class="cm-avatar cm-avatar-lg cm-profile-photo-button"
+                                    id="perfilAvatar" aria-label="Alterar foto do perfil">
+                                    <span class="cm-profile-photo-hint"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>
+                                </button>
+                                <input type="file" id="fotoPerfil" accept="image/*" hidden>
                                 <div class="cm-profile-hero-info">
                                     <h2 id="perfilNome">Estudante</h2>
                                     <p class="cm-profile-user" id="perfilUsuario">@estudante</p>
@@ -555,19 +557,22 @@
                         <!-- INFORMAÇÕES PESSOAIS -->
                         <div class="cm-panel">
 
-                            <h2 class="cm-profile-section-title">
-                                <i class="fa-solid fa-address-card" aria-hidden="true"></i>
-                                Informações pessoais
-                            </h2>
-                            <p class="cm-profile-section-sub">Dados básicos do seu cadastro.</p>
+                            <div class="cm-profile-panel-heading">
+                                <div>
+                                    <h2 class="cm-profile-section-title">
+                                        <i class="fa-solid fa-address-card" aria-hidden="true"></i>
+                                        Informações pessoais
+                                    </h2>
+                                    <p class="cm-profile-section-sub">Seus dados de contato e identificação.</p>
+                                </div>
+                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnEditarPerfil">
+                                    <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
+                                </button>
+                            </div>
 
                             <div class="cm-profile-grid" id="listaInfoPessoal"></div>
 
-                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnEditarPerfil" style="margin-top:16px;">
-                                <i class="fa-solid fa-pen" aria-hidden="true"></i>Editar dados
-                            </button>
-
-                            <div class="cm-edit-form" id="editForm">
+                            <div class="cm-edit-form cm-profile-edit-form" id="editForm">
                                 <div class="form-grid">
                                     <div class="input-group">
                                         <label for="editNome">Nome completo</label>
@@ -586,13 +591,13 @@
                                         <input class="cm-input" id="editEstado" type="text" placeholder="Ex.: SC">
                                     </div>
                                 </div>
-                                <div class="input-group" style="margin-top:6px;">
+                                <div class="input-group cm-profile-bio-field">
                                     <label for="editSobre">Sobre você</label>
                                     <textarea class="cm-input" id="editSobre" rows="3" maxlength="300"></textarea>
                                 </div>
-                                <div class="cm-add-form-actions" style="margin-top:14px;">
+                                <div class="cm-add-form-actions cm-profile-form-actions">
                                     <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnSalvarPerfil">
-                                        <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar
+                                        <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Salvar alterações
                                     </button>
                                     <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="btnCancelarPerfil">Cancelar</button>
                                 </div>
@@ -612,7 +617,7 @@
 
                             <p class="cm-bio-text" id="perfilSobre">Nenhuma descrição adicionada ainda.</p>
 
-                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-perfil style="margin-top:14px;">
+                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-perfil>
                                 <i class="fa-solid fa-pen" aria-hidden="true"></i>Escrever sobre mim
                             </button>
 
@@ -620,18 +625,6 @@
 
                         <!-- INFORMAÇÕES DA CONTA REMOVIDA: já aparecem no Meu Perfil -->
 
-                        <!-- PREFERÊNCIAS -->
-                        <div class="cm-panel">
-
-                            <h2 class="cm-profile-section-title">
-                                <i class="fa-solid fa-sliders" aria-hidden="true"></i>
-                                Preferências
-                            </h2>
-                            <p class="cm-profile-section-sub">Você pode ajustar tudo isso nas Configurações.</p>
-
-                            <div class="cm-profile-grid" id="listaPreferencias"></div>
-
-                        </div>
                     </div>
                     </div>
 

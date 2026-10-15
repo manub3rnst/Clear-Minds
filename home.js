@@ -94,7 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* Muda para uma seção do painel (usado por botões de atalho) */
     const irParaSecao = (nome) => {
-        const item = document.querySelector(`.cm-side-item[data-secao="${nome}"]`);
+        const item = document.querySelector(
+            `.cm-side-item[data-secao="${nome}"], .cm-side-avatar-button[data-secao="${nome}"]`
+        );
         if (item) item.click();
     };
 
@@ -367,8 +369,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const aplicarFoto = (el, nome) => {
         if (!el) return;
         const iniciais = nome.split(/\s+/).slice(0, 2).map(p => p[0].toUpperCase()).join("");
-        if (perfil.foto) el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">`;
-        else el.textContent = iniciais;
+        const dicaEdicao = el.id === "perfilAvatar"
+            ? '<span class="cm-profile-photo-hint"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>'
+            : "";
+        if (perfil.foto) el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">${dicaEdicao}`;
+        else el.innerHTML = `${iniciais}${dicaEdicao}`;
     };
 
     const avatar = document.getElementById("avatarIniciais");
@@ -377,6 +382,51 @@ document.addEventListener("DOMContentLoaded", () => {
     aplicarFoto(document.getElementById("composerAvatar"), nomeUsuario);
     aplicarFoto(document.getElementById("composerAvatar2"), nomeUsuario);
     aplicarFoto(document.getElementById("perfilAvatar"), nomeUsuario);
+
+    const fotoPerfilInput = document.getElementById("fotoPerfil");
+    const perfilAvatar = document.getElementById("perfilAvatar");
+    if (fotoPerfilInput && perfilAvatar) {
+        perfilAvatar.addEventListener("click", () => {
+            fotoPerfilInput.value = "";
+            fotoPerfilInput.click();
+        });
+        fotoPerfilInput.addEventListener("change", () => {
+            const arquivo = fotoPerfilInput.files && fotoPerfilInput.files[0];
+            if (!arquivo) return;
+            if (!arquivo.type.startsWith("image/")) {
+                notificar("Selecione um arquivo de imagem.");
+                return;
+            }
+            if (arquivo.size > 3 * 1024 * 1024) {
+                notificar("A imagem deve ter no máximo 3 MB.");
+                return;
+            }
+
+            const leitor = new FileReader();
+            leitor.onload = () => {
+                if (typeof leitor.result !== "string") {
+                    notificar("Não foi possível carregar a imagem selecionada.");
+                    return;
+                }
+                const perfilAtualizado = { ...perfil, foto: leitor.result };
+                try {
+                    localStorage.setItem("cm_profile", JSON.stringify(perfilAtualizado));
+                    Object.assign(perfil, perfilAtualizado);
+                    aplicarFoto(document.getElementById("avatarIniciais"), nomeUsuario);
+                    aplicarFoto(document.getElementById("sideAvatar"), nomeUsuario);
+                    aplicarFoto(document.getElementById("composerAvatar"), nomeUsuario);
+                    aplicarFoto(document.getElementById("composerAvatar2"), nomeUsuario);
+                    aplicarFoto(perfilAvatar, nomeUsuario);
+                    notificar("Foto de perfil atualizada.");
+                } catch (erro) {
+                    console.error("Não foi possível salvar a foto de perfil.", erro);
+                    notificar("Não foi possível salvar a foto. Tente uma imagem menor.");
+                }
+            };
+            leitor.onerror = () => notificar("Não foi possível ler a imagem selecionada.");
+            leitor.readAsDataURL(arquivo);
+        });
+    }
 
     /* ==========================================
        MENU HAMBÚRGUER (mobile)
@@ -416,12 +466,18 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================================
        NAVEGAÇÃO ENTRE SEÇÕES (menu lateral)
     ========================================== */
-    const botoesMenu = document.querySelectorAll(".cm-side-item[data-secao]");
+    const botoesMenu = document.querySelectorAll(
+        ".cm-side-item[data-secao], .cm-side-avatar-button[data-secao]"
+    );
 
     botoesMenu.forEach(btn => {
         btn.addEventListener("click", () => {
             const alvo = btn.dataset.secao;
-            botoesMenu.forEach(b => b.classList.toggle("active", b.dataset.secao === alvo));
+            botoesMenu.forEach(b => {
+                if (b.classList.contains("cm-side-item")) {
+                    b.classList.toggle("active", b.dataset.secao === alvo);
+                }
+            });
             document.querySelectorAll(".cm-section").forEach(s => s.classList.remove("active"));
             const secao = document.getElementById(`sec-${alvo}`);
             if (secao) secao.classList.add("active");
@@ -1392,12 +1448,12 @@ document.addEventListener("DOMContentLoaded", () => {
             ];
             const visiveis = itens.filter(([, v]) => v && String(v).trim());
             if (!visiveis.length) {
-                grid.innerHTML = `<div class="cm-profile-item"><span>Perfil</span><strong>Informações não preenchidas</strong></div>`;
+            grid.innerHTML = `<div class="cm-profile-item"><span class="cm-profile-label">Perfil</span><strong class="cm-profile-value">Informações não preenchidas</strong></div>`;
             } else {
                 visiveis.forEach(([r, v]) => {
                     const d = document.createElement("div");
                     d.className = "cm-profile-item";
-                    d.innerHTML = `<span>${r}</span><strong>${esc(String(v))}</strong>`;
+                    d.innerHTML = `<span class="cm-profile-label">${r}</span><strong class="cm-profile-value">${esc(String(v))}</strong>`;
                     grid.appendChild(d);
                 });
             }
@@ -1420,24 +1476,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const pref = document.getElementById("listaPreferencias");
-        if (pref) {
-            limpar("listaPreferencias");
-            const cfg = getConfigObj();
-            const itensPref = [
-                ["Idioma", "Português (Brasil)"],
-                ["Tema", cfg.tema === "escuro" ? "Escuro" : "Claro"],
-                ["Tamanho do texto", cfg.tamanhoTexto && cfg.tamanhoTexto !== "normal" ? (cfg.tamanhoTexto === "grande" ? "Grande" : "Pequeno") : "Normal"],
-                ["Notificações", cfg.notificacoes === false ? "Desativadas" : "Ativadas"],
-                ["Diário compartilhado com profissionais", cfg.compartilharDiario === false ? "Não" : "Sim"]
-            ];
-            itensPref.forEach(([r, v]) => {
-                const d = document.createElement("div");
-                d.className = "cm-profile-item";
-                d.innerHTML = `<span>${r}</span><strong>${v}</strong>`;
-                pref.appendChild(d);
-            });
-        }
     };
     renderPerfil();
 
