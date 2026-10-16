@@ -10,6 +10,7 @@
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tema.css">
+    <link rel="stylesheet" href="home-layout.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,56 +20,18 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <!--
-        Tema e preferências: carregados aqui, antes da primeira
-        pintura, para o tema salvo já entrar aplicado.
-    -->
+    <!-- Tema e preferências são aplicados antes da primeira pintura. -->
     <script src="tema.js"></script>
 
 </head>
 
 <body class="cm-home cm-home-cliente">
 
-    <!-- ==========================
-         TOPO
-    =========================== -->
-    <header class="cm-topbar">
-        <div class="container">
-            <div class="cm-topbar-row">
-
-                <div style="display:flex;align-items:center;gap:12px;min-width:0;">
-                    <button type="button" class="cm-hamburger" id="btnMenu" aria-label="Abrir menu" aria-expanded="false">
-                        <span></span><span></span><span></span>
-                    </button>
-                    <div class="cm-brand">
-                        <img src="imagem/logo.jpg" alt="Clear Minds">
-                        <div>
-                            <h2>Clear Minds</h2>
-                            <span>Cuidar da mente é focar no que importa.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cm-top-user">
-                    <span class="cm-avatar" id="avatarIniciais" aria-hidden="true">CM</span>
-                    <span class="cm-top-user-info">
-                        <strong id="topoNomeUsuario">Olá, Estudante</strong>
-                        <small>Estudante</small>
-                    </span>
-                    <button type="button" class="cm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
-                        aria-label="Alternar tema" aria-pressed="false">
-                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
-                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
     <main class="cm-main container">
+        <button type="button" class="cm-hamburger cm-home-menu-trigger" id="btnMenu"
+            aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
 
         <div class="cm-dash">
 
@@ -128,74 +91,93 @@
                 <!-- ===== INÍCIO ===== -->
                 <section id="sec-inicio" class="cm-section active">
 
-                    <div class="cm-section-head">
+                    <div class="cm-section-head home-heading">
                         <h1 id="saudacao">Olá! Que bom ter você aqui.</h1>
-                        <p>Um espaço acolhedor para registrar sentimentos, explorar conteúdos e encontrar apoio.</p>
+                        <p>Um espaço acolhedor para compartilhar, acompanhar sua jornada e encontrar apoio.</p>
                     </div>
 
-                    <div class="cm-stat-grid">
+                    <div class="home-grid">
+                        <aside class="home-left-rail" aria-label="Meu perfil e atalhos">
+                            <section class="cm-panel home-profile-card">
+                                <div class="home-profile-identity">
+                                    <span class="cm-avatar home-profile-avatar" id="homeProfileAvatar" aria-hidden="true">CM</span>
+                                    <h2 id="homeProfileName">Estudante</h2>
+                                    <p id="homeProfileEmail"></p>
+                                </div>
+                                <div class="cm-stat-grid home-profile-stats">
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-regular fa-face-smile" aria-hidden="true"></i></span>
+                                        <span><strong id="resumoHumor">—</strong><small>Humor de hoje</small></span>
+                                    </div>
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                                        <span><strong id="resumoDiario">0</strong><small>Registros no diário</small></span>
+                                    </div>
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></span>
+                                        <span><strong id="resumoProfissionais">0</strong><small>Profissionais vinculados</small></span>
+                                    </div>
+                                </div>
+                                <div class="home-profile-actions">
+                                    <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" data-home-secao="perfil">
+                                        Meu perfil
+                                    </button>
+                                    <button type="button" class="cm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
+                                        aria-label="Alternar tema" aria-pressed="false">
+                                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </section>
 
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:var(--secondary);color:var(--primary-dark);">
-                                <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
-                            </span>
-                            <strong id="resumoHumor">—</strong>
-                            <small>Humor de hoje</small>
-                        </div>
+                            <section class="cm-panel home-shortcuts">
+                                <h2 class="cm-panel-title">Seus atalhos</h2>
+                                <button type="button" data-home-secao="comunidade"><i class="fa-solid fa-comments" aria-hidden="true"></i>Comunidade</button>
+                                <button type="button" data-home-secao="diario"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Meu diário</button>
+                                <button type="button" data-home-secao="conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Conteúdos</button>
+                                <button type="button" data-home-secao="profissionais"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i>Profissionais</button>
+                                <button type="button" data-home-secao="config"><i class="fa-solid fa-gear" aria-hidden="true"></i>Configurações</button>
+                            </section>
+                        </aside>
 
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
-                                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                            </span>
-                            <strong id="resumoDiario">0</strong>
-                            <small>Registros no diário</small>
-                        </div>
-
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#FFF4E6;color:#E76F51;">
-                                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
-                            </span>
-                            <strong id="resumoProfissionais">0</strong>
-                            <small>Profissionais vinculados</small>
-                        </div>
-
-                    </div>
-
-                    <!-- FEED DA COMUNIDADE — ELEMENTO CENTRAL -->
-                    <div class="cm-panel">
-
-                        <div class="cm-panel-head">
-                            <div>
-                                <h2 class="cm-panel-title">
-                                    <i class="fa-solid fa-comments" aria-hidden="true"></i>
-                                    Comunidade
-                                </h2>
-                                <p class="cm-panel-sub">Compartilhe o que está sentindo, ofereça apoio e inspire-se nas experiências de outros estudantes.</p>
-                            </div>
-                        </div>
-
-                        <div class="cm-composer" data-composer="1">
+                        <div class="home-center-column">
+                            <section class="cm-panel home-composer-panel">
+                                <div class="cm-panel-head">
+                                    <h2 class="cm-panel-title">Criar publicação</h2>
+                                </div>
+                                <div class="cm-composer" data-composer="1">
                             <div class="cm-composer-head">
                                 <span class="cm-avatar cm-avatar-sm" id="composerAvatar" aria-hidden="true">CM</span>
-                                <strong style="font-size:.9rem;color:var(--title);" id="composerNomeAut">Como você está hoje?</strong>
+                                <strong style="font-size:.9rem;color:var(--title);" id="composerNomeAut">Compartilhe algo com a comunidade...</strong>
                             </div>
-                            <textarea id="composerTexto" maxlength="500" placeholder="Compartilhe como está se sentindo. Este é um espaço seguro e acolhedor."></textarea>
+                            <textarea id="composerTexto" maxlength="500" placeholder="Compartilhe algo com a comunidade..."></textarea>
                             <div class="cm-media-row">
-                                <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="foto" title="Adicionar foto">
-                                    <i class="fa-solid fa-camera" aria-hidden="true"></i>Foto
-                                </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="imagem" title="Adicionar imagem">
                                     <i class="fa-regular fa-image" aria-hidden="true"></i>Imagem
                                 </button>
                                 <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="video" title="Adicionar vídeo">
                                     <i class="fa-solid fa-video" aria-hidden="true"></i>Vídeo
                                 </button>
-                                <button type="button" class="cm-media-btn" data-midia-btn="1" data-tipo="arquivo" title="Anexar arquivo">
-                                    <i class="fa-solid fa-paperclip" aria-hidden="true"></i>Anexar
+                                <button type="button" class="cm-media-btn" data-poll-btn="1" title="Criar enquete">
+                                    <i class="fa-solid fa-square-poll-vertical" aria-hidden="true"></i>Enquete
                                 </button>
-                                <span class="cm-media-hint">Deixe sua publicação ainda mais acolhedora</span>
                             </div>
+                            <label class="home-post-privacy" for="postVisibility1">
+                                <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
+                                Privacidade
+                                <select id="postVisibility1">
+                                    <option value="comunidade">Comunidade</option>
+                                    <option value="somente-eu">Somente eu</option>
+                                </select>
+                            </label>
                             <div class="cm-media-preview" id="midiaPreview1"></div>
+                            <div class="home-poll-editor" id="pollEditor1" hidden>
+                                <label for="pollQuestion1">Pergunta da enquete</label>
+                                <input type="text" id="pollQuestion1" maxlength="160" placeholder="O que você gostaria de perguntar?">
+                                <div class="home-poll-options">
+                                    <input type="text" id="pollOption1A" maxlength="80" placeholder="Primeira opção" aria-label="Primeira opção da enquete">
+                                    <input type="text" id="pollOption1B" maxlength="80" placeholder="Segunda opção" aria-label="Segunda opção da enquete">
+                                </div>
+                            </div>
                             <div class="cm-composer-actions">
                                 <div class="cm-mood-mini" id="composerMoods">
                                     <button type="button" class="cm-mood-chip" data-humor="Ótimo" title="Ótimo">😊</button>
@@ -210,15 +192,56 @@
                                 </button>
                             </div>
                         </div>
+                            </section>
 
-                        <div id="feedPosts"></div>
-
-                        <div class="cm-empty-state" id="feedVazio">
-                            <i class="fa-solid fa-comments" aria-hidden="true"></i>
-                            <strong>Nenhuma publicação ainda</strong>
-                            <span>Compartilhe algo com a comunidade!</span>
+                            <section class="home-feed-panel">
+                                <div class="home-feed-heading">
+                                    <div>
+                                        <h2>Feed de publicações</h2>
+                                        <p>Novidades e conversas da comunidade</p>
+                                    </div>
+                                </div>
+                                <div id="feedPosts"></div>
+                                <div class="cm-empty-state" id="feedVazio">
+                                    <i class="fa-solid fa-comments" aria-hidden="true"></i>
+                                    <strong>Nenhuma publicação ainda</strong>
+                                    <span>Compartilhe algo com a comunidade!</span>
+                                </div>
+                            </section>
                         </div>
 
+                        <aside class="home-right-rail" aria-label="Atividade e sugestões">
+                            <section class="cm-panel home-activity-panel">
+                                <div class="cm-panel-head">
+                                    <h2 class="cm-panel-title">Atividade</h2>
+                                </div>
+                                <div class="home-diary-requests" id="homeDiaryRequestsWrap" hidden>
+                                    <h3>Solicitações de acesso ao diário</h3>
+                                    <ul id="homeDiaryRequests" aria-label="Solicitações de acesso ao diário"></ul>
+                                </div>
+                                <ul class="home-activity-list" id="homeActivityList"></ul>
+                                <div class="cm-empty-state home-activity-empty" id="homeActivityEmpty" hidden>
+                                    <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                                    <strong>Sem atividade recente</strong>
+                                    <span>Comentários e curtidas recebidos aparecerão aqui.</span>
+                                </div>
+                            </section>
+
+                            <section class="cm-panel home-suggestions-panel">
+                                <div class="cm-panel-head">
+                                    <div>
+                                        <h2 class="cm-panel-title">Sugestões para você</h2>
+                                        <p class="cm-panel-sub">Pessoas da comunidade</p>
+                                    </div>
+                                </div>
+                                <ul class="cm-sugestoes-list home-suggestions-list" id="listaSugestoesInicio"></ul>
+                                <div class="cm-empty-state" id="sugestoesInicioVazio" hidden>
+                                    <i class="fa-solid fa-users" aria-hidden="true"></i>
+                                    <strong>Nenhuma sugestão por enquanto</strong>
+                                    <span>Novos perfis aparecerão aqui.</span>
+                                </div>
+                            </section>
+                        </aside>
                     </div>
 
                 </section>
@@ -356,6 +379,14 @@
                                 </button>
                                 <span class="cm-media-hint">Deixe sua publicação ainda mais acolhedora</span>
                             </div>
+                            <label class="home-post-privacy" for="postVisibility2">
+                                <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
+                                Privacidade
+                                <select id="postVisibility2">
+                                    <option value="comunidade">Comunidade</option>
+                                    <option value="somente-eu">Somente eu</option>
+                                </select>
+                            </label>
                             <div class="cm-media-preview" id="midiaPreview2"></div>
                             <div class="cm-composer-actions">
                                 <div class="cm-mood-mini" id="composerMoods2">

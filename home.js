@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Uso EFETIVO da sessão real (não é apenas para verificação):
-    const emailUsuario = sessao;
+    let emailUsuario = sessao;
 
     const perfil = JSON.parse(localStorage.getItem("cm_profile") || "{}");
     let nomeUsuario = (perfil.nome || "").trim() || "Estudante";
@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
        tema.js, o arquivo compartilhado com a Home do profissional
        e com o painel. Aqui só usamos a leitura. */
     const getConfigObj = window.CMTema ? window.CMTema.lerConfig : () => JSON.parse(localStorage.getItem("cm_config") || "{}");
+    const atualizarResumoDiario = () => set("resumoDiario", String(diario.filter(registro => registro.autorEmail === emailUsuario).length));
 
     /* Modal de confirmação reutilizável (Delete/Denunciar não usa confirmação, etc.) */
     const abrirConfirmacao = ({ titulo = "Confirmar", mensagem = "", rotuloConfirmar = "Confirmar", perigoso = false, aoConfirmar }) => {
@@ -99,6 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         if (item) item.click();
     };
+    document.querySelectorAll("[data-home-secao]").forEach((atalho) => {
+        atalho.addEventListener("click", () => irParaSecao(atalho.dataset.homeSecao));
+    });
 
     /* Emoji correspondente ao humor (Diário) */
     const humorEmoji = (humor) => {
@@ -360,9 +364,11 @@ document.addEventListener("DOMContentLoaded", () => {
     renderConteudosUsuario();
 
     /* ---------- Identificação ---------- */
-    set("saudacao", `${periodo}, ${nomeUsuario.split(" ")[0]}! 🌿`);
+    set("saudacao", `${periodo}, ${nomeUsuario.split(" ")[0]}!`);
     set("topoNomeUsuario", `Olá, ${nomeUsuario.split(" ")[0]}`);
     set("sideNome", nomeUsuario);
+    set("homeProfileName", nomeUsuario);
+    set("homeProfileEmail", perfil.email || emailUsuario);
     set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como você está?`);
     set("composerNomeAut2", `${nomeUsuario.split(" ")[0]}, compartilhe com a comunidade`);
 
@@ -378,6 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const avatar = document.getElementById("avatarIniciais");
     aplicarFoto(avatar, nomeUsuario);
+    aplicarFoto(document.getElementById("homeProfileAvatar"), nomeUsuario);
     aplicarFoto(document.getElementById("sideAvatar"), nomeUsuario);
     aplicarFoto(document.getElementById("composerAvatar"), nomeUsuario);
     aplicarFoto(document.getElementById("composerAvatar2"), nomeUsuario);
@@ -413,6 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     localStorage.setItem("cm_profile", JSON.stringify(perfilAtualizado));
                     Object.assign(perfil, perfilAtualizado);
                     aplicarFoto(document.getElementById("avatarIniciais"), nomeUsuario);
+                    aplicarFoto(document.getElementById("homeProfileAvatar"), nomeUsuario);
                     aplicarFoto(document.getElementById("sideAvatar"), nomeUsuario);
                     aplicarFoto(document.getElementById("composerAvatar"), nomeUsuario);
                     aplicarFoto(document.getElementById("composerAvatar2"), nomeUsuario);
@@ -506,8 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const cmTopbar = document.querySelector(".cm-topbar");
 
     function alinharMenuLateral() {
-        if (!cmTopbar) return;
-        document.body.style.setProperty("--cm-rail-top", cmTopbar.offsetHeight + "px");
+        document.body.style.setProperty("--cm-rail-top", cmTopbar ? cmTopbar.offsetHeight + "px" : "0px");
     }
 
     alinharMenuLateral();
@@ -525,22 +532,18 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ==========================================
        PESSOAS PARA SEGUIR (comunidade) + busca
     ========================================== */
-    const perfisPacienteDemonstrativos = [
-        { email: "ana.lima@demo.clearminds.local", nome: "Ana Lima", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true },
-        { email: "bruno.santos@demo.clearminds.local", nome: "Bruno Santos", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true },
-        { email: "clara.mendes@demo.clearminds.local", nome: "Clara Mendes", detalhe: "Estudante · Perfil demonstrativo", demonstrativo: true }
-    ];
-
-    // Perfis ativos da comunidade e exemplos demonstrativos para novos usuários.
+    // Só sugere perfis de autores com publicações visíveis na comunidade.
     const conhecerPessoas = () => {
         const mapa = {};
-        postagens.forEach(p => {
+        postagens.filter(p => p.privacidade !== "somente-eu").forEach(p => {
             if (p.autorEmail && p.autorEmail !== emailUsuario && p.autor) {
-                mapa[p.autorEmail] = { email: p.autorEmail, nome: p.autor, detalhe: p.autorEmail };
+                mapa[p.autorEmail] = {
+                    email: p.autorEmail,
+                    nome: p.autor,
+                    foto: p.autorFoto || "",
+                    detalhe: "Pessoa da comunidade Clear Minds"
+                };
             }
-        });
-        perfisPacienteDemonstrativos.forEach(p => {
-            if (!mapa[p.email]) mapa[p.email] = p;
         });
         return Object.values(mapa);
     };
@@ -569,11 +572,14 @@ document.addEventListener("DOMContentLoaded", () => {
         exibir.forEach(p => {
             const li = document.createElement("li");
             const ini = (p.nome || "U").split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
+            const avatar = p.foto
+                ? `<img src="${esc(p.foto)}" alt="">`
+                : esc(ini);
             li.innerHTML = `
-                <span class="cm-avatar cm-avatar-sm" aria-hidden="true">${esc(ini)}</span>
+                <span class="cm-avatar cm-avatar-sm" aria-hidden="true">${avatar}</span>
                 <div class="cm-info">
                     <strong>${esc(p.nome)}</strong>
-                    <small>${esc(p.detalhe || p.email)}</small>
+                    <small>${esc(p.detalhe || "Pessoa da comunidade Clear Minds")}</small>
                 </div>
                 <button type="button" class="cm-follow-btn" aria-label="Seguir ${esc(p.nome)}">Seguir <i class="fa-solid fa-user-plus" aria-hidden="true"></i></button>
             `;
@@ -581,6 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 seguirPessoa(p);
                 renderListaSeguidas();
                 renderSugestoes(document.getElementById("buscaSugestoes")?.value);
+                renderHomeActivity();
             });
             lista.appendChild(li);
         });
@@ -600,6 +607,13 @@ document.addEventListener("DOMContentLoaded", () => {
             pessoas,
             "",
             3
+        );
+        renderListaSugestoes(
+            document.getElementById("listaSugestoesInicio"),
+            document.getElementById("sugestoesInicioVazio"),
+            pessoas,
+            "",
+            4
         );
     };
 
@@ -625,6 +639,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (n) {
             midiasPendentes[n] = null;
             renderPreviewMidia(n);
+            const pollEditor = document.getElementById(`pollEditor${n}`);
+            if (pollEditor) pollEditor.hidden = true;
+            [`pollQuestion${n}`, `pollOption${n}A`, `pollOption${n}B`].forEach(id => {
+                const input = document.getElementById(id);
+                if (input) input.value = "";
+            });
         }
     };
 
@@ -737,6 +757,13 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarMidia("1");
     configurarMidia("2");
 
+    document.querySelectorAll("[data-poll-btn]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const editor = document.getElementById(`pollEditor${btn.dataset.pollBtn}`);
+            if (editor) editor.hidden = !editor.hidden;
+        });
+    });
+
     const ativarMood = (containerId) => {
         const container = document.getElementById(containerId);
         if (!container) return null;
@@ -752,18 +779,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const publicar = (idTexto, idMoods, n) => {
         const textoEl = document.getElementById(idTexto);
         const texto = (textoEl?.value || "").trim();
-        if (!texto) return;
+        const pollEditor = document.getElementById(`pollEditor${n}`);
+        const pollAberta = Boolean(pollEditor && !pollEditor.hidden);
+        const pergunta = document.getElementById(`pollQuestion${n}`)?.value.trim() || "";
+        const opcaoA = document.getElementById(`pollOption${n}A`)?.value.trim() || "";
+        const opcaoB = document.getElementById(`pollOption${n}B`)?.value.trim() || "";
+        let enquete = null;
+
+        if (pollAberta) {
+            if (!pergunta || !opcaoA || !opcaoB) {
+                notificar("Preencha a pergunta e as duas opções da enquete.");
+                return;
+            }
+            enquete = {
+                pergunta,
+                opcoes: [
+                    { id: "a", texto: opcaoA },
+                    { id: "b", texto: opcaoB }
+                ],
+                votos: {}
+            };
+        }
+
+        if (!texto && !midiasPendentes[n] && !enquete) {
+            notificar("Escreva algo, adicione uma mídia ou crie uma enquete.");
+            return;
+        }
 
         const moods = document.getElementById(idMoods);
         const humor = moods?.querySelector(".cm-mood-chip.active")?.dataset.humor || "";
+        const privacidade = document.getElementById(`postVisibility${n}`)?.value === "somente-eu"
+            ? "somente-eu"
+            : "comunidade";
 
         postagens.push({
             id: Date.now().toString(),
             autor: nomeUsuario,
             autorEmail: emailUsuario,
+            autorFoto: perfil.foto || "",
             humor,
             texto,
             midia: (n ? midiasPendentes[n] : null) || null,
+            enquete,
+            privacidade,
             data: new Date().toISOString(),
             curtidasCount: 0,
             comentarios: []
@@ -797,68 +855,100 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================== */
     const formatarData = (iso) => {
         const d = new Date(iso);
+        if (Number.isNaN(d.getTime())) return "Data indisponível";
         return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")} às ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
     };
+
+    const avatarHtml = (nome, foto = "", tamanho = "cm-avatar-sm") => {
+        const iniciais = (nome || "?").split(/\s+/).slice(0, 2).map(parte => parte[0].toUpperCase()).join("");
+        return `<span class="cm-avatar ${tamanho}" aria-hidden="true">${
+            foto ? `<img src="${esc(foto)}" alt="">` : esc(iniciais)
+        }</span>`;
+    };
+
+    const postVisivel = post => post.privacidade !== "somente-eu" || post.autorEmail === emailUsuario;
 
     const renderFeed = (container) => {
         if (!container) return;
         limpar(container.id);
 
         const emptyEl = document.getElementById(container.id === "feedPosts" ? "feedVazio" : "feedVazio2");
+        const postsOrdenados = postagens
+            .filter(p => p && p.autor && postVisivel(p))
+            .sort((a, b) => new Date(b.data || 0).getTime() - new Date(a.data || 0).getTime());
 
-        if (!postagens.length) {
+        if (!postsOrdenados.length) {
             if (emptyEl) emptyEl.hidden = false;
             return;
         }
         if (emptyEl) emptyEl.hidden = true;
 
-        const postsOrdenados = [...postagens]
-            .filter(p => p && p.autor)
-            .sort((a, b) => (a.data > b.data ? -1 : 1));
-
         postsOrdenados.forEach(p => {
             const artigo = document.createElement("article");
             artigo.className = "cm-post";
-            artigo.dataset.postId = p.id;
+            artigo.dataset.postId = String(p.id);
 
-            const euCurto = curtidas.includes(p.id);
-            const inicial = (p.autor || "?").split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
+            const idPost = String(p.id);
+            const euCurto = curtidas.includes(idPost);
             const ehMeuPost = (p.autorEmail || "") === emailUsuario;
+            const fotoAutor = p.autorFoto || (ehMeuPost ? perfil.foto : "");
+            const autorAvatar = avatarHtml(p.autor, fotoAutor);
+            const privacidadeLabel = p.privacidade === "somente-eu" ? " · Só você" : "";
 
             const midia = p.midia;
             const midiaHtml = midia && midia.url
                 ? (midia.tipo === "imagem"
-                    ? `<div class="cm-post-midia"><img src="${midia.url}" alt="Imagem da publicação"></div>`
+                    ? `<div class="cm-post-midia"><img src="${esc(midia.url)}" alt="Imagem da publicação"></div>`
                     : midia.tipo === "video"
-                        ? `<div class="cm-post-midia"><video src="${midia.url}" controls preload="metadata"></video></div>`
+                        ? `<div class="cm-post-midia"><video src="${esc(midia.url)}" controls preload="metadata"></video></div>`
                         : `<div class="cm-post-midia"><div class="cm-file-chip"><i class="fa-solid fa-paperclip"></i><span>${esc(midia.nome || "Arquivo anexado")}</span></div></div>`)
+                : "";
+            const enquete = p.enquete && Array.isArray(p.enquete.opcoes)
+                ? `<div class="cm-poll" data-poll-post="${esc(idPost)}">
+                    <strong class="cm-poll-question">${esc(p.enquete.pergunta || "Enquete")}</strong>
+                    ${(() => {
+                        const votos = p.enquete.votos || {};
+                        const total = Object.keys(votos).length;
+                        const votoAtual = votos[emailUsuario];
+                        return p.enquete.opcoes.map(opcao => {
+                            const quantidade = Object.values(votos).filter(voto => voto === opcao.id).length;
+                            const percentual = total ? Math.round((quantidade / total) * 100) : 0;
+                            return `<button type="button" class="cm-poll-option${votoAtual === opcao.id ? " selected" : ""}"
+                                data-poll-vote="${esc(opcao.id)}" ${votoAtual ? "disabled" : ""}>
+                                <span>${esc(opcao.texto)}</span>
+                                ${votoAtual ? `<span class="cm-poll-results"><span style="width:${percentual}%"></span></span>
+                                    <small>${percentual}% · ${quantidade}</small>` : ""}
+                            </button>`;
+                        }).join("");
+                    })()}
+                    <small class="cm-poll-total">${Object.keys(p.enquete.votos || {}).length} voto(s)</small>
+                </div>`
                 : "";
 
             const postAcoes = ehMeuPost
-                ? `<button type="button" data-post-acao="editar" data-post="${esc(p.id)}"><i class="fa-solid fa-pen"></i> Editar publicação</button>
-                   <button type="button" data-post-acao="excluir" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicação</button>`
+                ? `<button type="button" data-post-acao="excluir" data-post="${esc(idPost)}" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir publicação</button>`
                 : ((() => {
                     const jaSigo = p.autorEmail ? amizades.some(a => a.email === p.autorEmail) : false;
                     let html = "";
                     if (p.autorEmail) {
-                        html += `<button type="button" data-post-acao="seguir" data-post="${esc(p.id)}" data-email="${esc(p.autorEmail)}" data-nome="${esc(p.autor)}">
+                        html += `<button type="button" data-post-acao="seguir" data-post="${esc(idPost)}" data-email="${esc(p.autorEmail)}" data-nome="${esc(p.autor)}">
                             <i class="fa-${jaSigo ? "solid" : "regular"} fa-user-${jaSigo ? "minus" : "plus"}"></i> ${jaSigo ? "Deixar de seguir" : "Seguir"}
                         </button>`;
                     }
-                    html += `<button type="button" data-post-acao="denunciar" data-post="${esc(p.id)}" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar publicação</button>`;
+                    html += `<button type="button" data-post-acao="denunciar" data-post="${esc(idPost)}" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar publicação</button>`;
                     return html;
                 })());
 
             const comentariosHtml = (p.comentarios || []).map((c, i) => {
                 const ehMeu = (c.autorEmail || "") === emailUsuario;
-                const inicial = (c.autor || "?").split(/\s+/).slice(0, 2).map(x => x[0].toUpperCase()).join("");
+                const fotoComentario = c.autorFoto || (ehMeu ? perfil.foto : "");
                 const acoes = ehMeu
                     ? `<button type="button" data-acao="editar"><i class="fa-solid fa-pen"></i> Editar comentário</button>
                        <button type="button" data-acao="excluir" class="cm-comm-danger"><i class="fa-regular fa-trash-can"></i> Excluir comentário</button>`
                     : `<button type="button" data-acao="denunciar" class="cm-comm-danger"><i class="fa-solid fa-flag"></i> Denunciar comentário</button>`;
                 return `
-                <div class="cm-comment-item" data-post="${esc(p.id)}" data-idx="${i}">
-                    <span class="cm-avatar cm-avatar-sm">${esc(inicial)}</span>
+                <div class="cm-comment-item" data-post="${esc(idPost)}" data-idx="${i}">
+                    ${avatarHtml(c.autor, fotoComentario)}
                     <div class="cm-bubble">
                         <strong>${esc(c.autor)}</strong>
                         <p>${esc(c.texto)}</p>
@@ -872,10 +962,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             artigo.innerHTML = `
                 <div class="cm-post-head">
-                    <span class="cm-avatar cm-avatar-sm">${inicial}</span>
+                    ${autorAvatar}
                     <div class="cm-author">
-                        <strong>${p.autor}</strong>
-                        <small>${formatarData(p.data)}${p.humor ? ` · ${p.humor}` : ""}</small>
+                        <strong>${esc(p.autor)}</strong>
+                        <small>${formatarData(p.data)}${p.humor ? ` · ${esc(p.humor)}` : ""}${privacidadeLabel}</small>
                     </div>
                     <div class="cm-post-menu">
                         <button type="button" class="cm-post-dots" aria-label="Opções da publicação"><i class="fa-solid fa-ellipsis-vertical"></i></button>
@@ -883,33 +973,35 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 </div>
                 <div class="cm-post-body">
-                    <p class="cm-post-text">${p.texto}</p>
+                    ${p.texto ? `<p class="cm-post-text">${esc(p.texto)}</p>` : ""}
                     ${midiaHtml}
+                    ${enquete}
                 </div>
                 <div class="cm-post-actions">
-                    <button type="button" class="cm-post-btn post-like ${euCurto ? "active" : ""}" data-post="${p.id}">
-                        <i class="fa-${euCurto ? "solid" : "regular"} fa-heart"></i> <span>${(p.curtidasCount || 0)}</span>
+                    <button type="button" class="cm-post-btn post-like ${euCurto ? "active" : ""}" data-post="${esc(idPost)}">
+                        <i class="fa-${euCurto ? "solid" : "regular"} fa-heart"></i> <span>${Number(p.curtidasCount) || 0}</span>
                     </button>
-                    <button type="button" class="cm-post-btn post-comment" data-post="${p.id}">
+                    <button type="button" class="cm-post-btn post-comment" data-post="${esc(idPost)}">
                         <i class="fa-regular fa-comment"></i> <span>${(p.comentarios || []).length}</span>
                     </button>
-                    <button type="button" class="cm-post-btn post-share" data-post="${p.id}">
+                    <button type="button" class="cm-post-btn post-share" data-post="${esc(idPost)}">
                         <i class="fa-solid fa-share"></i> Compartilhar
                     </button>
                 </div>
-                <div class="cm-share-box" id="share-${p.id}">
+                <div class="cm-share-box" id="share-${esc(idPost)}-${esc(container.id)}">
                     ${amizades.length
                         ? `<p class="cm-share-note">Escolha com quem compartilhar:</p>
                            <ul class="cm-share-list">${amizades.map(a => `
-                                <li><label><input type="checkbox" value="${a.id || a.email || a.nome}"> ${a.nome || a.email || "Conexão"}</label></li>`).join("")}
+                                <li><label><input type="checkbox" value="${esc(a.id || a.email || a.nome)}"> ${esc(a.nome || a.email || "Conexão")}</label></li>`).join("")}
                            </ul>
-                           <button type="button" class="cm-btn cm-btn-primary cm-btn-sm share-confirm" data-post="${p.id}">Enviar</button>`
+                           <button type="button" class="cm-btn cm-btn-primary cm-btn-sm share-confirm" data-post="${esc(idPost)}">Enviar</button>`
                         : `<p class="cm-share-note">Você ainda não tem conexões para compartilhar.</p>`}
                 </div>
-                <div class="cm-comments" id="comments-${p.id}" style="display:none;">
+                <div class="cm-comments" id="comments-${esc(idPost)}-${esc(container.id)}" style="display:none;">
                     ${comentariosHtml}
-                    <form class="cm-comment-form" data-post="${p.id}">
-                        <input type="text" placeholder="Escreva um comentário..." maxlength="200" required>
+                    <form class="cm-comment-form" data-post="${esc(idPost)}">
+                        ${avatarHtml(nomeUsuario, perfil.foto)}
+                        <input type="text" placeholder="Escreva um comentário..." aria-label="Escreva um comentário" maxlength="200" required>
                         <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm">Comentar</button>
                     </form>
                 </div>`;
@@ -917,23 +1009,47 @@ document.addEventListener("DOMContentLoaded", () => {
             container.appendChild(artigo);
         });
 
-        // Eventos: curtir, comentar, compartilhar
+        // Eventos: curtir, votar, comentar, compartilhar
         container.querySelectorAll(".post-like").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.post;
-                const post = postagens.find(x => x.id === id);
+                const post = postagens.find(x => String(x.id) === id);
                 if (!post) return;
 
                 const jaCurte = curtidas.includes(id);
                 if (jaCurte) {
                     curtidas = curtidas.filter(c => c !== id);
                     post.curtidasCount = Math.max(0, (post.curtidasCount || 0) - 1);
+                    if (Array.isArray(post.curtidasPor)) {
+                        post.curtidasPor = post.curtidasPor.filter(item => item.email !== emailUsuario);
+                    }
                 } else {
                     curtidas.push(id);
                     post.curtidasCount = (post.curtidasCount || 0) + 1;
+                    post.curtidasPor = Array.isArray(post.curtidasPor) ? post.curtidasPor : [];
+                    post.curtidasPor = post.curtidasPor.filter(item => item.email !== emailUsuario);
+                    post.curtidasPor.push({
+                        email: emailUsuario,
+                        nome: nomeUsuario,
+                        data: new Date().toISOString()
+                    });
                 }
 
                 salvarLista("cm_curtidas", curtidas);
+                salvarLista("cm_postagens", postagens);
+                atualizarFeeds();
+            });
+
+        });
+
+        container.querySelectorAll(".cm-poll-option:not(:disabled)").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const artigo = btn.closest(".cm-post");
+                const post = artigo && postagens.find(item => String(item.id) === artigo.dataset.postId);
+                if (!post || !post.enquete || !post.enquete.opcoes.some(opcao => opcao.id === btn.dataset.pollVote)) return;
+                post.enquete.votos = post.enquete.votos || {};
+                if (post.enquete.votos[emailUsuario]) return;
+                post.enquete.votos[emailUsuario] = btn.dataset.pollVote;
                 salvarLista("cm_postagens", postagens);
                 atualizarFeeds();
             });
@@ -941,8 +1057,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         container.querySelectorAll(".post-comment").forEach(btn => {
             btn.addEventListener("click", () => {
-                const id = btn.dataset.post;
-                const box = document.getElementById(`comments-${id}`);
+                const box = btn.closest(".cm-post")?.querySelector(".cm-comments");
                 if (box) box.style.display = box.style.display === "none" ? "" : "none";
             });
         });
@@ -955,20 +1070,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 const texto = input.value.trim();
                 if (!texto) return;
 
-                const post = postagens.find(x => x.id === id);
+                const post = postagens.find(x => String(x.id) === id);
                 if (!post) return;
 
                 if (!post.comentarios) post.comentarios = [];
-                post.comentarios.push({ autor: nomeUsuario, autorEmail: emailUsuario, texto, data: new Date().toISOString() });
+                post.comentarios.push({
+                    autor: nomeUsuario,
+                    autorEmail: emailUsuario,
+                    autorFoto: perfil.foto || "",
+                    texto,
+                    data: new Date().toISOString()
+                });
                 salvarLista("cm_postagens", postagens);
                 atualizarFeeds();
+                const postAtualizado = [...container.querySelectorAll(".cm-post")]
+                    .find(artigo => artigo.dataset.postId === id);
+                const comentarios = postAtualizado?.querySelector(".cm-comments");
+                if (comentarios) comentarios.style.display = "";
             });
         });
 
         container.querySelectorAll(".post-share").forEach(btn => {
             btn.addEventListener("click", () => {
-                const id = btn.dataset.post;
-                const box = document.getElementById(`share-${id}`);
+                const box = btn.closest(".cm-post")?.querySelector(".cm-share-box");
                 if (box) box.classList.toggle("open");
             });
         });
@@ -976,7 +1100,8 @@ document.addEventListener("DOMContentLoaded", () => {
         container.querySelectorAll(".share-confirm").forEach(btn => {
             btn.addEventListener("click", () => {
                 const id = btn.dataset.post;
-                const box = document.getElementById(`share-${id}`);
+                const box = btn.closest(".cm-post")?.querySelector(".cm-share-box");
+                if (!box) return;
                 const selecionados = [...box.querySelectorAll("input:checked")].map(i => i.value);
                 if (!selecionados.length) return;
 
@@ -1019,6 +1144,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const coment = (post && post.comentarios) ? post.comentarios[idx] : null;
                 if (!post || !coment) return;
                 const acao = btn.dataset.acao;
+                if (acao === "denunciar" && coment.autorEmail === emailUsuario) return;
+                if (acao !== "denunciar" && coment.autorEmail !== emailUsuario) return;
 
                 if (acao === "excluir") {
                     if (confirm("Excluir este comentário?")) {
@@ -1056,32 +1183,24 @@ document.addEventListener("DOMContentLoaded", () => {
                             <button type="button" class="cm-btn cm-btn-soft cm-btn-sm cm-comm-cancel">Cancelar</button>
                         </div>`;
                     const inp = bolha.querySelector(".cm-comment-edit-input");
+                    const salvar = bolha.querySelector(".cm-comm-save");
+                    const cancelar = bolha.querySelector(".cm-comm-cancel");
                     if (inp) {
                         inp.value = coment.texto;
                         inp.focus();
                     }
+                    salvar?.addEventListener("click", () => {
+                        const texto = inp?.value.trim() || "";
+                        const comentarioAtual = post.comentarios[idx];
+                        if (!texto || !comentarioAtual || comentarioAtual.autorEmail !== emailUsuario) return;
+                        comentarioAtual.texto = texto;
+                        salvarLista("cm_postagens", postagens);
+                        notificar("Comentário editado.");
+                        atualizarFeeds();
+                    });
+                    cancelar?.addEventListener("click", () => atualizarFeeds());
                 }
             });
-        });
-
-        container.querySelectorAll(".cm-comm-save").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const item = btn.closest(".cm-comment-item");
-                if (!item) return;
-                const post = postagens.find(x => String(x.id) === item.dataset.post);
-                const idx = parseInt(item.dataset.idx, 10);
-                const inp = item.querySelector(".cm-comment-edit-input");
-                const texto = inp ? inp.value.trim() : "";
-                if (!post || !post.comentarios || !post.comentarios[idx] || !texto) return;
-                post.comentarios[idx].texto = texto;
-                salvarLista("cm_postagens", postagens);
-                notificar("Comentário editado.");
-                atualizarFeeds();
-            });
-        });
-
-        container.querySelectorAll(".cm-comm-cancel").forEach(btn => {
-            btn.addEventListener("click", () => atualizarFeeds());
         });
 
         /* ---- Menu de três pontinhos das publicações ---- */
@@ -1101,48 +1220,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!item) return;
                 const id = btn.dataset.post;
                 const acao = btn.dataset.postAcao;
+                const postAtual = postagens.find(post => String(post.id) === id);
 
                 fecharDropdowns();
-
-                if (acao === "editar") {
-                    const post = postagens.find(x => String(x.id) === id);
-                    const article = btn.closest(".cm-post");
-                    const body = article ? article.querySelector(".cm-post-body") : null;
-                    if (!post || !body) return;
-                    body.innerHTML = `
-                        <div class="cm-post-edit-box">
-                            <textarea class="cm-post-edit-input" rows="4" maxlength="500" aria-label="Editar publicação">${esc(post.texto || "")}</textarea>
-                            <div class="cm-post-edit-actions">
-                                <button type="button" class="cm-btn cm-btn-primary cm-btn-sm cm-post-save">Salvar</button>
-                                <button type="button" class="cm-btn cm-btn-soft cm-btn-sm cm-post-cancel">Cancelar</button>
-                            </div>
-                        </div>
-                    `;
-
-                    const salvar = body.querySelector(".cm-post-save");
-                    const cancelar = body.querySelector(".cm-post-cancel");
-                    const textarea = body.querySelector(".cm-post-edit-input");
-                    if (textarea) textarea.focus();
-
-                    salvar?.addEventListener("click", () => {
-                        const texto = (textarea?.value || "").trim();
-                        if (!texto) {
-                            notificar("Escreva algo antes de salvar.");
-                            return;
-                        }
-                        post.texto = texto;
-                        salvarLista("cm_postagens", postagens);
-                        notificar("Publicação atualizada.");
-                        atualizarFeeds();
-                    });
-
-                    cancelar?.addEventListener("click", () => atualizarFeeds());
-                    return;
-                }
+                if (!postAtual) return;
 
                 if (acao === "excluir") {
-                    const post = postagens.find(x => String(x.id) === id);
-                    if (post) {
+                    const post = postAtual;
+                    if (post.autorEmail === emailUsuario) {
                         abrirConfirmacao({
                             titulo: "Excluir publicação",
                             mensagem: "Tem certeza que deseja excluir esta publicação? Essa ação não pode ser desfeita.",
@@ -1163,6 +1248,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (acao === "seguir") {
+                    if (postAtual.autorEmail === emailUsuario) return;
                     const emailAlvo = btn.dataset.email;
                     const nomeAlvo = btn.dataset.nome || "";
                     if (!emailAlvo) return;
@@ -1181,8 +1267,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 if (acao === "denunciar") {
-                    const post = postagens.find(x => String(x.id) === id);
-                    if (!post) return;
+                    const post = postAtual;
+                    if (post.autorEmail === emailUsuario) return;
                     const denuncias = getLista("cm_denuncias");
                     denuncias.push({
                         autor: post.autor,
@@ -1199,13 +1285,171 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
+    const tempoRelativo = (valor) => {
+        const data = new Date(valor);
+        if (Number.isNaN(data.getTime())) return "";
+        const minutos = Math.max(0, Math.floor((Date.now() - data.getTime()) / 60000));
+        if (minutos < 1) return "agora";
+        if (minutos < 60) return `há ${minutos} ${minutos === 1 ? "minuto" : "minutos"}`;
+        const horas = Math.floor(minutos / 60);
+        if (horas < 24) return `há ${horas} ${horas === 1 ? "hora" : "horas"}`;
+        const dias = Math.floor(horas / 24);
+        if (dias < 7) return `há ${dias} ${dias === 1 ? "dia" : "dias"}`;
+        return data.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+    };
+
+    const pedidoPertencePaciente = (pedido) => {
+        const emailPaciente = emailUsuario.trim().toLowerCase();
+        if (pedido.pacienteEmail) return pedido.pacienteEmail.trim().toLowerCase() === emailPaciente;
+
+        const nomePaciente = nomeUsuario.trim().toLowerCase();
+        if ((pedido.pacienteNome || "").trim().toLowerCase() !== nomePaciente) return false;
+        return getLista("cm_pacientes").some(paciente =>
+            (paciente.email || "").trim().toLowerCase() === emailPaciente &&
+            (paciente.nome || "").trim().toLowerCase() === nomePaciente &&
+            paciente.diarioAcesso === "solicitado"
+        );
+    };
+
+    const renderHomeActivity = () => {
+        const lista = document.getElementById("homeActivityList");
+        const vazio = document.getElementById("homeActivityEmpty");
+        if (!lista) return;
+
+        const pedidosEl = document.getElementById("homeDiaryRequests");
+        const pedidosWrap = document.getElementById("homeDiaryRequestsWrap");
+        const solicitacoes = getLista("cm_solicitacoes_diario");
+        const pendentes = solicitacoes
+            .map((pedido, indice) => ({ pedido, indice }))
+            .filter(({ pedido }) => pedidoPertencePaciente(pedido) && !["aceita", "recusada"].includes(pedido.status));
+
+        if (pedidosEl && pedidosWrap) {
+            pedidosEl.replaceChildren();
+            pedidosWrap.hidden = pendentes.length === 0;
+            pendentes.forEach(({ pedido, indice }) => {
+                const item = document.createElement("li");
+                const nomeProfissional = pedido.profissionalNome || "Um profissional";
+                const data = tempoRelativo(pedido.data);
+                item.innerHTML = `<span class="home-diary-request-copy">
+                        <strong>${esc(nomeProfissional)}</strong>
+                        <span>solicita acesso ao seu diário</span>
+                        ${data ? `<small>${esc(data)}</small>` : ""}
+                    </span>
+                    <span class="home-diary-request-actions">
+                        <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" data-diary-response="aceita" data-request-index="${indice}">Aceitar</button>
+                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-diary-response="recusada" data-request-index="${indice}">Recusar</button>
+                    </span>`;
+                pedidosEl.appendChild(item);
+            });
+        }
+
+        const atividades = [];
+        postagens
+            .filter(post => postVisivel(post) && post.autorEmail === emailUsuario)
+            .forEach(post => {
+                (post.comentarios || []).forEach(comentario => {
+                    if (comentario.autorEmail === emailUsuario || comentario.autor === nomeUsuario) return;
+                    atividades.push({
+                        autor: comentario.autor || "Pessoa da comunidade",
+                        texto: "comentou na sua publicação",
+                        data: comentario.data || post.data,
+                        icone: "fa-regular fa-comment"
+                    });
+                });
+                (Array.isArray(post.curtidasPor) ? post.curtidasPor : []).forEach(curtida => {
+                    if (!curtida.email || curtida.email === emailUsuario) return;
+                    atividades.push({
+                        autor: curtida.nome || "Pessoa da comunidade",
+                        texto: "curtiu sua publicação",
+                        data: curtida.data,
+                        icone: "fa-regular fa-heart"
+                    });
+                });
+            });
+
+        const recentes = atividades
+            .filter(atividade => atividade.data && !Number.isNaN(new Date(atividade.data).getTime()))
+            .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
+            .slice(0, 5);
+        lista.replaceChildren();
+        if (!recentes.length) {
+            if (vazio) vazio.hidden = pendentes.length > 0;
+            return;
+        }
+        if (vazio) vazio.hidden = true;
+
+        recentes.forEach(atividade => {
+            const item = document.createElement("li");
+            item.innerHTML = `<span class="home-activity-icon"><i class="${atividade.icone}" aria-hidden="true"></i></span>
+                <span class="home-activity-copy"><strong>${esc(atividade.autor)}</strong>
+                <span>${esc(atividade.texto)}</span><small>${esc(tempoRelativo(atividade.data))}</small></span>`;
+            lista.appendChild(item);
+        });
+    };
+
+    document.getElementById("homeDiaryRequests")?.addEventListener("click", (event) => {
+        const botao = event.target.closest("[data-diary-response]");
+        if (!botao) return;
+        const resposta = botao.dataset.diaryResponse;
+        if (!["aceita", "recusada"].includes(resposta)) return;
+        const indice = Number(botao.dataset.requestIndex);
+        const solicitacoes = getLista("cm_solicitacoes_diario");
+        const pedido = solicitacoes[indice];
+        if (!pedido || !pedidoPertencePaciente(pedido) || ["aceita", "recusada"].includes(pedido.status)) {
+            renderHomeActivity();
+            return;
+        }
+
+        pedido.pacienteEmail = emailUsuario;
+        pedido.pacienteNome = nomeUsuario;
+        pedido.status = resposta;
+        pedido.respondidaEm = new Date().toISOString();
+        salvarLista("cm_solicitacoes_diario", solicitacoes);
+
+        const pacientes = getLista("cm_pacientes");
+        const emailPaciente = emailUsuario.trim().toLowerCase();
+        const pacienteAlvo = pedido.pacienteId
+            ? pacientes.find(paciente =>
+                String(paciente.id) === String(pedido.pacienteId) &&
+                (paciente.email || "").trim().toLowerCase() === emailPaciente
+            )
+            : pacientes.find(paciente => (paciente.email || "").trim().toLowerCase() === emailPaciente);
+        if (pacienteAlvo) pacienteAlvo.diarioAcesso = pedido.status === "aceita" ? "liberado" : false;
+        salvarLista("cm_pacientes", pacientes);
+
+        if (pedido.profissionalEmail) {
+            const atividadesProfissional = getLista("cm_atividades_profissional");
+            atividadesProfissional.unshift({
+                texto: `${nomeUsuario} ${pedido.status === "aceita" ? "aceitou" : "recusou"} a solicitação de acesso ao diário.`,
+                tempo: "agora"
+            });
+            salvarLista("cm_atividades_profissional", atividadesProfissional);
+        }
+
+        renderHomeActivity();
+        notificar(pedido.status === "aceita"
+            ? "Acesso ao diário autorizado para o profissional."
+            : "Solicitação de acesso ao diário recusada.");
+    });
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === "cm_solicitacoes_diario") renderHomeActivity();
+        if (event.key === "cm_postagens") {
+            postagens = JSON.parse(event.newValue || "[]");
+            atualizarFeeds();
+            atualizarSugestoes();
+        }
+    });
+
     const atualizarFeeds = () => {
         if (feed1) renderFeed(feed1);
         if (feed2) renderFeed(feed2);
+        renderHomeActivity();
     };
 
     renderFeed(feed1);
     renderFeed(feed2);
+    renderHomeActivity();
 
     /* ==========================================
        DIÁRIO — REGISTRO DE HUMOR E TEXTO
@@ -1273,7 +1517,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         diario = diario.filter(x => String(x.id) !== idRef);
                         salvarLista("cm_diario", diario);
                         renderDiario();
-                        set("resumoDiario", String(diario.length));
+                        atualizarResumoDiario();
                         notificar("Registro excluído.");
                     }
                 });
@@ -1329,7 +1573,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const diarioDataHojeEl = document.getElementById("diarioDataHoje");
     if (diarioDataHojeEl) diarioDataHojeEl.textContent = new Date().toLocaleDateString("pt-BR");
     renderDiario();
-    set("resumoDiario", String(diario.length));
+    atualizarResumoDiario();
 
     const btnSalvarDiario = document.getElementById("btnSalvarDiario");
     if (btnSalvarDiario) {
@@ -1359,7 +1603,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             renderDiario();
-            set("resumoDiario", String(diario.length));
+            atualizarResumoDiario();
         });
     }
 
@@ -1515,11 +1759,14 @@ document.addEventListener("DOMContentLoaded", () => {
         perfil.nome = novo.nome;
 
         nomeUsuario = novo.nome || "Estudante";
+        set("homeProfileName", nomeUsuario);
+        set("homeProfileEmail", perfil.email || emailUsuario);
         set("topoNomeUsuario", `Olá, ${nomeUsuario.split(" ")[0]}`);
         set("sideNome", nomeUsuario);
         set("composerNomeAut", `${nomeUsuario.split(" ")[0]}, como você está?`);
         set("composerNomeAut2", `${nomeUsuario.split(" ")[0]}, compartilhe com a comunidade`);
         aplicarFoto(avatar, nomeUsuario);
+        aplicarFoto(document.getElementById("homeProfileAvatar"), nomeUsuario);
         aplicarFoto(document.getElementById("sideAvatar"), nomeUsuario);
         aplicarFoto(document.getElementById("composerAvatar"), nomeUsuario);
         aplicarFoto(document.getElementById("composerAvatar2"), nomeUsuario);
@@ -1590,10 +1837,13 @@ document.addEventListener("DOMContentLoaded", () => {
         perfil.email = perfil.email || emailUsuario;
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
         nomeUsuario = v;
+        set("homeProfileName", v);
+        set("homeProfileEmail", perfil.email || emailUsuario);
         set("perfilNome", v);
         set("topoNomeUsuario", `Olá, ${v.split(" ")[0]}`);
         set("sideNome", v);
         aplicarFoto(avatar, v);
+        aplicarFoto(document.getElementById("homeProfileAvatar"), v);
         aplicarFoto(document.getElementById("perfilAvatar"), v);
         renderPerfil();
         notificar("Nome atualizado com sucesso.");
@@ -1603,17 +1853,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnCfgEmail) btnCfgEmail.addEventListener("click", () => {
         const v = document.getElementById("cfgNovoEmail")?.value.trim();
         if (!v || !v.includes("@")) { notificar("Digite um e-mail válido."); return; }
+        const emailAnterior = emailUsuario;
         const posts = getLista("cm_postagens").map(p => {
-            if (p.autorEmail === emailUsuario) return { ...p, autorEmail: v };
-            p.comentarios = (p.comentarios || []).map(c => c.autorEmail === emailUsuario ? { ...c, autorEmail: v } : c);
-            return p;
+            const atualizado = { ...p };
+            if (atualizado.autorEmail === emailAnterior) atualizado.autorEmail = v;
+            atualizado.comentarios = (atualizado.comentarios || []).map(c => c.autorEmail === emailAnterior ? { ...c, autorEmail: v } : c);
+            atualizado.curtidasPor = (atualizado.curtidasPor || []).map(curtida => curtida.email === emailAnterior ? { ...curtida, email: v } : curtida);
+            return atualizado;
         });
         salvarLista("cm_postagens", posts);
-        const novasAmizades = amizades.map(a => a.email === emailUsuario ? { ...a, email: v } : a);
-        salvarLista("cm_amizades", novasAmizades);
-        if (localStorage.getItem("cm_session") === emailUsuario) localStorage.setItem("cm_session", v);
+        diario = diario.map(registro => registro.autorEmail === emailAnterior ? { ...registro, autorEmail: v } : registro);
+        salvarLista("cm_diario", diario);
+        const pacientes = getLista("cm_pacientes").map(paciente => paciente.email === emailAnterior ? { ...paciente, email: v } : paciente);
+        salvarLista("cm_pacientes", pacientes);
+        const solicitacoes = getLista("cm_solicitacoes_diario").map(pedido =>
+            pedido.pacienteEmail === emailAnterior ? { ...pedido, pacienteEmail: v } : pedido
+        );
+        salvarLista("cm_solicitacoes_diario", solicitacoes);
+        if (localStorage.getItem("cm_session") === emailAnterior) localStorage.setItem("cm_session", v);
+        emailUsuario = v;
         perfil.email = v;
         localStorage.setItem("cm_profile", JSON.stringify(perfil));
+        set("homeProfileEmail", v);
         notificar("E-mail atualizado. Use-o no próximo login.");
         renderPerfil();
         if (document.getElementById("cfgNovoEmail")) document.getElementById("cfgNovoEmail").value = "";

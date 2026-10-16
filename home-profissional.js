@@ -510,12 +510,21 @@ const renderPacientes = (filtro) => {
             return;
         }
 
+        alvo.id = alvo.id || `pac-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
         alvo.diarioAcesso = "solicitado";
         salvarLista("cm_pacientes", pacientes);
 
         // Registra a solicitação (estrutura preparada)
         const solicitacoes = getLista("cm_solicitacoes_diario");
-        solicitacoes.push({ profissionalEmail: sessao, pacienteNome: alvo.nome || "Paciente", data: new Date().toISOString() });
+        solicitacoes.push({
+            profissionalEmail: sessao,
+            profissionalNome: nome || "Profissional",
+            pacienteId: alvo.id,
+            pacienteEmail: alvo.email || "",
+            pacienteNome: alvo.nome || "Paciente",
+            data: new Date().toISOString(),
+            status: "pendente"
+        });
         salvarLista("cm_solicitacoes_diario", solicitacoes);
 
         // Registra atividade
@@ -772,16 +781,30 @@ const renderAgenda = () => {
         atividades.slice(0, 6).forEach(a => {
             const li = document.createElement("li");
             li.className = "cm-activity-item";
-            li.innerHTML = `
-                <span class="cm-activity-dot"></span>
-                <div>
-                    <p>${a.texto || ""}</p>
-                    <small>${a.tempo || ""}</small>
-                </div>`;
+            const dot = document.createElement("span");
+            dot.className = "cm-activity-dot";
+            const conteudo = document.createElement("div");
+            const texto = document.createElement("p");
+            texto.textContent = a.texto || "";
+            const tempo = document.createElement("small");
+            tempo.textContent = a.tempo || "";
+            conteudo.append(texto, tempo);
+            li.append(dot, conteudo);
             lista.insertBefore(li, vazio);
         });
     };
     renderAtividades();
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === "cm_pacientes") {
+            pacientes = JSON.parse(event.newValue || "[]");
+            renderPacientes(document.getElementById("buscaPaciente")?.value);
+        }
+        if (event.key === "cm_atividades_profissional") {
+            atividades = JSON.parse(event.newValue || "[]");
+            renderAtividades();
+        }
+    });
 
 /* ==========================================
        FINANCEIRO — FILTRO POR PERÍODO, RESUMO E GRÁFICO
@@ -1227,6 +1250,7 @@ const alternarForm = (formEl) => {
         const email = document.getElementById("addPacEmail").value.trim();
         if (!nome) return;
         pacientes.push({
+            id: `pac-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
             nome,
             email,
             diarioAcesso: false,
