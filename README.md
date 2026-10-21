@@ -5,32 +5,41 @@ Site do TCC "Clear Minds", uma plataforma de apoio à saúde mental de estudante
 ## Fluxo de navegação
 
 ```
-                          index.html (Cadastro)
-                         /                      \
-              tipo = Estudante              tipo = Profissional
-                    |                              |
-                    v                              v
-        formulario.html (Etapa 1/2)     cadastro-profissional.html (Etapa 1/2)
-                    |                              |
-                    v                              v
-        formulario2.html (Etapa 2/2)     cadastro-profissional2.html (Etapa 2/2)
-                    |                              |
-                    v                              v
-                home.html                  home-profissional.html
-                    |                              |
-                    +--------------> login.html   +-------------> login-profissional.html
+index.html (página pública)
+        |
+        +-- Cadastrar --> cadastro-escolha.html
+        |                     |
+        |                     +-- Estudante ----> cadastro-estudante.html -> formulario.html -> formulario2.html -> home.html
+        |                     |
+        |                     +-- Profissional -> cadastro-profissional.html -> cadastro-profissional2.html -> home-profissional.html
+        |
+        +-- Login -----> login-escolha.html
+                              |
+                              +-- Estudante ----> login.html -> home.html
+                              |
+                              +-- Profissional -> login-profissional.html -> home-profissional.html
 ```
 
-- **index.html** (cadastro):
-  - Se **Estudante**: pede nome, e-mail, curso e período; ao concluir, é direcionado para
-    `formulario.html` (Etapa 1 de 2) para completar o perfil.
-  - Se **Profissional**: botão "Criar conta profissional" leva para `cadastro-profissional.html`
-    (Etapa 1 de 2 — identificação, registro/formação e acesso com e-mail/senha) e depois
-    `cadastro-profissional2.html` (Etapa 2 de 2 — modalidade, localização, contato, valores e
-    verificação). Ao concluir, vai para `home-profissional.html`.
-- **login.html** (Estudante): quem já tem conta entra e vai para `home.html`. O botão
-  "Acessar conta profissional" leva para `login-profissional.html`. Quem não tem conta clica em
-  "Cadastre-se" e vai para `index.html`.
+- **index.html** (página pública inicial):
+  - É a primeira página do site e não exige login. Apresenta o Clear Minds, dados com fontes,
+    espaços da plataforma, conteúdos, comunidade, privacidade e o fluxo de uso.
+  - No topo, **Cadastrar** leva a `cadastro-escolha.html` e **Login** leva a
+    `login-escolha.html`.
+  - Os links de conteúdos e "Explorar localização" direcionam para `login-escolha.html`, pois
+    essas áreas exigem uma conta.
+- **cadastro-escolha.html**: escolha entre conta de Estudante e conta Profissional.
+  - Estudante -> `cadastro-estudante.html` (cadastro inicial) -> `formulario.html` (Etapa 1/2)
+    -> `formulario2.html` (Etapa 2/2) -> `home.html`.
+  - Profissional -> `cadastro-profissional.html` (Etapa 1/2) -> `cadastro-profissional2.html`
+    (Etapa 2/2) -> `home-profissional.html`.
+- **login-escolha.html**: escolha entre login de Estudante e login Profissional.
+  - Estudante -> `login.html` -> `home.html`.
+  - Profissional -> `login-profissional.html` -> `home-profissional.html`.
+- **cadastro-estudante.html** / `cadastro.js`: cria a conta do Estudante e, ao concluir, segue
+  para `formulario.html`.
+- **login.html** (Estudante): autentica e vai para `home.html`. O botão "Acessar conta
+  profissional" leva para `login-profissional.html`. A troca entre login e cadastro não aparece
+  nesta tela; o cadastro é acessado pela página pública (`index.html`).
 - **login-profissional.html**: autentica o profissional pelo e-mail e senha cadastrados
   (`cm_profile_profissional`); sem uma conta profissional salva na máquina, exibe aviso para
   cadastrar. **É a única forma de acessar `home-profissional.html`**.
@@ -98,7 +107,11 @@ Chaves usadas no `localStorage`:
 
 ## Estrutura de arquivos
 
-- `index.html` / `cadastro.js` — Cadastro do Estudante
+- `index.html` — Página pública inicial (landing page)
+- `pagina-publica.css` — Estilos da página pública e das páginas de escolha de cadastro/login
+- `cadastro-escolha.html` — Escolha do tipo de cadastro
+- `login-escolha.html` — Escolha do tipo de login
+- `cadastro-estudante.html` / `cadastro.js` — Cadastro do Estudante
 - `login.html` / `script.js` — Login do Estudante
 - `login-profissional.html` / `login-profissional.js` — Login do Profissional
 - `cadastro-profissional.html` / `cadastro-profissional.js` — Cadastro profissional (Etapa 1/2)
@@ -107,10 +120,15 @@ Chaves usadas no `localStorage`:
   exibição de erros de formulário e avisos de demonstração (`[data-aviso]`)
 - `formulario.html` / `formulario1.js` — Informações pessoais (Etapa 1, Estudante)
 - `formulario2.html` / `formulario2.js` — Bem-estar emocional (Etapa 2, Estudante, última etapa)
-- `home.html` / `home.js` — Página inicial do Estudante (sidebar + comunidade/diário)
-- `home-profissional.html` / `home-profissional.js` — Painel do Profissional (sidebar + gráfico)
-- `style.css` — Estilos de todo o site
+- `home.html` / `home.js` / `home-layout.css` — Página inicial do Estudante (sidebar + comunidade/diário)
+- `home-profissional.html` / `home-profissional.js` / `home-profissional-layout.css` — Painel do
+  Profissional (sidebar + gráfico)
+- `style.css` — Estilos base e das páginas internas
+- `login-layout.css` — Estilos específicos das telas de login/cadastro
+- `tema.css` / `tema.js` — Tema escuro e preferências visuais
+- `localizacao.js` — Mapa e recursos de localização usados nas Homes
 - `imagem/` — Imagens e logotipo
+- `admin/` — API e painel administrativo do projeto (documentação em `admin/README.md`)
 
 ## Melhorias realizadas nesta revisão
 
@@ -214,3 +232,33 @@ Chaves usadas no `localStorage`:
   regra de negócio, banco de dados, validação ou rota foi alterada.** A imagem de referência não pôde
   ser inspecionada (modelo sem suporte a imagem); o layout foi aplicado a partir da descrição escrita e
   validado com Chrome headless (formulários, homes com dados semeados, troca de seções e setas de voltar).
+
+## Landing page: identidade visual e imagens
+
+- A página pública (`index.html`) usa a paleta azul-petróleo (`#264653`/`#356B78`), creme (`#F7F5F0`),
+  azul acinzentado (`#D9E5E7`), lavanda (`#DCD8EA`) e grafite (`#263238`). Os estilos ficam no bloco
+  final de `pagina-publica.css`, escopados em `.public-page`; as páginas de escolha de cadastro/login
+  mantêm o tema anterior.
+- Os ícones da landing são **SVG inline** (sprite no início de `index.html`), sem dependência do
+  Font Awesome para renderizar.
+- As fotos ficam em `imagem/landing/` e foram obtidas no **Pexels**, sob a licença Pexels (uso gratuito,
+  sem atribuição obrigatória):
+
+| Arquivo | ID no Pexels |
+| --- | --- |
+| `hero-estudos.jpg` | 5124880 |
+| `entender-reflexao.jpg` | 8005646 |
+| `cotidiano-estudo.jpg` | 8199761 |
+| `conteudo-autocuidado.jpg` | 6690217 |
+| `conteudo-ansiedade.jpg` | 35463710 |
+| `conteudo-sono.jpg` | 7241262 |
+| `conteudo-relacoes.jpg` | 12886931 |
+| `conteudo-emocoes.jpg` | 8419181 |
+| `espaco-conteudos.jpg` | 5797899 |
+| `espaco-diario.jpg` | 4841704 |
+| `espaco-comunidade.jpg` | 8199199 |
+| `espaco-profissionais.jpg` | 6502730 |
+| `espaco-localizacao.jpg` | 7634201 |
+| `espaco-apoio.jpg` | 8373963 |
+| `ajuda-acolhimento.jpg` | 8419620 |
+| `fechamento-natureza.jpg` | 29162696 |

@@ -6,7 +6,7 @@ const personalForm = document.getElementById("personalForm");
 
 if (personalForm) {
 
-    // Pré-preenche o nome informado no cadastro (index.html)
+    // Pré-preenche o nome informado no cadastro de estudante.
     (() => {
         const perfil = JSON.parse(localStorage.getItem("cm_profile") || "{}");
         const nomeEl = document.getElementById("nome");

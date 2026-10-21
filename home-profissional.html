@@ -10,6 +10,7 @@
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tema.css">
+    <link rel="stylesheet" href="home-profissional-layout.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,10 +56,6 @@
                         <strong id="topoNomeUsuario">Olá, Profissional</strong>
                         <small id="topoAreaUsuario">Profissional de saúde</small>
                     </span>
-                    <button type="button" class="cm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
-                        aria-label="Alternar tema" aria-pressed="false">
-                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
-                    </button>
                     <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
                         <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
                     </button>
@@ -88,6 +85,11 @@
 
                 <button type="button" class="cm-side-item active" data-secao="inicio">
                     <i class="fa-solid fa-house" aria-hidden="true"></i><span class="cm-side-label">Início</span>
+                </button>
+                <button type="button" class="cm-side-item" data-secao="mensagens">
+                    <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+                    <span class="cm-side-label">Caixa de entrada</span>
+                    <span class="cm-notification-badge" id="notificacoesBadge" hidden aria-label="Notificações não lidas">0</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="pacientes">
                     <i class="fa-solid fa-user-group" aria-hidden="true"></i><span class="cm-side-label">Pacientes</span>
@@ -127,115 +129,130 @@
                         <p>Acompanhe sua rotina, seus pacientes e seus resultados em um só lugar.</p>
                     </div>
 
-                    <!-- AÇÕES RÁPIDAS -->
-                    <div class="cm-actions-row">
-                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes">
-                            <i class="fa-solid fa-user-plus" aria-hidden="true"></i>Adicionar paciente
-                        </button>
-                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="agenda">
-                            <i class="fa-solid fa-calendar-plus" aria-hidden="true"></i>Registrar atendimento
-                        </button>
-                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="financeiro">
-                            <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>Lançar valor
-                        </button>
-                        <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-ir="pacientes" data-open="0">
-                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>Pedir acesso ao diário
-                        </button>
+                    <div class="pro-home-dashboard">
+                        <aside class="pro-home-rail" aria-label="Perfil profissional">
+                            <section class="cm-panel pro-home-profile">
+                                <span class="cm-avatar pro-home-avatar" id="proHomeAvatar" aria-hidden="true">P</span>
+                                <h2 id="proHomeNome">Profissional</h2>
+                                <p id="proHomeProfissao">Profissional de saúde</p>
+                            </section>
+                        </aside>
+
+                        <div class="pro-home-main">
+                            <section class="cm-panel pro-home-chart">
+                                <div class="cm-panel-head">
+                                    <div>
+                                        <h2 class="cm-panel-title">
+                                            <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+                                            Atividades e resultados
+                                        </h2>
+                                        <p class="cm-panel-sub">Movimentação de atendimentos e ganho líquido.</p>
+                                    </div>
+                                    <div class="cm-chart-tabs" id="chartTabs" role="tablist" aria-label="Período do gráfico">
+                                        <button type="button" class="cm-chart-tab active" data-periodo="dia" role="tab">Dia</button>
+                                        <button type="button" class="cm-chart-tab" data-periodo="mes" role="tab">Mês</button>
+                                        <button type="button" class="cm-chart-tab" data-periodo="ano" role="tab">Ano</button>
+                                    </div>
+                                </div>
+
+                                <div class="cm-chart-zone" id="chartZone">
+                                    <div class="cm-chart-summary">
+                                        <div class="cm-chart-metric">
+                                            <small id="chartMetricLabel">Atendimentos hoje</small>
+                                            <strong id="chartMovimentacao">0 <span>atendimento(s)</span></strong>
+                                        </div>
+                                        <div class="cm-chart-metric">
+                                            <small>Ganho líquido</small>
+                                            <strong id="chartGanho">R$ 0,00</strong>
+                                        </div>
+                                    </div>
+                                    <div class="cm-bars" id="chartBars"></div>
+                                    <div class="cm-empty-state" id="chartEmpty" hidden>
+                                        <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+                                        <strong>Nenhuma movimentação</strong>
+                                        <span>Quando houver atendimentos registrados, o gráfico será preenchido automaticamente.</span>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="cm-stat-grid pro-home-stats">
+                                <div class="cm-stat-card">
+                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
+                                    <strong id="statPacientes">0</strong>
+                                    <small>Pacientes ativos</small>
+                                </div>
+                                <div class="cm-stat-card">
+                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
+                                    <strong id="statAtendimentos">0</strong>
+                                    <small>Atendimentos registrados</small>
+                                </div>
+                                <div class="cm-stat-card">
+                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>
+                                    <strong id="statGanho">R$ 0,00</strong>
+                                    <small>Ganho acumulado</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <aside class="pro-home-activity-rail">
+                            <section class="cm-panel pro-home-inbox-preview">
+                                <div class="cm-panel-head">
+                                    <div>
+                                        <h2 class="cm-panel-title"><i class="fa-regular fa-bell" aria-hidden="true"></i>Novas notificações</h2>
+                                        <p class="cm-panel-sub">Respostas dos pacientes às suas solicitações.</p>
+                                    </div>
+                                    <button type="button" class="pro-inbox-count" id="notificacoesResumoBadge" data-ir="mensagens" hidden aria-label="Abrir novas notificações">0</button>
+                                </div>
+                                <ul class="pro-inbox-list" id="listNotificacoesResumo"></ul>
+                                <div class="cm-empty-state pro-inbox-empty" id="notificacoesResumoVazio">
+                                    <i class="fa-regular fa-envelope-open" aria-hidden="true"></i>
+                                    <strong>Nenhuma mensagem nova</strong>
+                                    <span>As respostas dos pacientes aparecerão aqui.</span>
+                                </div>
+                                <button type="button" class="pro-inbox-link" data-ir="mensagens">Abrir caixa de entrada</button>
+                            </section>
+
+                        </aside>
                     </div>
 
-                    <!-- GRÁFICO GRANDE (dia | mês | ano) -->
-                    <div class="cm-panel">
-
+                    <section class="cm-panel pro-home-recent">
                         <div class="cm-panel-head">
                             <div>
-                                <h2 class="cm-panel-title">
-                                    <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
-                                    Atividades e resultados
-                                </h2>
-                                <p class="cm-panel-sub">Movimentação de atendimentos e ganho líquido.</p>
-                            </div>
-                            <div class="cm-chart-tabs" id="chartTabs" role="tablist" aria-label="Período do gráfico">
-                                <button type="button" class="cm-chart-tab active" data-periodo="dia" role="tab">Dia</button>
-                                <button type="button" class="cm-chart-tab" data-periodo="mes" role="tab">Mês</button>
-                                <button type="button" class="cm-chart-tab" data-periodo="ano" role="tab">Ano</button>
+                                <h2 class="cm-panel-title"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>Atividade recente</h2>
                             </div>
                         </div>
-
-                        <div class="cm-chart-zone" id="chartZone">
-                            <div class="cm-chart-summary">
-                                <div class="cm-chart-metric">
-                                    <small id="chartMetricLabel">Atendimentos hoje</small>
-                                    <strong id="chartMovimentacao">0 <span>atendimento(s)</span></strong>
-                                </div>
-                                <div class="cm-chart-metric">
-                                    <small>Ganho líquido</small>
-                                    <strong id="chartGanho">R$ 0,00</strong>
-                                </div>
-                            </div>
-                            <div class="cm-bars" id="chartBars"></div>
-                            <div class="cm-empty-state" id="chartEmpty" hidden>
-                                <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
-                                <strong>Nenhuma movimentação</strong>
-                                <span>Quando houver atendimentos registrados, o gráfico será preenchido automaticamente.</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- RESUMO RÁPIDO + ATIVIDADES RECENTES -->
-                    <div class="cm-stat-grid">
-
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:var(--secondary);color:var(--primary-dark);">
-                                <i class="fa-solid fa-user-group" aria-hidden="true"></i>
-                            </span>
-                            <strong id="statPacientes">0</strong>
-                            <small>Pacientes ativos</small>
-                        </div>
-
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
-                                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
-                            </span>
-                            <strong id="statAtendimentos">0</strong>
-                            <small>Atendimentos registrados</small>
-                        </div>
-
-                        <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#FFF4E6;color:#E76F51;">
-                                <i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i>
-                            </span>
-                            <strong id="statGanho">R$ 0,00</strong>
-                            <small>Ganho acumulado</small>
-                        </div>
-
-                    </div>
-
-                    <!-- ATIVIDADE RECENTE -->
-                    <div class="cm-panel">
-
-                        <div class="cm-panel-head">
-                            <div>
-                                <h2 class="cm-panel-title">
-                                    <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
-                                    Atividade recente
-                                </h2>
-                                <p class="cm-panel-sub">Atualizações relevantes dos pacientes e do sistema.</p>
-                            </div>
-                        </div>
-
                         <ul class="cm-list cm-activity" id="listAtividades">
-
                             <li class="cm-empty-state cm-activity-vazio" id="atividadesVazio">
                                 <i class="fa-regular fa-bell" aria-hidden="true"></i>
                                 <strong>Sem atividades por enquanto</strong>
-                                <span>As ações dos seus pacientes aparecerão aqui.</span>
+                                <span>As atualizações da sua rotina aparecerão aqui.</span>
                             </li>
-
                         </ul>
+                    </section>
 
+                </section>
+
+                <!-- ===== CAIXA DE ENTRADA ===== -->
+                <section id="sec-mensagens" class="cm-section">
+                    <div class="cm-section-head">
+                        <h1>Caixa de entrada</h1>
+                        <p>Respostas e notificações recebidas dos pacientes.</p>
                     </div>
-
+                    <section class="cm-panel pro-inbox-panel">
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title"><i class="fa-solid fa-inbox" aria-hidden="true"></i>Mensagens dos pacientes</h2>
+                                <p class="cm-panel-sub">Aqui aparecem as respostas às solicitações de acesso ao diário.</p>
+                            </div>
+                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnMarcarNotificacoesLidas" hidden>Marcar como lidas</button>
+                        </div>
+                        <ul class="pro-inbox-list pro-inbox-list-full" id="listNotificacoes"></ul>
+                        <div class="cm-empty-state pro-inbox-empty" id="notificacoesVazio">
+                            <i class="fa-regular fa-envelope-open" aria-hidden="true"></i>
+                            <strong>Nenhuma mensagem recebida</strong>
+                            <span>Quando um paciente responder a uma solicitação, a notificação aparecerá aqui.</span>
+                        </div>
+                    </section>
                 </section>
 
                 <!-- ===== PACIENTES ===== -->

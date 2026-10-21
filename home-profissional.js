@@ -21,6 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hora = new Date().getHours();
     const periodo = hora < 12 ? "Bom dia" : hora < 18 ? "Boa tarde" : "Boa noite";
+    const nomeProfissional = primeiroNome || "profissional";
+    document.getElementById("saudacao").textContent = `${periodo}, ${nomeProfissional}!`;
+    document.getElementById("proHomeNome").textContent = nome || "Profissional";
+    document.getElementById("proHomeProfissao").textContent = profissao;
+    document.getElementById("topoNomeUsuario").textContent = `Olá, ${nomeProfissional}`;
+    document.getElementById("topoAreaUsuario").textContent = profissao;
+    const descricaoLateral = document.querySelector(".cm-side-user-info small");
+    if (descricaoLateral) descricaoLateral.textContent = profissao;
 
 /* ---------- DADOS (estruturas prontas, sem dados fictícios) ---------- */
     let pacientes = JSON.parse(localStorage.getItem("cm_pacientes") || "[]");
@@ -206,6 +214,7 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
         aplicarFoto(document.getElementById("avatarIniciais"));
         aplicarFoto(document.getElementById("perfilAvatar"));
         aplicarFoto(document.getElementById("sideAvatar"));
+        aplicarFoto(document.getElementById("proHomeAvatar"));
     };
     atualizarFotosPerfil();
     renderPerfilProf();
@@ -349,7 +358,10 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
     };
 
     botoesMenu.forEach(btn => {
-        btn.addEventListener("click", () => alternarSecao(btn.dataset.secao));
+        btn.addEventListener("click", () => {
+            alternarSecao(btn.dataset.secao);
+            if (btn.dataset.secao === "mensagens") marcarNotificacoesLidas();
+        });
     });
 
     /* ==========================================
@@ -391,6 +403,7 @@ const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "o
         btn.addEventListener("click", () => {
             const alvo = btn.dataset.ir;
             alternarSecao(alvo);
+            if (alvo === "mensagens") marcarNotificacoesLidas();
             if (btn.dataset.open === "0") return;
             const abrirForm = alvo === "pacientes" ? "addPacienteForm" :
                               alvo === "agenda" ? "addAtendimentoForm" :
@@ -795,6 +808,86 @@ const renderAgenda = () => {
     };
     renderAtividades();
 
+    const chavesLidas = "cm_notificacoes_lidas_profissional";
+    const lerIdsLidos = () => {
+        try {
+            return new Set(JSON.parse(localStorage.getItem(chavesLidas) || "[]"));
+        } catch (erro) {
+            console.error("Não foi possível ler o estado das notificações.", erro);
+            return new Set();
+        }
+    };
+    let notificacoesLidas = lerIdsLidos();
+    const obterNotificacoes = () => atividades
+        .filter(a => a.tipo === "resposta_diario" && (!a.profissionalEmail || a.profissionalEmail.trim().toLowerCase() === (perfil.email || sessao).trim().toLowerCase()))
+        .sort((a, b) => new Date(b.data || 0) - new Date(a.data || 0));
+
+    const atualizarContagemNotificacoes = (quantidade) => {
+        const badge = document.getElementById("notificacoesBadge");
+        const resumo = document.getElementById("notificacoesResumoBadge");
+        [badge, resumo].forEach(el => {
+            if (!el) return;
+            el.textContent = String(quantidade);
+            el.hidden = quantidade === 0;
+            el.setAttribute("aria-label", `${quantidade} notificações não lidas`);
+        });
+    };
+
+    const renderListaNotificacoes = (lista, notificacoes) => {
+        if (!lista) return;
+        lista.replaceChildren();
+        notificacoes.forEach(notificacao => {
+            const item = document.createElement("li");
+            item.className = "pro-inbox-item";
+            if (!notificacoesLidas.has(notificacao.id)) item.classList.add("is-unread");
+            const icone = document.createElement("span");
+            icone.className = "pro-inbox-icon";
+            icone.innerHTML = '<i class="fa-solid fa-book-open" aria-hidden="true"></i>';
+            const conteudo = document.createElement("span");
+            conteudo.className = "pro-inbox-copy";
+            const texto = document.createElement("strong");
+            texto.textContent = notificacao.texto || "Um paciente respondeu à solicitação de acesso ao diário.";
+            const data = document.createElement("small");
+            data.textContent = notificacao.data ? formatarData(notificacao.data) : (notificacao.tempo || "");
+            conteudo.append(texto, data);
+            item.append(icone, conteudo);
+            lista.appendChild(item);
+        });
+    };
+
+    const renderNotificacoes = () => {
+        const notificacoes = obterNotificacoes();
+        const naoLidas = notificacoes.filter(a => !notificacoesLidas.has(a.id));
+        const listaCompleta = document.getElementById("listNotificacoes");
+        const listaResumo = document.getElementById("listNotificacoesResumo");
+        const vazioCompleto = document.getElementById("notificacoesVazio");
+        const vazioResumo = document.getElementById("notificacoesResumoVazio");
+        const marcarLidas = document.getElementById("btnMarcarNotificacoesLidas");
+
+        renderListaNotificacoes(listaCompleta, notificacoes);
+        renderListaNotificacoes(listaResumo, naoLidas.slice(0, 3));
+        if (vazioCompleto) vazioCompleto.hidden = notificacoes.length > 0;
+        if (vazioResumo) vazioResumo.hidden = naoLidas.length > 0;
+        if (marcarLidas) marcarLidas.hidden = naoLidas.length === 0;
+        atualizarContagemNotificacoes(naoLidas.length);
+    };
+
+    function marcarNotificacoesLidas() {
+        const notificacoes = obterNotificacoes();
+        notificacoes.forEach(a => notificacoesLidas.add(a.id));
+        try {
+            localStorage.setItem(chavesLidas, JSON.stringify([...notificacoesLidas]));
+        } catch (erro) {
+            console.error("Não foi possível salvar o estado das notificações.", erro);
+            notificar("Não foi possível marcar as notificações como lidas.");
+            return;
+        }
+        renderNotificacoes();
+    }
+
+    document.getElementById("btnMarcarNotificacoesLidas")?.addEventListener("click", marcarNotificacoesLidas);
+    renderNotificacoes();
+
     window.addEventListener("storage", (event) => {
         if (event.key === "cm_pacientes") {
             pacientes = JSON.parse(event.newValue || "[]");
@@ -803,6 +896,11 @@ const renderAgenda = () => {
         if (event.key === "cm_atividades_profissional") {
             atividades = JSON.parse(event.newValue || "[]");
             renderAtividades();
+            renderNotificacoes();
+        }
+        if (event.key === chavesLidas) {
+            notificacoesLidas = lerIdsLidos();
+            renderNotificacoes();
         }
     });
 
@@ -1162,6 +1260,8 @@ const atualizarResumo = () => {
         const novoNome = (novo.nome || "").trim();
         const labelNome = novoNome ? novoNome.split(" ")[0] : "Profissional";
         set("topoNomeUsuario", `Olá, ${labelNome}`);
+        set("proHomeNome", novoNome || "Profissional");
+        set("saudacao", `${periodo}, ${novoNome ? novoNome.split(" ")[0] : "profissional"}!`);
         set("sideNome", novoNome || "Profissional");
         renderPerfilProf();
         atualizarFotosPerfil();
@@ -1347,11 +1447,14 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
     const atualizarNomeExibido = (novoNome) => {
         const n = (novoNome || "").trim();
         set("topoNomeUsuario", `Olá, ${n ? n.split(" ")[0] : "Profissional"}`);
+        set("proHomeNome", n || "Profissional");
+        set("saudacao", `${periodo}, ${n ? n.split(" ")[0] : "profissional"}!`);
         set("sideNome", n || "Profissional");
         renderPerfilProf();
         aplicarFoto(document.getElementById("avatarIniciais"));
         aplicarFoto(document.getElementById("sideAvatar"));
         aplicarFoto(document.getElementById("perfilAvatar"));
+        aplicarFoto(document.getElementById("proHomeAvatar"));
     };
 
     const btnCfgNome = document.getElementById("btnCfgNome");

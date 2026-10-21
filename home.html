@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tema.css">
     <link rel="stylesheet" href="home-layout.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,14 +57,15 @@
                 <button type="button" class="cm-side-item" data-secao="diario">
                     <i class="fa-solid fa-book-open" aria-hidden="true"></i><span class="cm-side-label">Meu diário</span>
                 </button>
-                <button type="button" class="cm-side-item" data-secao="comunidade">
-                    <i class="fa-solid fa-comments" aria-hidden="true"></i><span class="cm-side-label">Comunidade</span>
+                <button type="button" class="cm-side-item" data-secao="localizacao">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i><span class="cm-side-label">Localização</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="profissionais">
                     <i class="fa-solid fa-user-doctor" aria-hidden="true"></i><span class="cm-side-label">Meus profissionais</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="mensagens">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="cm-side-label">Mensagens</span>
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i><span class="cm-side-label">Caixa de entrada</span>
+                    <span class="cm-notification-badge home-inbox-badge" id="homeInboxBadge" hidden aria-label="Solicitações de diário pendentes">0</span>
                 </button>
                 <button type="button" class="cm-side-item" data-secao="agenda">
                     <i class="fa-solid fa-calendar-check" aria-hidden="true"></i><span class="cm-side-label">Agenda</span>
@@ -97,7 +100,7 @@
                     </div>
 
                     <div class="home-grid">
-                        <aside class="home-left-rail" aria-label="Meu perfil e atalhos">
+                        <aside class="home-left-rail" aria-label="Meu perfil e resumo">
                             <section class="cm-panel home-profile-card">
                                 <div class="home-profile-identity">
                                     <span class="cm-avatar home-profile-avatar" id="homeProfileAvatar" aria-hidden="true">CM</span>
@@ -118,24 +121,6 @@
                                         <span><strong id="resumoProfissionais">0</strong><small>Profissionais vinculados</small></span>
                                     </div>
                                 </div>
-                                <div class="home-profile-actions">
-                                    <button type="button" class="cm-btn cm-btn-primary cm-btn-sm" data-home-secao="perfil">
-                                        Meu perfil
-                                    </button>
-                                    <button type="button" class="cm-tema-btn" data-tema-alvo title="Alternar tema claro/escuro"
-                                        aria-label="Alternar tema" aria-pressed="false">
-                                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </section>
-
-                            <section class="cm-panel home-shortcuts">
-                                <h2 class="cm-panel-title">Seus atalhos</h2>
-                                <button type="button" data-home-secao="comunidade"><i class="fa-solid fa-comments" aria-hidden="true"></i>Comunidade</button>
-                                <button type="button" data-home-secao="diario"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Meu diário</button>
-                                <button type="button" data-home-secao="conteudos"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Conteúdos</button>
-                                <button type="button" data-home-secao="profissionais"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i>Profissionais</button>
-                                <button type="button" data-home-secao="config"><i class="fa-solid fa-gear" aria-hidden="true"></i>Configurações</button>
                             </section>
                         </aside>
 
@@ -214,10 +199,6 @@
                             <section class="cm-panel home-activity-panel">
                                 <div class="cm-panel-head">
                                     <h2 class="cm-panel-title">Atividade</h2>
-                                </div>
-                                <div class="home-diary-requests" id="homeDiaryRequestsWrap" hidden>
-                                    <h3>Solicitações de acesso ao diário</h3>
-                                    <ul id="homeDiaryRequests" aria-label="Solicitações de acesso ao diário"></ul>
                                 </div>
                                 <ul class="home-activity-list" id="homeActivityList"></ul>
                                 <div class="cm-empty-state home-activity-empty" id="homeActivityEmpty" hidden>
@@ -443,6 +424,128 @@
 
                 </section>
 
+                <!-- ===== LOCALIZAÇÃO ===== -->
+                <section id="sec-localizacao" class="cm-section">
+                    <div class="cm-section-head">
+                        <h1>Encontre um profissional próximo</h1>
+                        <p>Encontre apoio em saúde mental perto de você.</p>
+                    </div>
+
+                    <div class="cm-location-panel cm-panel">
+                        <form class="cm-location-search" id="localizacaoForm">
+                            <label for="localizacaoBusca">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                Pesquise por cidade ou região
+                            </label>
+                            <div class="cm-location-search-controls">
+                                <input class="cm-input" type="search" id="localizacaoBusca"
+                                    placeholder="Profissional, cidade ou região"
+                                    aria-label="Pesquisar profissional, cidade ou região" autocomplete="address-level2">
+                                <button type="submit" class="cm-btn cm-btn-primary cm-btn-sm" id="localizacaoBuscar">
+                                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                    Buscar
+                                </button>
+                                <button type="button" class="cm-btn cm-btn-ghost cm-btn-sm" id="localizacaoAtual">
+                                    <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                                    Usar minha localização
+                                </button>
+                            </div>
+                            <p class="cm-location-privacy">
+                                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                                A localização aproximada é consultada nos serviços do OpenStreetMap; a Clear Minds não a salva.
+                            </p>
+                        </form>
+
+                        <div class="cm-location-filters" aria-label="Filtros de profissionais">
+                            <label for="localizacaoFiltroDistancia">
+                                <i class="fa-solid fa-route" aria-hidden="true"></i>
+                                Distância
+                                <select class="cm-input" id="localizacaoFiltroDistancia">
+                                    <option value="5">Até 5 km</option>
+                                    <option value="10">Até 10 km</option>
+                                    <option value="25" selected>Até 25 km</option>
+                                </select>
+                            </label>
+                            <label for="localizacaoFiltroEspecialidade">
+                                <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                                Especialidade
+                                <select class="cm-input" id="localizacaoFiltroEspecialidade">
+                                    <option value="">Todas</option>
+                                </select>
+                            </label>
+                        </div>
+
+                        <div class="cm-location-status" id="localizacaoStatus" role="status" aria-live="polite">
+                            A localização salva no seu perfil pode ser usada como ponto de partida.
+                        </div>
+
+                        <div class="cm-location-results-layout">
+                            <section class="cm-location-map-panel" aria-label="Mapa da região">
+                                <div class="cm-location-panel-heading">
+                                    <div>
+                                        <h2><i class="fa-solid fa-map" aria-hidden="true"></i> Mapa da região</h2>
+                                        <p id="localizacaoMapaDescricao">Pesquise uma cidade ou use sua localização atual.</p>
+                                    </div>
+                                    <a id="localizacaoMapaLink" href="https://www.openstreetmap.org/"
+                                        target="_blank" rel="noopener noreferrer">
+                                        Abrir mapa <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                <div id="localizacaoMapa" class="cm-location-map"
+                                    role="application" aria-label="Mapa interativo com marcadores aproximados"></div>
+                                <p class="cm-location-map-credit">Mapa © OpenStreetMap contributors · Marcadores aproximados para preservar a privacidade.</p>
+                            </section>
+
+                            <section class="cm-location-results-panel" aria-label="Resultados de profissionais">
+                                <div class="cm-location-panel-heading">
+                                    <div>
+                                        <h2><i class="fa-solid fa-user-doctor" aria-hidden="true"></i> Profissionais próximos</h2>
+                                        <p id="localizacaoResultadosResumo">Os resultados aparecerão após a busca.</p>
+                                    </div>
+                                </div>
+                                <div class="cm-location-results" id="localizacaoResultados">
+                                    <div class="cm-location-empty">
+                                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                                        <strong>Comece pela sua região</strong>
+                                        <span>Os locais mapeados em até 25 km serão exibidos aqui.</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <p class="cm-location-disclaimer">
+                            <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                            Resultados incluem cadastros Clear Minds e informações públicas do OpenStreetMap. Localizações são aproximadas; confirme diretamente com o profissional os dados e a modalidade de atendimento.
+                        </p>
+                    </div>
+                </section>
+
+                <dialog class="cm-location-profile-dialog" id="localizacaoPerfilDialog"
+                    aria-labelledby="localizacaoPerfilNome">
+                    <div class="cm-location-profile-dialog-head">
+                        <span class="cm-location-result-icon"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i></span>
+                        <form method="dialog">
+                            <button type="submit" class="cm-location-dialog-close" aria-label="Fechar perfil">
+                                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <h2 id="localizacaoPerfilNome">Profissional</h2>
+                    <p class="cm-location-profile-role" id="localizacaoPerfilProfissao"></p>
+                    <dl class="cm-location-profile-details">
+                        <div><dt>Especialidade</dt><dd id="localizacaoPerfilEspecialidade"></dd></div>
+                        <div><dt>Localização aproximada</dt><dd id="localizacaoPerfilRegiao"></dd></div>
+                        <div><dt>Distância aproximada</dt><dd id="localizacaoPerfilDistancia"></dd></div>
+                        <div id="localizacaoPerfilFormacaoLinha" hidden><dt>Formação</dt><dd id="localizacaoPerfilFormacao"></dd></div>
+                        <div id="localizacaoPerfilModalidadeLinha" hidden><dt>Modalidade</dt><dd id="localizacaoPerfilModalidade"></dd></div>
+                        <div id="localizacaoPerfilDisponibilidadeLinha" hidden><dt>Disponibilidade</dt><dd id="localizacaoPerfilDisponibilidade"></dd></div>
+                    </dl>
+                    <p class="cm-location-profile-source" id="localizacaoPerfilApresentacao" hidden></p>
+                    <p class="cm-location-profile-source">
+                        Dados do cadastro Clear Minds ou informações públicas do OpenStreetMap. Localizações aproximadas; confirme os dados diretamente com o profissional.
+                    </p>
+                </dialog>
+
                 <!-- ===== MEUS PROFISSIONAIS ===== -->
                 <section id="sec-profissionais" class="cm-section">
 
@@ -474,15 +577,25 @@
                 <section id="sec-mensagens" class="cm-section">
 
                     <div class="cm-section-head">
-                        <h1>Mensagens</h1>
-                        <p>Conversas com profissionais e outros estudantes.</p>
+                        <h1>Caixa de entrada</h1>
+                        <p>Solicitações e avisos relacionados ao seu acompanhamento.</p>
                     </div>
 
-                    <div class="cm-panel">
-                        <div class="cm-empty-state">
-                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                            <strong>Nenhuma conversa</strong>
-                            <span>Suas conversas aparecerão aqui quando você iniciar um acompanhamento ou contato com alguém.</span>
+                    <div class="cm-panel home-inbox-panel">
+                        <div class="cm-panel-head">
+                            <div>
+                                <h2 class="cm-panel-title"><i class="fa-regular fa-bell" aria-hidden="true"></i>Notificações</h2>
+                                <p class="cm-panel-sub">Responda às solicitações de acesso ao seu diário.</p>
+                            </div>
+                        </div>
+                        <div class="home-diary-requests" id="homeDiaryRequestsWrap" hidden>
+                            <h3>Solicitações de acesso ao diário</h3>
+                            <ul id="homeDiaryRequests" aria-label="Solicitações de acesso ao diário"></ul>
+                        </div>
+                        <div class="cm-empty-state home-inbox-empty" id="homeInboxEmpty">
+                            <i class="fa-regular fa-envelope-open" aria-hidden="true"></i>
+                            <strong>Nenhuma notificação nova</strong>
+                            <span>Quando um profissional enviar uma solicitação, ela aparecerá aqui para você decidir.</span>
                         </div>
                     </div>
 
@@ -550,10 +663,14 @@
                     <aside class="cm-profile-sidebar">
                         <div class="cm-panel cm-profile-identity-card">
                             <div class="cm-profile-hero">
-                                <button type="button" class="cm-avatar cm-avatar-lg cm-profile-photo-button"
-                                    id="perfilAvatar" aria-label="Alterar foto do perfil">
-                                    <span class="cm-profile-photo-hint"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>
-                                </button>
+                                <div class="cm-profile-photo-wrap">
+                                    <button type="button" class="cm-avatar cm-avatar-lg cm-profile-photo-button"
+                                        id="perfilAvatar" aria-label="Alterar foto do perfil">CM</button>
+                                    <button type="button" class="cm-profile-photo-edit-button" id="btnAlterarFoto"
+                                        aria-label="Alterar foto do perfil">
+                                        <i class="fa-solid fa-pen" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                                 <input type="file" id="fotoPerfil" accept="image/*" hidden>
                                 <div class="cm-profile-hero-info">
                                     <h2 id="perfilNome">Estudante</h2>
@@ -634,23 +751,6 @@
                                 </div>
                                 <p class="cm-feedback" id="perfilFeedback"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Dados atualizados!</p>
                             </div>
-
-                        </div>
-
-                        <!-- SOBRE MIM -->
-                        <div class="cm-panel">
-
-                            <h2 class="cm-profile-section-title">
-                                <i class="fa-regular fa-star" aria-hidden="true"></i>
-                                Sobre mim
-                            </h2>
-                            <p class="cm-profile-section-sub">Conte um pouco sobre você e sua jornada.</p>
-
-                            <p class="cm-bio-text" id="perfilSobre">Nenhuma descrição adicionada ainda.</p>
-
-                            <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" data-abrir-edicao-perfil>
-                                <i class="fa-solid fa-pen" aria-hidden="true"></i>Escrever sobre mim
-                            </button>
 
                         </div>
 
@@ -851,12 +951,12 @@
                         <p class="cm-settings-group-sub">Personalize a visualização do site.</p>
 
                         <div class="cm-settings-box">
-                            <div class="cm-settings-item">
+                            <div class="cm-settings-item cm-settings-item-select">
                                 <div class="cm-info">
                                     <span class="cm-panel-title" style="font-size:.9rem;">Tema</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Escolha entre o tema claro e o tema escuro.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="tema">
                                         <option value="claro">Claro (padrão)</option>
                                         <option value="escuro">Escuro</option>
@@ -864,12 +964,12 @@
                                 </div>
                             </div>
 
-                            <div class="cm-settings-item">
+                            <div class="cm-settings-item cm-settings-item-select">
                                 <div class="cm-info">
                                     <span class="cm-panel-title" style="font-size:.9rem;">Tamanho do texto</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Ajusta o tamanho da fonte em todo o painel.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="tamanhoTexto">
                                         <option value="pequeno">Pequeno</option>
                                         <option value="normal">Normal (padrão)</option>
@@ -966,7 +1066,10 @@
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="home.js"></script>
+    <script src="localizacao.js"></script>
 
 </body>
 

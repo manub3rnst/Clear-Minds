@@ -93,17 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.add("show");
     };
 
-    /* Muda para uma seção do painel (usado por botões de atalho) */
-    const irParaSecao = (nome) => {
-        const item = document.querySelector(
-            `.cm-side-item[data-secao="${nome}"], .cm-side-avatar-button[data-secao="${nome}"]`
-        );
-        if (item) item.click();
-    };
-    document.querySelectorAll("[data-home-secao]").forEach((atalho) => {
-        atalho.addEventListener("click", () => irParaSecao(atalho.dataset.homeSecao));
-    });
-
     /* Emoji correspondente ao humor (Diário) */
     const humorEmoji = (humor) => {
         const mapa = { "Ótimo": "😊", "Bem": "🙂", "Neutro": "😐", "Ansioso(a)": "😟", "Difícil": "😔" };
@@ -375,11 +364,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const aplicarFoto = (el, nome) => {
         if (!el) return;
         const iniciais = nome.split(/\s+/).slice(0, 2).map(p => p[0].toUpperCase()).join("");
-        const dicaEdicao = el.id === "perfilAvatar"
-            ? '<span class="cm-profile-photo-hint"><i class="fa-solid fa-pen" aria-hidden="true"></i></span>'
-            : "";
-        if (perfil.foto) el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">${dicaEdicao}`;
-        else el.innerHTML = `${iniciais}${dicaEdicao}`;
+        if (perfil.foto) el.innerHTML = `<img src="${perfil.foto}" alt="Foto de perfil">`;
+        else el.innerHTML = iniciais;
     };
 
     const avatar = document.getElementById("avatarIniciais");
@@ -393,10 +379,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const fotoPerfilInput = document.getElementById("fotoPerfil");
     const perfilAvatar = document.getElementById("perfilAvatar");
     if (fotoPerfilInput && perfilAvatar) {
-        perfilAvatar.addEventListener("click", () => {
+        const abrirSeletorFoto = () => {
             fotoPerfilInput.value = "";
             fotoPerfilInput.click();
-        });
+        };
+        perfilAvatar.addEventListener("click", abrirSeletorFoto);
+        document.getElementById("btnAlterarFoto")?.addEventListener("click", abrirSeletorFoto);
         fotoPerfilInput.addEventListener("change", () => {
             const arquivo = fotoPerfilInput.files && fotoPerfilInput.files[0];
             if (!arquivo) return;
@@ -1322,10 +1310,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const pendentes = solicitacoes
             .map((pedido, indice) => ({ pedido, indice }))
             .filter(({ pedido }) => pedidoPertencePaciente(pedido) && !["aceita", "recusada"].includes(pedido.status));
+        const inboxBadge = document.getElementById("homeInboxBadge");
+        const inboxEmpty = document.getElementById("homeInboxEmpty");
 
         if (pedidosEl && pedidosWrap) {
             pedidosEl.replaceChildren();
             pedidosWrap.hidden = pendentes.length === 0;
+            if (inboxEmpty) inboxEmpty.hidden = pendentes.length > 0;
+            if (inboxBadge) {
+                inboxBadge.textContent = String(pendentes.length);
+                inboxBadge.hidden = pendentes.length === 0;
+                inboxBadge.setAttribute("aria-label", `${pendentes.length} solicitações de diário pendentes`);
+            }
             pendentes.forEach(({ pedido, indice }) => {
                 const item = document.createElement("li");
                 const nomeProfissional = pedido.profissionalNome || "Um profissional";
@@ -1373,7 +1369,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .slice(0, 5);
         lista.replaceChildren();
         if (!recentes.length) {
-            if (vazio) vazio.hidden = pendentes.length > 0;
+            if (vazio) vazio.hidden = false;
             return;
         }
         if (vazio) vazio.hidden = true;
@@ -1420,6 +1416,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pedido.profissionalEmail) {
             const atividadesProfissional = getLista("cm_atividades_profissional");
             atividadesProfissional.unshift({
+                id: `notificacao-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+                tipo: "resposta_diario",
+                profissionalEmail: pedido.profissionalEmail,
+                data: pedido.respondidaEm,
                 texto: `${nomeUsuario} ${pedido.status === "aceita" ? "aceitou" : "recusou"} a solicitação de acesso ao diário.`,
                 tempo: "agora"
             });
@@ -1675,7 +1675,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         set("perfilNome", nome);
         set("perfilUsuario", usuario);
-        set("perfilSobre", (perfil.sobre || "").trim() || "Que bom ter você por aqui! Escreva um pouco sobre você.");
         aplicarFoto(document.getElementById("perfilAvatar"), nome);
 
         const grid = document.getElementById("listaInfoPessoal");
@@ -1740,7 +1739,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (perfilFeedback) perfilFeedback.classList.remove("show");
     };
 
-    document.querySelectorAll("[data-abrir-edicao-perfil]").forEach(btn => btn.addEventListener("click", abrirEdicao));
     if (btnEditarPerfil) btnEditarPerfil.addEventListener("click", abrirEdicao);
     if (btnCancelarPerfil) btnCancelarPerfil.addEventListener("click", () => {
         if (editForm) editForm.classList.remove("open");

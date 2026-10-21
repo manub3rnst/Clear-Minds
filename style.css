@@ -11756,8 +11756,13 @@ body.professional-register-body .professional-form-card{
     border:4px solid var(--white);
     box-shadow:0 8px 22px rgba(0,0,0,.1);
 }
+.cm-profile-photo-wrap{
+    position:relative;
+    flex:0 0 auto;
+}
 .cm-profile-photo-button{
     position:relative;
+    display:block;
     padding:0;
     border:0;
     color:inherit;
@@ -11768,19 +11773,26 @@ body.professional-register-body .professional-form-card{
     outline:3px solid var(--primary);
     outline-offset:3px;
 }
-.cm-profile-photo-hint{
+.cm-profile-photo-edit-button{
     position:absolute;
-    right:0;
-    bottom:0;
+    right:-8px;
+    bottom:-4px;
     display:grid;
     place-items:center;
-    width:30px;
-    height:30px;
+    width:32px;
+    height:32px;
+    padding:0;
     border:2px solid var(--white);
     border-radius:50%;
     background:var(--primary);
     color:#FFFFFF;
     font-size:.75rem;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.14);
+}
+.cm-profile-photo-edit-button:focus-visible{
+    outline:3px solid var(--primary);
+    outline-offset:3px;
 }
 .cm-profile-photo-button img{
     display:block;

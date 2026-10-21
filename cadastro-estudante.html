@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clear Minds | Cadastro de estudante</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- ==========================
+            LADO ESQUERDO
+    =========================== -->
+
+    <section class="left">
+
+        <div class="logo">
+
+            <img src="imagem/logo.jpg" alt="Logo">
+
+            <div>
+
+                <h2>Clear</h2>
+                <h2>Minds</h2>
+
+            </div>
+
+        </div>
+
+        <div class="hero">
+
+            <h1>
+
+                Sua saúde mental
+                começa <span>com você.</span>
+
+            </h1>
+
+            <p>
+
+                Faça parte da plataforma e tenha acesso
+                a ferramentas desenvolvidas para promover
+                bem-estar, organização emocional e apoio
+                durante sua vida acadêmica.
+
+            </p>
+
+        </div>
+
+        <div class="resources">
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Conteúdo exclusivo</h3>
+
+                    <p>
+
+                        Artigos, vídeos e materiais
+                        preparados para estudantes.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-brain"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Exercícios de autocuidado</h3>
+
+                    <p>
+
+                        Técnicas simples para aliviar
+                        ansiedade e estresse.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Organize sua rotina</h3>
+
+                    <p>
+
+                        Ferramentas que ajudam no equilíbrio
+                        entre estudos e descanso.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="resource">
+
+                <div class="icon">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>Ambiente seguro</h3>
+
+                    <p>
+
+                        Seus dados permanecem protegidos
+                        durante toda a utilização.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="quote">
+
+            <i class="fa-solid fa-seedling"></i>
+
+            <p>
+
+                Criar uma conta é o primeiro passo
+                para cuidar da sua saúde mental
+                com mais informação e acolhimento.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+            LADO DIREITO
+    =========================== -->
+
+    <section class="right">
+
+    <div class="login-card">
+
+        <div class="title">
+
+            <h2>Criar sua conta</h2>
+
+            <p>
+
+                Vamos começar!
+                Preencha seus dados para acessar
+                todos os recursos da plataforma.
+
+            </p>
+
+        </div>
+
+        <form id="registerForm">
+
+            <!-- Foto de perfil -->
+            <div class="photo-upload-row">
+                <span class="pro-avatar pro-avatar-large" id="fotoPreviewRegistro"><i class="fa-solid fa-user"></i></span>
+                <div class="photo-upload-fields">
+                    <label class="photo-upload-btn" for="fotoPerfilRegistro"><i class="fa-solid fa-camera"></i> Adicionar foto de perfil</label>
+                    <input type="file" id="fotoPerfilRegistro" accept="image/*" hidden>
+                    <small>Formatos JPG ou PNG. A foto fica visível no seu perfil e na comunidade.</small>
+                </div>
+            </div>
+
+            <!-- Nome + E-mail -->
+            <div class="field-pair">
+            <div class="input-group">
+
+                <label for="nome">Nome completo</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome completo"
+                        autocomplete="name"
+                        required>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="email">E-mail institucional</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@instituicao.br"
+                        autocomplete="email"
+                        required>
+
+                </div>
+
+            </div>
+            </div>
+
+            <!-- Senha + Confirmar -->
+            <div class="field-pair">
+            <div class="input-group">
+
+                <label for="password">Senha</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Crie uma senha"
+                        autocomplete="new-password"
+                        required>
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="toggle-btn"
+                        aria-label="Mostrar senha">
+
+                        <i class="fa-regular fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="confirmPassword">Confirmar senha</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Digite novamente sua senha"
+                        autocomplete="new-password"
+                        required>
+
+                    <button
+                        type="button"
+                        id="toggleConfirmPassword"
+                        class="toggle-btn"
+                        aria-label="Mostrar senha">
+
+                        <i class="fa-regular fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+            </div>
+
+            <!-- Curso + Período -->
+            <div class="field-pair">
+            <div class="input-group">
+
+                <label for="curso">Curso</label>
+
+                <div class="input">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                    <select id="curso" required>
+
+                        <option value="">Selecione seu curso</option>
+
+                        <option>Informática</option>
+                        <option>Administração</option>
+                        <option>Agropecuária</option>
+                        <option>Outro</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="periodo">Período</label>
+
+                <div class="input">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <select id="periodo" required>
+
+                        <option value="">Selecione o período</option>
+
+                        <option>1º período</option>
+                        <option>2º período</option>
+                        <option>3º período</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+            </div>
+
+            <!-- Termos -->
+            <label class="checkbox">
+
+                <input type="checkbox" required>
+
+                <span>
+
+                    Li e concordo com os
+                    <a href="#" data-aviso="Os Termos de Uso completos estarão disponíveis na versão final.">Termos de Uso</a>
+                    e a
+                    <a href="#" data-aviso="A Política de Privacidade completa estará disponível na versão final.">Política de Privacidade</a>.
+
+                </span>
+
+            </label>
+
+            <div class="form-buttons register-form-buttons">
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    Criar conta
+
+                </button>
+
+            </div>
+
+        </form>
+
+        <a href="cadastro-profissional.html" class="pro-account-btn">
+
+            <i class="fa-solid fa-user-doctor"></i>
+
+            Criar conta profissional
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+        <p class="account-type-note">
+
+            <i class="fa-solid fa-circle-info"></i>
+            Psicólogos e profissionais de saúde cadastram
+            em um fluxo próprio, com verificação do registro.
+
+        </p>
+
+        <div class="divider">
+
+            <span>ou cadastre-se com</span>
+
+        </div>
+
+        <div class="social-login">
+
+            <button type="button" data-aviso="Entrar com Google estará disponível em breve na versão final.">
+
+                <img src="imagem/google.jpg" alt="Google">
+
+                Google
+
+            </button>
+
+            <button type="button" data-aviso="Entrar com Microsoft estará disponível em breve na versão final.">
+
+                <img src="imagem/microsoft.jpg" alt="Microsoft">
+
+                Microsoft
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+
+    <div class="footer-card">
+
+            <span class="footer-brand-cm">Clear Minds</span>
+            <p class="footer-tag-cm">Um sistema a favor da saúde mental no ensino médio.</p>
+            <p class="footer-credit-cm">Desenvolvido por Manuella Bernst · Projeto Integrador · 2026</p>
+
+        </div>
+
+</footer>
+
+<script src="utils.js"></script>
+<script src="cadastro.js"></script>
+
+</body>
+
+</html>

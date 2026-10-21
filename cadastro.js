@@ -1,5 +1,5 @@
 /* ==========================================
-   CADASTRO DE PACIENTE/ESTUDANTE (index.html)
+   CADASTRO DE PACIENTE/ESTUDANTE (cadastro-estudante.html)
    ========================================== */
 const MODO_TESTE = true; // trocar para false quando o back-end estiver pronto
 

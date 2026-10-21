@@ -50,12 +50,12 @@ const cabecalhosSeguranca = (res) => {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self'",
+      "script-src 'self' https://unpkg.com/leaflet@1.9.4/dist/leaflet.js",
       // apenas o estilo inline dos gráficos/medidas; sem script inline
-      "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com",
+      "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",
       "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
-      "img-src 'self' data: https://cdnjs.cloudflare.com",
-      "connect-src 'self'",
+      "img-src 'self' data: https://cdnjs.cloudflare.com https://unpkg.com/leaflet@1.9.4/dist/images/ https://*.tile.openstreetmap.org",
+      "connect-src 'self' https://nominatim.openstreetmap.org https://overpass-api.de",
       "frame-ancestors 'none'",
       "base-uri 'none'",
       "form-action 'self'",
