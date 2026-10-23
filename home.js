@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <strong>${esc(c.titulo)}</strong>
                     <small><span class="cm-tag" style="font-size:.68rem;">${esc(c.categoria)}</span> · ${esc(c.data)} · ${esc(c.teaser)}</small>
                 </div>
-                <i class="fa-solid fa-chevron-right" style="color:#C4D4E6;flex-shrink:0;" aria-hidden="true"></i>`;
+                <i class="fa-solid fa-chevron-right" style="color:#A8C6CB;flex-shrink:0;" aria-hidden="true"></i>`;
             li.addEventListener("click", () => abrirLeitor(c));
             li.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrirLeitor(c); } });
             lista.appendChild(li);
@@ -1894,14 +1894,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cfgSenhaConf) cfgSenhaConf.value = "";
     });
 
-    /* ---------- Sessão: sair da conta ---------- */
-    const btnCfgSair = document.getElementById("btnCfgSair");
-    if (btnCfgSair) btnCfgSair.addEventListener("click", () => {
-        localStorage.removeItem("cm_session");
-        localStorage.removeItem("cm_tipo");
-        window.location.href = "login.html";
-    });
-
     /* ---------- Dados e conta: exportar e excluir ---------- */
     const btnCfgExportar = document.getElementById("btnCfgExportar");
     if (btnCfgExportar) btnCfgExportar.addEventListener("click", () => {
@@ -1928,8 +1920,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnCfgExcluir) btnCfgExcluir.addEventListener("click", () => {
         abrirConfirmacao({
             titulo: "Excluir conta",
-            mensagem: "Finalizar e apagar os seus dados do Clear Minds neste dispositivo? Essa ação não pode ser desfeita.",
-            rotuloConfirmar: "Excluir minha conta",
+            mensagem: "Ao confirmar a exclusão, sua conta e seus dados serão apagados definitivamente após 30 dias.",
+            rotuloConfirmar: "Ciente",
             perigoso: true,
             aoConfirmar: () => {
                 const rest = getLista("cm_postagens").map(p => {

@@ -7,39 +7,24 @@ Site do TCC "Clear Minds", uma plataforma de apoio à saúde mental de estudante
 ```
 index.html (página pública)
         |
-        +-- Cadastrar --> cadastro-escolha.html
-        |                     |
-        |                     +-- Estudante ----> cadastro-estudante.html -> formulario.html -> formulario2.html -> home.html
-        |                     |
-        |                     +-- Profissional -> cadastro-profissional.html -> cadastro-profissional2.html -> home-profissional.html
+        +-- Cadastrar --> cadastro-estudante.html -> formulario.html -> formulario2.html -> home.html
         |
-        +-- Login -----> login-escolha.html
-                              |
-                              +-- Estudante ----> login.html -> home.html
-                              |
-                              +-- Profissional -> login-profissional.html -> home-profissional.html
+        +-- Login -----> login.html -> home.html
 ```
 
 - **index.html** (página pública inicial):
   - É a primeira página do site e não exige login. Apresenta o Clear Minds, dados com fontes,
     espaços da plataforma, conteúdos, comunidade, privacidade e o fluxo de uso.
-  - No topo, **Cadastrar** leva a `cadastro-escolha.html` e **Login** leva a
-    `login-escolha.html`.
-  - Os links de conteúdos e "Explorar localização" direcionam para `login-escolha.html`, pois
+  - No topo, **Cadastrar** leva direto a `cadastro-estudante.html` e **Login** leva direto a
+    `login.html`.
+  - Os links de conteúdos e "Explorar localização" direcionam para `login.html`, pois
     essas áreas exigem uma conta.
-- **cadastro-escolha.html**: escolha entre conta de Estudante e conta Profissional.
-  - Estudante -> `cadastro-estudante.html` (cadastro inicial) -> `formulario.html` (Etapa 1/2)
-    -> `formulario2.html` (Etapa 2/2) -> `home.html`.
-  - Profissional -> `cadastro-profissional.html` (Etapa 1/2) -> `cadastro-profissional2.html`
-    (Etapa 2/2) -> `home-profissional.html`.
-- **login-escolha.html**: escolha entre login de Estudante e login Profissional.
-  - Estudante -> `login.html` -> `home.html`.
-  - Profissional -> `login-profissional.html` -> `home-profissional.html`.
 - **cadastro-estudante.html** / `cadastro.js`: cria a conta do Estudante e, ao concluir, segue
-  para `formulario.html`.
-- **login.html** (Estudante): autentica e vai para `home.html`. O botão "Acessar conta
-  profissional" leva para `login-profissional.html`. A troca entre login e cadastro não aparece
-  nesta tela; o cadastro é acessado pela página pública (`index.html`).
+  para `formulario.html`. O botão "Criar conta profissional" leva para
+  `cadastro-profissional.html`.
+- **login.html** (Estudante): autentica e vai para `home.html`. O botão "Entrar como profissional"
+  leva para `login-profissional.html`. A troca entre login e cadastro não aparece nesta tela; o
+  cadastro é acessado pela página pública (`index.html`).
 - **login-profissional.html**: autentica o profissional pelo e-mail e senha cadastrados
   (`cm_profile_profissional`); sem uma conta profissional salva na máquina, exibe aviso para
   cadastrar. **É a única forma de acessar `home-profissional.html`**.
@@ -108,9 +93,7 @@ Chaves usadas no `localStorage`:
 ## Estrutura de arquivos
 
 - `index.html` — Página pública inicial (landing page)
-- `pagina-publica.css` — Estilos da página pública e das páginas de escolha de cadastro/login
-- `cadastro-escolha.html` — Escolha do tipo de cadastro
-- `login-escolha.html` — Escolha do tipo de login
+- `pagina-publica.css` — Estilos da página pública inicial
 - `cadastro-estudante.html` / `cadastro.js` — Cadastro do Estudante
 - `login.html` / `script.js` — Login do Estudante
 - `login-profissional.html` / `login-profissional.js` — Login do Profissional
@@ -180,10 +163,10 @@ Chaves usadas no `localStorage`:
 
 ## Redesign visual (tema azul)
 
-- **Nova paleta sofisticada**: azul-marinho `#0F2438`/`#16324A` (painel de identidade e menu lateral),
-  azul-médio `#3D7CC9` (botões principais, ícones, ativos), azul-profundo `#1B4B7A` (acentos e hovers),
-  azul-claro `#A9C8E8`/`#DCECFB` (fundos suaves, badges) e off-white azulado `#F1F6FC`/`#F2F6FB`
-  (fundos das páginas). Os tons verdes anteriores foram substituídos pela família azul.
+- **Nova paleta sofisticada**: azul-petróleo `#264653`/`#356B78` (painel de identidade, menu lateral,
+  botões principais e ativos), creme `#F7F5F0` (fundos), azul acinzentado `#D9E5E7`/`#C7D8D9`
+  (fundos suaves, badges e bordas), lavanda `#DCD8EA` (apoio) e grafite `#263238` (textos). Os tons
+  verdes e os azuis antigos (`#0F2438`, `#3D7CC9`, `#1B4B7A`) foram substituídos em todo o sistema.
 - **Redesign estrutural (não é apenas troca de cor)**: as páginas de autenticação foram reorganizadas em
   **duas áreas** — à esquerda, um **painel de identidade** azul-escuro com a logo, uma frase curta e
   formas orgânicas decorativas (sem informação desnecessária); à direita, o **formulário** em card.
@@ -226,19 +209,22 @@ Chaves usadas no `localStorage`:
 - **Componentes padronizados**: botões, inputs, listas, estatísticas, humor/diário, comunidade,
   financeiro, perfis, configurações, conteúdos, leitor de conteúdos, modais, toasts e footer seguem a
   mesma linguagem azul em todo o sistema.
-- **Importante**: o redesign foi feito **via CSS** (`style.css`: variáveis `:root` + bloco de sobreposição
-  "TEMA AZUL" ao final) com pequenos ajustes de **estrutura HTML** apenas nas páginas de autenticação
-  (wrappers `.field-pair`, medalhão de etapa e o destino das setas de voltar). **Nenhuma funcionalidade,
-  regra de negócio, banco de dados, validação ou rota foi alterada.** A imagem de referência não pôde
-  ser inspecionada (modelo sem suporte a imagem); o layout foi aplicado a partir da descrição escrita e
-  validado com Chrome headless (formulários, homes com dados semeados, troca de seções e setas de voltar).
+- **Importante**: o redesign foi feito **via CSS** (`style.css`: variáveis `:root` e blocos de
+  sobreposição ao final) com pequenos ajustes de **estrutura HTML** nas páginas de autenticação
+  (wrappers `.field-pair`, medalhão de etapa, botões sociais Google/Microsoft e o destino das setas de
+  voltar). **Nenhuma funcionalidade, regra de negócio, banco de dados, validação ou rota foi
+  alterada.** O layout foi validado com screenshots em Chrome headless (formulários, homes com dados
+  semeados, troca de seções, modal de exclusão, mapa e responsividade mobile).
 
 ## Landing page: identidade visual e imagens
 
 - A página pública (`index.html`) usa a paleta azul-petróleo (`#264653`/`#356B78`), creme (`#F7F5F0`),
   azul acinzentado (`#D9E5E7`), lavanda (`#DCD8EA`) e grafite (`#263238`). Os estilos ficam no bloco
-  final de `pagina-publica.css`, escopados em `.public-page`; as páginas de escolha de cadastro/login
-  mantêm o tema anterior.
+  final de `pagina-publica.css`, escopados em `.public-page`; as telas de cadastro/login, as Homes e o
+  painel administrativo seguem a mesma paleta.
+- A identidade visual usa `imagem/logo-oficial.png` (logo completa com o nome) no topo e no rodapé
+  da página pública e nas telas de acesso, e `imagem/logo-cerebro.png` (somente o cérebro) em
+  contextos compactos, como o topo do painel profissional e o acesso administrativo.
 - Os ícones da landing são **SVG inline** (sprite no início de `index.html`), sem dependência do
   Font Awesome para renderizar.
 - As fotos ficam em `imagem/landing/` e foram obtidas no **Pexels**, sob a licença Pexels (uso gratuito,

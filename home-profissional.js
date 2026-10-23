@@ -41,6 +41,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const getLista = (chave) => JSON.parse(localStorage.getItem(chave) || "[]");
     const salvarLista = (chave, lista) => localStorage.setItem(chave, JSON.stringify(lista));
 
+    /* Modal de confirmação reutilizável (mesmo padrão da Home do estudante) */
+    const abrirConfirmacao = ({ titulo = "Confirmar", mensagem = "", rotuloConfirmar = "Confirmar", perigoso = false, aoConfirmar }) => {
+        let overlay = document.getElementById("cmConfirmOverlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "cmConfirmOverlay";
+            overlay.className = "cm-modal-overlay";
+            overlay.innerHTML = `
+                <div class="cm-modal" role="dialog" aria-modal="true">
+                    <div class="cm-modal-icon"><i class="fa-solid fa-circle-question"></i></div>
+                    <h3 data-cm-titulo></h3>
+                    <p data-cm-msg></p>
+                    <div class="cm-modal-buttons">
+                        <button type="button" class="cm-btn cm-btn-soft" data-cm-cancelar>Cancelar</button>
+                        <button type="button" class="cm-btn cm-btn-primary" data-cm-ok>Confirmar</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(overlay);
+            overlay.querySelector("[data-cm-cancelar]").addEventListener("click", () => overlay.classList.remove("show"));
+            overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.classList.remove("show"); });
+        }
+        const okBtn = overlay.querySelector("[data-cm-ok]");
+        okBtn.textContent = rotuloConfirmar;
+        okBtn.classList.toggle("cm-btn-danger", !!perigoso);
+        okBtn.classList.toggle("cm-btn-primary", !perigoso);
+        overlay.querySelector("[data-cm-titulo]").textContent = titulo;
+        overlay.querySelector("[data-cm-msg]").textContent = mensagem;
+        okBtn.onclick = () => { overlay.classList.remove("show"); if (aoConfirmar) aoConfirmar(); };
+        overlay.classList.add("show");
+    };
+
     /* ==========================================
        DADOS DE DEMONSTRAÇÃO (claramente fictícios)
     ========================================== */
@@ -735,7 +766,7 @@ const renderAgenda = () => {
                     <strong>${esc(c.titulo || "Conteúdo")}</strong>
                     <small><span class="cm-tag" style="font-size:.68rem;">${esc(c.categoria || "Material")}</span> · ${esc(c.data || "")} · ${esc(c.teaser || c.descricao || "")}</small>
                 </div>
-                <i class="fa-solid fa-chevron-right" style="color:#C4D4E6;flex-shrink:0;" aria-hidden="true"></i>`;
+                <i class="fa-solid fa-chevron-right" style="color:#A8C6CB;flex-shrink:0;" aria-hidden="true"></i>`;
             li.addEventListener("click", () => {
                 const overlay = document.getElementById("cmReaderOverlay");
                 if (!overlay) return;
@@ -1507,14 +1538,6 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
         if (cfgSenhaConf) cfgSenhaConf.value = "";
     });
 
-    /* ---------- Sessão: sair da conta ---------- */
-    const btnCfgSair = document.getElementById("btnCfgSair");
-    if (btnCfgSair) btnCfgSair.addEventListener("click", () => {
-        localStorage.removeItem("cm_session");
-        localStorage.removeItem("cm_tipo");
-        window.location.href = "login-profissional.html";
-    });
-
     /* ---------- Dados: exportar e excluir ---------- */
     const btnCfgExportar = document.getElementById("btnCfgExportar");
     if (btnCfgExportar) btnCfgExportar.addEventListener("click", () => {
@@ -1538,16 +1561,23 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
 
     const btnCfgExcluir = document.getElementById("btnCfgExcluir");
     if (btnCfgExcluir) btnCfgExcluir.addEventListener("click", () => {
-        if (!window.confirm("Finalizar e apagar os seus dados do Clear Minds neste dispositivo? Essa ação não pode ser desfeita.")) return;
-        localStorage.removeItem("cm_profile_profissional");
-        localStorage.removeItem("cm_pacientes");
-        localStorage.removeItem("cm_agenda_profissional");
-        localStorage.removeItem("cm_atividades_profissional");
-        localStorage.removeItem("cm_movimentacoes");
-        localStorage.removeItem("cm_conteudos_profissional");
-        localStorage.removeItem("cm_session");
-        localStorage.removeItem("cm_tipo");
-        window.location.href = "login-profissional.html";
+        abrirConfirmacao({
+            titulo: "Excluir conta",
+            mensagem: "Ao confirmar a exclusão, sua conta e seus dados serão apagados definitivamente após 30 dias.",
+            rotuloConfirmar: "Ciente",
+            perigoso: true,
+            aoConfirmar: () => {
+                localStorage.removeItem("cm_profile_profissional");
+                localStorage.removeItem("cm_pacientes");
+                localStorage.removeItem("cm_agenda_profissional");
+                localStorage.removeItem("cm_atividades_profissional");
+                localStorage.removeItem("cm_movimentacoes");
+                localStorage.removeItem("cm_conteudos_profissional");
+                localStorage.removeItem("cm_session");
+                localStorage.removeItem("cm_tipo");
+                window.location.href = "login-profissional.html";
+            }
+        });
     });
 
     /* ---------- Atalho para o perfil ---------- */

@@ -1,3 +1,22 @@
+/* ==========================================
+   CLEAR MINDS — LOCALIZAÇÃO
+   ==========================================
+   Mapa e busca de profissionais com a API
+   JavaScript do Google Maps + Places.
+
+   CONFIGURAÇÃO OBRIGATÓRIA
+   ------------------------
+   Substitua o valor abaixo pela sua chave da
+   API do Google Maps. No Google Cloud, habilite
+   "Maps JavaScript API" e "Places API" para a
+   chave e restrinja os domínios autorizados.
+
+   Nenhuma chave é fornecida junto com o projeto.
+   ========================================== */
+
+const GOOGLE_MAPS_API_KEY = "COLE_SUA_CHAVE_DA_API_GOOGLE_MAPS_AQUI";
+const GOOGLE_MAPS_LIBRARIES = "places";
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("localizacaoForm");
     const busca = document.getElementById("localizacaoBusca");
@@ -12,8 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtroDistancia = document.getElementById("localizacaoFiltroDistancia");
     const filtroEspecialidade = document.getElementById("localizacaoFiltroEspecialidade");
     const raioMetros = 25000;
-    let mapaLeaflet = null;
-    let camadaMarcadores = null;
+    const centroPadrao = { lat: -15.793889, lon: -47.882778 };
+    let mapaGoogle = null;
+    let servicoLocais = null;
+    let geocodificador = null;
+    let infoWindow = null;
+    let circuloBusca = null;
+    let marcadoresGoogle = [];
+    let promessaGoogleMaps = null;
     const marcadoresPorIndice = new Map();
     let ultimosLocais = null;
     let ultimoCentro = null;
@@ -64,18 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return 6371000 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     };
 
-    const buscarJson = async (url, opcoes = {}) => {
-        const controller = new AbortController();
-        const timeout = window.setTimeout(() => controller.abort(), 30000);
-        try {
-            const resposta = await fetch(url, { ...opcoes, signal: controller.signal });
-            if (!resposta.ok) throw new Error(`Serviço de localização respondeu com status ${resposta.status}.`);
-            return await resposta.json();
-        } finally {
-            window.clearTimeout(timeout);
-        }
-    };
-
     const mostrarEstado = (mensagem) => {
         status.textContent = mensagem;
     };
@@ -88,86 +101,171 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     };
 
-    const atualizarMapa = (lat, lon, descricao) => {
-        if (!window.L) throw new Error("O mapa interativo não foi carregado.");
-        if (!mapaLeaflet) {
-            mapaLeaflet = window.L.map(mapa, { scrollWheelZoom: false }).setView([lat, lon], 12);
-            window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 19,
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-            }).addTo(mapaLeaflet);
-            camadaMarcadores = window.L.layerGroup().addTo(mapaLeaflet);
+    const chaveMapaConfigurada = () => Boolean(GOOGLE_MAPS_API_KEY)
+        && !/^COLE_SUA_CHAVE/i.test(GOOGLE_MAPS_API_KEY);
+
+    const mensagemErroMapa = (erro) => {
+        if (erro && erro.message === "CHAVE_NAO_CONFIGURADA") {
+            return "O mapa ainda não está disponível nesta versão. Tente novamente mais tarde.";
         }
-        camadaMarcadores.clearLayers();
-        marcadoresPorIndice.clear();
-        mapaLeaflet.setView([lat, lon], 12);
-        window.L.circle([lat, lon], {
+        return "Não foi possível carregar o mapa agora. Verifique sua conexão e tente novamente.";
+    };
+
+    /** Substitui a área do mapa por um aviso quando a API não está disponível. */
+    const mostrarMapaIndisponivel = (mensagem) => {
+        if (!mapa) return;
+        mapa.classList.add("is-unavailable");
+        mapa.setAttribute("aria-label", "Mapa indisponível");
+        mapa.innerHTML = `<div class="cm-location-map-fallback">
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            <strong>Mapa indisponível</strong>
+            <span>${esc(mensagem)}</span>
+        </div>`;
+    };
+
+    /** Carrega a API JavaScript do Google Maps uma única vez. */
+    const carregarGoogleMaps = () => {
+        if (promessaGoogleMaps) return promessaGoogleMaps;
+        promessaGoogleMaps = new Promise((resolve, reject) => {
+            if (window.google && window.google.maps) {
+                resolve(window.google.maps);
+                return;
+            }
+            if (!chaveMapaConfigurada()) {
+                reject(new Error("CHAVE_NAO_CONFIGURADA"));
+                return;
+            }
+            const nomeCallback = "__cmGoogleMapsCallback";
+            window[nomeCallback] = () => {
+                try { delete window[nomeCallback]; } catch { /* ignora */ }
+                resolve(window.google.maps);
+            };
+            const script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js"
+                + `?key=${encodeURIComponent(GOOGLE_MAPS_API_KEY)}`
+                + `&libraries=${GOOGLE_MAPS_LIBRARIES}`
+                + "&language=pt-BR&region=BR&loading=async"
+                + `&callback=${nomeCallback}`;
+            script.async = true;
+            script.defer = true;
+            script.onerror = () => reject(new Error("FALHA_AO_CARREGAR"));
+            document.head.appendChild(script);
+        });
+        return promessaGoogleMaps;
+    };
+
+    const garantirMapa = async () => {
+        await carregarGoogleMaps();
+        if (!mapaGoogle) {
+            mapaGoogle = new google.maps.Map(mapa, {
+                center: { lat: centroPadrao.lat, lng: centroPadrao.lon },
+                zoom: 4,
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                clickableIcons: false,
+                gestureHandling: "cooperative"
+            });
+            infoWindow = new google.maps.InfoWindow({ maxWidth: 320 });
+            servicoLocais = new google.maps.places.PlacesService(mapaGoogle);
+            geocodificador = new google.maps.Geocoder();
+        }
+        return mapaGoogle;
+    };
+
+    const limparMarcadores = () => {
+        marcadoresGoogle.forEach((marcador) => {
+            google.maps.event.clearInstanceListeners(marcador);
+            marcador.setMap(null);
+        });
+        marcadoresGoogle = [];
+        if (infoWindow) infoWindow.close();
+    };
+
+    const atualizarMapa = async (lat, lon, descricao) => {
+        await garantirMapa();
+        limparMarcadores();
+        if (circuloBusca) {
+            circuloBusca.setMap(null);
+            circuloBusca = null;
+        }
+        const centro = { lat, lng: lon };
+        mapaGoogle.setCenter(centro);
+        mapaGoogle.setZoom(12);
+        circuloBusca = new google.maps.Circle({
+            center: centro,
             radius: 900,
-            color: "#3D7CC9",
-            weight: 2,
-            fillColor: "#6FA8E8",
-            fillOpacity: 0.12
-        }).bindPopup("Região de busca aproximada").addTo(camadaMarcadores);
-        mapaLeaflet.invalidateSize();
-        mapaLink.href = `https://www.openstreetmap.org/?mlat=${lat.toFixed(2)}&mlon=${lon.toFixed(2)}#map=12/${lat.toFixed(2)}/${lon.toFixed(2)}`;
+            strokeColor: "#356B78",
+            strokeOpacity: 0.65,
+            strokeWeight: 2,
+            fillColor: "#356B78",
+            fillOpacity: 0.1,
+            map: mapaGoogle,
+            title: "Região de busca aproximada"
+        });
+        mapaLink.href = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
         mapaDescricao.textContent = descricao;
     };
 
     const obterCoordenadas = async (consulta) => {
-        const params = new URLSearchParams({
-            format: "jsonv2",
-            limit: "1",
-            countrycodes: "br",
-            q: consulta
+        await garantirMapa();
+        return new Promise((resolve, reject) => {
+            geocodificador.geocode({
+                address: consulta,
+                componentRestrictions: { country: "BR" },
+                language: "pt-BR",
+                region: "BR"
+            }, (locais, situacao) => {
+                if (situacao === google.maps.GeocoderStatus.ZERO_RESULTS) {
+                    resolve(null);
+                    return;
+                }
+                if (situacao !== google.maps.GeocoderStatus.OK || !locais || !locais.length) {
+                    reject(new Error(`Geocoding: ${situacao}`));
+                    return;
+                }
+                const local = locais[0];
+                resolve({
+                    lat: local.geometry.location.lat(),
+                    lon: local.geometry.location.lng(),
+                    descricao: local.formatted_address || consulta
+                });
+            });
         });
-        const locais = await buscarJson(`https://nominatim.openstreetmap.org/search?${params}`, {
-            headers: { "Accept-Language": "pt-BR" }
-        });
-        const local = locais[0];
-        if (!local) return null;
-        const lat = Number(local.lat);
-        const lon = Number(local.lon);
-        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
-        return { lat, lon, descricao: local.display_name || consulta };
     };
 
     const obterLocais = async (lat, lon) => {
-        const consulta = `[out:json][timeout:25];
-(
-  nwr(around:${raioMetros},${lat},${lon})["healthcare"~"^(psychologist|psychotherapist)$"];
-  nwr(around:${raioMetros},${lat},${lon})["amenity"="psychotherapist"];
-  nwr(around:${raioMetros},${lat},${lon})["office"~"^(psychologist|psychotherapist)$"];
-);
-out center tags;`;
-        const dados = await buscarJson("https://overpass-api.de/api/interpreter", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-            body: `data=${encodeURIComponent(consulta)}`
+        await garantirMapa();
+        return new Promise((resolve, reject) => {
+            servicoLocais.nearbySearch({
+                location: { lat, lng: lon },
+                radius: raioMetros,
+                keyword: "psicólogo psicoterapeuta saúde mental",
+                language: "pt-BR"
+            }, (locais, situacao) => {
+                if (situacao === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+                    resolve([]);
+                    return;
+                }
+                if (situacao !== google.maps.places.PlacesServiceStatus.OK || !Array.isArray(locais)) {
+                    reject(new Error(`Places: ${situacao}`));
+                    return;
+                }
+                resolve(locais.slice(0, 40).map((local) => {
+                    const posicao = local.geometry.location;
+                    return {
+                        id: `google/${local.place_id || local.name}`,
+                        nome: local.name || "Profissional de saúde mental",
+                        categoria: "Profissional de saúde",
+                        especialidade: "Atuação não informada publicamente",
+                        regiao: local.vicinity || local.formatted_address || "Região próxima ao ponto de busca",
+                        lat: posicao.lat(),
+                        lon: posicao.lng()
+                    };
+                }));
+            });
         });
-        return Array.isArray(dados.elements) ? dados.elements : [];
     };
-
-    const coordenadasDoLocal = (local) => {
-        const lat = Number(local.lat ?? local.center?.lat);
-        const lon = Number(local.lon ?? local.center?.lon);
-        return Number.isFinite(lat) && Number.isFinite(lon) ? { lat, lon } : null;
-    };
-
-    const categoriaDoLocal = (tags) => {
-        const tipo = tags.healthcare || tags.amenity || tags.office;
-        return /psychologist/i.test(tipo || "") ? "Psicólogo(a)" : "Psicoterapeuta";
-    };
-
-    const regiaoDoLocal = (tags, fallback) => tags["addr:neighbourhood"]
-        || tags["addr:suburb"]
-        || tags["addr:city"]
-        || tags["addr:town"]
-        || tags["addr:village"]
-        || fallback;
-
-    const especialidadeDoLocal = (tags) => tags["healthcare:speciality"]
-        || tags.speciality
-        || "Não informada publicamente";
 
     const obterLocalizacaoCadastrada = async () => {
         if (!perfilProfissional) return null;
@@ -252,32 +350,36 @@ out center tags;`;
         if (!perfilDialog.open) perfilDialog.showModal();
     };
 
+    const especialidadeValida = (valor) => Boolean(valor)
+        && valor !== "Atuação não informada"
+        && valor !== "Atuação não informada publicamente"
+        && valor !== "Não informada publicamente";
+
     const renderizarLocais = (locais, centro, perfilCadastrado) => {
         const unicos = new Map();
-        locais.forEach((local) => {
-            const coordenadas = coordenadasDoLocal(local);
-            if (!coordenadas) return;
-            const tags = local.tags || {};
-            const distancia = distanciaEntre(centro.lat, centro.lon, coordenadas.lat, coordenadas.lon);
+        (locais || []).forEach((local) => {
+            const lat = Number(local.lat);
+            const lon = Number(local.lon);
+            if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+            const distancia = distanciaEntre(centro.lat, centro.lon, lat, lon);
             if (distancia > raioMetros) return;
-            unicos.set(`${local.type}/${local.id}`, { local, tags, ...coordenadas, distancia });
+            unicos.set(local.id, { ...local, lat, lon, distancia });
         });
         if (perfilCadastrado && perfilCadastrado.distancia <= raioMetros) {
             const id = `cadastro/${perfilProfissional.email || perfilCadastrado.nome}`;
             const nomeCadastrado = normalizarNome(perfilCadastrado.nome);
-            const correspondente = [...unicos.values()].find(({ tags }) => (
-                tags.name && normalizarNome(tags.name) === nomeCadastrado
+            const correspondente = [...unicos.values()].find((item) => (
+                normalizarNome(item.nome) === nomeCadastrado
             ));
             if (correspondente) {
                 correspondente.perfil = perfilCadastrado;
             } else {
                 unicos.set(id, {
-                    local: { type: "cadastro", id },
-                    tags: {
-                        name: perfilCadastrado.nome,
-                        speciality: perfilCadastrado.especialidade,
-                        profession: perfilCadastrado.categoria
-                    },
+                    id,
+                    nome: perfilCadastrado.nome,
+                    categoria: perfilCadastrado.categoria,
+                    especialidade: perfilCadastrado.especialidade,
+                    regiao: perfilCadastrado.regiao,
                     lat: perfilCadastrado.lat,
                     lon: perfilCadastrado.lon,
                     distancia: perfilCadastrado.distancia,
@@ -289,23 +391,21 @@ out center tags;`;
             .sort((a, b) => a.distancia - b.distancia)
             .slice(0, 30);
         const profissionaisFiltrados = termoBuscaProfissional
-            ? disponiveis.filter(({ tags, perfil }) => {
+            ? disponiveis.filter((item) => {
                 const termos = [
-                    tags.name,
-                    tags["name:pt"],
-                    tags.profession,
-                    tags["healthcare:speciality"],
-                    tags.speciality,
-                    perfil?.categoria,
-                    perfil?.especialidade,
-                    perfil?.abordagem
+                    item.nome,
+                    item.categoria,
+                    item.especialidade,
+                    item.regiao,
+                    item.perfil?.categoria,
+                    item.perfil?.especialidade
                 ];
                 return termos.some((termo) => normalizarNome(termo).includes(normalizarNome(termoBuscaProfissional)));
             })
             : disponiveis;
         const especialidades = [...new Set(profissionaisFiltrados
-            .map(({ tags, perfil }) => perfil?.especialidade || especialidadeDoLocal(tags))
-            .filter((especialidade) => especialidade !== "Não informada publicamente"))]
+            .map((item) => item.perfil?.especialidade || item.especialidade)
+            .filter(especialidadeValida))]
             .sort((a, b) => a.localeCompare(b, "pt-BR"));
         let especialidadeSelecionada = filtroEspecialidade?.value || "";
 
@@ -322,14 +422,15 @@ out center tags;`;
         }
 
         const distanciaMaxima = Number(filtroDistancia?.value || raioMetros / 1000) * 1000;
-        const ordenados = profissionaisFiltrados.filter(({ distancia, tags, perfil }) => (
-            distancia <= distanciaMaxima
-            && (!especialidadeSelecionada
-                || (perfil?.especialidade || especialidadeDoLocal(tags)).toLocaleLowerCase("pt-BR")
-                    === especialidadeSelecionada.toLocaleLowerCase("pt-BR"))
-        ));
+        const ordenados = profissionaisFiltrados.filter((item) => {
+            const especialidade = item.perfil?.especialidade || item.especialidade;
+            return item.distancia <= distanciaMaxima
+                && (!especialidadeSelecionada
+                    || String(especialidade).toLocaleLowerCase("pt-BR")
+                        === especialidadeSelecionada.toLocaleLowerCase("pt-BR"));
+        });
 
-        camadaMarcadores.clearLayers();
+        limparMarcadores();
         marcadoresPorIndice.clear();
 
         const filtroAplicado = especialidadeSelecionada
@@ -357,27 +458,22 @@ out center tags;`;
             return;
         }
 
-        const profissionais = ordenados.map(({ local, tags, lat, lon, distancia, perfil }, indice) => {
-            const nome = tags.name || tags["name:pt"] || "Profissional de saúde mental";
-            const categoria = perfil?.categoria || tags.profession || categoriaDoLocal(tags);
-            const regiao = perfil?.regiao || regiaoDoLocal(tags, "Região próxima ao ponto de busca");
-            const especialidade = perfil?.especialidade || especialidadeDoLocal(tags);
-            const distanciaAproximada = arredondarDistancia(distancia);
-            const marcador = deslocarMarcador(lat, lon, `${local.type}/${local.id}`);
+        const profissionais = ordenados.map((item, indice) => {
+            const [lat, lon] = deslocarMarcador(item.lat, item.lon, item.id);
             const profissional = {
                 indice,
-                nome,
-                categoria,
-                regiao,
-                especialidade,
-                distancia: distanciaAproximada,
-                lat: marcador[0],
-                lon: marcador[1],
-                formacao: perfil?.formacao || "",
-                modalidade: perfil?.modalidade || "",
-                disponibilidade: perfil?.disponibilidade || "",
-                apresentacao: perfil?.apresentacao || "",
-                cadastrado: Boolean(perfil)
+                nome: item.nome,
+                categoria: item.perfil?.categoria || item.categoria,
+                regiao: item.perfil?.regiao || item.regiao,
+                especialidade: item.perfil?.especialidade || item.especialidade,
+                distancia: arredondarDistancia(item.distancia),
+                lat,
+                lon,
+                formacao: item.perfil?.formacao || "",
+                modalidade: item.perfil?.modalidade || "",
+                disponibilidade: item.perfil?.disponibilidade || "",
+                apresentacao: item.perfil?.apresentacao || "",
+                cadastrado: Boolean(item.perfil)
             };
             marcadoresPorIndice.set(indice, profissional);
             return profissional;
@@ -408,10 +504,22 @@ out center tags;`;
             </article>`;
         }).join("");
 
+        const iconeMarcador = {
+            url: "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
+                '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="42" viewBox="0 0 34 42">'
+                + '<path d="M17 0C7.6 0 0 7.6 0 17c0 12.8 17 25 17 25s17-12.2 17-25C34 7.6 26.4 0 17 0Z" fill="#356B78"/>'
+                + '<circle cx="17" cy="16.5" r="6.5" fill="#F7F5F0"/></svg>'
+            ),
+            scaledSize: new google.maps.Size(34, 42),
+            anchor: new google.maps.Point(17, 42)
+        };
+
         profissionais.forEach((profissional) => {
-            const marcador = window.L.marker([profissional.lat, profissional.lon], {
+            const marcador = new google.maps.Marker({
+                position: { lat: profissional.lat, lng: profissional.lon },
+                map: mapaGoogle,
                 title: `${profissional.nome} — localização aproximada`,
-                alt: `${profissional.categoria}, localização aproximada`
+                icon: iconeMarcador
             });
             const popup = `<div class="cm-location-popup">
                 <strong>${esc(profissional.nome)}</strong>
@@ -421,8 +529,12 @@ out center tags;`;
                 <span>${profissional.cadastrado ? "Distância aproximada entre regiões" : "Distância aproximada"}: ${profissional.cadastrado && profissional.distancia < 1000 ? "mesma região" : `~${esc(formatarDistancia(profissional.distancia))}`}</span>
                 <button type="button" data-location-profile="${profissional.indice}">Ver perfil</button>
             </div>`;
-            marcador.bindPopup(popup).addTo(camadaMarcadores);
-            marcadoresPorIndice.get(profissional.indice).marcadorLeaflet = marcador;
+            marcador.addListener("click", () => {
+                infoWindow.setContent(popup);
+                infoWindow.open({ anchor: marcador, map: mapaGoogle });
+            });
+            profissional.marcadorGoogle = marcador;
+            marcadoresGoogle.push(marcador);
         });
 
         resultados.querySelectorAll("[data-location-profile]").forEach((botao) => {
@@ -430,18 +542,24 @@ out center tags;`;
                 const profissional = marcadoresPorIndice.get(Number(botao.dataset.locationProfile));
                 if (!profissional) return;
                 if (botao.classList.contains("cm-location-show-map")) {
-                    mapaLeaflet.setView([profissional.lat, profissional.lon], 15);
-                    profissional.marcadorLeaflet.openPopup();
+                    mapaGoogle.panTo({ lat: profissional.lat, lng: profissional.lon });
+                    mapaGoogle.setZoom(15);
+                    if (profissional.marcadorGoogle) {
+                        google.maps.event.trigger(profissional.marcadorGoogle, "click");
+                    }
                     return;
                 }
                 abrirPerfil(profissional.indice);
             });
         });
-        mapaLeaflet.fitBounds(window.L.latLngBounds([
-            [centro.lat - 0.23, centro.lon - 0.28],
-            [centro.lat + 0.23, centro.lon + 0.28]
-        ]), { padding: [12, 12], maxZoom: 10 });
-        mapaLeaflet.invalidateSize();
+
+        const limites = new google.maps.LatLngBounds();
+        limites.extend({ lat: centro.lat - 0.23, lng: centro.lon - 0.28 });
+        limites.extend({ lat: centro.lat + 0.23, lng: centro.lon + 0.28 });
+        mapaGoogle.fitBounds(limites, 12);
+        google.maps.event.addListenerOnce(mapaGoogle, "idle", () => {
+            if (mapaGoogle.getZoom() > 10) mapaGoogle.setZoom(10);
+        });
     };
 
     const aplicarFiltros = () => {
@@ -457,16 +575,12 @@ out center tags;`;
         const termo = normalizarNome(consulta);
         if (!termo || !ultimosLocais || !ultimoCentro) return false;
         const combina = (valores) => valores.some((valor) => normalizarNome(valor).includes(termo));
-        const correspondeNosLocais = ultimosLocais.some((local) => {
-            const tags = local.tags || {};
-            return combina([
-                tags.name,
-                tags["name:pt"],
-                tags.profession,
-                tags["healthcare:speciality"],
-                tags.speciality
-            ]);
-        });
+        const correspondeNosLocais = ultimosLocais.some((local) => combina([
+            local.nome,
+            local.categoria,
+            local.especialidade,
+            local.regiao
+        ]));
         const correspondeNoCadastro = perfilProfissional && combina([
             perfilProfissional.nome,
             perfilProfissional.nomeSocial,
@@ -486,12 +600,26 @@ out center tags;`;
         ultimosLocais = null;
         ultimoCentro = null;
         ultimoPerfilCadastrado = null;
+        const centroAproximado = {
+            lat: Number(centro.lat.toFixed(2)),
+            lon: Number(centro.lon.toFixed(2))
+        };
         try {
-            const centroAproximado = {
-                lat: Number(centro.lat.toFixed(2)),
-                lon: Number(centro.lon.toFixed(2))
-            };
-            atualizarMapa(centroAproximado.lat, centroAproximado.lon, `${descricao} · região aproximada`);
+            await atualizarMapa(
+                centroAproximado.lat,
+                centroAproximado.lon,
+                `${descricao} · região aproximada`
+            );
+        } catch (erro) {
+            console.error("Não foi possível carregar o mapa do Google.", erro);
+            const mensagem = mensagemErroMapa(erro);
+            resumo.textContent = "Mapa indisponível.";
+            mostrarMapaIndisponivel(mensagem);
+            mostrarVazio("Mapa indisponível", mensagem);
+            mostrarEstado(`${prefixo}${mensagem}`);
+            return;
+        }
+        try {
             resumo.textContent = "Buscando locais próximos…";
             mostrarVazio("Buscando profissionais", "Estamos consultando os cadastros disponíveis e os locais públicos desta região.");
             mostrarEstado(`${prefixo}Consultando locais de saúde mental em até 25 km…`);
@@ -558,9 +686,12 @@ out center tags;`;
             );
         } catch (erro) {
             console.error("Não foi possível localizar a região pesquisada.", erro);
+            const mensagem = erro && (erro.message === "CHAVE_NAO_CONFIGURADA" || erro.message === "FALHA_AO_CARREGAR")
+                ? mensagemErroMapa(erro)
+                : "Não foi possível consultar o serviço de mapas. Verifique sua conexão e tente novamente.";
             resumo.textContent = "Não foi possível localizar a região.";
-            mostrarVazio("Busca temporariamente indisponível", "Tente novamente em alguns instantes.");
-            mostrarEstado("Não foi possível consultar o serviço de mapas. Verifique sua conexão e tente novamente.");
+            mostrarVazio("Busca temporariamente indisponível", mensagem);
+            mostrarEstado(mensagem);
         }
     };
 
@@ -576,15 +707,41 @@ out center tags;`;
         pesquisarPorTexto(busca.value);
     });
 
+    const mostrarMapaInicial = async () => {
+        try {
+            await garantirMapa();
+            google.maps.event.trigger(mapaGoogle, "resize");
+            mapaGoogle.setCenter({ lat: centroPadrao.lat, lng: centroPadrao.lon });
+            mapaGoogle.setZoom(4);
+            mapaDescricao.textContent = "Pesquise uma cidade ou use sua localização atual.";
+            mapaLink.href = "https://www.google.com/maps";
+        } catch (erro) {
+            console.error("Não foi possível carregar o mapa do Google.", erro);
+            const mensagem = mensagemErroMapa(erro);
+            resumo.textContent = "Mapa indisponível.";
+            mostrarMapaIndisponivel(mensagem);
+            mostrarVazio("Mapa indisponível", mensagem);
+            mostrarEstado(mensagem);
+        }
+    };
+
     const pesquisarLocalSalvo = () => {
         if (localSalvo && !buscaPerfilIniciada) {
             buscaPerfilIniciada = true;
             pesquisarPorTexto(localSalvo, "Usando a cidade e o estado salvos no seu perfil. ");
+            return;
         }
+        if (mapaGoogle) {
+            google.maps.event.trigger(mapaGoogle, "resize");
+            return;
+        }
+        mostrarMapaInicial();
     };
 
     document.querySelectorAll('.cm-side-item[data-secao="localizacao"]').forEach((botao) => {
-        botao.addEventListener("click", pesquisarLocalSalvo);
+        botao.addEventListener("click", () => {
+            window.setTimeout(pesquisarLocalSalvo, 220);
+        });
     });
 
     if (botaoAtual) {

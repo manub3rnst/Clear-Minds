@@ -600,7 +600,7 @@
          <div class="adm-muted" style="font-size:.8rem">${esc(item.email)}</div></div>
        </div>
        ${linhas.map(([k, v]) => `
-         <div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #eef3fa">
+         <div style="display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #e3ebeb">
            <span class="adm-muted" style="width:130px;flex:0 0 130px;font-size:.82rem">${esc(k)}</span>
            <span style="font-size:.85rem">${esc(v || "—")}</span>
          </div>`).join("")}
@@ -1206,7 +1206,7 @@
        <div style="margin-top:18px">
          <h4 style="font-size:.86rem;margin-bottom:8px">Existentes</h4>
          ${cats.length ? cats.map((c) => `
-           <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #eef3fa">
+           <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #e3ebeb">
              <span style="flex:1;font-size:.85rem">${esc(c.nome)}</span>
              <span class="adm-tag ${c.destino === "profissionais" ? "roxo" : "azul"}">${c.destino === "profissionais" ? "Profissionais" : "Usuários"}</span>
              <button type="button" class="adm-btn adm-btn-ghost adm-btn-sm" data-del-cat="${c.id}">

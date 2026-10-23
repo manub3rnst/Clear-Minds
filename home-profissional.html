@@ -42,11 +42,7 @@
                         <span></span><span></span><span></span>
                     </button>
                     <div class="cm-brand">
-                        <img src="imagem/logo.jpg" alt="Clear Minds">
-                        <div>
-                            <h2>Clear Minds</h2>
-                            <span>Cuide, acompanhe e fortaleça o seu trabalho.</span>
-                        </div>
+                        <img src="imagem/logo-cerebro.png" alt="Clear Minds">
                     </div>
                 </div>
 
@@ -437,7 +433,7 @@
                     <div class="cm-stat-grid cm-fin-stat-grid">
 
                         <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                            <span class="cm-stat-icon-lg" style="background:#EEF3F3;color:#356B78;">
                                 <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                             </span>
                             <strong id="finTotalRecebido">R$ 0,00</strong>
@@ -445,7 +441,7 @@
                         </div>
 
                         <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#EAF3FD;color:var(--primary-dark);">
+                            <span class="cm-stat-icon-lg" style="background:#D9E5E7;color:var(--primary-dark);">
                                 <i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
                             </span>
                             <strong id="finTotalPendente">R$ 0,00</strong>
@@ -469,7 +465,7 @@
                         </div>
 
                         <div class="cm-stat-card">
-                            <span class="cm-stat-icon-lg" style="background:#E8F6F4;color:#2A9D8F;">
+                            <span class="cm-stat-icon-lg" style="background:#EEF3F3;color:#356B78;">
                                 <i class="fa-solid fa-calculator" aria-hidden="true"></i>
                             </span>
                             <strong id="finValorMedio">R$ 0,00</strong>
@@ -761,7 +757,7 @@
                                     <span class="cm-panel-title" style="font-size:.9rem;">Visibilidade do perfil</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Controla quem pode visualizar suas informações públicas.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="visibilidadePerfil">
                                         <option value="publico">Público</option>
                                         <option value="privado">Privado</option>
@@ -785,7 +781,7 @@
                                     <span class="cm-panel-title" style="font-size:.9rem;">Quem pode solicitar acesso ao Diário</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Restringe os profissionais que podem pedir acesso aos registros dos pacientes.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="quemInterage">
                                         <option value="todos">Todos os pacientes</option>
                                         <option value="vinculados">Apenas pacientes vinculados</option>
@@ -875,7 +871,7 @@
                                     <span class="cm-panel-title" style="font-size:.9rem;">Tema</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Escolha entre o tema claro e o tema escuro.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="tema">
                                         <option value="claro">Claro (padrão)</option>
                                         <option value="escuro">Escuro</option>
@@ -888,7 +884,7 @@
                                     <span class="cm-panel-title" style="font-size:.9rem;">Tamanho do texto</span>
                                     <span class="cm-panel-sub" style="margin-top:2px;">Ajusta o tamanho da fonte em todo o painel.</span>
                                 </div>
-                                <div class="cm-settings-ctrl">
+                                <div class="cm-settings-ctrl cm-settings-select-control">
                                     <select class="cm-input" data-cfg="tamanhoTexto">
                                         <option value="pequeno">Pequeno</option>
                                         <option value="normal">Normal (padrão)</option>
@@ -905,7 +901,7 @@
                             <i class="fa-solid fa-lock" aria-hidden="true"></i>
                             Segurança
                         </h2>
-                        <p class="cm-settings-group-sub">Senha, sessões e saída da conta.</p>
+                        <p class="cm-settings-group-sub">Senha, sessões e exclusão da conta.</p>
 
                         <div class="cm-settings-box">
                             <div class="cm-settings-item">
@@ -927,11 +923,11 @@
 
                             <div class="cm-settings-item">
                                 <div class="cm-info">
-                                    <span class="cm-panel-title" style="font-size:.9rem;">Sessão atual</span>
-                                    <span class="cm-panel-sub" style="margin-top:2px;" id="cfgSessaoInfo">Este dispositivo — ativo agora.</span>
+                                    <span class="cm-panel-title" style="font-size:.9rem;">Excluir conta</span>
+                                    <span class="cm-panel-sub" style="margin-top:2px;" id="cfgSessaoInfo">Sua conta e seus dados serão apagados definitivamente após 30 dias.</span>
                                 </div>
                                 <div class="cm-settings-ctrl">
-                                    <button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="btnCfgSair">Sair da conta</button>
+                                    <button type="button" class="cm-btn cm-btn-danger cm-btn-sm" id="btnCfgExcluir">Excluir conta</button>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-body.cm-home-prof .cm-content {
+﻿body.cm-home-prof .cm-content {
     max-width: 1160px;
 }
 
@@ -63,7 +63,7 @@ body.cm-home-prof .pro-home-avatar {
     place-items: center;
     overflow: hidden;
     border: 3px solid var(--white);
-    box-shadow: 0 5px 16px rgba(33, 100, 158, .16);
+    box-shadow: 0 5px 16px rgba(53,107,120, .16);
     font-size: 1.45rem;
 }
 
@@ -93,7 +93,7 @@ body.cm-home-prof .pro-inbox-panel {
     min-width: 0;
     border: 1px solid var(--border);
     border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(32, 80, 120, .06);
+    box-shadow: 0 6px 18px rgba(53,107,120, .06);
 }
 
 body.cm-home-prof .pro-home-recent {
@@ -146,7 +146,7 @@ body.cm-home-prof .pro-home-stats .cm-stat-card {
     padding: 13px 10px;
     border: 1px solid var(--border);
     border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(32, 80, 120, .05);
+    box-shadow: 0 6px 18px rgba(53,107,120, .05);
 }
 
 body.cm-home-prof .pro-home-stats .cm-stat-icon-lg {
@@ -160,8 +160,8 @@ body.cm-home-prof .pro-home-stats .cm-stat-icon-lg {
 }
 
 body.cm-home-prof .pro-home-stats .cm-stat-card:nth-child(2) .cm-stat-icon-lg {
-    background: #e8f6f4;
-    color: #258c7f;
+    background: #EEF3F3;
+    color: #356B78;
 }
 
 body.cm-home-prof .pro-home-stats .cm-stat-card:nth-child(3) .cm-stat-icon-lg {
