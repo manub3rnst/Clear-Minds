@@ -1,0 +1,534 @@
+/* ==========================================================
+   CLEAR MINDS — ESTRUTURA COMUM DAS HOMES (Paciente e Profissional)
+   ----------------------------------------------------------
+   Arquivo único e compartilhado. Define a casca (container,
+   menu lateral, largura do conteúdo), a grade de 3 colunas da
+   seção "Início", o cartão de perfil, os painéis e a
+   responsividade. A Home do Paciente é a referência: a Home do
+   Profissional reutiliza exatamente as mesmas classes
+   (.home-heading, .home-grid, .home-left-rail,
+   .home-center-column, .home-right-rail, .home-profile-card…).
+
+   Carregado depois de style.css e tema.css, e antes do CSS
+   específico de cada Home (home-layout.css / home-profissional-
+   layout.css), que guardam apenas o que é próprio de cada tipo
+   de conta (composer e feed no Paciente; gráfico e notificações
+   no Profissional).
+   ========================================================== */
+
+body.cm-home {
+    background: #F7F5F0;
+    color: var(--text);
+}
+
+body.cm-home .cm-section-head {
+    margin-bottom: 14px;
+}
+
+body.cm-home .cm-section-head h1 {
+    font-size: clamp(1.3rem, 2.2vw, 1.55rem);
+}
+
+body.cm-home .cm-section-head p {
+    font-size: .82rem;
+}
+
+body.cm-home .cm-main.container {
+    max-width: 1280px;
+    width: 100%;
+    padding: 26px 32px 64px 88px;
+}
+
+body.cm-home .cm-dash {
+    display: block;
+    margin: 0;
+}
+
+body.cm-home .cm-dash .cm-content {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0;
+    padding: 0;
+}
+
+.cm-home .cm-section-head.home-heading {
+    margin: 0 0 18px;
+}
+
+.cm-home .home-heading h1 {
+    font-size: clamp(1.55rem, 2.6vw, 1.8rem);
+    letter-spacing: -.025em;
+}
+
+.cm-home .home-heading p {
+    max-width: 760px;
+    font-size: .9rem;
+}
+
+.cm-home .home-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 215px) minmax(0, 1fr) minmax(240px, 285px);
+    gap: 18px;
+    align-items: start;
+}
+
+.cm-home .home-left-rail,
+.cm-home .home-right-rail,
+.cm-home .home-center-column {
+    min-width: 0;
+}
+
+.cm-home .home-left-rail,
+.cm-home .home-right-rail {
+    display: flex;
+    flex-direction: column;
+}
+
+.cm-home .home-grid .cm-panel {
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 14px;
+    border-color: #E3EBEB;
+    background: var(--card-bg);
+    box-shadow: 0 5px 18px rgba(31,58,66, .055);
+}
+
+.cm-home .home-profile-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4px 0 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.cm-home .home-profile-avatar {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 12px;
+    border: 3px solid var(--secondary);
+    font-size: 1.35rem;
+}
+
+.cm-home .home-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.cm-home .home-profile-identity h2 {
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--title);
+    font-size: 1rem;
+}
+
+.cm-home .home-profile-identity p {
+    max-width: 100%;
+    margin: 4px 0 0;
+    overflow-wrap: anywhere;
+    color: var(--text);
+    font-size: .76rem;
+}
+
+.cm-home .home-profile-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin: 14px 0;
+}
+
+.cm-home .home-profile-stats .cm-stat-card {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 0;
+    padding: 8px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.cm-home .home-profile-stats .cm-stat-card .cm-stat-icon-lg {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--secondary-soft);
+    color: var(--primary);
+    font-size: .88rem;
+}
+
+.cm-home .home-profile-stats .cm-stat-card:nth-child(2) .cm-stat-icon-lg {
+    background: #EEF3F3;
+}
+
+.cm-home .home-profile-stats .cm-stat-card:nth-child(3) .cm-stat-icon-lg {
+    background: #D9E5E7;
+}
+
+.cm-home .home-profile-stats .cm-stat-card > span:last-child {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cm-home .home-profile-stats .cm-stat-card strong {
+    font-size: .95rem;
+}
+
+.cm-home .home-profile-stats .cm-stat-card small {
+    font-size: .7rem;
+}
+
+.cm-home .home-feed-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 12px;
+}
+
+.cm-home .home-feed-heading h2 {
+    margin: 0;
+    color: var(--title);
+    font-size: .94rem;
+}
+
+.cm-home .home-feed-heading p {
+    margin: 3px 0 0;
+    color: var(--text);
+    font-size: .76rem;
+}
+
+.cm-home .home-activity-panel .cm-panel-head,
+.cm-home .home-suggestions-panel .cm-panel-head {
+    margin-bottom: 10px;
+}
+
+.cm-home .home-activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cm-home .home-activity-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cm-home .home-activity-list li:last-child {
+    border-bottom: 0;
+}
+
+.cm-home .home-activity-icon {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--secondary-soft);
+    color: var(--primary);
+    font-size: .78rem;
+}
+
+.cm-home .home-activity-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 2px;
+    color: var(--text);
+    font-size: .72rem;
+    line-height: 1.4;
+}
+
+.cm-home .home-activity-copy strong {
+    color: var(--title);
+    font-size: .76rem;
+}
+
+.cm-home .home-activity-copy small {
+    color: var(--text);
+    font-size: .67rem;
+}
+
+.cm-home .home-activity-empty {
+    padding: 16px 8px;
+}
+
+.cm-home .cm-home-menu-trigger {
+    display: none;
+}
+
+
+/* ==========================================================
+   PRIMEIRA SEÇÃO — mais presença visual nas duas Homes
+   ----------------------------------------------------------
+   Altura, espaçamento interno e elementos principais (título,
+   avatar, indicadores) foram ampliados de forma proporcional.
+   A altura mínima acompanha a janela (vh) com limites, para não
+   ficar nem pequena demais nem exagerada.
+   ========================================================== */
+
+body.cm-home {
+    --home-first-min: clamp(440px, 56vh, 580px);
+}
+
+body.cm-home .cm-section-head.home-heading {
+    margin: 4px 0 24px;
+}
+
+body.cm-home .cm-section-head.home-heading h1 {
+    font-size: clamp(1.7rem, 2.8vw, 2.1rem);
+    line-height: 1.15;
+}
+
+body.cm-home .cm-section-head.home-heading p {
+    max-width: 760px;
+    margin-top: 6px;
+    font-size: .98rem;
+    line-height: 1.55;
+}
+
+.cm-home .home-grid {
+    grid-template-columns: minmax(200px, 245px) minmax(0, 1fr) minmax(250px, 305px);
+    gap: 22px;
+}
+
+.cm-home .home-grid .cm-panel {
+    margin-bottom: 16px;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+/* Cartão de perfil: ocupa a altura da primeira seção */
+.cm-home .home-left-rail > .home-profile-card {
+    display: flex;
+    min-height: var(--home-first-min);
+    flex-direction: column;
+    padding: 26px 20px 18px;
+}
+
+.cm-home .home-profile-identity {
+    padding: 8px 0 22px;
+}
+
+.cm-home .home-profile-avatar {
+    width: 96px;
+    height: 96px;
+    margin-bottom: 16px;
+    font-size: 1.7rem;
+}
+
+.cm-home .home-profile-identity h2 {
+    font-size: 1.12rem;
+}
+
+.cm-home .home-profile-identity p {
+    margin-top: 6px;
+    font-size: .82rem;
+}
+
+.cm-home .home-profile-stats {
+    flex: 1;
+    align-content: space-evenly;
+    gap: 10px;
+    margin: 12px 0 0;
+}
+
+.cm-home .home-profile-stats .cm-stat-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.cm-home .home-profile-stats .cm-stat-card .cm-stat-icon-lg {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.cm-home .home-profile-stats .cm-stat-card strong {
+    font-size: 1.1rem;
+}
+
+.cm-home .home-profile-stats .cm-stat-card small {
+    font-size: .76rem;
+}
+
+/* Primeiro painel da coluna central e da coluna lateral */
+.cm-home .home-center-column > .cm-panel:first-child {
+    display: flex;
+    min-height: var(--home-first-min);
+    flex-direction: column;
+}
+
+.cm-home .home-right-rail > .cm-panel:first-child {
+    min-height: calc(var(--home-first-min) * .45);
+}
+
+.cm-home .home-grid .cm-panel .cm-panel-title {
+    font-size: 1.08rem;
+}
+
+.cm-home .home-feed-heading h2 {
+    font-size: 1.02rem;
+}
+
+.cm-home .home-feed-heading p {
+    font-size: .8rem;
+}
+
+/* ---- tema escuro ---- */
+[data-tema="escuro"] body.cm-home {
+    background: #1F3A42;
+}
+
+[data-tema="escuro"] .cm-home .home-grid .cm-panel {
+    border-color: var(--border);
+    background: var(--card-bg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+
+[data-tema="escuro"] .cm-home .home-profile-stats .cm-stat-card .cm-stat-icon-lg,
+[data-tema="escuro"] .cm-home .home-profile-stats .cm-stat-card:nth-child(2) .cm-stat-icon-lg,
+[data-tema="escuro"] .cm-home .home-profile-stats .cm-stat-card:nth-child(3) .cm-stat-icon-lg {
+    background: var(--secondary);
+    color: var(--primary);
+}
+
+@media (min-width: 992px) {
+    body.cm-home .cm-main.container {
+            padding: 26px 32px 64px 88px;
+        }
+
+    body.cm-home .cm-side {
+            top: 0;
+            height: 100vh;
+        }
+
+    body.cm-home .cm-dash .cm-content {
+            max-width: 1160px;
+        }
+}
+
+@media (max-width: 1100px) {
+    .cm-home .home-grid {
+            grid-template-columns: minmax(160px, 195px) minmax(0, 1fr);
+        }
+
+    .cm-home .home-right-rail {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+}
+
+@media (max-width: 991px) {
+    body.cm-home .cm-main.container {
+            padding: 72px 18px 36px;
+        }
+
+    .cm-home .cm-home-menu-trigger {
+            position: fixed;
+            z-index: 1035;
+            top: 14px;
+            left: 16px;
+            display: flex;
+        }
+}
+
+@media (max-width: 680px) {
+    .cm-home .home-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0;
+        }
+
+    .cm-home .home-right-rail {
+            grid-column: auto;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0;
+        }
+
+    .cm-home .home-left-rail {
+            display: block;
+        }
+
+    .cm-home .home-left-rail .cm-panel {
+            margin-bottom: 10px;
+            padding: 13px;
+        }
+
+    .cm-home .home-profile-stats {
+            gap: 3px;
+        }
+
+    .cm-home .home-profile-stats .cm-stat-card {
+            grid-template-columns: 28px minmax(0, 1fr);
+            gap: 7px;
+        }
+
+    .cm-home .home-profile-stats .cm-stat-card .cm-stat-icon-lg {
+            width: 28px;
+            height: 28px;
+        }
+}
+
+@media (max-width: 480px) {
+    body.cm-home .cm-main.container {
+            padding: 64px 12px 24px;
+        }
+
+    .cm-home .home-left-rail {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0;
+        }
+
+    .cm-home .home-grid .cm-panel {
+            padding: 15px;
+        }
+}
+
+
+/* Em telas menores a altura mínima deixa de ser necessária */
+@media (max-width: 1100px) {
+    body.cm-home {
+        --home-first-min: 0px;
+    }
+}
+
+@media (max-width: 680px) {
+    body.cm-home .cm-section-head.home-heading {
+        margin-bottom: 18px;
+    }
+
+    .cm-home .home-left-rail > .home-profile-card {
+        padding: 20px 16px 14px;
+    }
+
+    .cm-home .home-profile-avatar {
+        width: 84px;
+        height: 84px;
+    }
+
+    .cm-home .home-grid .cm-panel {
+        margin-bottom: 12px;
+        padding: 16px;
+    }
+
+    .cm-home .home-center-column {
+        margin-bottom: 12px;
+    }
+}

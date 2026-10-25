@@ -10,6 +10,7 @@
     <!-- CSS do projeto -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tema.css">
+    <link rel="stylesheet" href="home-comum.css">
     <link rel="stylesheet" href="home-profissional-layout.css">
 
     <!-- Google Fonts -->
@@ -30,38 +31,11 @@
 
 <body class="cm-home cm-home-prof">
 
-    <!-- ==========================
-         TOPO
-    =========================== -->
-    <header class="cm-topbar">
-        <div class="container">
-            <div class="cm-topbar-row">
-
-                <div style="display:flex;align-items:center;gap:12px;min-width:0;">
-                    <button type="button" class="cm-hamburger" id="btnMenu" aria-label="Abrir menu" aria-expanded="false">
-                        <span></span><span></span><span></span>
-                    </button>
-                    <div class="cm-brand">
-                        <img src="imagem/logo-cerebro.png" alt="Clear Minds">
-                    </div>
-                </div>
-
-                <div class="cm-top-user">
-                    <span class="cm-avatar" id="avatarIniciais" aria-hidden="true">P</span>
-                    <span class="cm-top-user-info">
-                        <strong id="topoNomeUsuario">Olá, Profissional</strong>
-                        <small id="topoAreaUsuario">Profissional de saúde</small>
-                    </span>
-                    <button type="button" class="cm-logout" id="btnSair" title="Sair da conta" aria-label="Sair">
-                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
     <main class="cm-main container">
+        <button type="button" class="cm-hamburger cm-home-menu-trigger" id="btnMenu"
+            aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
 
         <div class="cm-dash">
 
@@ -120,28 +94,41 @@
                 <!-- ===== INÍCIO ===== -->
                 <section id="sec-inicio" class="cm-section active">
 
-                    <div class="cm-section-head">
+                    <div class="cm-section-head home-heading">
                         <h1 id="saudacao">Olá, profissional!</h1>
                         <p>Acompanhe sua rotina, seus pacientes e seus resultados em um só lugar.</p>
                     </div>
 
-                    <div class="pro-home-dashboard">
-                        <aside class="pro-home-rail" aria-label="Perfil profissional">
-                            <section class="cm-panel pro-home-profile">
-                                <span class="cm-avatar pro-home-avatar" id="proHomeAvatar" aria-hidden="true">P</span>
-                                <h2 id="proHomeNome">Profissional</h2>
-                                <p id="proHomeProfissao">Profissional de saúde</p>
+                    <div class="home-grid">
+                        <aside class="home-left-rail" aria-label="Meu perfil e resumo">
+                            <section class="cm-panel home-profile-card pro-home-profile">
+                                <div class="home-profile-identity">
+                                    <span class="cm-avatar home-profile-avatar" id="proHomeAvatar" aria-hidden="true">P</span>
+                                    <h2 id="proHomeNome">Profissional</h2>
+                                    <p id="proHomeProfissao">Profissional de saúde</p>
+                                </div>
+                                <div class="cm-stat-grid home-profile-stats pro-home-stats">
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
+                                        <span><strong id="statPacientes">0</strong><small>Pacientes ativos</small></span>
+                                    </div>
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
+                                        <span><strong id="statAtendimentos">0</strong><small>Atendimentos registrados</small></span>
+                                    </div>
+                                    <div class="cm-stat-card">
+                                        <span class="cm-stat-icon-lg"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>
+                                        <span><strong id="statGanho">R$ 0,00</strong><small>Ganho acumulado</small></span>
+                                    </div>
+                                </div>
                             </section>
                         </aside>
 
-                        <div class="pro-home-main">
-                            <section class="cm-panel pro-home-chart">
+                        <div class="home-center-column">
+                            <section class="cm-panel home-main-panel pro-home-chart">
                                 <div class="cm-panel-head">
                                     <div>
-                                        <h2 class="cm-panel-title">
-                                            <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
-                                            Atividades e resultados
-                                        </h2>
+                                        <h2 class="cm-panel-title">Atividades e resultados</h2>
                                         <p class="cm-panel-sub">Movimentação de atendimentos e ganho líquido.</p>
                                     </div>
                                     <div class="cm-chart-tabs" id="chartTabs" role="tablist" aria-label="Período do gráfico">
@@ -171,30 +158,28 @@
                                 </div>
                             </section>
 
-                            <div class="cm-stat-grid pro-home-stats">
-                                <div class="cm-stat-card">
-                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-user-group" aria-hidden="true"></i></span>
-                                    <strong id="statPacientes">0</strong>
-                                    <small>Pacientes ativos</small>
+                            <section class="home-feed-panel pro-home-recent">
+                                <div class="home-feed-heading">
+                                    <div>
+                                        <h2>Atividade recente</h2>
+                                        <p>Atualizações da sua rotina profissional</p>
+                                    </div>
                                 </div>
-                                <div class="cm-stat-card">
-                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i></span>
-                                    <strong id="statAtendimentos">0</strong>
-                                    <small>Atendimentos registrados</small>
-                                </div>
-                                <div class="cm-stat-card">
-                                    <span class="cm-stat-icon-lg"><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i></span>
-                                    <strong id="statGanho">R$ 0,00</strong>
-                                    <small>Ganho acumulado</small>
-                                </div>
-                            </div>
+                                <ul class="cm-list cm-activity" id="listAtividades">
+                                    <li class="cm-empty-state cm-activity-vazio" id="atividadesVazio">
+                                        <i class="fa-regular fa-bell" aria-hidden="true"></i>
+                                        <strong>Sem atividades por enquanto</strong>
+                                        <span>As atualizações da sua rotina aparecerão aqui.</span>
+                                    </li>
+                                </ul>
+                            </section>
                         </div>
 
-                        <aside class="pro-home-activity-rail">
-                            <section class="cm-panel pro-home-inbox-preview">
+                        <aside class="home-right-rail" aria-label="Notificações">
+                            <section class="cm-panel home-activity-panel pro-home-inbox-preview">
                                 <div class="cm-panel-head">
                                     <div>
-                                        <h2 class="cm-panel-title"><i class="fa-regular fa-bell" aria-hidden="true"></i>Novas notificações</h2>
+                                        <h2 class="cm-panel-title">Novas notificações</h2>
                                         <p class="cm-panel-sub">Respostas dos pacientes às suas solicitações.</p>
                                     </div>
                                     <button type="button" class="pro-inbox-count" id="notificacoesResumoBadge" data-ir="mensagens" hidden aria-label="Abrir novas notificações">0</button>
@@ -207,24 +192,8 @@
                                 </div>
                                 <button type="button" class="pro-inbox-link" data-ir="mensagens">Abrir caixa de entrada</button>
                             </section>
-
                         </aside>
                     </div>
-
-                    <section class="cm-panel pro-home-recent">
-                        <div class="cm-panel-head">
-                            <div>
-                                <h2 class="cm-panel-title"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>Atividade recente</h2>
-                            </div>
-                        </div>
-                        <ul class="cm-list cm-activity" id="listAtividades">
-                            <li class="cm-empty-state cm-activity-vazio" id="atividadesVazio">
-                                <i class="fa-regular fa-bell" aria-hidden="true"></i>
-                                <strong>Sem atividades por enquanto</strong>
-                                <span>As atualizações da sua rotina aparecerão aqui.</span>
-                            </li>
-                        </ul>
-                    </section>
 
                 </section>
 

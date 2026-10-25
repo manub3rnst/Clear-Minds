@@ -25,8 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("saudacao").textContent = `${periodo}, ${nomeProfissional}!`;
     document.getElementById("proHomeNome").textContent = nome || "Profissional";
     document.getElementById("proHomeProfissao").textContent = profissao;
-    document.getElementById("topoNomeUsuario").textContent = `Olá, ${nomeProfissional}`;
-    document.getElementById("topoAreaUsuario").textContent = profissao;
+    /* A Home segue a estrutura da Home do paciente (sem barra superior);
+       os campos do topo só são preenchidos se existirem. */
+    const topoNome = document.getElementById("topoNomeUsuario");
+    const topoArea = document.getElementById("topoAreaUsuario");
+    if (topoNome) topoNome.textContent = `Olá, ${nomeProfissional}`;
+    if (topoArea) topoArea.textContent = profissao;
     const descricaoLateral = document.querySelector(".cm-side-user-info small");
     if (descricaoLateral) descricaoLateral.textContent = profissao;
 
