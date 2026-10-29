@@ -116,11 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!mapa) return;
         mapa.classList.add("is-unavailable");
         mapa.setAttribute("aria-label", "Mapa indisponível");
-        mapa.innerHTML = `<div class="cm-location-map-fallback">
-            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-            <strong>Mapa indisponível</strong>
-            <span>${esc(mensagem)}</span>
-        </div>`;
+        mapa.innerHTML = `<iframe title="Mapa demonstrativo da região de Brasília" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-47.94%2C-15.83%2C-47.82%2C-15.75&layer=mapnik&marker=-15.793889%2C-47.882778"></iframe><div class="cm-location-map-fallback"><strong>Mapa demonstrativo</strong><span>${esc(mensagem)} Os resultados exibidos usam localização de exemplo.</span></div>`;
     };
 
     /** Carrega a API JavaScript do Google Maps uma única vez. */

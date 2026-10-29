@@ -45,6 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const getLista = (chave) => JSON.parse(localStorage.getItem(chave) || "[]");
     const salvarLista = (chave, lista) => localStorage.setItem(chave, JSON.stringify(lista));
 
+    // Registros fictícios para apresentação; nunca misturados a contas reais.
+    if (!localStorage.getItem("cm_demo_profissional_seed")) {
+        if (!pacientes.length) pacientes.push({nome:"Ana Demonstração",email:"ana.demo@clearminds.exemplo",ficticio:true,ultimaSessao:"22/10/2026"},{nome:"Caio Exemplo",email:"caio.demo@clearminds.exemplo",ficticio:true,ultimaSessao:"20/10/2026"},{nome:"Luna Fictícia",email:"luna.demo@clearminds.exemplo",ficticio:true,ultimaSessao:"17/10/2026"});
+        if (!agenda.length) agenda.push({data:new Date(Date.now()+86400000).toISOString().slice(0,10),horario:"10:00",paciente:"Ana Demonstração",pacienteEmail:"ana.demo@clearminds.exemplo",tipo:"Consulta de acompanhamento",modalidade:"Online",nota:"Conversar sobre rotina e organização. Exemplo fictício.",status:"agendado",ficticio:true},{data:new Date(Date.now()+172800000).toISOString().slice(0,10),horario:"14:30",paciente:"Caio Exemplo",pacienteEmail:"caio.demo@clearminds.exemplo",tipo:"Atendimento",modalidade:"Presencial",nota:"Retorno de acompanhamento. Exemplo fictício.",status:"agendado",ficticio:true});
+        if (!movimentacoes.length) movimentacoes.push({id:"demo-mov-1",descricao:"Atendimento · demonstração",tipo:"entrada",valor:180,data:new Date().toISOString().slice(0,10),status:"recebido",ficticio:true},{id:"demo-mov-2",descricao:"Plataforma · demonstração",tipo:"saida",valor:35,data:new Date().toISOString().slice(0,10),status:"recebido",ficticio:true});
+        if (!atividades.length) atividades.push({id:"demo-notificacao",tipo:"resposta_diario",profissionalEmail:sessao,texto:"Ana Demonstração respondeu à solicitação de acesso ao diário. · Dado fictício de demonstração",data:new Date().toISOString()});
+        salvarLista("cm_pacientes",pacientes); salvarLista("cm_agenda_profissional",agenda); salvarLista("cm_movimentacoes",movimentacoes); salvarLista("cm_atividades_profissional",atividades);
+        localStorage.setItem("cm_demo_profissional_seed","1");
+    }
+
+
     /* Modal de confirmação reutilizável (mesmo padrão da Home do estudante) */
     const abrirConfirmacao = ({ titulo = "Confirmar", mensagem = "", rotuloConfirmar = "Confirmar", perigoso = false, aoConfirmar }) => {
         let overlay = document.getElementById("cmConfirmOverlay");
@@ -592,10 +603,133 @@ const renderPacientes = (filtro) => {
         busca.addEventListener("input", () => renderPacientes(busca.value));
     }
 
+
+    const abrirPerfilAutorComunidade = post => {
+        const email = post.autorEmail || "";
+        const perfilPublico = JSON.parse(localStorage.getItem("cm_public_profiles") || "{}")[email] || {};
+        const cadastro = pacientes.find(p => p.email === email) || {};
+        const nomeAutor = post.autor || perfilPublico.nome || cadastro.nome || "Paciente";
+        let overlay = document.getElementById("cmCommunityPatientOverlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "cmCommunityPatientOverlay";
+            overlay.className = "cm-modal-overlay";
+            document.body.appendChild(overlay);
+        }
+        const avatar = post.autorFoto || perfilPublico.foto;
+        const detalhes = [
+            ["Sobre", perfilPublico.sobre],
+            ["Cidade", perfilPublico.cidade || cadastro.cidade],
+            ["Estado", perfilPublico.estado || cadastro.estado]
+        ].filter(item => item[1]);
+        overlay.innerHTML = `<div class="cm-modal cm-flow-modal cm-community-profile-modal" role="dialog" aria-modal="true" aria-labelledby="cmCommunityPatientName"><button class="cm-flow-close" type="button" aria-label="Fechar">×</button><div class="cm-community-profile-hero"><span class="cm-avatar cm-avatar-lg">${avatar ? `<img src="${esc(avatar)}" alt="">` : esc(nomeAutor.split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase())}</span><h3 id="cmCommunityPatientName">${esc(nomeAutor)}</h3>${post.autorEmail?.includes(".exemplo") ? '<span class="pro-community-demo">Perfil fictício de demonstração</span>' : ""}</div><ul class="cm-prof-profile-details">${detalhes.length ? detalhes.map(([rotulo, valor]) => `<li><b>${esc(rotulo)}:</b> ${esc(valor)}</li>`).join("") : "<li>Este paciente ainda não adicionou informações públicas ao perfil.</li>"}</ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-primary cm-btn-sm" type="button" data-community-message><i class="fa-regular fa-message" aria-hidden="true"></i> Conversar</button><button class="cm-btn cm-btn-soft cm-btn-sm" type="button" data-community-profile-close>Fechar</button></div></div>`;
+        overlay.classList.add("show");
+        const fechar = () => overlay.classList.remove("show");
+        overlay.onclick = event => { if (event.target === overlay || event.target.closest(".cm-flow-close,[data-community-profile-close]")) fechar(); };
+        overlay.querySelector("[data-community-message]").onclick = () => { fechar(); abrirConversaProf({email, nome:nomeAutor}); };
+    };
+
+    const renderComunidadeProfissional = () => {
+        const feed = document.getElementById("proCommunityFeed"), vazio = document.getElementById("proCommunityEmpty");
+        if (!feed) return;
+        const posts = JSON.parse(localStorage.getItem("cm_postagens") || "[]")
+            .filter(post => post && post.autor && post.privacidade !== "somente-eu")
+            .sort((a, b) => new Date(b.data || 0) - new Date(a.data || 0));
+        feed.replaceChildren();
+        if (vazio) vazio.hidden = posts.length > 0;
+
+        posts.forEach(post => {
+            const article = document.createElement("article");
+            article.className = "cm-post pro-community-post";
+            const header = document.createElement("div");
+            header.className = "cm-post-head";
+            const author = document.createElement("button");
+            author.type = "button";
+            author.className = "pro-community-author";
+            author.setAttribute("aria-label", `Ver perfil de ${post.autor}`);
+            const avatar = document.createElement("span");
+            avatar.className = "cm-avatar cm-avatar-sm";
+            const publicProfile = JSON.parse(localStorage.getItem("cm_public_profiles") || "{}")[post.autorEmail] || {};
+            const foto = post.autorFoto || publicProfile.foto;
+            avatar.innerHTML = foto ? `<img src="${esc(foto)}" alt="">` : esc((post.autor || "?").split(/\s+/).slice(0, 2).map(x => x[0]).join("").toUpperCase());
+            const authorInfo = document.createElement("span");
+            authorInfo.className = "cm-author";
+            authorInfo.innerHTML = `<strong>${esc(post.autor)}${post.autorEmail?.includes(".exemplo") ? ' <span class="cm-demo-label">Demonstração · fictício</span>' : ""}</strong><small>${post.data ? formatarData(post.data) : "Publicação da comunidade"}${post.humor ? ` · ${esc(post.humor)}` : ""}</small>`;
+            author.append(avatar, authorInfo);
+            author.addEventListener("click", () => abrirPerfilAutorComunidade(post));
+            header.appendChild(author);
+
+            const body = document.createElement("div");
+            body.className = "cm-post-body";
+            if (post.texto) {
+                const text = document.createElement("p");
+                text.className = "cm-post-text";
+                text.textContent = post.texto;
+                body.appendChild(text);
+            }
+            if (post.midia?.url) {
+                const media = document.createElement("div");
+                media.className = "cm-post-midia";
+                if (post.midia.tipo === "imagem") {
+                    const image = document.createElement("img"); image.src = post.midia.url; image.alt = "Imagem da publicação"; media.appendChild(image);
+                } else if (post.midia.tipo === "video") {
+                    const video = document.createElement("video"); video.src = post.midia.url; video.controls = true; video.preload = "metadata"; media.appendChild(video);
+                } else {
+                    const file = document.createElement("span"); file.className = "cm-file-chip"; file.textContent = post.midia.nome || "Arquivo anexado"; media.appendChild(file);
+                }
+                body.appendChild(media);
+            }
+            if (post.enquete?.opcoes?.length) {
+                const poll = document.createElement("div"); poll.className = "cm-poll cm-community-poll";
+                const question = document.createElement("strong"); question.className = "cm-poll-question"; question.textContent = post.enquete.pergunta || "Enquete"; poll.appendChild(question);
+                const votes = Object.values(post.enquete.votos || {}), total = votes.length;
+                post.enquete.opcoes.forEach(option => {
+                    const count = votes.filter(vote => vote === option.id).length;
+                    const row = document.createElement("div"); row.className = "cm-community-poll-row";
+                    const label = document.createElement("span"); label.textContent = option.texto;
+                    const countLabel = document.createElement("small"); countLabel.textContent = `${total ? Math.round(count / total * 100) : 0}% · ${count}`;
+                    row.append(label, countLabel); poll.appendChild(row);
+                });
+                body.appendChild(poll);
+            }
+            article.append(header, body);
+
+            const footer = document.createElement("div"); footer.className = "cm-post-actions pro-community-actions";
+            const stats = document.createElement("span"); stats.className = "pro-community-stats";
+            stats.innerHTML = `<span><i class="fa-regular fa-heart" aria-hidden="true"></i> ${Number(post.curtidasCount) || 0}</span><span><i class="fa-regular fa-comment" aria-hidden="true"></i> ${(post.comentarios || []).length}</span>`;
+            const viewProfile = document.createElement("button"); viewProfile.type = "button"; viewProfile.className = "cm-post-btn"; viewProfile.innerHTML = '<i class="fa-regular fa-user" aria-hidden="true"></i> Ver perfil';
+            viewProfile.addEventListener("click", () => abrirPerfilAutorComunidade(post));
+            const message = document.createElement("button"); message.type = "button"; message.className = "cm-post-btn"; message.innerHTML = '<i class="fa-regular fa-message" aria-hidden="true"></i> Conversar';
+            message.addEventListener("click", () => abrirConversaProf({email:post.autorEmail || "", nome:post.autor || "Paciente"}));
+            footer.append(stats, viewProfile, message); article.appendChild(footer);
+
+            const comments = post.comentarios || [];
+            if (comments.length) {
+                const commentList = document.createElement("div"); commentList.className = "pro-community-comments";
+                comments.forEach(comment => {
+                    const item = document.createElement("p");
+                    const commentAuthor = document.createElement("strong"); commentAuthor.textContent = `${comment.autor || "Pessoa da comunidade"}: `;
+                    item.append(commentAuthor, document.createTextNode(comment.texto || "")); commentList.appendChild(item);
+                });
+                article.appendChild(commentList);
+            }
+            feed.appendChild(article);
+        });
+    };
+    renderComunidadeProfissional(); window.addEventListener("storage",e=>{if(e.key==="cm_postagens")renderComunidadeProfissional();});
+
     /* ==========================================
        AGENDA
     ========================================== */
-const renderAgenda = () => {
+    let contatoChatProfAtivo=null;
+    const contatosProfissionais=()=>{const ms=getLista("cm_mensagens").filter(m=>m.fromEmail===sessao||m.toEmail===sessao),map=new Map();ms.forEach(m=>{const from=m.fromEmail===sessao,email=from?m.toEmail:m.fromEmail,name=from?m.toNome:m.fromNome;if(email)map.set(email,{email,nome:name||"Contato",data:m.data,texto:m.texto,ficticio:m.ficticio});});return [...map.values()].sort((a,b)=>new Date(b.data||0)-new Date(a.data||0));};
+    const renderHistoricoProf=()=>{const h=document.getElementById("professionalChatHistory");if(!h)return;h.replaceChildren();if(!contatoChatProfAtivo){h.innerHTML='<p class="cm-chat-placeholder">Escolha uma conversa para ver as mensagens.</p>';return;}const ms=getLista("cm_mensagens").filter(m=>(m.fromEmail===sessao&&m.toEmail===contatoChatProfAtivo.email)||(m.fromEmail===contatoChatProfAtivo.email&&m.toEmail===sessao)).sort((a,b)=>new Date(a.data)-new Date(b.data));if(!ms.length){h.innerHTML='<p class="cm-chat-placeholder">Esta conversa ainda não tem mensagens.</p>';return;}ms.forEach(m=>{const b=document.createElement("article");b.className="cm-chat-bubble "+(m.fromEmail===sessao?"is-outgoing":"is-incoming");b.innerHTML=`<p>${esc(m.texto)}</p><small>${m.ficticio?'<span class="cm-chat-demo">Demonstração</span> ':""}${new Date(m.data).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}</small>`;h.appendChild(b);});h.scrollTop=h.scrollHeight;};
+    const selecionarConversaProf=(c,draft)=>{contatoChatProfAtivo=c;const n=document.getElementById("professionalChatName"),st=document.getElementById("professionalChatStatus"),av=document.getElementById("professionalChatAvatar"),input=document.getElementById("professionalChatDraft");if(n)n.textContent=c.nome||"Contato";if(st)st.textContent=c.ficticio?"Demonstração fictícia":"Conversa privada";if(av)av.textContent=(c.nome||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();if(input){if(draft!==undefined)input.value=draft;document.getElementById("professionalChatSend").disabled=!input.value.trim();}const patient=pacientes.find(x=>x.email===c.email||x.nome===c.nome);const dn=document.getElementById("professionalChatDetailName"),dr=document.getElementById("professionalChatDetailRole"),dl=document.getElementById("professionalChatDetailLocation"),da=document.getElementById("professionalChatDetailAvatar");if(dn)dn.textContent=c.nome||"Contato";if(dr)dr.textContent=patient?(patient.ficticio?"Paciente · demonstração":"Paciente"):"Profissional";if(dl)dl.textContent=patient?[patient.cidade,patient.estado].filter(Boolean).join(", ")||patient.email:c.email||"Contato";if(da)da.textContent=(c.nome||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();const thread=getLista("cm_mensagens").filter(m=>(m.fromEmail===sessao&&m.toEmail===c.email)||(m.fromEmail===c.email&&m.toEmail===sessao));const imgs=thread.filter(m=>m.midia?.tipo==="imagem").length,docs=thread.filter(m=>m.midia&&m.midia.tipo!=="imagem").length;["professionalChatImageCount","professionalChatPhotoCount"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=String(imgs);});const dc=document.getElementById("professionalChatDocCount");if(dc)dc.textContent=String(docs);document.querySelectorAll("#professionalMessageList .cm-chat-contact").forEach(b=>b.classList.toggle("active",b.dataset.email===c.email));renderHistoricoProf();};
+    const renderMensagensProf=()=>{const ul=document.getElementById("professionalMessageList"),empty=document.getElementById("professionalMessagesEmpty");if(!ul)return;const q=(document.getElementById("professionalChatSearch")?.value||"").trim().toLowerCase();const contacts=contatosProfissionais().filter(c=>!q||(c.nome||"").toLowerCase().includes(q)||(c.email||"").toLowerCase().includes(q));ul.replaceChildren();if(empty)empty.hidden=contacts.length>0;contacts.forEach(c=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.className="cm-chat-contact"+(contatoChatProfAtivo?.email===c.email?" active":"");b.dataset.email=c.email;b.innerHTML=`<span class="cm-avatar cm-avatar-sm">${esc((c.nome||"C").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase())}</span><span class="cm-chat-contact-copy"><strong>${esc(c.nome)}${c.ficticio?'<small class="cm-chat-demo">Demonstração</small>':""}</strong><small>${esc(c.texto||c.email)}</small></span>`;b.onclick=()=>selecionarConversaProf(c,"");li.appendChild(b);ul.appendChild(li);});if(!contatoChatProfAtivo||!contacts.some(c=>c.email===contatoChatProfAtivo.email))contatoChatProfAtivo=contacts[0]||null;if(contatoChatProfAtivo)selecionarConversaProf(contatoChatProfAtivo);else renderHistoricoProf();};
+    const abrirConversaProf=(contato,draft="")=>{alternarSecao("mensagens");const c=contatosProfissionais().find(x=>x.email===contato.email)||contato;selecionarConversaProf(c,draft);document.getElementById("professionalChatDraft")?.focus();};
+    if(!localStorage.getItem(`cm_demo_prof_messages_${sessao}`)){const ms=getLista("cm_mensagens");ms.push({id:`demo-prof-${sessao}-1`,fromEmail:"ana.demo@clearminds.exemplo",toEmail:sessao,fromNome:"Ana Demonstração",toNome:nome||"Profissional",texto:"Olá! Gostaria de confirmar o horário do próximo atendimento. Mensagem fictícia.",data:new Date(Date.now()-3600000).toISOString(),ficticio:true},{id:`demo-prof-${sessao}-2`,fromEmail:"bia@clearminds.exemplo",toEmail:sessao,fromNome:"Dra. Bia Exemplo",toNome:nome||"Profissional",texto:"Compartilhei uma referência para a reunião. Mensagem fictícia.",data:new Date(Date.now()-7200000).toISOString(),ficticio:true});salvarLista("cm_mensagens",ms);localStorage.setItem(`cm_demo_prof_messages_${sessao}`,"1");}
+    document.querySelector("#sec-mensagens > .cm-section-head")?.remove();const inboxPanel=document.querySelector("#sec-mensagens .pro-inbox-panel");if(inboxPanel)document.querySelector("#sec-mensagens .cm-chat-contacts")?.appendChild(inboxPanel);const chatTitle=document.querySelector("#sec-mensagens .home-messages-panel .cm-panel-title");if(chatTitle)chatTitle.textContent="Chat";document.getElementById("professionalChatUserName").textContent=nome||"Profissional";document.getElementById("professionalChatUserRole").textContent=profissao;document.getElementById("professionalChatUserAvatar").textContent=(nome||"P").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();renderMensagensProf();document.getElementById("professionalChatSearch")?.addEventListener("input",renderMensagensProf);document.getElementById("professionalChatDraft")?.addEventListener("input",e=>{document.getElementById("professionalChatSend").disabled=!e.target.value.trim();});document.getElementById("professionalChatForm")?.addEventListener("submit",e=>{e.preventDefault();const input=document.getElementById("professionalChatDraft"),texto=input.value.trim();if(!contatoChatProfAtivo||!texto)return;const ms=getLista("cm_mensagens");ms.push({id:`msg-${Date.now()}`,fromEmail:sessao,toEmail:contatoChatProfAtivo.email,fromNome:nome||"Profissional",toNome:contatoChatProfAtivo.nome,texto,data:new Date().toISOString()});salvarLista("cm_mensagens",ms);input.value="";document.getElementById("professionalChatSend").disabled=true;renderMensagensProf();});window.addEventListener("storage",e=>{if(e.key==="cm_mensagens")renderMensagensProf();});    const mostrarDetalheAgenda=a=>{let o=document.getElementById("cmFlowOverlay");if(!o){o=document.createElement("div");o.id="cmFlowOverlay";o.className="cm-modal-overlay";document.body.appendChild(o);}o.innerHTML=`<div class="cm-modal cm-flow-modal" role="dialog" aria-modal="true"><button class="cm-flow-close" type="button" aria-label="Fechar">×</button><h3>Detalhes do atendimento</h3><ul class="cm-prof-profile-details"><li><b>Paciente:</b> ${esc(a.paciente||"Paciente")}</li><li><b>Dia:</b> ${esc(a.data||"Não informado")}</li><li><b>Horário:</b> ${esc(a.horario||"Não informado")}</li><li><b>Nota do profissional:</b> ${esc(a.nota||a.observacao||"Nenhuma nota registrada")}</li><li><b>Modalidade:</b> ${esc(a.modalidade||"Não informada")}</li><li><b>Status:</b> ${esc(a.status||"Agendado")}</li></ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-danger cm-btn-sm" type="button" data-cancel>Cancelar atendimento</button><button class="cm-btn cm-btn-primary cm-btn-sm" type="button" data-rebook>Reagendar atendimento</button></div></div>`;o.classList.add("show");o.onclick=e=>{if(e.target===o||e.target.closest(".cm-flow-close"))o.classList.remove("show");};o.querySelector("[data-cancel]").onclick=()=>{if(confirm("Deseja cancelar este atendimento?")){a.status="cancelado";salvarLista("cm_agenda_profissional",agenda);renderAgenda();atualizarFinanceiro();atualizarResumo();o.classList.remove("show");}};o.querySelector("[data-rebook]").onclick=()=>{o.classList.remove("show");const pac=pacientes.find(p=>p.nome===a.paciente);abrirConversaProf({email:a.pacienteEmail||pac?.email||"",nome:a.paciente||"Paciente"},"Gostaria de reagendar a data do atendimento!");};};
+    const renderAgenda = () => {
         const lista = document.getElementById("listaAgenda");
         const vazio = document.getElementById("agendaVazio");
         if (!lista) return;
@@ -637,7 +771,11 @@ const renderAgenda = () => {
                 const badge = status === "cancelado" ? "Cancelado" : status === "agendado" ? "Agendado" : "Realizado";
                 const linhaData = a.data ? new Date(a.data + "T" + (a.horario || "00:00")).toLocaleDateString("pt-BR") : "";
                 const item = document.createElement("div");
-                item.className = "cm-agenda-item";
+                item.className = "cm-agenda-item cm-agenda-item-clickable";
+                item.tabIndex = 0;
+                item.setAttribute("role", "button");
+                item.addEventListener("click", () => mostrarDetalheAgenda(a));
+                item.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); mostrarDetalheAgenda(a); } });
                 item.innerHTML = `
                     <span class="cm-time-box">${a.horario || "--:--"}</span>
                     <div class="cm-info">
@@ -1407,13 +1545,17 @@ document.getElementById("addAtendimentoForm")?.addEventListener("submit", (e) =>
         e.preventDefault();
         const paciente = document.getElementById("addAtendPaciente").value.trim();
         const tipo = document.getElementById("addAtendTipo").value.trim() || "";
+        const nota = document.getElementById("addAtendNota")?.value.trim() || "";
+        const pacienteEncontrado = pacientes.find(p => (p.nome || "").trim().toLowerCase() === paciente.toLowerCase());
         const data = document.getElementById("addAtendData").value;
         const horario = document.getElementById("addAtendHora").value;
         const status = document.getElementById("addAtendStatus").value || "realizado";
         if (!paciente || !data || !horario) return;
         agenda.push({
             paciente,
+            pacienteEmail: pacienteEncontrado?.email || "",
             tipo,
+            nota,
             data,
             horario,
             status,

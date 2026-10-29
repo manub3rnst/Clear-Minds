@@ -274,3 +274,37 @@ body.cm-home-prof .pro-home-recent #listAtividades .cm-activity-vazio[hidden] {
         grid-column: 1 / -1;
     }
 }
+
+/* Comunidade profissional: mesmo cartão do feed do paciente, em modo de leitura. */
+body.cm-home-prof .pro-community-feed { display:grid; gap:14px; max-width:1050px; }
+body.cm-home-prof .pro-community-post.cm-post { min-width:0; padding:15px; border:1px solid #E3EBEB; border-radius:15px; background:var(--card-bg); box-shadow:0 5px 18px rgba(31,58,66,.045); }
+body.cm-home-prof .pro-community-post .cm-post-head { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+body.cm-home-prof .pro-community-author { display:flex; min-width:0; flex:1 1 auto; align-items:center; gap:10px; padding:0; border:0; background:transparent; color:inherit; text-align:left; cursor:pointer; }
+body.cm-home-prof .pro-community-author:hover .cm-author strong { color:var(--primary); text-decoration:underline; }
+body.cm-home-prof .pro-community-author .cm-avatar { flex:0 0 38px; width:38px; height:38px; overflow:hidden; }
+body.cm-home-prof .pro-community-author .cm-avatar img { width:100%; height:100%; border-radius:inherit; object-fit:cover; }
+body.cm-home-prof .pro-community-author .cm-author { display:grid; min-width:0; gap:3px; }
+body.cm-home-prof .pro-community-author .cm-author strong { color:var(--title); overflow-wrap:anywhere; }
+body.cm-home-prof .pro-community-author .cm-author small { color:var(--text); font-size:.75rem; }
+body.cm-home-prof .pro-community-post .cm-post-body { min-width:0; overflow-wrap:anywhere; }
+body.cm-home-prof .pro-community-post .cm-post-text { margin:0 0 12px; line-height:1.65; white-space:pre-wrap; }
+body.cm-home-prof .pro-community-post .cm-post-midia { max-width:100%; overflow:hidden; border-radius:13px; }
+body.cm-home-prof .pro-community-post .cm-post-midia img,
+body.cm-home-prof .pro-community-post .cm-post-midia video { display:block; width:100%; max-width:100%; max-height:440px; object-fit:contain; }
+body.cm-home-prof .pro-community-actions { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:12px; padding-top:9px; border-top:1px solid var(--border); }
+body.cm-home-prof .pro-community-actions .cm-post-btn { display:inline-flex; min-height:34px; align-items:center; gap:6px; padding:6px 9px; border:0; border-radius:8px; background:transparent; color:var(--text); font:inherit; font-size:.78rem; cursor:pointer; }
+body.cm-home-prof .pro-community-actions .cm-post-btn:hover { background:var(--secondary-soft); color:var(--primary-dark); }
+body.cm-home-prof .pro-community-stats { display:flex; flex:1 1 auto; gap:14px; color:var(--text); font-size:.76rem; }
+body.cm-home-prof .pro-community-stats span { display:inline-flex; align-items:center; gap:5px; }
+body.cm-home-prof .pro-community-comments { display:grid; gap:7px; margin-top:10px; padding:10px 12px; border-radius:10px; background:var(--surface-soft, #F7F9F8); }
+body.cm-home-prof .pro-community-comments p { margin:0; line-height:1.5; font-size:.82rem; white-space:pre-wrap; overflow-wrap:anywhere; }
+body.cm-home-prof .cm-community-poll { display:grid; gap:7px; padding:12px; border:1px solid var(--border); border-radius:12px; }
+body.cm-home-prof .cm-community-poll-row { display:flex; justify-content:space-between; gap:12px; padding:8px 10px; border-radius:8px; background:var(--secondary-soft); color:var(--title); font-size:.8rem; }
+body.cm-home-prof .cm-community-poll-row small { color:var(--text); white-space:nowrap; }
+body.cm-home-prof .pro-community-demo { display:inline-block; padding:3px 8px; border-radius:20px; background:var(--secondary-soft); color:var(--primary-dark); font-size:.68rem; }
+body.cm-home-prof .cm-community-profile-modal { text-align:left; }
+body.cm-home-prof .cm-community-profile-hero { display:grid; justify-items:center; gap:8px; text-align:center; }
+body.cm-home-prof .cm-community-profile-hero .cm-avatar { width:78px; height:78px; overflow:hidden; }
+body.cm-home-prof .cm-community-profile-hero .cm-avatar img { width:100%; height:100%; border-radius:inherit; object-fit:cover; }
+body.cm-home-prof .cm-community-profile-hero h3 { margin:2px 25px 0; color:var(--title); overflow-wrap:anywhere; }
+body.cm-home-prof .cm-community-profile-modal .cm-prof-profile-details { margin:16px 0; }

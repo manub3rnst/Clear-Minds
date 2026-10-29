@@ -12099,3 +12099,7 @@ body:not(.cm-home) .left .logo img {
     }
 }
 
+
+/* Alinha os campos de ansiedade e atividade mesmo quando o rótulo quebra linha. */
+#ansiedadeAtividadePair .input-group label { min-height: 2.8em; display:flex; align-items:flex-end; }
+#estresseValor { display:inline-grid; min-width:1.8em; place-items:center; margin-left:5px; padding:1px 7px; border-radius:999px; background:#EAF1F0; color:#264653; font-weight:700; }

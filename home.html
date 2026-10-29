@@ -145,14 +145,6 @@
                                     <i class="fa-solid fa-square-poll-vertical" aria-hidden="true"></i>Enquete
                                 </button>
                             </div>
-                            <label class="home-post-privacy" for="postVisibility1">
-                                <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
-                                Privacidade
-                                <select id="postVisibility1">
-                                    <option value="comunidade">Comunidade</option>
-                                    <option value="somente-eu">Somente eu</option>
-                                </select>
-                            </label>
                             <div class="cm-media-preview" id="midiaPreview1"></div>
                             <div class="home-poll-editor" id="pollEditor1" hidden>
                                 <label for="pollQuestion1">Pergunta da enquete</label>
@@ -359,14 +351,6 @@
                                 </button>
                                 <span class="cm-media-hint">Deixe sua publicação ainda mais acolhedora</span>
                             </div>
-                            <label class="home-post-privacy" for="postVisibility2">
-                                <i class="fa-solid fa-lock-open" aria-hidden="true"></i>
-                                Privacidade
-                                <select id="postVisibility2">
-                                    <option value="comunidade">Comunidade</option>
-                                    <option value="somente-eu">Somente eu</option>
-                                </select>
-                            </label>
                             <div class="cm-media-preview" id="midiaPreview2"></div>
                             <div class="cm-composer-actions">
                                 <div class="cm-mood-mini" id="composerMoods2">
@@ -598,7 +582,13 @@
                         </div>
                     </div>
 
-                </section>
+                <section class="cm-panel home-messages-panel">
+<div class="cm-panel-head"><div><h2 class="cm-panel-title">Conversas</h2><p class="cm-panel-sub">Mensagens com seu profissional e a comunidade.</p></div><button type="button" class="cm-btn cm-btn-primary cm-btn-sm" id="btnNovaMensagem">Nova conversa</button></div>
+<div class="cm-chat-layout"><aside class="cm-chat-contacts" aria-label="Lista de conversas"><div class="cm-chat-current-user"><span class="cm-avatar" id="patientChatUserAvatar">CM</span><div><strong id="patientChatUserName">Minha conta</strong><small>Disponível</small></div></div><label class="cm-chat-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="patientChatSearch" type="search" placeholder="Buscar conversa" aria-label="Buscar conversa"></label><div class="cm-chat-list-heading"><strong>Conversas</strong><button type="button" id="patientNewChatMini" aria-label="Nova conversa"><i class="fa-solid fa-plus"></i></button></div><ul class="home-message-list" id="patientMessageList"></ul><div class="cm-empty-state" id="patientMessagesEmpty" hidden>Nenhuma conversa por enquanto</div></aside>
+<div class="cm-chat-room"><header class="cm-chat-room-head"><span class="cm-avatar cm-avatar-sm" id="patientChatAvatar">CM</span><div><strong id="patientChatName">Selecione uma conversa</strong><small id="patientChatStatus">Suas mensagens ficam nesta conversa</small></div><nav class="cm-chat-tabs" aria-label="Conteúdo da conversa"><span class="active">Mensagens</span><span>Participantes</span></nav><button type="button" class="cm-btn cm-btn-soft cm-btn-sm" id="patientChatProfile" hidden>Ver perfil</button></header><div class="cm-chat-history" id="patientChatHistory" aria-live="polite"><p class="cm-chat-placeholder">Escolha uma conversa para ver as mensagens.</p></div><form class="cm-chat-compose" id="patientChatForm"><textarea id="patientChatDraft" maxlength="1000" rows="2" placeholder="Digite uma mensagem…" aria-label="Digite uma mensagem"></textarea><button type="submit" class="cm-btn cm-btn-primary" id="patientChatSend" disabled><i class="fa-solid fa-paper-plane" aria-hidden="true"></i><span>Enviar</span></button></form></div><aside class="cm-chat-details"><section class="cm-chat-person-card"><span class="cm-avatar cm-avatar-lg" id="patientChatDetailAvatar">CM</span><h3 id="patientChatDetailName">Profissional</h3><p id="patientChatDetailRole">Profissional de saúde</p><small id="patientChatDetailLocation">Informações de perfil</small></section><section class="cm-chat-files"><h3>Arquivos compartilhados</h3><div class="cm-chat-file-stats"><div><i class="fa-regular fa-image"></i><strong id="patientChatImageCount">0</strong><small>Imagens</small></div><div><i class="fa-regular fa-file-lines"></i><strong id="patientChatDocCount">0</strong><small>Documentos</small></div></div><h4>Arquivos</h4><ul><li><i class="fa-regular fa-image"></i> Fotos <span id="patientChatPhotoCount">0</span></li><li><i class="fa-solid fa-link"></i> Links <span>0</span></li><li><i class="fa-regular fa-file"></i> Outros <span>0</span></li></ul></section></aside></div>
+</section>
+
+</section>
 
                 <!-- ===== AGENDA ===== -->
                 <section id="sec-agenda" class="cm-section">
@@ -1066,6 +1056,7 @@
     </div>
 
 <script src="home.js"></script>
+    <script src="chat-composer.js"></script>
     <script src="localizacao.js"></script>
 
 </body>

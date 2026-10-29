@@ -48,3 +48,10 @@ if (wellBeingForm) {
     });
 
 }
+
+const controleEstresse = document.getElementById("estresse");
+const valorEstresse = document.getElementById("estresseValor");
+if (controleEstresse && valorEstresse) {
+    valorEstresse.value = controleEstresse.value;
+    controleEstresse.addEventListener("input", () => { valorEstresse.value = controleEstresse.value; valorEstresse.textContent = controleEstresse.value; });
+}
