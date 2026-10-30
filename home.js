@@ -68,22 +68,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Conteúdo fictício, criado para demonstração em contas sem dados próprios.
     const demonstracaoEmail = "demo.paciente@clearminds.exemplo";
-    if (!postagens.some(p => p.autorEmail === demonstracaoEmail)) {
-        postagens.push(
-            {id:"demo-post-1",autor:"Lia Demonstração",autorEmail:demonstracaoEmail,texto:"Tenho tentado fazer pequenas pausas entre os estudos. Hoje consegui respirar um pouco e voltar com mais calma. #Demonstração",humor:"Bem",data:new Date(Date.now()-3600000).toISOString(),curtidasCount:3,comentarios:[{autor:"Rafa Exemplo",autorEmail:"rafa@clearminds.exemplo",texto:"Que bom que encontrou um ritmo que funciona para você! #Demonstração",data:new Date(Date.now()-1800000).toISOString()}]},
-            {id:"demo-post-2",autor:"Rafa Exemplo",autorEmail:"rafa@clearminds.exemplo",texto:"Uma coisa de cada vez também é progresso. Lembrete fictício para demonstração.",humor:"Neutro",data:new Date(Date.now()-86400000).toISOString(),curtidasCount:2,comentarios:[]}
-        ); salvarLista("cm_postagens",postagens);
-    }
+    const postsDemonstracao = [
+        {id:"demo-post-1",autor:"Lia Demonstração",autorEmail:demonstracaoEmail,texto:"Tenho tentado fazer pequenas pausas entre os estudos. Hoje consegui respirar um pouco e voltar com mais calma. #Demonstração",humor:"Bem",data:new Date(Date.now()-3600000).toISOString(),curtidasCount:3,comentarios:[{autor:"Rafa Exemplo",autorEmail:"rafa@clearminds.exemplo",texto:"Que bom que encontrou um ritmo que funciona para você! #Demonstração",data:new Date(Date.now()-1800000).toISOString()}],ficticio:true},
+        {id:"demo-post-2",autor:"Rafa Exemplo",autorEmail:"rafa@clearminds.exemplo",texto:"Uma coisa de cada vez também é progresso. Lembrete fictício para demonstração.",humor:"Neutro",data:new Date(Date.now()-86400000).toISOString(),curtidasCount:2,comentarios:[],ficticio:true}
+    ];
+    const idsPostsDemonstracao = new Set(postsDemonstracao.map(p => p.id));
+    const idsPostsJaVistos = new Set();
+    let postsAtualizados = false;
+    const quantidadePostsAntes = postagens.length;
+    postagens = postagens.filter(p => {
+        const id = String(p.id);
+        if (!idsPostsDemonstracao.has(id)) return true;
+        if (idsPostsJaVistos.has(id)) return false;
+        idsPostsJaVistos.add(id);
+        return true;
+    });
+    if (postagens.length !== quantidadePostsAntes) postsAtualizados = true;
+    postsDemonstracao.forEach(exemplo => {
+        if (!postagens.some(p => String(p.id) === exemplo.id)) {
+            postagens.push(exemplo);
+            postsAtualizados = true;
+        }
+    });
+    if (postsAtualizados) salvarLista("cm_postagens", postagens);
     if (!postagens.some(p => p.autorEmail === emailUsuario && p.id === `demo-own-${emailUsuario}`)) {
         postagens.push({id:`demo-own-${emailUsuario}`,autor:nomeUsuario,autorEmail:emailUsuario,texto:"Pequenos passos também contam. Publicação fictícia para demonstrar as interações da comunidade.",humor:"Bem",data:new Date(Date.now()-7200000).toISOString(),curtidasCount:1,comentarios:[{autor:"Lia Demonstração",autorEmail:demonstracaoEmail,texto:"Obrigada por compartilhar. Um lembrete acolhedor para hoje!",data:new Date(Date.now()-3600000).toISOString()}]}); salvarLista("cm_postagens",postagens);
     }
-    if (!diario.some(r => r.autorEmail === emailUsuario) && !localStorage.getItem(`cm_demo_paciente_seed_${emailUsuario}`)) {
-        diario.push({id:`demo-diario-1-${emailUsuario}`,autorEmail:emailUsuario,titulo:"Um dia mais leve",humor:"Bem",texto:"Hoje organizei minhas tarefas em etapas pequenas e fiz uma pausa para descansar. Registro fictício para demonstração.",data:new Date(Date.now()-86400000).toISOString()});
-        diario.push({id:`demo-diario-2-${emailUsuario}`,autorEmail:emailUsuario,titulo:"Uma reflexão",humor:"Neutro",texto:"Quero continuar praticando gentileza comigo nos dias corridos. Entrada fictícia de demonstração.",data:new Date(Date.now()-172800000).toISOString()});
-        salvarLista("cm_diario",diario); localStorage.setItem(`cm_demo_paciente_seed_${emailUsuario}`,"1");
+    const registrosDemonstracao = [
+        {id:`demo-diario-1-${emailUsuario}`,autorEmail:emailUsuario,titulo:"Um dia mais leve",humor:"Bem",texto:"Hoje organizei minhas tarefas em etapas pequenas e fiz uma pausa para descansar. Registro fictício para demonstração.",data:new Date(Date.now()-86400000).toISOString(),ficticio:true},
+        {id:`demo-diario-2-${emailUsuario}`,autorEmail:emailUsuario,titulo:"Uma reflexão",humor:"Neutro",texto:"Quero continuar praticando gentileza comigo nos dias corridos. Entrada fictícia de demonstração.",data:new Date(Date.now()-172800000).toISOString(),ficticio:true}
+    ];
+    let diarioAtualizado = false;
+    registrosDemonstracao.forEach(exemplo => {
+        if (!diario.some(r => String(r.id) === exemplo.id)) {
+            diario.push(exemplo);
+            diarioAtualizado = true;
+        }
+    });
+    if (diarioAtualizado) salvarLista("cm_diario", diario);
+    const profissionalDemo = {
+        nome: "Dra. Marina Exemplo",
+        email: "marina@clearminds.exemplo",
+        profissao: "Psicóloga",
+        area: "Psicologia",
+        cidade: "São Paulo",
+        estado: "SP",
+        telefone: "(11) 90000-0000",
+        especialidades: "Ansiedade, autoestima, regulação emocional e adolescência",
+        abordagem: "Terapia cognitivo-comportamental (TCC), com práticas de atenção plena",
+        modalidade: "Online e presencial",
+        faixaEtaria: "Adolescentes e adultos",
+        idiomas: "Português",
+        bio: "Olá! Sou Marina, psicóloga fictícia criada para demonstrar o Clear Minds. Trabalho com escuta acolhedora e colaborativa, respeitando o ritmo e a história de cada pessoa. No processo, podemos identificar recursos, compreender emoções e construir estratégias possíveis para o cotidiano.",
+        registroProfissional: "CRP 00/00000 (dado fictício)",
+        faculdade: "Instituto Universitário Horizonte (instituição fictícia)",
+        anoFormacao: "2018",
+        posGraduacao: "Formação demonstrativa em saúde emocional de adolescentes (fictícia)",
+        atuaDesde: "2019",
+        valorSessao: "150",
+        disponibilidade: "Segunda a quinta, das 9h às 18h (horários demonstrativos)",
+        ficticio: true
+    };
+    const indiceProfissionalDemo = vinculados.findIndex(p => p.email === profissionalDemo.email);
+    if (indiceProfissionalDemo < 0) {
+        vinculados.push(profissionalDemo);
+        salvarLista("cm_profissionais_usuario", vinculados);
+    } else if (vinculados[indiceProfissionalDemo].ficticio) {
+        vinculados[indiceProfissionalDemo] = { ...profissionalDemo, ...vinculados[indiceProfissionalDemo] };
+        salvarLista("cm_profissionais_usuario", vinculados);
     }
-    if (!vinculados.length) { vinculados.push({nome:"Dra. Marina Exemplo",email:"marina@clearminds.exemplo",profissao:"Psicóloga",area:"Psicologia",cidade:"São Paulo",estado:"SP",telefone:"(11) 4000-0000",especialidades:"Ansiedade, autoestima e adolescência",abordagem:"Terapia cognitivo-comportamental",modalidade:"Online e presencial",bio:"Atendimento acolhedor e colaborativo. Perfil fictício para demonstração.",registroProfissional:"CRP 00/00000",ficticio:true}); salvarLista("cm_profissionais_usuario",vinculados); }
-    if (!consultas.length) { consultas.push({profissional:"Dra. Marina Exemplo",profissionalEmail:"marina@clearminds.exemplo",data:new Date(Date.now()+86400000).toLocaleDateString("pt-BR"),horario:"14:00",tipo:"Atendimento",modalidade:"Online",nota:"Levar dúvidas para a próxima conversa. Nota fictícia de demonstração.",status:"Agendado",ficticio:true}); salvarLista("cm_consultas",consultas); }
+    if (!consultas.some(c => c.id === "demo-consulta-marina")) {
+        consultas.push({id:"demo-consulta-marina",profissional:"Dra. Marina Exemplo",profissionalEmail:"marina@clearminds.exemplo",data:new Date(Date.now()+86400000).toLocaleDateString("pt-BR"),horario:"14:00",tipo:"Atendimento",modalidade:"Online",nota:"Levar dúvidas para a próxima conversa. Nota fictícia de demonstração.",status:"Agendado",ficticio:true});
+        salvarLista("cm_consultas", consultas);
+    }
 
 
     const set = (id, valor) => { const el = document.getElementById(id); if (el) el.textContent = valor; };
@@ -158,21 +215,58 @@ document.addEventListener("DOMContentLoaded", () => {
        CONTEÚDOS EDUCATIVOS (demonstrativos)
     ========================================== */
     const obterProfissionalVinculado = () => {
-        const p = JSON.parse(localStorage.getItem("cm_profile_profissional") || "{}");
         const v = vinculados[0] || {};
-        return { ...v, ...p, nome:p.nome||v.nome||"Profissional", email:p.email||v.email||"marina@clearminds.exemplo", profissao:p.profissao||v.profissao||v.area||"Psicóloga", ficticio:!p.email&&!!v.ficticio };
+        const salvo = JSON.parse(localStorage.getItem("cm_profile_profissional") || "{}");
+        // O navegador pode ter um login profissional salvo de outra conta. Só
+        // usamos esse perfil se o e-mail for exatamente o do contato vinculado.
+        const p = salvo.email && salvo.email === v.email ? salvo : {};
+        return { ...v, ...p, nome:p.nome||v.nome||"Profissional", email:p.email||v.email||"marina@clearminds.exemplo", profissao:p.profissao||v.profissao||v.area||"Psicóloga", ficticio:!!(p.ficticio||v.ficticio) };
     };
     let contatoChatAtivo = null;
-    const contatosPaciente = () => { const ms=getLista("cm_mensagens").filter(m=>m.fromEmail===emailUsuario||m.toEmail===emailUsuario),map=new Map();ms.forEach(m=>{const from=m.fromEmail===emailUsuario,email=from?m.toEmail:m.fromEmail,name=from?m.toNome:m.fromNome;if(email)map.set(email,{email,nome:name||"Contato",data:m.data,texto:m.texto,ficticio:m.ficticio});});if(!map.has(profContato.email))map.set(profContato.email,{email:profContato.email,nome:profContato.nome});return [...map.values()].sort((a,b)=>new Date(b.data||0)-new Date(a.data||0)); };
+    const contatosPaciente = () => { const ms=getLista("cm_mensagens").filter(m=>m.fromEmail===emailUsuario||m.toEmail===emailUsuario),map=new Map();ms.forEach(m=>{const from=m.fromEmail===emailUsuario,email=from?m.toEmail:m.fromEmail,name=from?m.toNome:m.fromNome;if(email)map.set(email,{email,nome:name||"Contato",data:m.data,texto:m.texto,ficticio:!!(m.ficticio||email.endsWith(".exemplo")||(email===profContato.email&&profContato.ficticio))});});if(!map.has(profContato.email))map.set(profContato.email,{email:profContato.email,nome:profContato.nome,ficticio:!!profContato.ficticio});return [...map.values()].sort((a,b)=>new Date(b.data||0)-new Date(a.data||0)); };
     const renderHistoricoPaciente=()=>{const h=document.getElementById("patientChatHistory");if(!h)return;h.replaceChildren();if(!contatoChatAtivo){h.innerHTML='<p class="cm-chat-placeholder">Escolha uma conversa para ver as mensagens.</p>';return;}const ms=getLista("cm_mensagens").filter(m=>(m.fromEmail===emailUsuario&&m.toEmail===contatoChatAtivo.email)||(m.fromEmail===contatoChatAtivo.email&&m.toEmail===emailUsuario)).sort((a,b)=>new Date(a.data)-new Date(b.data));if(!ms.length){h.innerHTML='<p class="cm-chat-placeholder">Esta conversa ainda não tem mensagens.</p>';return;}ms.forEach(m=>{const b=document.createElement("article");b.className="cm-chat-bubble "+(m.fromEmail===emailUsuario?"is-outgoing":"is-incoming");b.innerHTML=`<p>${esc(m.texto)}</p><small>${m.ficticio?'<span class="cm-chat-demo">Demonstração</span> ':""}${new Date(m.data).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}</small>`;h.appendChild(b);});h.scrollTop=h.scrollHeight;};
     const selecionarConversaPaciente=(c,draft)=>{contatoChatAtivo=c;const name=document.getElementById("patientChatName"),status=document.getElementById("patientChatStatus"),av=document.getElementById("patientChatAvatar"),profBtn=document.getElementById("patientChatProfile"),input=document.getElementById("patientChatDraft");if(name)name.textContent=c.nome||"Contato";if(status)status.textContent=c.ficticio?"Demonstração fictícia":"Conversa privada";if(av)av.textContent=(c.nome||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();if(profBtn)profBtn.hidden=c.email!==profContato.email;if(input){if(draft!==undefined)input.value=draft;document.getElementById("patientChatSend").disabled=!input.value.trim();}const profissional=c.email===profContato.email;const role=document.getElementById("patientChatDetailRole"),detailName=document.getElementById("patientChatDetailName"),detailLocation=document.getElementById("patientChatDetailLocation"),detailAvatar=document.getElementById("patientChatDetailAvatar");if(detailName)detailName.textContent=c.nome||"Contato";if(role)role.textContent=profissional?(profContato.profissao||"Profissional de saúde"):"Pessoa da comunidade";if(detailLocation)detailLocation.textContent=profissional?[profContato.cidade,profContato.estado].filter(Boolean).join(", ")||profContato.email:c.email||"Contato da comunidade";if(detailAvatar)detailAvatar.textContent=(c.nome||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();const thread=getLista("cm_mensagens").filter(m=>(m.fromEmail===emailUsuario&&m.toEmail===c.email)||(m.fromEmail===c.email&&m.toEmail===emailUsuario));const imgs=thread.filter(m=>m.midia?.tipo==="imagem").length,docs=thread.filter(m=>m.midia&&m.midia.tipo!=="imagem").length;["patientChatImageCount","patientChatPhotoCount"].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=String(imgs);});const docEl=document.getElementById("patientChatDocCount");if(docEl)docEl.textContent=String(docs);document.querySelectorAll("#patientMessageList .cm-chat-contact").forEach(b=>b.classList.toggle("active",b.dataset.email===c.email));renderHistoricoPaciente();};
     const renderCaixaMensagens=()=>{const ul=document.getElementById("patientMessageList"),empty=document.getElementById("patientMessagesEmpty");if(!ul)return;const q=(document.getElementById("patientChatSearch")?.value||"").trim().toLowerCase();const contacts=contatosPaciente().filter(c=>!q||(c.nome||"").toLowerCase().includes(q)||(c.email||"").toLowerCase().includes(q));ul.replaceChildren();if(empty)empty.hidden=contacts.length>0;contacts.forEach(c=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.className="cm-chat-contact"+(contatoChatAtivo?.email===c.email?" active":"");b.dataset.email=c.email;b.innerHTML=`<span class="cm-avatar cm-avatar-sm">${esc((c.nome||"C").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase())}</span><span class="cm-chat-contact-copy"><strong>${esc(c.nome)}${c.ficticio?'<small class="cm-chat-demo">Demonstração</small>':""}</strong><small>${esc(c.texto||c.email)}</small></span>`;b.onclick=()=>selecionarConversaPaciente(c,"");li.appendChild(b);ul.appendChild(li);});if(!contatoChatAtivo||!contacts.some(c=>c.email===contatoChatAtivo.email))contatoChatAtivo=contacts.find(c=>c.email===profContato.email)||contacts[0]||null;if(contatoChatAtivo)selecionarConversaPaciente(contatoChatAtivo);else renderHistoricoPaciente();};
     const abrirConversa=(c,draft="")=>{abrirSecaoMensagens();const dest=contatosPaciente().find(x=>x.email===c.email)||c;selecionarConversaPaciente(dest,draft);document.getElementById("patientChatDraft")?.focus();};
     const profContato=obterProfissionalVinculado();
-    if(!localStorage.getItem(`cm_demo_patient_messages_${emailUsuario}`)){const ms=getLista("cm_mensagens");ms.push({id:`demo-in-${emailUsuario}-1`,fromEmail:profContato.email,toEmail:emailUsuario,fromNome:profContato.nome,toNome:nomeUsuario,texto:"Olá! Estou à disposição para conversarmos sobre seu acompanhamento. Mensagem fictícia.",data:new Date(Date.now()-3600000).toISOString(),ficticio:true},{id:`demo-in-${emailUsuario}-2`,fromEmail:"lia@clearminds.exemplo",toEmail:emailUsuario,fromNome:"Lia Demonstração",toNome:nomeUsuario,texto:"Vi sua publicação na Comunidade. Obrigada por compartilhar! Mensagem fictícia.",data:new Date(Date.now()-7200000).toISOString(),ficticio:true});salvarLista("cm_mensagens",ms);localStorage.setItem(`cm_demo_patient_messages_${emailUsuario}`,"1");}
-    document.querySelector("#sec-mensagens > .cm-section-head")?.remove();const inboxPanel=document.querySelector("#sec-mensagens .home-inbox-panel");if(inboxPanel)document.querySelector("#sec-mensagens .cm-chat-contacts")?.appendChild(inboxPanel);const chatTitle=document.querySelector("#sec-mensagens .home-messages-panel .cm-panel-title");if(chatTitle)chatTitle.textContent="Chat";document.getElementById("patientChatUserName").textContent=nomeUsuario;document.getElementById("patientChatUserAvatar").textContent=(nomeUsuario||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();renderCaixaMensagens();document.getElementById("patientChatSearch")?.addEventListener("input",renderCaixaMensagens);document.getElementById("patientNewChatMini")?.addEventListener("click",()=>abrirConversa(profContato,""));document.getElementById("patientChatDraft")?.addEventListener("input",e=>{document.getElementById("patientChatSend").disabled=!e.target.value.trim();});document.getElementById("patientChatForm")?.addEventListener("submit",e=>{e.preventDefault();const input=document.getElementById("patientChatDraft"),texto=input.value.trim();if(!contatoChatAtivo||!texto)return;const ms=getLista("cm_mensagens");ms.push({id:`msg-${Date.now()}`,fromEmail:emailUsuario,toEmail:contatoChatAtivo.email,fromNome:nomeUsuario,toNome:contatoChatAtivo.nome,texto,data:new Date().toISOString()});salvarLista("cm_mensagens",ms);input.value="";document.getElementById("patientChatSend").disabled=true;renderCaixaMensagens();});document.getElementById("btnNovaMensagem")?.addEventListener("click",()=>abrirConversa(profContato,""));document.getElementById("patientChatProfile")?.addEventListener("click",()=>mostrarPerfilProfissional(profContato));window.addEventListener("storage",e=>{if(e.key==="cm_mensagens")renderCaixaMensagens();});    const mostrarPerfilProfissional=(prof)=>{const d={...profContato,...prof},full=JSON.parse(localStorage.getItem("cm_profile_profissional")||"{}");const fields=[["Profissão",d.profissao],["E-mail",d.email],["Telefone",d.telefone||full.telefone],["Cidade",d.cidade||full.cidade],["Estado",d.estado||full.estado],["Especialidades",d.especialidades||full.especialidades],["Abordagem",d.abordagem||full.abordagem],["Modalidade",d.modalidade||full.modalidade],["Apresentação",d.bio||full.bio],["Registro",d.registroProfissional||full.registroProfissional]];const rows=fields.filter(x=>x[1]).map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("");const o=abrirFluxoDialogo(d.nome,`<p>${d.ficticio?'<span class="cm-demo-label">Perfil fictício de demonstração</span>':""}</p><ul class="cm-prof-profile-details">${rows||"<li>Dados profissionais não cadastrados ainda.</li>"}</ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-primary cm-btn-sm" data-profile-message>Enviar mensagem</button><button class="cm-btn cm-btn-soft cm-btn-sm" data-profile-rebook>Reagendar atendimento</button>${d.telefone?`<a class="cm-btn cm-btn-soft cm-btn-sm" href="tel:${esc(d.telefone)}">Ligar</a>`:""}</div>`);o.querySelector("[data-profile-message]").onclick=()=>{o.classList.remove("show");abrirConversa(d);};o.querySelector("[data-profile-rebook]").onclick=()=>{o.classList.remove("show");abrirConversa(d,"Gostaria de reagendar a data do atendimento!");};};
+    const abrirFluxoDialogo = (titulo, conteudo) => {
+        let overlay = document.getElementById("cmFlowOverlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "cmFlowOverlay";
+            overlay.className = "cm-modal-overlay";
+            overlay.setAttribute("aria-hidden", "true");
+            overlay.innerHTML = `
+                <div class="cm-modal cm-flow-modal" role="dialog" aria-modal="true" aria-labelledby="cmFlowTitle">
+                    <button class="cm-flow-close" type="button" aria-label="Fechar">×</button>
+                    <h3 id="cmFlowTitle"></h3>
+                    <div class="cm-flow-content"></div>
+                </div>`;
+            document.body.appendChild(overlay);
+            overlay.addEventListener("click", event => {
+                if (event.target === overlay || event.target.closest(".cm-flow-close")) {
+                    overlay.classList.remove("show");
+                    overlay.setAttribute("aria-hidden", "true");
+                }
+            });
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && overlay.classList.contains("show")) {
+                    overlay.classList.remove("show");
+                    overlay.setAttribute("aria-hidden", "true");
+                }
+            });
+        }
+        overlay.querySelector("#cmFlowTitle").textContent = titulo || "Detalhes";
+        overlay.querySelector(".cm-flow-content").innerHTML = conteudo || "";
+        overlay.classList.add("show");
+        overlay.setAttribute("aria-hidden", "false");
+        overlay.querySelector(".cm-flow-close")?.focus();
+        return overlay;
+    };
+    {const ms=getLista("cm_mensagens"),exemplos=[{id:`demo-in-${emailUsuario}-1`,fromEmail:profContato.email,toEmail:emailUsuario,fromNome:profContato.nome,toNome:nomeUsuario,texto:"Olá! Estou à disposição para conversarmos sobre seu acompanhamento. Mensagem fictícia.",data:new Date(Date.now()-3600000).toISOString(),ficticio:true},{id:`demo-in-${emailUsuario}-2`,fromEmail:demonstracaoEmail,toEmail:emailUsuario,fromNome:"Lia Demonstração",toNome:nomeUsuario,texto:"Vi sua publicação na Comunidade. Obrigada por compartilhar! Mensagem fictícia.",data:new Date(Date.now()-7200000).toISOString(),ficticio:true}];let mudou=false;exemplos.forEach(exemplo=>{if(!ms.some(m=>m.id===exemplo.id)){ms.push(exemplo);mudou=true;}});if(mudou)salvarLista("cm_mensagens",ms);localStorage.setItem(`cm_demo_patient_messages_${emailUsuario}`,"1");}
+    document.querySelector("#sec-mensagens > .cm-section-head")?.remove();const inboxPanel=document.querySelector("#sec-mensagens .home-inbox-panel");if(inboxPanel)document.querySelector("#sec-mensagens .cm-chat-contacts")?.appendChild(inboxPanel);const chatTitle=document.querySelector("#sec-mensagens .home-messages-panel .cm-panel-title");if(chatTitle)chatTitle.textContent="Chat";document.getElementById("patientChatUserName").textContent=nomeUsuario;document.getElementById("patientChatUserAvatar").textContent=(nomeUsuario||"CM").split(/\s+/).slice(0,2).map(x=>x[0]).join("").toUpperCase();renderCaixaMensagens();document.getElementById("patientChatSearch")?.addEventListener("input",renderCaixaMensagens);document.getElementById("patientNewChatMini")?.addEventListener("click",()=>abrirConversa(profContato,""));document.getElementById("patientChatDraft")?.addEventListener("input",e=>{document.getElementById("patientChatSend").disabled=!e.target.value.trim();});document.getElementById("patientChatForm")?.addEventListener("submit",e=>{e.preventDefault();const input=document.getElementById("patientChatDraft"),texto=input.value.trim();if(!contatoChatAtivo||!texto)return;const ms=getLista("cm_mensagens");ms.push({id:`msg-${Date.now()}`,fromEmail:emailUsuario,toEmail:contatoChatAtivo.email,fromNome:nomeUsuario,toNome:contatoChatAtivo.nome,texto,data:new Date().toISOString()});salvarLista("cm_mensagens",ms);input.value="";document.getElementById("patientChatSend").disabled=true;renderCaixaMensagens();});document.getElementById("btnNovaMensagem")?.addEventListener("click",()=>abrirConversa(profContato,""));document.getElementById("patientChatProfile")?.addEventListener("click",()=>mostrarPerfilProfissional(profContato));window.addEventListener("storage",e=>{if(e.key==="cm_mensagens")renderCaixaMensagens();});    const mostrarPerfilProfissional=(prof)=>{const d={...profContato,...prof},full=JSON.parse(localStorage.getItem("cm_profile_profissional")||"{}");const fields=[["Profissão",d.profissao],["E-mail",d.email],["Telefone",d.telefone||full.telefone],["Cidade",d.cidade||full.cidade],["Estado",d.estado||full.estado],["Especialidades",d.especialidades||full.especialidades],["Abordagem",d.abordagem||full.abordagem],["Modalidade",d.modalidade||full.modalidade],["Faixa etária",d.faixaEtaria||full.faixaEtaria],["Formação",d.faculdade||full.faculdade],["Ano de formação",d.anoFormacao||full.anoFormacao],["Pós-graduação",d.posGraduacao||full.posGraduacao],["Idiomas",d.idiomas||full.idiomas],["Disponibilidade",d.disponibilidade||full.disponibilidade],["Valor da sessão",d.valorSessao?`R$ ${d.valorSessao}`:full.valorSessao],["Apresentação",d.bio||full.bio],["Registro",d.registroProfissional||full.registroProfissional]];const rows=fields.filter(x=>x[1]).map(x=>`<li><b>${esc(x[0])}:</b> ${esc(x[1])}</li>`).join("");const o=abrirFluxoDialogo(d.nome,`<p>${d.ficticio?'<span class="cm-demo-label">Perfil fictício de demonstração</span>':""}</p><ul class="cm-prof-profile-details">${rows||"<li>Dados profissionais não cadastrados ainda.</li>"}</ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-primary cm-btn-sm" data-profile-message>Enviar mensagem</button><button class="cm-btn cm-btn-soft cm-btn-sm" data-profile-rebook>Reagendar atendimento</button>${d.telefone?`<a class="cm-btn cm-btn-soft cm-btn-sm" href="tel:${esc(d.telefone)}">Ligar</a>`:""}</div>`);o.querySelector("[data-profile-message]").onclick=()=>{o.classList.remove("show");abrirConversa(d);};o.querySelector("[data-profile-rebook]").onclick=()=>{o.classList.remove("show");abrirConversa(d,"Gostaria de reagendar a data do atendimento!");};};
     document.getElementById("listaProfissionais")?.addEventListener("click",e=>{const b=e.target.closest("[data-view-professional]");if(b)mostrarPerfilProfissional(JSON.parse(decodeURIComponent(b.dataset.viewProfessional)));});
-    const mostrarDetalhesConsulta=c=>{const o=abrirFluxoDialogo("Detalhes do atendimento",`<ul class="cm-prof-profile-details"><li><b>Profissional:</b> ${esc(c.profissional||profContato.nome)}</li><li><b>Dia:</b> ${esc(c.data||"Não informado")}</li><li><b>Horário:</b> ${esc(c.horario||"Não informado")}</li><li><b>Nota do profissional:</b> ${esc(c.nota||c.observacao||"Nenhuma nota registrada")}</li><li><b>Modalidade:</b> ${esc(c.modalidade||c.tipo||"Não informada")}</li></ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-danger cm-btn-sm" data-cancel-appointment>Cancelar atendimento</button><button class="cm-btn cm-btn-primary cm-btn-sm" data-reschedule-appointment>Reagendar atendimento</button></div>`);o.querySelector("[data-cancel-appointment]").onclick=()=>{if(confirm("Deseja cancelar este atendimento?")){c.status="cancelado";salvarLista("cm_consultas",consultas);renderConsultas();o.classList.remove("show");}};o.querySelector("[data-reschedule-appointment]").onclick=()=>{o.classList.remove("show");abrirConversa(profContato,"Gostaria de reagendar a data do atendimento!");};};
+    const mostrarDetalhesConsulta=c=>{const cancelada=(c.status||"").toLowerCase()==="cancelado",o=abrirFluxoDialogo("Detalhes do atendimento",`<ul class="cm-prof-profile-details"><li><b>Profissional:</b> ${esc(c.profissional||profContato.nome)}</li><li><b>Dia:</b> ${esc(c.data||"Não informado")}</li><li><b>Horário:</b> ${esc(c.horario||"Não informado")}</li><li><b>Nota do profissional:</b> ${esc(c.nota||c.observacao||"Nenhuma nota registrada")}</li><li><b>Modalidade:</b> ${esc(c.modalidade||c.tipo||"Não informada")}</li><li><b>Situação:</b> ${esc(c.status||"Agendado")}</li></ul><div class="cm-add-form-actions"><button class="cm-btn cm-btn-danger cm-btn-sm" data-cancel-appointment ${cancelada?"disabled":""}>Cancelar atendimento</button><button class="cm-btn cm-btn-primary cm-btn-sm" data-reschedule-appointment>Reagendar atendimento</button></div>`);o.querySelector("[data-cancel-appointment]").onclick=()=>{if(!cancelada&&confirm("Deseja cancelar este atendimento?")){c.status="cancelado";salvarLista("cm_consultas",consultas);renderConsultas();o.classList.remove("show");}};o.querySelector("[data-reschedule-appointment]").onclick=()=>{o.classList.remove("show");const vinculado=vinculados.find(p=>p.email===c.profissionalEmail);const destino=vinculado?{...profContato,...vinculado,nome:c.profissional||vinculado.nome,email:c.profissionalEmail,ficticio:!!vinculado.ficticio}:{...profContato,nome:c.profissional||profContato.nome,email:c.profissionalEmail||profContato.email};abrirConversa(destino,"Gostaria de reagendar a data do atendimento!");};};
     const conteudosUsuario = [
         {
             id: 1,
@@ -593,6 +687,11 @@ document.addEventListener("DOMContentLoaded", () => {
             salvarLista("cm_amizades", amizades);
         }
     };
+
+    const contatosParaCompartilhar = () => amizades.length ? amizades : [
+        { email: demonstracaoEmail, nome: "Lia Demonstração" },
+        { email: "rafa@clearminds.exemplo", nome: "Rafa Exemplo" }
+    ];
 
     const renderListaSugestoes = (lista, vazio, pessoas, filtro = "", limite = Infinity) => {
         if (!lista) return;
@@ -1021,9 +1120,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     </button>
                 </div>
                 <div class="cm-share-box" id="share-${esc(idPost)}-${esc(container.id)}">
-                    ${amizades.length
-                        ? `<p class="cm-share-note">Escolha com quem compartilhar:</p>
-                           <ul class="cm-share-list">${amizades.map(a => `
+                    ${contatosParaCompartilhar().length
+                        ? `<p class="cm-share-note">${amizades.length ? "Escolha com quem compartilhar:" : "Exemplo: compartilhe com uma pessoa fictícia da comunidade."}</p>
+                           <ul class="cm-share-list">${contatosParaCompartilhar().map(a => `
                                 <li><label><input type="checkbox" value="${esc(a.id || a.email || a.nome)}"> ${esc(a.nome || a.email || "Conexão")}</label></li>`).join("")}
                            </ul>
                            <button type="button" class="cm-btn cm-btn-primary cm-btn-sm share-confirm" data-post="${esc(idPost)}">Enviar</button>`
